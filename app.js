@@ -20,13 +20,40 @@
   const notify = message => { $('#toast').textContent = message; $('#toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('#toast').hidden = true; }, 3200); };
 
   const header = $('#header');
-  const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 70);
-  window.addEventListener('scroll', updateHeader, { passive: true });
+  const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 24);
+  let headerFrame = 0;
+  window.addEventListener('scroll', () => { if (!headerFrame) headerFrame = requestAnimationFrame(() => { updateHeader(); headerFrame = 0; }); }, { passive: true });
   updateHeader();
   const menuToggle = $('.menu-toggle');
-  function closeMenu() { menuToggle.setAttribute('aria-expanded', 'false'); menuToggle.setAttribute('aria-label', 'Otevřít navigaci'); $('#mobile-nav').hidden = true; header.classList.remove('menu-open'); document.body.classList.remove('menu-is-open'); }
-  menuToggle.addEventListener('click', () => { const expanded = menuToggle.getAttribute('aria-expanded') === 'true'; if (expanded) closeMenu(); else { menuToggle.setAttribute('aria-expanded','true'); menuToggle.setAttribute('aria-label','Zavřít navigaci'); $('#mobile-nav').hidden = false; header.classList.add('menu-open'); document.body.classList.add('menu-is-open'); } });
-  $$('#mobile-nav a').forEach(link => link.addEventListener('click', closeMenu));
+  const mobileNav = $('#mobile-nav');
+  const menuBackground = [$('#main'), $('.site-footer'), $('.brand', header), $('.header-contact', header)];
+  function closeMenu(restore = false) {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Otevřít navigaci');
+    mobileNav.hidden = true; header.classList.remove('menu-open'); document.body.classList.remove('menu-is-open');
+    menuBackground.forEach(element => { if (element) element.inert = false; });
+    if (restore) menuToggle.focus({preventScroll:true});
+  }
+  menuToggle.addEventListener('click', () => {
+    if (menuToggle.getAttribute('aria-expanded') === 'true') { closeMenu(true); return; }
+    menuToggle.setAttribute('aria-expanded','true'); menuToggle.setAttribute('aria-label','Zavřít navigaci');
+    mobileNav.hidden = false; header.classList.add('menu-open'); document.body.classList.add('menu-is-open');
+    menuBackground.forEach(element => { if (element) element.inert = true; });
+    $('a', mobileNav).focus({preventScroll:true});
+  });
+  $$('#mobile-nav a').forEach(link => link.addEventListener('click', () => {
+    closeMenu();
+    const section = document.querySelector(link.hash);
+    if (section) { section.tabIndex = -1; section.focus({preventScroll:true}); }
+  }));
+  document.addEventListener('keydown', event => {
+    if (mobileNav.hidden) return;
+    if (event.key === 'Escape') { event.preventDefault(); closeMenu(true); return; }
+    if (event.key !== 'Tab') return;
+    const controls = [menuToggle,...$$('a', mobileNav)];
+    const index = controls.indexOf(document.activeElement);
+    event.preventDefault(); controls[(index + (event.shiftKey ? -1 : 1) + controls.length) % controls.length].focus();
+  });
   window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
 
   function captureFocus(element = document.activeElement) {
@@ -110,7 +137,7 @@
   const stepGallery = step => { galleryIndex = (galleryIndex + step + galleryItems.length) % galleryItems.length; renderGallery(); };
   $('#gallery-prev').addEventListener('click', () => stepGallery(-1));
   $('#gallery-next').addEventListener('click', () => stepGallery(1));
-  document.addEventListener('keydown', event => { if ($('#gallery-dialog').open && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); stepGallery(event.key === 'ArrowLeft' ? -1 : 1); } if (event.key === 'Escape') closeMenu(); });
+  document.addEventListener('keydown', event => { if ($('#gallery-dialog').open && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); stepGallery(event.key === 'ArrowLeft' ? -1 : 1); } });
 
   function filteredUnits() {
     return units.filter(unit => {
@@ -216,11 +243,41 @@
   $('#open-compare').addEventListener('click', () => { renderCompare(); openDialog($('#compare-dialog')); });
 
   function selectInterest(value) { const select = $('#contact-interest'); let option = [...select.options].find(item => item.value === value); if (!option) { option = document.createElement('option'); option.value = value; option.textContent = value; select.appendChild(option); } select.value = value; }
-  $('#inquiry-form').addEventListener('submit', event => {
+  const inquiryForm = $('#inquiry-form');
+  inquiryForm.noValidate = true;
+  const formErrors = document.createElement('div');
+  formErrors.className = 'form-errors'; formErrors.id = 'form-errors'; formErrors.hidden = true;
+  formErrors.tabIndex = -1; formErrors.setAttribute('role', 'alert');
+  inquiryForm.prepend(formErrors);
+  const fields = [$('#contact-name'),$('#contact-email')];
+  fields.forEach(field => {
+    const error = document.createElement('span'); error.id = `${field.id}-error`; error.className = 'field-error'; error.hidden = true;
+    field.insertAdjacentElement('afterend',error); field.setAttribute('aria-describedby',error.id);
+  });
+  function fieldMessage(field) {
+    if (!field.value.trim()) return field.id === 'contact-name' ? 'Vyplňte prosím své jméno.' : 'Vyplňte prosím e-mail.';
+    if (field.validity.typeMismatch) return 'Zadejte platnou e-mailovou adresu.';
+    return field.validity.valid ? '' : 'Zkontrolujte prosím vyplněný údaj.';
+  }
+  function updateFieldError(field) {
+    const message = fieldMessage(field), element = $(`#${field.id}-error`);
+    element.textContent = message; element.hidden = !message;
+    if (message) field.setAttribute('aria-invalid','true'); else field.removeAttribute('aria-invalid');
+    return message;
+  }
+  fields.forEach(field => field.addEventListener('input', () => {
+    if (field.hasAttribute('aria-invalid')) updateFieldError(field);
+    if (fields.every(item => !fieldMessage(item))) formErrors.hidden = true;
+  }));
+  inquiryForm.addEventListener('submit', event => {
     event.preventDefault();
-    if (!event.currentTarget.reportValidity()) return;
+    const errors = fields.map(field => ({field,message:updateFieldError(field)})).filter(item => item.message);
+    if (errors.length) {
+      formErrors.innerHTML = `<p>Ještě doplňte kontaktní údaje</p><ul>${errors.map(({field,message}) => `<li><a href="#${field.id}">${escape(message)}</a></li>`).join('')}</ul>`;
+      formErrors.hidden = false; formErrors.focus(); return;
+    }
+    formErrors.hidden = true;
     const name = $('#contact-name').value.trim();
-    if (!name) { $('#contact-name').setCustomValidity('Vyplňte prosím své jméno.'); $('#contact-name').reportValidity(); return; }
     const email = $('#contact-email').value.trim();
     const phone = $('#contact-phone').value.trim();
     const interest = $('#contact-interest').value;
@@ -231,7 +288,6 @@
     const link = document.createElement('a'); link.href = href; link.textContent = 'otevřete návrh zde'; link.style.textDecoration='underline'; $('#form-status').append(link,document.createTextNode('. Zpráva nebyla automaticky odeslána.'));
     window.location.href = href;
   });
-  $('#contact-name').addEventListener('input', () => $('#contact-name').setCustomValidity(''));
   window.AlexandraCatalog = Object.freeze({ snapshot, setFilters, openUnit, isSaved: id => { const unit = findUnit(id); return !!unit && saved.includes(unit.id); } });
   renderUnits();
 })();

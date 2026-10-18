@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'AlexandraSans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(assets/fonts/inter-normal-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'AlexandraSans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(assets/fonts/inter-normal-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'AlexandraDisplay';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/playfair-italic-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'AlexandraDisplay';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/playfair-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'AlexandraDisplay';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(assets/fonts/playfair-normal-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'AlexandraDisplay';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(assets/fonts/playfair-normal-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Alexandra: shared visual language, local fonts and accessible primitives. */
+:root {
+  --paper: #f7f5f0;
+  --cream: #e9ede4;
+  --ink: #253a32;
+  --olive: #536c5d;
+  --muted: #59645c;
+  --line: #d6dcd2;
+  --surface: #fffefa;
+  --serif: 'AlexandraDisplay', Georgia, 'Times New Roman', serif;
+  --sans: 'AlexandraSans', Arial, Helvetica, sans-serif;
+  --radius: 12px;
+  --gutter: clamp(20px, 4vw, 72px);
+  --header-height: 88px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px;
+  --space-4: 16px; --space-6: 24px; --space-8: 32px;
+  --space-12: 48px; --space-16: 64px; --space-24: 96px;
+  --shadow-soft: 0 12px 40px #253a320b;
+  --shadow-dialog: 0 24px 100px #10201838;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+  --duration-fast: 160ms;
+  --duration-normal: 260ms;
+  color-scheme: light;
+}
+*,*::before,*::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 24px); -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-family: var(--sans); font-size: 16px; line-height: 1.65; color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+button,input,select,textarea { font: inherit; }
+button,a,summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+button:not(:disabled),summary { cursor: pointer; }
+button,input,select,textarea { max-width: 100%; }
+img,video,canvas,svg { max-width: 100%; }
+img,video { height: auto; }
+h1,h2,h3 { font-family: var(--serif); font-weight: 400; text-wrap: balance; }
+p { text-wrap: pretty; }
+input,select,textarea { font-size: 16px; }
+[hidden] { display: none !important; }
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible { outline: 3px solid #8b613c; outline-offset: 4px; }
+:where(a,button,input,select,textarea,summary,[tabindex]) { scroll-margin-block: 112px 32px; }
+::selection { color: var(--paper); background: var(--ink); }
+@media (max-width:600px) { :root { --header-height:76px; --gutter:20px; } }
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto !important; }
+  *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}

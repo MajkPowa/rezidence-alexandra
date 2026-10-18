@@ -8,8 +8,9 @@
   <meta name="description" content="Objevte Rezidenci Alexandra v Otrokovicích. Architektura, vizualizace interiérů, přehled 51 jednotek, půdorysy a kontakt na prodejce.">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="preload" as="image" href="assets/exterior-hero.webp">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="floor-selector.css?v=1"><link rel="stylesheet" href="furnished-plans.css?v=1">
-  <script src="data/units.js" defer></script><script src="data/availability.js?v=1" defer></script><script src="inventory.js?v=1" defer></script><script src="furnished-plans.js?v=2" defer></script><script src="app.js?v=6" defer></script><script src="floor-selector.js?v=2" defer></script>
+  <link rel="stylesheet" href="design-system.css?v=1"><link rel="stylesheet" href="styles.css?v=2"><link rel="stylesheet" href="home.css?v=1"><link rel="stylesheet" href="floor-selector.css?v=2"><link rel="stylesheet" href="furnished-plans.css?v=2">
+  <link rel="preload" as="font" href="assets/fonts/inter-normal-latin.woff2" type="font/woff2" crossorigin>
+  <script src="data/units.js" defer></script><script src="data/availability.js?v=1" defer></script><script src="inventory.js?v=1" defer></script><script src="furnished-plans.js?v=3" defer></script><script src="app.js?v=7" defer></script><script src="floor-selector.js?v=3" defer></script>
 <link rel="canonical" href="https://majkpowa.github.io/rezidence-alexandra/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rezidence Alexandra">
@@ -20,12 +21,12 @@
 <meta property="og:image" content="https://majkpowa.github.io/rezidence-alexandra/assets/campaign/hero-golden.jpg">
 <meta property="og:image:alt" content="Návrhová AI vizualizace Rezidence Alexandra">
 <meta name="twitter:card" content="summary_large_image"></head>
-<body>
+<body class="home-page">
   <a class="skip-link" href="#main">Přejít na obsah</a>
   <header class="site-header" id="header">
     <a href="#" class="brand" aria-label="Rezidence Alexandra, úvod"><span class="brand-symbol" aria-hidden="true">A</span><span class="brand-text">ALEXANDRA<small>REZIDENCE · OTROKOVICE</small></span></a>
     <nav class="desktop-nav" aria-label="Hlavní navigace"><a href="#projekt">O projektu</a><a href="#byty">Nabídka bytů</a><a href="#interiery">Interiéry</a><a href="#prohlidka">Prohlídka</a></nav>
-    <a class="header-contact" href="#kontakt">Domluvit setkání <span aria-hidden="true">↗</span></a>
+    <a class="header-contact" href="#byty">Vybrat byt <span aria-hidden="true">↗</span></a>
     <button class="menu-toggle icon-button" aria-label="Otevřít navigaci" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
   </header>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobilní navigace" hidden><a href="#projekt">O projektu</a><a href="#byty">Nabídka bytů</a><a href="#interiery">Interiéry</a><a href="#prohlidka">Prohlídky</a><a href="#dokumenty">Dokumenty</a><a href="#kontakt">Kontakt</a></nav>
@@ -37,6 +38,11 @@
       <div class="hero-bottom"><span>01 / VIZE DOMU</span><span>Architektonická vizualizace</span><a href="#projekt" aria-label="Pokračovat k projektu">PROZKOUMAT <span aria-hidden="true">↓</span></a></div>
     </section>
 
+    <nav class="explore-links" aria-label="Prozkoumat rezidenci">
+      <a href="#byty"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 28V5h22v23M11 28v-8h10v8M11 10h3m4 0h3m-10 5h3m4 0h3"/></svg><span><strong>Najděte svůj byt</strong><small>Podlaží, dispozice a půdorysy</small></span><b aria-hidden="true">↗</b></a>
+      <a href="interiors.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 18v9h22v-9M8 18V9h16v9M3 18h26M8 27v3m16-3v3M15 9v9"/></svg><span><strong>Nahlédněte dovnitř</strong><small>Interiéry a detaily ve 4K</small></span><b aria-hidden="true">↗</b></a>
+      <a href="tour.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M12 5h12v23H12zM5 28h24M17 16h1M4 10v10m-3-3 3 3 3-3"/></svg><span><strong>Projděte se doma</strong><small>Propojené 360° prohlídky</small></span><b aria-hidden="true">↗</b></a>
+    </nav>
     <section class="intro section-pad" id="projekt">
       <div class="section-marker"><span>01</span> REZIDENCE ALEXANDRA</div>
       <div class="intro-body"><h2>Prostor, ve kterém<br>začíná <em>domov.</em></h2><div class="intro-copy"><p>Ranní káva, první vlastní klíče i místo pro společné večery. Alexandra dává těmto představám konkrétní podobu.</p><p>Prohlédněte si návrh domu v Otrokovicích a najděte dispozici, která je blízká vašemu životu. Od kompaktního 1+kk po třípokojové bydlení.</p><a class="text-link" href="#architektura">Poznat architekturu <span aria-hidden="true">↗</span></a></div></div>

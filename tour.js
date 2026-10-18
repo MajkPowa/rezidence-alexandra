@@ -39,12 +39,14 @@
   const cacheLimit=matchMedia('(max-width:768px)').matches?3:6;if(cache.size>cacheLimit)cache.delete(cache.keys().next().value);return promise;
  }
  function defaultView(node){const t=node.target||[node.position[0],node.position[1]+1,node.position[2]],p=node.position;const dx=t[0]-p[0],dy=t[1]-p[1],dz=t[2]-p[2];return {yaw:Math.atan2(dx,dy),pitch:Math.atan2(dz,Math.hypot(dx,dy)),fov:1.15};}
- function updateURL(){const url=new URL(location.href);url.searchParams.set('byt',apartment.id);url.searchParams.set('mistnost',current.id);history.replaceState(null,'',url);}
+ function updateURL(mode='replace'){if(mode==='none')return;const url=new URL(location.href);url.searchParams.set('byt',apartment.id);url.searchParams.set('mistnost',current.id);if(url.href!==location.href)history[mode==='push'?'pushState':'replaceState'](null,'',url);}
  function roomCategory(id){return id.includes('kitchen')?'Kuchyně':id.includes('bedroom')?'Ložnice':id.includes('bath')?'Koupelna':id.includes('living')?'Obývací pokoj':null;}
- function syncUI(){
+ function syncUI(historyMode){
   const visited=seen.get(apartment.id)||new Set();visited.add(current.id);seen.set(apartment.id,visited);
   $('#room-meta').textContent=`${apartment.label} / 360° NÁVRH INTERIÉRU`;
   $('#room-title').textContent=current.label;
+  canvas.setAttribute('aria-label',`${current.label}, ${apartment.label}, 360° interiér. Šipky mění směr, plus a minus přibližují. Místnosti vyberete tlačítky pod prohlídkou.`);
+  $('#fallback-image').alt=`Náhled místnosti ${current.label}, ${apartment.label}`;
   $('#tour-summary').textContent=`${apartment.nodes.length} propojených stanovišť`;
   $('#source-plan').href=`plans/unit-${apartment.sourceUnit}.pdf`;
   $('#apartment-note').textContent=apartment.note||'';
@@ -54,13 +56,14 @@
   $('#room-list').innerHTML=apartment.nodes.map((n,i)=>`<button type="button" class="room-card ${visited.has(n.id)?'visited':''}" data-node="${escape(n.id)}" aria-current="${n.id===current.id}" aria-label="Přejít do místnosti: ${escape(n.label)}"><img src="${escape(n.thumb)}" alt="" loading="lazy" width="480" height="290"><small aria-hidden="true">${visited.has(n.id)?'✓':String(i+1).padStart(2,'0')}</small><span>${escape(n.label)}</span></button>`).join('');
   $('#visited-count').textContent=`Prohlédnuto ${visited.size} z ${apartment.nodes.length} stanovišť`;
   $('#adjacent-rooms').innerHTML=(current.links||[]).map(link=>{const n=apartment.nodes.find(n=>n.id===link.to);return n?`<button type="button" data-adjacent="${escape(n.id)}">${escape(n.label)} <span aria-hidden="true">→</span></button>`:'';}).join('');
-  renderMap();buildHotspots();updateURL();
+  renderMap();buildHotspots();updateURL(historyMode);
  }
  function renderMap(){
   const [w,d]=apartment.bounds;
   const polygons=(apartment.rooms||[]).map(r=>`<polygon class="map-room ${r.id===current.room?'active':''}" points="${r.polygon.map(p=>`${p[0]},${d-p[1]}`).join(' ')}"><title>${escape(r.label)}</title></polygon>`).join('');
   const points=apartment.nodes.map((n,i)=>`<g data-map-node="${escape(n.id)}" role="button" tabindex="0" aria-label="Přejít: ${escape(n.label)}"><circle class="map-node ${n.id===current.id?'active':''}" cx="${n.position[0]}" cy="${d-n.position[1]}" r=".19"/><text class="map-text" x="${n.position[0]}" y="${d-n.position[1]+.055}" ${n.id===current.id?'style="fill:white"':''}>${i+1}</text><title>${escape(n.label)}</title></g>`).join('');
   $('#floor-map').innerHTML=`<svg viewBox="-.25 -.25 ${w+.5} ${d+.5}" role="group" aria-label="Orientační půdorys ${escape(apartment.label)}">${polygons}<path id="map-bearing" class="map-bearing" d="M0,0 L-.4,-.75 Q0,-.95 .4,-.75Z" aria-hidden="true"/>${points}</svg>`;
+  $('#map-room-list').innerHTML=apartment.nodes.map((n,i)=>`<button type="button" data-map-node="${escape(n.id)}" aria-current="${n.id===current.id}"><span aria-hidden="true">${String(i+1).padStart(2,'0')}</span>${escape(n.label)}</button>`).join('');
  }
  function buildHotspots(){
   hotspots=[];$('#hotspots').replaceChildren();
@@ -69,47 +72,60 @@
  }
  function projectHotspots(){
   const w=canvas.clientWidth,h=canvas.clientHeight,sy=Math.sin(view.yaw),cy=Math.cos(view.yaw),sp=Math.sin(view.pitch),cp=Math.cos(view.pitch),tan=Math.tan(effectiveFov()/2);
+  const topLimit=$('.stage-top').offsetHeight+40,bottomLimit=$('.stage-bottom').offsetHeight+40;
   const bearing=$('#map-bearing');if(bearing&&current)bearing.setAttribute('transform',`translate(${current.position[0]},${apartment.bounds[1]-current.position[1]}) rotate(${view.yaw*180/Math.PI})`);
-  for(const {element,vector:[x,y,z]} of hotspots){const right=x*cy-y*sy,along=x*sy+y*cy,forward=along*cp+z*sp,up=-along*sp+z*cp;const px=w/2+(right/forward)/(tan*w/h)*w/2,py=h/2-(up/forward)/tan*h/2;const visible=ready&&forward>.05&&px>30&&px<w-30&&py>85&&py<h-100;element.hidden=!visible;if(visible){element.style.left=`${px}px`;element.style.top=`${py}px`;element.classList.toggle('label-left',px>w*.67);}}
+  for(const {element,vector:[x,y,z]} of hotspots){const right=x*cy-y*sy,along=x*sy+y*cy,forward=along*cp+z*sp,up=-along*sp+z*cp;const px=w/2+(right/forward)/(tan*w/h)*w/2,py=h/2-(up/forward)/tan*h/2;const visible=ready&&forward>.05&&px>32&&px<w-32&&py>topLimit&&py<h-bottomLimit;element.hidden=!visible;if(visible){element.style.left=`${px}px`;element.style.top=`${py}px`;element.classList.toggle('label-left',px>w*.5);}}
  }
  function busy(value,label){stage.setAttribute('aria-busy',String(value));$('#loading').hidden=!value;if(label)$('#load-status').textContent=label;}
- async function navigate(id,selectedApartment=apartment){
+ async function navigate(id,selectedApartment=apartment,{historyMode='push'}={}){
   const node=selectedApartment.nodes.find(n=>n.id===id);if(!node)return;const initiatingElement=document.activeElement;const focusKind=initiatingElement?.closest('[data-node]')?'room':initiatingElement?.closest('[data-map-node]')?'map':initiatingElement?.closest('.hotspot,[data-adjacent]')?'canvas':null;requested={node,apartment:selectedApartment};const serial=++requestSerial;busy(true,`Vstupujeme: ${node.label}…`);$('#error-panel').hidden=true;
   try{
    const im=await image(gl?node.src:node.thumb);if(serial!==requestSerial)return;
    apartment=selectedApartment;current=node;view=defaultView(node);
    if(gl){upload(im);canvas.hidden=false;$('#fallback-image').hidden=true;}else{canvas.hidden=true;$('#fallback-image').src=node.thumb;$('#fallback-image').hidden=false;$('#navigation-hint').textContent='Váš prohlížeč zobrazuje náhledy. Místnosti můžete dál měnit v nabídce.';}
-   ready=!!gl;busy(false);syncUI();schedule();
+   ready=!!gl;busy(false);syncUI(historyMode);schedule();
    if(focusKind&&!initiatingElement.isConnected&&document.activeElement===document.body){const focusTarget=focusKind==='room'?$(`[data-node="${CSS.escape(node.id)}"]`):focusKind==='map'?$(`[data-map-node="${CSS.escape(node.id)}"]`):canvas;focusTarget?.focus({preventScroll:true});}
    for(const link of (node.links||[]).slice(0,2)){const adjacent=apartment.nodes.find(n=>n.id===link.to);if(adjacent?.preview)image(adjacent.preview).catch(()=>{});}
   }catch(error){if(serial!==requestSerial)return;console.warn('Panorama could not be displayed:',error.message);busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent=`Místnost „${node.label}“ se nepodařilo načíst. Zkuste to znovu nebo vyberte jinou místnost.`;}
  }
- function chooseApartment(id,nodeId){const a=manifest.apartments.find(x=>x.id===id);if(!a)return false;$('#map-panel').hidden=true;$('#map-toggle').setAttribute('aria-expanded','false');navigate(a.nodes.some(n=>n.id===nodeId)?nodeId:a.defaultNode||a.nodes[0].id,a);return true;}
+ function chooseApartment(id,nodeId,historyMode='push'){const a=manifest.apartments.find(x=>x.id===id);if(!a)return false;for(const name of ['map','help'])togglePanel(name,false);navigate(a.nodes.some(n=>n.id===nodeId)?nodeId:a.defaultNode||a.nodes[0].id,a,{historyMode});return true;}
  const pointers=new Map();let previousPinch=0;
  canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);canvas.focus({preventScroll:true});pointers.set(e.pointerId,[e.clientX,e.clientY]);previousPinch=0;});
  canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;const previous=pointers.get(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size===2){const p=[...pointers.values()],distance=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);if(previousPinch)move(0,0,(previousPinch-distance)*.004);previousPinch=distance;}else{move(-(e.clientX-previous[0])*.0045,(e.clientY-previous[1])*.0045);}});
  for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,e=>{pointers.delete(e.pointerId);previousPinch=0;});
  canvas.addEventListener('wheel',e=>{if(document.activeElement!==canvas)return;e.preventDefault();move(0,0,e.deltaY*.001);},{passive:false});
- canvas.addEventListener('keydown',e=>{const delta={ArrowLeft:[-.12,0],ArrowRight:[.12,0],ArrowUp:[0,.1],ArrowDown:[0,-.1],'+':[0,0,-.1],'=':[0,0,-.1],'-':[0,0,.1]}[e.key];if(delta){e.preventDefault();move(...delta);}});
- $('#look-left').onclick=()=>move(-.22,0);$('#look-right').onclick=()=>move(.22,0);$('#zoom-in').onclick=()=>move(0,0,-.12);$('#zoom-out').onclick=()=>move(0,0,.12);$('#view-reset').onclick=()=>{if(current){view=defaultView(current);schedule();}};
- function expandStage(value){stage.classList.toggle('is-expanded',value);document.body.classList.toggle('tour-expanded',value);$('#fullscreen').setAttribute('aria-label',value?'Ukončit celou obrazovku':'Celá obrazovka');schedule();}
+ canvas.addEventListener('keydown',e=>{if(e.altKey||e.ctrlKey||e.metaKey)return;const delta={ArrowLeft:[-.12,0],ArrowRight:[.12,0],ArrowUp:[0,.1],ArrowDown:[0,-.1],'+':[0,0,-.1],'=':[0,0,-.1],'-':[0,0,.1],Home:null}[e.key];if(e.key==='Home'){e.preventDefault();if(current){view=defaultView(current);schedule();}}else if(delta){e.preventDefault();move(...delta);}});
+ $('#look-left').onclick=()=>move(-.22,0);$('#look-right').onclick=()=>move(.22,0);$('#look-up').onclick=()=>move(0,.16);$('#look-down').onclick=()=>move(0,-.16);$('#zoom-in').onclick=()=>move(0,0,-.12);$('#zoom-out').onclick=()=>move(0,0,.12);$('#view-reset').onclick=()=>{if(current){view=defaultView(current);schedule();}};
+ const inertSiblings=new Map();
+ function isolateStage(value){
+  if(value){let branch=stage;while(branch.parentElement&&branch!==document.body){for(const sibling of branch.parentElement.children){if(sibling!==branch&&!inertSiblings.has(sibling)){inertSiblings.set(sibling,sibling.inert);sibling.inert=true;}}branch=branch.parentElement;}}
+  else{for(const [element,wasInert] of inertSiblings)element.inert=wasInert;inertSiblings.clear();}
+ }
+ function fullscreenState(value){$('#fullscreen').setAttribute('aria-label',value?'Ukončit celou obrazovku':'Celá obrazovka');$('#fullscreen').title=value?'Ukončit celou obrazovku':'Celá obrazovka';$('#fullscreen').setAttribute('aria-pressed',String(value));}
+ function expandStage(value){stage.classList.toggle('is-expanded',value);document.body.classList.toggle('tour-expanded',value);isolateStage(value);fullscreenState(value);if(value)$('#fullscreen').focus({preventScroll:true});schedule();}
  $('#fullscreen').onclick=async()=>{if(stage.classList.contains('is-expanded')){expandStage(false);return;}try{if(document.fullscreenElement)await document.exitFullscreen();else if(stage.requestFullscreen)await stage.requestFullscreen();else expandStage(true);}catch(_){expandStage(true);}};
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&stage.classList.contains('is-expanded')){expandStage(false);$('#fullscreen').focus();}});
- document.addEventListener('fullscreenchange',()=>{$('#fullscreen').setAttribute('aria-label',document.fullscreenElement?'Ukončit celou obrazovku':'Celá obrazovka');schedule();});
- function togglePanel(name,open){const p=$(`#${name}-panel`),b=$(`#${name}-toggle`);const value=open??p.hidden;p.hidden=!value;b.setAttribute('aria-expanded',String(value));if(value){const other=name==='map'?'help':'map';$(`#${other}-panel`).hidden=true;$(`#${other}-toggle`).setAttribute('aria-expanded','false');}}
+ document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){const name=['map','help'].find(n=>!$(`#${n}-panel`).hidden);if(name){e.preventDefault();togglePanel(name,false);$(`#${name}-toggle`).focus();return;}if(stage.classList.contains('is-expanded')){e.preventDefault();expandStage(false);$('#fullscreen').focus();}}
+  if(e.key==='Tab'&&(stage.classList.contains('is-expanded')||document.fullscreenElement===stage)){const focusable=[...stage.querySelectorAll('button:not(:disabled),a[href],canvas[tabindex="0"],[role="button"][tabindex="0"]')].filter(el=>!el.closest('[hidden]')&&el.getClientRects().length);const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&(document.activeElement===first||!stage.contains(document.activeElement))){e.preventDefault();last?.focus();}else if(!e.shiftKey&&(document.activeElement===last||!stage.contains(document.activeElement))){e.preventDefault();first?.focus();}}
+ });
+ document.addEventListener('fullscreenchange',()=>{const active=document.fullscreenElement===stage;fullscreenState(active);if(!active)$('#fullscreen').focus({preventScroll:true});schedule();});
+ function togglePanel(name,open){const p=$(`#${name}-panel`),b=$(`#${name}-toggle`);const value=open??p.hidden;p.hidden=!value;b.setAttribute('aria-expanded',String(value));if(value){const other=name==='map'?'help':'map';$(`#${other}-panel`).hidden=true;$(`#${other}-toggle`).setAttribute('aria-expanded','false');p.scrollTop=0;$(`#${name}-close`).focus({preventScroll:true});}}
  for(const name of ['map','help']){$(`#${name}-toggle`).onclick=()=>togglePanel(name);$(`#${name}-close`).onclick=()=>{togglePanel(name,false);$(`#${name}-toggle`).focus();};}
+ document.addEventListener('pointerdown',e=>{for(const name of ['map','help']){const panel=$(`#${name}-panel`);if(!panel.hidden&&!panel.contains(e.target)&&!$(`#${name}-toggle`).contains(e.target))togglePanel(name,false);}});
  $('#room-list').onclick=e=>{const b=e.target.closest('[data-node]');if(b)navigate(b.dataset.node);};
  $('#adjacent-rooms').onclick=e=>{const b=e.target.closest('[data-adjacent]');if(b)navigate(b.dataset.adjacent);};
- $('#floor-map').onclick=e=>{const b=e.target.closest('[data-map-node]');if(b)navigate(b.dataset.mapNode);};
- $('#floor-map').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){const b=e.target.closest('[data-map-node]');if(b){e.preventDefault();navigate(b.dataset.mapNode);}}};
+ function mapNavigate(e){const b=e.target.closest('[data-map-node]');if(b){navigate(b.dataset.mapNode);togglePanel('map',false);if(!canvas.hidden)canvas.focus({preventScroll:true});else $('#map-toggle').focus({preventScroll:true});}}
+ $('#floor-map').onclick=mapNavigate;$('#map-room-list').onclick=mapNavigate;
+ $('#floor-map').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){const b=e.target.closest('[data-map-node]');if(b){e.preventDefault();mapNavigate(e);}}};
  $$('[data-apartment]').forEach(b=>b.onclick=()=>{if(manifest)chooseApartment(b.dataset.apartment);});
  $('#retry').onclick=()=>manifest&&requested?navigate(requested.node.id,requested.apartment):load();
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;$('#navigation-hint').textContent='Obnovujeme 360° zobrazení…';});
- canvas.addEventListener('webglcontextrestored',()=>{try{initGL();if(current)navigate(current.id);}catch(_){location.reload();}});
+ canvas.addEventListener('webglcontextrestored',()=>{try{initGL();if(current)navigate(current.id,apartment,{historyMode:'replace'});}catch(_){location.reload();}});
+ window.addEventListener('popstate',()=>{if(!manifest)return;const state=new URLSearchParams(location.search);if(!chooseApartment(state.get('byt')||'3kk',state.get('mistnost'),'none'))chooseApartment('3kk',null,'none');});
  new ResizeObserver(schedule).observe(stage);
  async function load(){
   busy(true,'Načítání prohlídky…');$('#error-panel').hidden=true;
-  try{const r=await fetch('assets/walkthrough-v3/manifest.json');if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost')))chooseApartment('3kk');}
+  try{const r=await fetch('assets/walkthrough-v3/manifest.json');if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost'),'replace'))chooseApartment('3kk',null,'replace');}
   catch(_){busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent='Prohlídku se nepodařilo načíst. Zkuste stránku obnovit.';}
  }
  load();

@@ -14,7 +14,7 @@
   const isLocalAsset = path => typeof path === 'string' && /^assets\/interiors-v3\/[a-zA-Z0-9_-]+\.(?:webp|jpe?g|png)$/i.test(path);
   const imageSet = item => item.thumb ? `${item.thumb} 720w, ${item.src} 2200w` : `${item.src} 2200w`;
   const dimensions = item => Number.isInteger(item.width) && Number.isInteger(item.height) && item.width > 0 && item.height > 0 ? [item.width, item.height] : [4096, 2304];
-  const cardSizes = '(max-width: 500px) calc(100vw - 44px), (min-width: 1800px) 790px, 44vw';
+  const cardSizes = '(max-width: 600px) calc(100vw - 40px), (min-width: 1800px) 816px, 44vw';
   function setImage(element, item, sizes) {
     const [width, height] = dimensions(item);
     element.srcset = imageSet(item); element.sizes = sizes;
@@ -25,6 +25,7 @@
   function syncFilters() {
     $$('[data-typology]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.typology === state.typology)));
     $$('[data-room]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.room === state.room)));
+    $('#clear-filters').hidden = state.typology === 'all' && state.room === 'all';
   }
   function render() {
     filtered = items.filter(item => (state.typology === 'all' || item.typology === state.typology) && (state.room === 'all' || item.room === state.room));
@@ -36,15 +37,29 @@
   function updateQuery() {
     const url = new URL(location.href);
     ['typology', 'room'].forEach(key => state[key] === 'all' ? url.searchParams.delete(key) : url.searchParams.set(key, state[key]));
-    history.replaceState(null, '', url);
+    if (url.href !== location.href) history.pushState(null, '', url);
   }
   function filter(key, value) { state[key] = value; render(); updateQuery(); }
   $$('[data-typology]').forEach(button => button.addEventListener('click', () => filter('typology', button.dataset.typology)));
   $$('[data-room]').forEach(button => button.addEventListener('click', () => filter('room', button.dataset.room)));
-  $('#reset-filters').addEventListener('click', () => { state.typology = state.room = 'all'; render(); updateQuery(); });
+  function resetFilters() { state.typology = state.room = 'all'; render(); updateQuery(); $('#typology-filters button').focus({preventScroll:true}); }
+  $('#reset-filters').addEventListener('click', resetFilters);
+  $('#clear-filters').addEventListener('click', resetFilters);
+  window.addEventListener('popstate', () => {
+    const query = new URLSearchParams(location.search);
+    const wasDialogOpen = dialog.open, previousRoom = state.room;
+    state.typology = typologies.includes(query.get('typology')) ? query.get('typology') : 'all';
+    state.room = rooms.includes(query.get('room')) ? query.get('room') : 'all';
+    if (wasDialogOpen) { lastFocus = null; dialog.close(); }
+    if (items.length) render(); else syncFilters();
+    if (wasDialogOpen) $(`#${previousRoom !== state.room ? 'room' : 'typology'}-filters [aria-pressed="true"]`).focus();
+  });
 
   function renderDetail() {
     const item = dialogItems[dialogIndex];
+    $('.detail-image-wrap').setAttribute('aria-busy', 'true');
+    $('#detail-image-status').textContent = 'Načítání interiéru…';
+    $('#detail-image-status').hidden = false;
     setImage($('#detail-image'), item, '(min-width: 1548px) 1500px, calc(100vw - 20px)');
     $('#detail-title').textContent = item.title;
     $('#detail-meta').textContent = `${item.typology} / ${item.room} / ${item.fullResolution ? '4K NÁVRH INTERIÉRU' : 'NÁVRH INTERIÉRU'}`;
@@ -61,10 +76,18 @@
     $('#detail-prev').hidden = $('#detail-next').hidden = dialogItems.length < 2;
     const next = dialogItems[(dialogIndex + 1) % dialogItems.length];
     if (next) { const preload = new Image(); preload.src = next.src; }
+    if ($('#detail-image').complete && $('#detail-image').naturalWidth) imageReady();
   }
+  function imageReady() { $('.detail-image-wrap').setAttribute('aria-busy', 'false'); $('#detail-image-status').hidden = true; }
+  $('#detail-image').addEventListener('load', imageReady);
+  $('#detail-image').addEventListener('error', () => {
+    $('.detail-image-wrap').setAttribute('aria-busy', 'false');
+    $('#detail-image-status').textContent = 'Náhled se nepodařilo načíst. Zkuste další pohled nebo odkaz ke stažení níže.';
+    $('#detail-image-status').hidden = false;
+  });
   function openDetail(collection, index) {
     dialogItems = collection; dialogIndex = index; lastFocus = document.activeElement;
-    renderDetail(); dialog.showModal(); $('#detail-close').focus({preventScroll:true});
+    renderDetail(); dialog.showModal(); dialog.scrollTop = 0; $('#detail-close').focus({preventScroll:true});
   }
   function step(amount) { dialogIndex = (dialogIndex + amount + dialogItems.length) % dialogItems.length; renderDetail(); }
   $('#interior-grid').addEventListener('click', event => { const button = event.target.closest('[data-image-index]'); if (button) openDetail(filtered, Number(button.dataset.imageIndex)); });
@@ -74,7 +97,7 @@
   $('#detail-next').addEventListener('click', () => step(1));
   dialog.addEventListener('click', event => { if (event.target !== dialog) return; const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); });
   dialog.addEventListener('close', () => { if (lastFocus?.isConnected) lastFocus.focus({preventScroll:true}); });
-  document.addEventListener('keydown', event => { if (dialog.open && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); step(event.key === 'ArrowLeft' ? -1 : 1); } });
+  document.addEventListener('keydown', event => { if (dialog.open && !event.altKey && !event.ctrlKey && !event.metaKey && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); step(event.key === 'ArrowLeft' ? -1 : 1); } });
 
   async function load() {
     $('#load-error').hidden = true; $('#empty-state').hidden = true;

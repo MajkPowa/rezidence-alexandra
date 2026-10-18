@@ -1,0 +1,32 @@
+[
+  {
+    "file": "inter-normal-latin-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2",
+    "bytes": 85068
+  },
+  {
+    "file": "inter-normal-latin.woff2",
+    "source": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2",
+    "bytes": 48256
+  },
+  {
+    "file": "playfair-italic-latin-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_qiTXt_A-W2r.woff2",
+    "bytes": 13668
+  },
+  {
+    "file": "playfair-italic-latin.woff2",
+    "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_qiTXtHA-Q.woff2",
+    "bytes": 21884
+  },
+  {
+    "file": "playfair-normal-latin-ext.woff2",
+    "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTLYgFE_.woff2",
+    "bytes": 21140
+  },
+  {
+    "file": "playfair-normal-latin.woff2",
+    "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgA.woff2",
+    "bytes": 38404
+  }
+]

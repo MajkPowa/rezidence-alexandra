@@ -1,22 +1,100 @@
-.furnished-preview{appearance:none;width:100%;text-align:left;color:var(--ink);border:1px solid #dfe4d5;background:#f4f5ed;cursor:pointer;overflow:hidden;transition:border-color .2s,box-shadow .2s}
-.furnished-preview:hover{border-color:#889975;box-shadow:0 8px 24px #3647280d}.furnished-preview:focus-visible{outline:3px solid #71855e;outline-offset:4px}
-.furnished-preview-media{position:relative;display:block;overflow:hidden;background:#f3f4eb}.furnished-preview-media img{display:block;width:100%;height:auto;object-fit:contain;transition:transform .35s}.furnished-preview:hover .furnished-preview-media img{transform:scale(1.025)}
-.furnished-preview-mark{position:absolute;left:10px;top:10px;display:grid;place-items:center;width:30px;height:30px;border:1px solid #8091696b;border-radius:50%;background:#ffffffd9;color:#435435;font:11px var(--sans);letter-spacing:.04em}
-.furnished-preview-caption{display:flex!important;justify-content:space-between;align-items:center;gap:12px;padding:13px 12px!important;margin:0!important;border-top:1px solid #dfe4d5;font-size:10px!important;line-height:1.45;color:#667157!important}.furnished-preview-caption strong{font-weight:500;color:#35452b}.furnished-preview-caption span{display:inline!important;margin:0!important;font-size:inherit!important;color:inherit!important}
-.map-card-plan.furnished-preview{padding:0}.map-card-plan.furnished-preview .furnished-preview-media{margin:0}.map-card-plan.furnished-preview img{width:100%;height:auto;max-height:220px;aspect-ratio:1.25;object-fit:contain}.map-card-plan.furnished-preview .furnished-preview-mark{display:grid;margin:0;color:#435435;font-size:11px}
-.unit-plan.furnished-preview{display:block;padding:0;min-height:0;max-height:none}.unit-plan.furnished-preview img{height:auto;max-height:none;aspect-ratio:1.1;object-fit:contain}.unit-plan.furnished-preview .furnished-preview-caption{font-size:12px!important;padding:16px 18px!important}
-.furnished-plan-dialog{max-width:1220px;width:calc(100% - 48px);padding:35px 38px 27px;background:#fafbf5;overscroll-behavior:contain}.furnished-plan-dialog .dialog-close{right:15px;top:12px}.furnished-plan-header{display:flex;justify-content:space-between;align-items:end;gap:22px;padding-right:36px}.furnished-plan-header .eyebrow{margin-bottom:10px;font-size:9px;color:#79866d}.furnished-plan-header h2{font-size:48px;letter-spacing:-.045em}.furnished-plan-meta{font-size:12px;color:#6c7761;margin-top:9px}.furnished-plan-summary{text-align:right;flex-shrink:0}.furnished-plan-summary>span{font-size:11px;color:#6e7766;display:block}.furnished-plan-summary>strong{display:block;font:28px/1.25 var(--serif);font-weight:400;color:#35442b;margin-top:9px}.furnished-plan-summary>small{display:block;font-size:9px;color:#89917f;margin-top:4px}
-.furnished-plan-toolbar{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:23px;padding:15px 0;border-top:1px solid #dde3d4}.furnished-view-switch{display:flex;background:#e9eddf;padding:3px;gap:3px}.furnished-view-switch button{min-height:42px;background:none;padding:10px 17px;font-size:11px;color:#6d795f}.furnished-view-switch button[aria-pressed=true]{background:#fff;color:#314626;box-shadow:0 1px 5px #31412512}.furnished-plan-toolbar>p{font-size:10px;line-height:1.5;color:#849076;text-align:right;max-width:330px}
-.furnished-plan-canvas{position:relative;background:#eef1e6;border:1px solid #e1e6d7;min-height:160px}.furnished-image-plane{position:relative;width:100%;line-height:0}.furnished-image-plane>img{display:block;width:100%;height:auto;max-width:100%}.furnished-room-pin{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#f9fcf2eb;border:1px solid #4d6340;box-shadow:0 2px 7px #28351c25;font:600 12px/1 var(--sans);color:#2c4021;pointer-events:none}
-.furnished-source-sheet{display:block;position:relative;background:#fff;padding:20px}.furnished-source-sheet>img{height:auto;width:100%;max-height:640px;object-fit:contain}.furnished-source-sheet>span{display:block;text-align:center;font-size:11px;color:#576a43;margin-top:14px}.furnished-image-error{padding:75px 20px;text-align:center;font-size:13px;color:#68785a}.furnished-image-error button{display:inline-block;background:none;text-decoration:underline;margin-top:15px;padding:10px;color:#354d28}
-.furnished-room-legend{margin-top:22px}.furnished-legend-title{font-size:9px;letter-spacing:.14em;color:#7d8b6d;font-weight:500}.furnished-room-legend ol{display:flex;flex-wrap:wrap;gap:12px 25px;margin:13px 0 0;padding:0;list-style:none}.furnished-room-legend li{display:flex;align-items:center;gap:8px;color:#536447;font-size:12px;line-height:1.5}.furnished-legend-number{display:grid;place-items:center;flex:0 0 23px;height:23px;border:1px solid #b7c3a8;border-radius:50%;font-size:10px;color:#405631}
-.furnished-plan-footer{display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:24px;padding-top:20px;border-top:1px solid #dde3d4}.furnished-plan-links{display:flex;flex-wrap:wrap;gap:12px 22px;flex-shrink:0}.furnished-plan-links a{font-size:11px;line-height:1.6;color:#3b542d;border-bottom:1px solid #b6c3aa;padding:5px 0}.furnished-plan-caveat{font-size:10px;line-height:1.65;color:#87927c;max-width:540px}
-@media(max-width:900px){.furnished-plan-dialog{padding:30px 25px 24px}.furnished-plan-header h2{font-size:41px}.furnished-plan-summary>strong{font-size:25px}.furnished-plan-footer{align-items:start;gap:20px}.furnished-plan-links{flex-direction:column;gap:9px}.furnished-plan-links a{align-self:start}.furnished-plan-caveat{max-width:400px}.furnished-plan-toolbar>p{max-width:250px}}
-@media(max-width:600px){.furnished-plan-dialog{width:calc(100% - 16px);max-height:95svh;padding:42px 16px 20px}.furnished-plan-header{padding-right:0;gap:15px;align-items:start}.furnished-plan-header h2{font-size:35px}.furnished-plan-header .eyebrow{font-size:8px;margin-bottom:10px}.furnished-plan-meta{font-size:10px;line-height:1.7;max-width:180px}.furnished-plan-summary{padding-top:21px}.furnished-plan-summary>span{font-size:9px;max-width:115px}.furnished-plan-summary>strong{font-size:22px}.furnished-plan-summary>small{font-size:8px}.furnished-plan-toolbar{display:block;margin-top:17px;padding:12px 0}.furnished-view-switch button{flex:1;font-size:11px;padding:10px}.furnished-plan-toolbar>p{max-width:none;text-align:left;margin-top:10px;font-size:9px}.furnished-plan-canvas{margin:0 -5px}.furnished-room-pin{width:21px;height:21px;font-size:9px}.furnished-room-legend{margin-top:18px}.furnished-room-legend ol{display:grid;grid-template-columns:1fr 1fr;gap:11px 15px}.furnished-room-legend li{font-size:10px;gap:6px;align-items:start}.furnished-legend-number{flex-basis:20px;height:20px;font-size:9px}.furnished-plan-footer{display:flex;flex-direction:column;align-items:stretch;gap:15px;margin-top:19px;padding-top:15px}.furnished-plan-links{flex-direction:row;justify-content:space-between;gap:15px}.furnished-plan-links a{font-size:10px}.furnished-plan-caveat{font-size:9px;max-width:none}.furnished-source-sheet{padding:9px}.furnished-source-sheet>span{font-size:10px}.map-card-plan.furnished-preview img{max-height:280px;aspect-ratio:1.3}.unit-plan.furnished-preview img{max-height:none;aspect-ratio:1.2}.furnished-preview-caption{font-size:11px!important;padding:13px!important}}
+/* Furnished floorplans: readable modal, stable imagery and clear source links. */
+.furnished-preview{appearance:none;display:block;width:100%;padding:0;text-align:left;color:var(--ink);border:1px solid var(--line);border-radius:10px;background:#f3f4ee;cursor:pointer;overflow:hidden;transition:border-color .18s,box-shadow .18s}
+.furnished-preview:hover{border-color:var(--olive);box-shadow:0 6px 20px #253a3210}
+.furnished-preview:focus-visible{outline:3px solid var(--olive);outline-offset:4px}
+.furnished-preview-media{position:relative;display:block;overflow:hidden;background:#f3f4ee}
+.furnished-preview-media img{display:block;width:100%;height:auto;object-fit:contain;transition:transform .25s}
+@media(hover:hover){.furnished-preview:hover .furnished-preview-media img{transform:scale(1.02)}}
+.furnished-preview-mark{position:absolute;left:12px;top:12px;display:grid;place-items:center;width:36px;height:36px;border:1px solid #82977c;border-radius:50%;background:var(--surface,#fffefa);color:var(--ink);font:600 12px/1 var(--sans)}
+.furnished-preview-caption{display:flex!important;justify-content:space-between;align-items:center;gap:12px;padding:16px!important;margin:0!important;border-top:1px solid var(--line);font-size:13px!important;line-height:1.5;color:var(--muted)!important}
+.furnished-preview-caption strong{font-weight:600;color:var(--ink)}
+.furnished-preview-caption span{display:inline!important;margin:0!important;font-size:inherit!important;color:inherit!important}
+.map-card-plan.furnished-preview{padding:0}.map-card-plan.furnished-preview .furnished-preview-media{margin:0}
+.map-card-plan.furnished-preview img{height:auto;width:100%;max-height:260px;aspect-ratio:1.15;object-fit:contain}
+.map-card-plan.furnished-preview .furnished-preview-mark{display:grid;margin:0;color:var(--ink);font-size:12px}
+.unit-plan.furnished-preview{display:block;padding:0;min-height:0;max-height:none}
+.unit-plan.furnished-preview img{height:auto;max-height:none;aspect-ratio:1.1;object-fit:contain}
+.unit-plan.furnished-preview .furnished-preview-caption{font-size:14px!important;padding:16px 20px!important}
+html:has(.furnished-plan-dialog[open]){overflow:hidden}
+.furnished-plan-dialog{width:calc(100% - 48px);max-width:1240px;max-height:calc(100dvh - 48px);margin:auto;padding:28px 32px;border:1px solid var(--line);border-radius:16px;background:var(--surface,#fffefa);color:var(--ink);overscroll-behavior:contain;overflow:auto;scroll-padding-block:72px 24px;box-shadow:0 24px 80px #12251e40}
+.furnished-plan-dialog::backdrop{background:#13271ed1}
+.furnished-plan-dialog .dialog-close{position:sticky;display:grid;place-items:center;top:0;right:auto;z-index:5;width:48px;height:48px;min-width:48px;min-height:48px;padding:0;margin:0 0 -48px auto;border:1px solid #aab7aa;border-radius:6px;background:var(--surface,#fffefa);color:var(--ink);font:30px/1 var(--sans);box-shadow:0 2px 6px #253a3210}
+.furnished-plan-header{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px;padding-right:64px}
+.furnished-plan-header>div{min-width:0}
+.furnished-plan-header .eyebrow{margin-bottom:12px;font-size:12px;line-height:1.5;color:var(--muted);letter-spacing:.08em}
+.furnished-plan-header h2{font:400 48px/1.1 var(--serif);letter-spacing:-.03em;color:var(--ink)}
+.furnished-plan-meta{font-size:15px;line-height:1.6;color:var(--muted);margin-top:12px}
+.furnished-plan-summary{text-align:right}
+.furnished-plan-summary>span{display:block;font-size:14px;line-height:1.5;color:var(--muted)}
+.furnished-plan-summary>strong{display:block;font:400 30px/1.2 var(--serif);font-variant-numeric:tabular-nums;color:var(--ink);margin-top:8px}
+.furnished-plan-summary>small{display:block;font-size:13px;line-height:1.5;color:var(--muted);margin-top:6px}
+.furnished-plan-toolbar{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:28px;padding:20px 0;border-top:1px solid var(--line)}
+.furnished-view-switch{display:flex;flex-shrink:0;background:var(--cream);padding:4px;gap:8px;border-radius:8px}
+.furnished-view-switch button{min-height:48px;background:none;border:1px solid transparent;border-radius:6px;padding:10px 16px;font-size:14px;font-weight:500;line-height:1.4;color:var(--muted)}
+.furnished-view-switch button[aria-pressed=true]{background:var(--surface,#fffefa);color:var(--ink);border-color:#b0c0ad}
+.furnished-plan-toolbar>p{max-width:420px;font-size:13px;line-height:1.65;color:var(--muted);text-align:right}
+.furnished-plan-workbench{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:32px;align-items:start}
+.furnished-plan-workbench[data-view=source]{grid-template-columns:1fr}
+.furnished-plan-canvas{position:relative;min-width:0;min-height:220px;background:transparent}
+.furnished-image-plane{position:relative;width:min(100%,max(320px,calc(100dvh - 320px)));margin-inline:auto;line-height:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f2f3ec}
+.furnished-image-plane>img{display:block;width:100%;height:auto;aspect-ratio:1;max-width:100%}
+.furnished-room-pin{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fffefaed;border:1px solid var(--olive);box-shadow:0 2px 6px #253a3220;font:600 12px/1 var(--sans);color:var(--ink);pointer-events:none}
+.furnished-zoom{position:absolute;right:12px;bottom:12px;display:flex;gap:16px;align-items:center;min-height:48px;padding:12px 16px;border:1px solid #95a58e;border-radius:6px;background:var(--surface,#fffefa);color:var(--ink);font:500 14px/1.4 var(--sans);box-shadow:0 2px 6px #253a3210}
+.furnished-zoom:hover{background:var(--cream)}
+.furnished-source-sheet{display:block;position:relative;background:#fff;padding:16px;border:1px solid var(--line);border-radius:10px}
+.furnished-source-sheet>img{height:auto;width:100%;max-height:max(320px,calc(100dvh - 330px));object-fit:contain}
+.furnished-source-sheet>span{display:flex;justify-content:center;align-items:center;gap:8px;min-height:48px;text-align:center;font-size:14px;color:var(--ink);margin-top:12px}
+.furnished-load-status{position:absolute;inset:0;display:grid;place-items:center;background:var(--surface,#fffefa);font:14px/1.6 var(--sans);color:var(--muted);text-align:center;z-index:2}
+.furnished-load-status[hidden],.furnished-image-plane[hidden],.furnished-image-error[hidden],.furnished-room-legend[hidden]{display:none}
+.furnished-image-error{padding:48px 24px;text-align:center;font-size:16px;line-height:1.65;color:var(--muted);background:var(--cream);border-radius:10px}
+.furnished-image-error button{display:inline-flex;align-items:center;min-height:48px;background:var(--surface,#fffefa);border:1px solid #9caf9e;border-radius:6px;margin-top:20px;padding:12px 16px;color:var(--ink);font-size:14px}
+.furnished-room-legend{padding-top:4px;color:var(--ink)}
+.furnished-legend-title{font-size:12px;line-height:1.5;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.furnished-room-legend ol{display:flex;flex-direction:column;gap:16px;margin:20px 0 0;padding:0;list-style:none}
+.furnished-room-legend li{display:flex;align-items:start;gap:12px;color:var(--ink);font-size:15px;line-height:1.5}
+.furnished-legend-number{display:grid;place-items:center;flex:0 0 28px;height:28px;border:1px solid #9eaf98;border-radius:50%;font-size:13px;color:var(--ink)}
+.furnished-legend-note{margin-top:24px;font-size:13px;line-height:1.65;color:var(--muted)}
+.furnished-plan-footer{display:flex;align-items:start;justify-content:space-between;gap:32px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+.furnished-plan-links{display:flex;flex-wrap:wrap;gap:8px 16px;max-width:460px}
+.furnished-plan-links a{display:inline-flex;align-items:center;min-height:48px;padding:12px 14px;border:1px solid #9cad98;border-radius:6px;font-size:14px;line-height:1.5;color:var(--ink)}
+.furnished-plan-links a:hover{background:var(--cream)}
+.furnished-plan-caveat{font-size:13px;line-height:1.65;color:var(--muted);max-width:540px;flex:1}
+.furnished-plan-dialog :is(button,a){touch-action:manipulation;scroll-margin-block:72px 24px}
+.furnished-plan-dialog :is(button,a):focus-visible{outline:3px solid var(--olive);outline-offset:4px}
+.furnished-plan-dialog button{cursor:pointer}.furnished-plan-dialog button:active{filter:brightness(.94)}
+@media(max-width:900px){
+ .furnished-plan-dialog{padding:24px;width:calc(100% - 32px);max-height:calc(100dvh - 32px)}
+ .furnished-plan-header{grid-template-columns:1fr;gap:20px;align-items:start}
+ .furnished-plan-header h2{font-size:42px}.furnished-plan-summary{text-align:left}
+ .furnished-plan-toolbar{display:block;margin-top:24px}
+ .furnished-view-switch{width:100%}.furnished-view-switch button{flex:1}
+ .furnished-plan-toolbar>p{max-width:none;text-align:left;margin-top:16px;font-size:14px}
+ .furnished-plan-workbench{display:block}
+ .furnished-image-plane{width:100%;max-width:680px}
+ .furnished-room-legend{margin-top:24px}
+ .furnished-room-legend ol{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px}
+ .furnished-plan-footer{display:block}
+ .furnished-plan-links{max-width:none}
+ .furnished-plan-caveat{max-width:none;margin-top:20px}
+ .furnished-source-sheet>img{max-height:none}
+ .map-card-plan.furnished-preview img{max-height:400px;aspect-ratio:1.3}
+}
+@media(max-width:600px){
+ .furnished-plan-dialog{width:calc(100% - 16px);max-height:calc(100dvh - 16px);padding:20px 16px;border-radius:12px;scroll-padding-top:76px}
+ .furnished-plan-header{padding-right:56px}
+ .furnished-plan-header h2{font-size:36px}
+ .furnished-plan-meta{font-size:14px}
+ .furnished-plan-summary>strong{font-size:30px}
+ .furnished-plan-summary>small{font-size:13px}
+ .furnished-view-switch button{padding:10px 8px;font-size:14px}
+ .furnished-plan-toolbar{padding:16px 0}
+ .furnished-plan-toolbar>p{font-size:13px}
+ .furnished-room-pin{width:26px;height:26px;font-size:12px}
+ .furnished-zoom{right:8px;bottom:8px;padding:10px 12px;font-size:14px}
+ .furnished-preview-caption{flex-wrap:wrap;gap:4px;font-size:14px!important}
+ .furnished-room-legend ol{grid-template-columns:1fr;gap:12px}
+ .furnished-plan-links{display:grid;grid-template-columns:1fr;width:100%}
+ .furnished-plan-links a{justify-content:center;font-size:14px}
+ .furnished-plan-caveat{font-size:13px}
+}
 @media(prefers-reduced-motion:reduce){.furnished-preview,.furnished-preview-media img{transition:none}}
-.furnished-plan-workbench{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:24px;align-items:start}.furnished-plan-workbench[data-view=source]{grid-template-columns:1fr}.furnished-image-plane{width:min(100%,max(260px,calc(86svh - 260px)));margin-inline:auto}.furnished-plan-workbench .furnished-room-legend{margin-top:4px;padding:16px 0}.furnished-plan-workbench .furnished-room-legend ol{display:flex;flex-direction:column;gap:15px;margin-top:19px}.furnished-legend-note{margin-top:23px;font-size:10px;line-height:1.7;color:#839175}.furnished-source-sheet>img{max-height:max(260px,calc(86svh - 290px))}
-@media(max-width:900px) and (min-width:601px){.furnished-plan-workbench{grid-template-columns:minmax(0,1fr) 175px;gap:20px}.furnished-plan-workbench .furnished-room-legend li{font-size:11px}.furnished-legend-title{font-size:8px}.furnished-plan-toolbar>p{max-width:280px}}
-@media(max-width:600px){.furnished-plan-workbench{display:block}.furnished-image-plane{width:100%}.furnished-plan-workbench .furnished-room-legend{margin-top:18px;padding:0}.furnished-plan-workbench .furnished-room-legend ol{display:grid;grid-template-columns:1fr 1fr;gap:11px 15px;margin-top:13px}.furnished-legend-note{font-size:9px;margin-top:15px}.furnished-source-sheet>img{max-height:none}}
-.furnished-plan-canvas{background:transparent;border:0}.furnished-image-plane{border:1px solid #dbddd5}.furnished-zoom{position:absolute;right:12px;bottom:12px;display:flex;gap:13px;align-items:center;padding:12px 16px;background:#fafbf5e8;border:1px solid #d2d8c8;color:#405631;font:11px/1.3 var(--sans);backdrop-filter:blur(8px)}.furnished-zoom:hover{background:#fff}.furnished-zoom:focus-visible{outline:3px solid #71855e;outline-offset:3px}
-@media(min-width:601px){.furnished-plan-dialog{max-height:96svh;padding:28px 32px 22px}}
-@media(max-width:600px){.furnished-zoom{right:8px;bottom:8px;padding:10px 13px;font-size:10px}}

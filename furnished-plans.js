@@ -14,7 +14,7 @@
   const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
   const text = (value, max = 400) => typeof value === 'string' && value.trim().length > 0 && value.length <= max;
   const variants = new Map(), assignments = new Map();
-  let currentUnit = null, view = '3d', returnFocus = null, globalNote = '';
+  let currentUnit = null, view = '3d', returnFocus = null, globalNote = '', imageRequest = 0;
 
   function validateManifest(data) {
     if (!object(data) || data.version !== 1 || !object(data.units) || !object(data.variants)) throw new Error('Neplatný přehled zařízených půdorysů.');
@@ -56,7 +56,34 @@
     const unit = findUnit(value), variant = variantFor(unit);
     if (!variant) return '';
     const detail = scope === 'detail';
-    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" alt="Návrh zařízení dispoziční rodiny bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Zařízený půdorys</strong><span>Prohlédnout návrh <span aria-hidden="true">↗</span></span></span></button>`;
+    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Návrh zařízení dispoziční rodiny bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Zařízený půdorys</strong><span>Prohlédnout návrh <span aria-hidden="true">↗</span></span></span></button>`;
+  }
+
+  function watchImage(image, source = false) {
+    const request = ++imageRequest, canvas = $('#furnished-plan-canvas');
+    const loading = document.createElement('p');
+    loading.className = 'furnished-load-status';
+    loading.setAttribute('role', 'status');
+    loading.textContent = 'Načítání půdorysu…';
+    canvas.append(loading);
+    canvas.setAttribute('aria-busy', 'true');
+    const finish = ok => {
+      if (request !== imageRequest) return;
+      loading.hidden = true;
+      canvas.setAttribute('aria-busy', 'false');
+      if (ok) return;
+      if (source) {
+        image.hidden = true;
+        $('.furnished-source-sheet>span').textContent = 'Náhled není dostupný. Otevřít původní PDF ↗';
+      } else {
+        const plane = $('.furnished-image-plane'), error = $('.furnished-image-error');
+        if (plane) plane.hidden = true;
+        if (error) error.hidden = false;
+      }
+    };
+    image.addEventListener('load', () => finish(true), {once:true});
+    image.addEventListener('error', () => finish(false), {once:true});
+    if (image.complete) queueMicrotask(() => finish(image.naturalWidth > 0));
   }
 
   function renderView() {
@@ -67,15 +94,12 @@
     $('#furnished-room-legend').hidden = view !== '3d';
     $('#furnished-view-note').textContent = view === '3d' ? variant.note : `${sourceLabel(unit)}. Otevřete PDF pro podrobné kóty a původní legendu.`;
     if (view === 'source') {
-      $('#furnished-plan-canvas').innerHTML = `<a class="furnished-source-sheet" href="${pdfFor(unit)}" target="_blank" rel="noopener"><img src="${sourceFor(unit)}" alt="${escape(sourceLabel(unit))}"><span>Otevřít původní PDF <span aria-hidden="true">↗</span></span></a>`;
+      $('#furnished-plan-canvas').innerHTML = `<a class="furnished-source-sheet" href="${pdfFor(unit)}" target="_blank" rel="noopener"><img src="${sourceFor(unit)}" alt="${escape(sourceLabel(unit))}" decoding="async"><span>Otevřít původní PDF <span aria-hidden="true">↗</span></span></a>`;
+      watchImage($('.furnished-source-sheet>img'), true);
       return;
     }
-    $('#furnished-plan-canvas').innerHTML = `<div class="furnished-image-plane"><img src="${escape(variant.image)}" alt="Zařízený 3D půdorys dispoziční rodiny bytu ${unit.id}; návrh interiéru bez balkonů" data-furnished-full-image>${variant.rooms.filter(room => own(room, 'x')).map(room => `<span class="furnished-room-pin" style="left:${(room.x * 100).toFixed(3)}%;top:${(room.y * 100).toFixed(3)}%" aria-hidden="true">${room.number}</span>`).join('')}<a class="furnished-zoom" href="${escape(variant.fullResolution)}" target="_blank" rel="noopener" aria-label="Otevřít 4K půdorys bytu ${unit.id}">Otevřít 4K <span aria-hidden="true">↗</span></a></div><div class="furnished-image-error" hidden><p>Náhled se nepodařilo načíst.</p><button type="button" data-furnished-view="source">Zobrazit zdrojový půdorys ↗</button></div>`;
-    $('[data-furnished-full-image]').addEventListener('error', () => {
-      const plane = $('.furnished-image-plane'), error = $('.furnished-image-error');
-      if (plane) plane.hidden = true;
-      if (error) error.hidden = false;
-    }, { once: true });
+    $('#furnished-plan-canvas').innerHTML = `<div class="furnished-image-plane"><img src="${escape(variant.image)}" srcset="${escape(variant.thumbnail)} 640w, ${escape(variant.image)} 2200w" sizes="(max-width:900px) calc(100vw - 64px), 680px" width="2200" height="2200" alt="Zařízený 3D půdorys dispoziční rodiny bytu ${unit.id}; návrh interiéru bez balkonů" decoding="async" data-furnished-full-image>${variant.rooms.filter(room => own(room, 'x')).map(room => `<span class="furnished-room-pin" style="left:${(room.x * 100).toFixed(3)}%;top:${(room.y * 100).toFixed(3)}%" aria-hidden="true">${room.number}</span>`).join('')}<a class="furnished-zoom" href="${escape(variant.fullResolution)}" target="_blank" rel="noopener" aria-label="Otevřít 4K půdorys bytu ${unit.id} v nové záložce">Otevřít 4K <span aria-hidden="true">↗</span></a></div><div class="furnished-image-error" hidden role="status"><p>Náhled se nepodařilo načíst.</p><button type="button" data-furnished-view="source">Zobrazit zdrojový půdorys ↗</button></div>`;
+    watchImage($('[data-furnished-full-image]'));
   }
 
   function open(value, trigger = document.activeElement) {
@@ -97,6 +121,8 @@
     $('#furnished-plan-caveat').textContent = globalNote || 'Návrh možného zařízení podle dispoziční rodiny. Balkony nejsou součástí 3D náhledu a liší se podle podlaží. Přesné rozměry a závazné provedení ověřte ve zdrojovém výkresu a u prodejce.';
     renderView();
     if (!dialog.open) dialog.showModal();
+    dialog.setAttribute('aria-describedby', 'furnished-plan-meta furnished-plan-caveat');
+    dialog.scrollTop = 0;
     return true;
   }
 
@@ -107,11 +133,26 @@
   });
   dialog.addEventListener('click', event => {
     const button = event.target.closest?.('[data-furnished-view]');
-    if (button && ['3d', 'source'].includes(button.dataset.furnishedView)) { view = button.dataset.furnishedView; renderView(); return; }
+    if (button && ['3d', 'source'].includes(button.dataset.furnishedView)) {
+      const wasFocused = document.activeElement === button;
+      view = button.dataset.furnishedView;
+      renderView();
+      if (wasFocused && !button.isConnected) $(`.furnished-view-switch [data-furnished-view="${view}"]`)?.focus({preventScroll:true});
+      return;
+    }
     if (event.target.closest?.('[data-furnished-close]')) { dialog.close(); return; }
     if (event.target !== dialog) return;
     const rect = dialog.getBoundingClientRect();
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+  });
+  dialog.addEventListener('keydown', event => {
+    if (event.altKey || event.ctrlKey || event.metaKey || !['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    const button = event.target.closest('.furnished-view-switch [data-furnished-view]');
+    if (!button) return;
+    event.preventDefault();
+    view = ['ArrowLeft','Home'].includes(event.key) ? '3d' : 'source';
+    renderView();
+    $(`.furnished-view-switch [data-furnished-view="${view}"]`)?.focus({preventScroll:true});
   });
   dialog.addEventListener('close', () => {
     if (!returnFocus) return;

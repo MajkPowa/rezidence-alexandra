@@ -1,0 +1,8075 @@
+{
+  "version": 1,
+  "coordinateSystem": "image-pixels, origin top-left, x right, y down",
+  "normalizedCoordinateSystem": "normalized polygons available alongside pixel polygons",
+  "sourceDate": "2026-10-06",
+  "boundaryMethod": "Selection regions follow major party-wall centerlines and outer facade edge; not cadastral ownership polygons and not suitable for area calculation. Balconies are separate polygons.",
+  "dimensionEvidence": {
+    "bodyWidthMm": 30800,
+    "bodyDepthMm": 18700,
+    "source": "2. NP (6.10.2026).pdf, bottom overall dimension and right overall dimension",
+    "scaleLabel": "1:50"
+  },
+  "floors": [
+    {
+      "floor": 1,
+      "width": 2904,
+      "height": 1974,
+      "image": "assets/floors/floor-1.webp",
+      "source": {
+        "path": "01_sources/uschovna/extracted/Otrokovice/Půdorysy pater/1. NP (6.10.2026).pdf",
+        "page": 1,
+        "sha256": "5555b0b1ba7ef1bb89bde1e8696433d3d8742809c8de326bbf25c99e3951aa42",
+        "pageSizePdfPoints": [
+          3572.0,
+          1684.0
+        ],
+        "cropPdfPoints": [
+          204,
+          170,
+          2140,
+          1486
+        ],
+        "pixelsPerPdfPoint": 1.5,
+        "textExtraction": "No live text in PDF; text is outlined vector paths. Legends and dimensions manually verified from source renders."
+      },
+      "units": [],
+      "commonAreas": [],
+      "outline": [
+        [
+          215.775,
+          151.26
+        ],
+        [
+          2851.5,
+          151.26
+        ],
+        [
+          2851.5,
+          1755.78
+        ],
+        [
+          215.775,
+          1755.78
+        ]
+      ],
+      "bodyOutline": [
+        [
+          215.775,
+          151.26
+        ],
+        [
+          2851.5,
+          151.26
+        ],
+        [
+          2851.5,
+          1755.78
+        ],
+        [
+          215.775,
+          1755.78
+        ]
+      ],
+      "geometryStatus": "reference-only-no-confirmed-unit-polygons",
+      "excludedUnits": [
+        {
+          "id": 53,
+          "reason": "Listed on 1NP in commercial index; no position assigned pending source identity confirmation. Do not equate with unit 51."
+        }
+      ],
+      "note": "1NP image is an original ground-floor plan. Outline marks the principal rectangular body only; west access platform/stairs and entrance projection are not modeled.",
+      "mapImage": "assets/floors/floor-1-clean.webp"
+    },
+    {
+      "floor": 2,
+      "width": 2850,
+      "height": 1950,
+      "image": "assets/floors/floor-2.webp",
+      "source": {
+        "path": "01_sources/uschovna/extracted/Otrokovice/Půdorysy pater/2. NP (6.10.2026).pdf",
+        "page": 1,
+        "sha256": "031e36deaaa0fbd8659f31771ad4aff4a9394794595baad51a84bcfce081078d",
+        "pageSizePdfPoints": [
+          2976.0,
+          1684.0
+        ],
+        "cropPdfPoints": [
+          220,
+          170,
+          2120,
+          1470
+        ],
+        "pixelsPerPdfPoint": 1.5,
+        "textExtraction": "No live text in PDF; text is outlined vector paths. Legends and dimensions manually verified from source renders."
+      },
+      "units": [
+        {
+          "id": 1,
+          "polygon": [
+            [
+              172.59,
+              1036.95
+            ],
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              801.6,
+              1751.64
+            ],
+            [
+              172.59,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ],
+            [
+              0.0605579,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            487.095,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                801.6,
+                1888.44
+              ],
+              [
+                309.39,
+                1888.44
+              ],
+              [
+                287.99,
+                1886.756
+              ],
+              [
+                267.116,
+                1881.745
+              ],
+              [
+                247.284,
+                1873.53
+              ],
+              [
+                228.981,
+                1862.314
+              ],
+              [
+                212.658,
+                1848.372
+              ],
+              [
+                198.716,
+                1832.049
+              ],
+              [
+                187.5,
+                1813.746
+              ],
+              [
+                179.285,
+                1793.914
+              ],
+              [
+                174.274,
+                1773.04
+              ],
+              [
+                172.59,
+                1751.64
+              ]
+            ]
+          ],
+          "balconyRoomId": "211",
+          "detailBounds": [
+            157.59,
+            1021.95,
+            816.6,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "206",
+            "206a",
+            "207",
+            "208",
+            "209",
+            "210"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 1",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "3+kk",
+          "sourceIndexArea": 65.15
+        },
+        {
+          "id": 2,
+          "polygon": [
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1404.87,
+              1751.64
+            ],
+            [
+              801.6,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.8982769
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            1103.235,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                1351.41,
+                1751.64
+              ],
+              [
+                1351.41,
+                1888.44
+              ],
+              [
+                801.6,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "217",
+          "detailBounds": [
+            786.6,
+            1021.95,
+            1419.87,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "212",
+            "212a",
+            "213",
+            "214",
+            "215",
+            "216"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 2",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 59.3
+        },
+        {
+          "id": 3,
+          "polygon": [
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2393.325,
+              1751.64
+            ],
+            [
+              1837.035,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ],
+            [
+              0.6445737,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                1884.015,
+                1751.64
+              ],
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2393.325,
+                1888.44
+              ],
+              [
+                1884.015,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "223",
+          "detailBounds": [
+            1822.035,
+            1021.95,
+            2408.325,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "218",
+            "218a",
+            "219",
+            "220",
+            "221",
+            "222"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 3",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.7
+        },
+        {
+          "id": 4,
+          "polygon": [
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              2816.955,
+              1751.64
+            ],
+            [
+              2393.325,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.8982769
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2816.775,
+                1751.64
+              ],
+              [
+                2815.091,
+                1773.04
+              ],
+              [
+                2810.08,
+                1793.914
+              ],
+              [
+                2801.865,
+                1813.746
+              ],
+              [
+                2790.649,
+                1832.049
+              ],
+              [
+                2776.707,
+                1848.372
+              ],
+              [
+                2760.384,
+                1862.314
+              ],
+              [
+                2742.081,
+                1873.53
+              ],
+              [
+                2722.249,
+                1881.745
+              ],
+              [
+                2701.375,
+                1886.756
+              ],
+              [
+                2679.975,
+                1888.44
+              ],
+              [
+                2393.325,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "228",
+          "detailBounds": [
+            2378.325,
+            1021.95,
+            2831.955,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "224",
+            "225",
+            "226",
+            "227"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 4",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.95
+        },
+        {
+          "id": 5,
+          "polygon": [
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2816.955,
+              151.26
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2393.325,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.4440308
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2679.975,
+                14.46
+              ],
+              [
+                2701.375,
+                16.144
+              ],
+              [
+                2722.249,
+                21.155
+              ],
+              [
+                2742.081,
+                29.37
+              ],
+              [
+                2760.384,
+                40.586
+              ],
+              [
+                2776.707,
+                54.528
+              ],
+              [
+                2790.649,
+                70.851
+              ],
+              [
+                2801.865,
+                89.154
+              ],
+              [
+                2810.08,
+                108.986
+              ],
+              [
+                2815.091,
+                129.86
+              ],
+              [
+                2816.775,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "233",
+          "detailBounds": [
+            2378.325,
+            0,
+            2831.955,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "229",
+            "230",
+            "231",
+            "232"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 5",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 40
+        },
+        {
+          "id": 6,
+          "polygon": [
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2393.325,
+              865.86
+            ],
+            [
+              1837.035,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1837.035,
+                14.46
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                1837.035,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "239",
+          "detailBounds": [
+            1822.035,
+            0,
+            2408.325,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "234",
+            "234a",
+            "235",
+            "236",
+            "237",
+            "238"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 6",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 54.65
+        },
+        {
+          "id": 7,
+          "polygon": [
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              1837.035,
+              865.86
+            ],
+            [
+              1409.1,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1623.068,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1837.035,
+                14.46
+              ],
+              [
+                1837.035,
+                151.26
+              ],
+              [
+                1409.1,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "243",
+          "detailBounds": [
+            1394.1,
+            0,
+            1852.035,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "240",
+            "241",
+            "241a",
+            "242"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 7",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 42.3
+        },
+        {
+          "id": 8,
+          "polygon": [
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1409.1,
+              865.86
+            ],
+            [
+              1002.66,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1205.88,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1002.66,
+                14.46
+              ],
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1409.1,
+                151.26
+              ],
+              [
+                1002.66,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "247",
+          "detailBounds": [
+            987.66,
+            0,
+            1424.1,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "244",
+            "245",
+            "245a",
+            "246"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 8",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 40.55
+        },
+        {
+          "id": 9,
+          "polygon": [
+            [
+              604.68,
+              151.26
+            ],
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1002.66,
+              865.86
+            ],
+            [
+              604.68,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            803.67,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                604.68,
+                14.46
+              ],
+              [
+                1002.66,
+                14.46
+              ],
+              [
+                1002.66,
+                151.26
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "251",
+          "detailBounds": [
+            589.68,
+            0,
+            1017.66,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "248",
+            "249",
+            "249a",
+            "250"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 9",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 40.1
+        },
+        {
+          "id": 10,
+          "polygon": [
+            [
+              172.59,
+              151.26
+            ],
+            [
+              604.68,
+              151.26
+            ],
+            [
+              604.68,
+              865.86
+            ],
+            [
+              172.59,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ],
+            [
+              0.0605579,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            388.635,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                172.59,
+                151.26
+              ],
+              [
+                174.274,
+                129.86
+              ],
+              [
+                179.285,
+                108.986
+              ],
+              [
+                187.5,
+                89.154
+              ],
+              [
+                198.716,
+                70.851
+              ],
+              [
+                212.658,
+                54.528
+              ],
+              [
+                228.981,
+                40.586
+              ],
+              [
+                247.284,
+                29.37
+              ],
+              [
+                267.116,
+                21.155
+              ],
+              [
+                287.99,
+                16.144
+              ],
+              [
+                309.39,
+                14.46
+              ],
+              [
+                604.68,
+                14.46
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "256",
+          "detailBounds": [
+            157.59,
+            0,
+            619.68,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "252",
+            "253",
+            "254",
+            "255"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 10",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 41.75
+        }
+      ],
+      "commonAreas": [
+        {
+          "id": "2-corridor",
+          "label": "Společná chodba a úklidová komora",
+          "polygon": [
+            [
+              172.59,
+              865.86
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              172.59,
+              1036.95
+            ]
+          ],
+          "sourceRoomIds": [
+            "204",
+            "205"
+          ]
+        },
+        {
+          "id": "2-core",
+          "label": "Schodiště, výtah a navazující zázemí",
+          "polygon": [
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              1837.035,
+              1751.64
+            ],
+            [
+              1404.87,
+              1751.64
+            ]
+          ],
+          "sourceRoomIds": [
+            "201",
+            "202",
+            "203"
+          ],
+          "note": "Footprint group; ownership/use of the separate 03 room is not inferred."
+        },
+        {
+          "id": "2-west-balcony",
+          "label": "Boční balkon přístupný z chodby",
+          "polygon": [
+            [
+              39.93,
+              814.56
+            ],
+            [
+              172.59,
+              814.56
+            ],
+            [
+              172.59,
+              1088.34
+            ],
+            [
+              39.93,
+              1088.34
+            ]
+          ],
+          "sourceRoomIds": [
+            "257"
+          ],
+          "note": "Not assigned to an apartment because access is from the common corridor."
+        }
+      ],
+      "outline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          174.274,
+          129.86
+        ],
+        [
+          179.285,
+          108.986
+        ],
+        [
+          187.5,
+          89.154
+        ],
+        [
+          198.716,
+          70.851
+        ],
+        [
+          212.658,
+          54.528
+        ],
+        [
+          228.981,
+          40.586
+        ],
+        [
+          247.284,
+          29.37
+        ],
+        [
+          267.116,
+          21.155
+        ],
+        [
+          287.99,
+          16.144
+        ],
+        [
+          309.39,
+          14.46
+        ],
+        [
+          2679.975,
+          14.46
+        ],
+        [
+          2701.375,
+          16.144
+        ],
+        [
+          2722.249,
+          21.155
+        ],
+        [
+          2742.081,
+          29.37
+        ],
+        [
+          2760.384,
+          40.586
+        ],
+        [
+          2776.707,
+          54.528
+        ],
+        [
+          2790.649,
+          70.851
+        ],
+        [
+          2801.865,
+          89.154
+        ],
+        [
+          2810.08,
+          108.986
+        ],
+        [
+          2815.091,
+          129.86
+        ],
+        [
+          2816.775,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          2816.775,
+          1751.64
+        ],
+        [
+          2815.091,
+          1773.04
+        ],
+        [
+          2810.08,
+          1793.914
+        ],
+        [
+          2801.865,
+          1813.746
+        ],
+        [
+          2790.649,
+          1832.049
+        ],
+        [
+          2776.707,
+          1848.372
+        ],
+        [
+          2760.384,
+          1862.314
+        ],
+        [
+          2742.081,
+          1873.53
+        ],
+        [
+          2722.249,
+          1881.745
+        ],
+        [
+          2701.375,
+          1886.756
+        ],
+        [
+          2679.975,
+          1888.44
+        ],
+        [
+          1884.015,
+          1888.44
+        ],
+        [
+          1884.015,
+          1751.64
+        ],
+        [
+          1351.41,
+          1751.64
+        ],
+        [
+          1351.41,
+          1888.44
+        ],
+        [
+          309.39,
+          1888.44
+        ],
+        [
+          287.99,
+          1886.756
+        ],
+        [
+          267.116,
+          1881.745
+        ],
+        [
+          247.284,
+          1873.53
+        ],
+        [
+          228.981,
+          1862.314
+        ],
+        [
+          212.658,
+          1848.372
+        ],
+        [
+          198.716,
+          1832.049
+        ],
+        [
+          187.5,
+          1813.746
+        ],
+        [
+          179.285,
+          1793.914
+        ],
+        [
+          174.274,
+          1773.04
+        ],
+        [
+          172.59,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ],
+        [
+          172.59,
+          1088.34
+        ],
+        [
+          39.93,
+          1088.34
+        ],
+        [
+          39.93,
+          814.56
+        ],
+        [
+          172.59,
+          814.56
+        ],
+        [
+          172.59,
+          151.26
+        ]
+      ],
+      "bodyOutline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ]
+      ],
+      "geometryStatus": "verified-from-floor-legend-and-vector-wall-positions",
+      "note": "Apartment selection polygons cover the interior block bounded by major walls. Separate balconies preserve the actual per-floor shape. The projected roof over the entrance is visible only as source drawing context and is not a unit.",
+      "normalizedOutline": [
+        [
+          0.0605579,
+          0.0775692
+        ],
+        [
+          0.0611488,
+          0.0665949
+        ],
+        [
+          0.062907,
+          0.0558903
+        ],
+        [
+          0.0657895,
+          0.04572
+        ],
+        [
+          0.0697249,
+          0.0363338
+        ],
+        [
+          0.0746168,
+          0.0279631
+        ],
+        [
+          0.0803442,
+          0.0208133
+        ],
+        [
+          0.0867663,
+          0.0150615
+        ],
+        [
+          0.0937249,
+          0.0108487
+        ],
+        [
+          0.1010491,
+          0.008279
+        ],
+        [
+          0.1085579,
+          0.0074154
+        ],
+        [
+          0.9403421,
+          0.0074154
+        ],
+        [
+          0.9478509,
+          0.008279
+        ],
+        [
+          0.9551751,
+          0.0108487
+        ],
+        [
+          0.9621337,
+          0.0150615
+        ],
+        [
+          0.9685558,
+          0.0208133
+        ],
+        [
+          0.9742832,
+          0.0279631
+        ],
+        [
+          0.9791751,
+          0.0363338
+        ],
+        [
+          0.9831105,
+          0.04572
+        ],
+        [
+          0.985993,
+          0.0558903
+        ],
+        [
+          0.9877512,
+          0.0665949
+        ],
+        [
+          0.9883421,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.8982769
+        ],
+        [
+          0.9883421,
+          0.8982769
+        ],
+        [
+          0.9877512,
+          0.9092513
+        ],
+        [
+          0.985993,
+          0.9199559
+        ],
+        [
+          0.9831105,
+          0.9301262
+        ],
+        [
+          0.9791751,
+          0.9395123
+        ],
+        [
+          0.9742832,
+          0.9478831
+        ],
+        [
+          0.9685558,
+          0.9550328
+        ],
+        [
+          0.9621337,
+          0.9607846
+        ],
+        [
+          0.9551751,
+          0.9649974
+        ],
+        [
+          0.9478509,
+          0.9675672
+        ],
+        [
+          0.9403421,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.9684308
+        ],
+        [
+          0.1085579,
+          0.9684308
+        ],
+        [
+          0.1010491,
+          0.9675672
+        ],
+        [
+          0.0937249,
+          0.9649974
+        ],
+        [
+          0.0867663,
+          0.9607846
+        ],
+        [
+          0.0803442,
+          0.9550328
+        ],
+        [
+          0.0746168,
+          0.9478831
+        ],
+        [
+          0.0697249,
+          0.9395123
+        ],
+        [
+          0.0657895,
+          0.9301262
+        ],
+        [
+          0.062907,
+          0.9199559
+        ],
+        [
+          0.0611488,
+          0.9092513
+        ],
+        [
+          0.0605579,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.0775692
+        ]
+      ],
+      "mapImage": "assets/floors/floor-2-clean.webp"
+    },
+    {
+      "floor": 3,
+      "width": 2850,
+      "height": 1950,
+      "image": "assets/floors/floor-3.webp",
+      "source": {
+        "path": "01_sources/uschovna/extracted/Otrokovice/Půdorysy pater/3. NP (6.10.2026).pdf",
+        "page": 1,
+        "sha256": "6d6f9bbb71fb763b9b1163250859e92c5468c0e9cdbd5a6bdb74a20d145225a7",
+        "pageSizePdfPoints": [
+          2976.0,
+          1684.0
+        ],
+        "cropPdfPoints": [
+          220,
+          170,
+          2120,
+          1470
+        ],
+        "pixelsPerPdfPoint": 1.5,
+        "textExtraction": "No live text in PDF; text is outlined vector paths. Legends and dimensions manually verified from source renders."
+      },
+      "units": [
+        {
+          "id": 11,
+          "polygon": [
+            [
+              172.59,
+              1036.95
+            ],
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              801.6,
+              1751.64
+            ],
+            [
+              172.59,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ],
+            [
+              0.0605579,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            487.095,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                801.6,
+                1888.44
+              ],
+              [
+                356.55,
+                1888.44
+              ],
+              [
+                335.15,
+                1886.756
+              ],
+              [
+                314.276,
+                1881.745
+              ],
+              [
+                294.444,
+                1873.53
+              ],
+              [
+                276.141,
+                1862.314
+              ],
+              [
+                259.818,
+                1848.372
+              ],
+              [
+                245.876,
+                1832.049
+              ],
+              [
+                234.66,
+                1813.746
+              ],
+              [
+                226.445,
+                1793.914
+              ],
+              [
+                221.434,
+                1773.04
+              ],
+              [
+                219.75,
+                1751.64
+              ]
+            ]
+          ],
+          "balconyRoomId": "311",
+          "detailBounds": [
+            157.59,
+            1021.95,
+            816.6,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "306",
+            "306a",
+            "307",
+            "308",
+            "309",
+            "310"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 11",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "3+kk",
+          "sourceIndexArea": 65.15
+        },
+        {
+          "id": 12,
+          "polygon": [
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1404.87,
+              1751.64
+            ],
+            [
+              801.6,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.8982769
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            1103.235,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                1351.41,
+                1751.64
+              ],
+              [
+                1351.41,
+                1888.44
+              ],
+              [
+                801.6,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "317",
+          "detailBounds": [
+            786.6,
+            1021.95,
+            1419.87,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "312",
+            "312a",
+            "313",
+            "314",
+            "315",
+            "316"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 12",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 59.3
+        },
+        {
+          "id": 13,
+          "polygon": [
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2393.325,
+              1751.64
+            ],
+            [
+              1837.035,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ],
+            [
+              0.6445737,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                1884.015,
+                1751.64
+              ],
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2393.325,
+                1888.44
+              ],
+              [
+                1884.015,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "323",
+          "detailBounds": [
+            1822.035,
+            1021.95,
+            2408.325,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "318",
+            "318a",
+            "319",
+            "320",
+            "321",
+            "322"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 13",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.7
+        },
+        {
+          "id": 14,
+          "polygon": [
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              2816.955,
+              1751.64
+            ],
+            [
+              2393.325,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.8982769
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2769.795,
+                1751.64
+              ],
+              [
+                2768.111,
+                1773.04
+              ],
+              [
+                2763.1,
+                1793.914
+              ],
+              [
+                2754.885,
+                1813.746
+              ],
+              [
+                2743.669,
+                1832.049
+              ],
+              [
+                2729.727,
+                1848.372
+              ],
+              [
+                2713.404,
+                1862.314
+              ],
+              [
+                2695.101,
+                1873.53
+              ],
+              [
+                2675.269,
+                1881.745
+              ],
+              [
+                2654.395,
+                1886.756
+              ],
+              [
+                2632.995,
+                1888.44
+              ],
+              [
+                2393.325,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "328",
+          "detailBounds": [
+            2378.325,
+            1021.95,
+            2831.955,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "324",
+            "325",
+            "326",
+            "327"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 14",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.65
+        },
+        {
+          "id": 15,
+          "polygon": [
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2816.955,
+              151.26
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2393.325,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.4440308
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2632.995,
+                14.46
+              ],
+              [
+                2654.395,
+                16.144
+              ],
+              [
+                2675.269,
+                21.155
+              ],
+              [
+                2695.101,
+                29.37
+              ],
+              [
+                2713.404,
+                40.586
+              ],
+              [
+                2729.727,
+                54.528
+              ],
+              [
+                2743.669,
+                70.851
+              ],
+              [
+                2754.885,
+                89.154
+              ],
+              [
+                2763.1,
+                108.986
+              ],
+              [
+                2768.111,
+                129.86
+              ],
+              [
+                2769.795,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "333",
+          "detailBounds": [
+            2378.325,
+            0,
+            2831.955,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "329",
+            "330",
+            "331",
+            "332"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 15",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.65
+        },
+        {
+          "id": 16,
+          "polygon": [
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2393.325,
+              865.86
+            ],
+            [
+              1837.035,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1905.435,
+                14.46
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                1905.435,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "339",
+          "detailBounds": [
+            1822.035,
+            0,
+            2408.325,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "334",
+            "334a",
+            "335",
+            "336",
+            "337",
+            "338"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 16",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.3
+        },
+        {
+          "id": 17,
+          "polygon": [
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              1837.035,
+              865.86
+            ],
+            [
+              1409.1,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1623.068,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1700.055,
+                14.46
+              ],
+              [
+                1700.055,
+                151.26
+              ],
+              [
+                1409.1,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "344",
+          "detailBounds": [
+            1394.1,
+            0,
+            1852.035,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "340",
+            "341",
+            "342",
+            "343"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 17",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.35
+        },
+        {
+          "id": 18,
+          "polygon": [
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1409.1,
+              865.86
+            ],
+            [
+              1002.66,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1205.88,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1118.13,
+                14.46
+              ],
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1409.1,
+                151.26
+              ],
+              [
+                1118.13,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "349",
+          "detailBounds": [
+            987.66,
+            0,
+            1424.1,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "345",
+            "346",
+            "347",
+            "348"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 18",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 38.4
+        },
+        {
+          "id": 19,
+          "polygon": [
+            [
+              604.68,
+              151.26
+            ],
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1002.66,
+              865.86
+            ],
+            [
+              604.68,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            803.67,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                604.68,
+                14.46
+              ],
+              [
+                912.75,
+                14.46
+              ],
+              [
+                912.75,
+                151.26
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "354",
+          "detailBounds": [
+            589.68,
+            0,
+            1017.66,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "350",
+            "351",
+            "352",
+            "353"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 19",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 38.4
+        },
+        {
+          "id": 20,
+          "polygon": [
+            [
+              172.59,
+              151.26
+            ],
+            [
+              604.68,
+              151.26
+            ],
+            [
+              604.68,
+              865.86
+            ],
+            [
+              172.59,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ],
+            [
+              0.0605579,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            388.635,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                219.75,
+                151.26
+              ],
+              [
+                221.434,
+                129.86
+              ],
+              [
+                226.445,
+                108.986
+              ],
+              [
+                234.66,
+                89.154
+              ],
+              [
+                245.876,
+                70.851
+              ],
+              [
+                259.818,
+                54.528
+              ],
+              [
+                276.141,
+                40.586
+              ],
+              [
+                294.444,
+                29.37
+              ],
+              [
+                314.276,
+                21.155
+              ],
+              [
+                335.15,
+                16.144
+              ],
+              [
+                356.55,
+                14.46
+              ],
+              [
+                604.68,
+                14.46
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "359",
+          "detailBounds": [
+            157.59,
+            0,
+            619.68,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "355",
+            "356",
+            "357",
+            "358"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 20",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 41.75
+        }
+      ],
+      "commonAreas": [
+        {
+          "id": "3-corridor",
+          "label": "Společná chodba a úklidová komora",
+          "polygon": [
+            [
+              172.59,
+              865.86
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              172.59,
+              1036.95
+            ]
+          ],
+          "sourceRoomIds": [
+            "304",
+            "305"
+          ]
+        },
+        {
+          "id": "3-core",
+          "label": "Schodiště, výtah a navazující zázemí",
+          "polygon": [
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              1837.035,
+              1751.64
+            ],
+            [
+              1404.87,
+              1751.64
+            ]
+          ],
+          "sourceRoomIds": [
+            "301",
+            "302",
+            "303"
+          ],
+          "note": "Footprint group; ownership/use of the separate 03 room is not inferred."
+        },
+        {
+          "id": "3-west-balcony",
+          "label": "Boční balkon přístupný z chodby",
+          "polygon": [
+            [
+              39.93,
+              814.56
+            ],
+            [
+              172.59,
+              814.56
+            ],
+            [
+              172.59,
+              1088.34
+            ],
+            [
+              39.93,
+              1088.34
+            ]
+          ],
+          "sourceRoomIds": [
+            "360"
+          ],
+          "note": "Not assigned to an apartment because access is from the common corridor."
+        }
+      ],
+      "outline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          219.75,
+          151.26
+        ],
+        [
+          221.434,
+          129.86
+        ],
+        [
+          226.445,
+          108.986
+        ],
+        [
+          234.66,
+          89.154
+        ],
+        [
+          245.876,
+          70.851
+        ],
+        [
+          259.818,
+          54.528
+        ],
+        [
+          276.141,
+          40.586
+        ],
+        [
+          294.444,
+          29.37
+        ],
+        [
+          314.276,
+          21.155
+        ],
+        [
+          335.15,
+          16.144
+        ],
+        [
+          356.55,
+          14.46
+        ],
+        [
+          912.75,
+          14.46
+        ],
+        [
+          912.75,
+          151.26
+        ],
+        [
+          1118.13,
+          151.26
+        ],
+        [
+          1118.13,
+          14.46
+        ],
+        [
+          1700.055,
+          14.46
+        ],
+        [
+          1700.055,
+          151.26
+        ],
+        [
+          1905.435,
+          151.26
+        ],
+        [
+          1905.435,
+          14.46
+        ],
+        [
+          2632.995,
+          14.46
+        ],
+        [
+          2654.395,
+          16.144
+        ],
+        [
+          2675.269,
+          21.155
+        ],
+        [
+          2695.101,
+          29.37
+        ],
+        [
+          2713.404,
+          40.586
+        ],
+        [
+          2729.727,
+          54.528
+        ],
+        [
+          2743.669,
+          70.851
+        ],
+        [
+          2754.885,
+          89.154
+        ],
+        [
+          2763.1,
+          108.986
+        ],
+        [
+          2768.111,
+          129.86
+        ],
+        [
+          2769.795,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          2769.795,
+          1751.64
+        ],
+        [
+          2768.111,
+          1773.04
+        ],
+        [
+          2763.1,
+          1793.914
+        ],
+        [
+          2754.885,
+          1813.746
+        ],
+        [
+          2743.669,
+          1832.049
+        ],
+        [
+          2729.727,
+          1848.372
+        ],
+        [
+          2713.404,
+          1862.314
+        ],
+        [
+          2695.101,
+          1873.53
+        ],
+        [
+          2675.269,
+          1881.745
+        ],
+        [
+          2654.395,
+          1886.756
+        ],
+        [
+          2632.995,
+          1888.44
+        ],
+        [
+          1884.015,
+          1888.44
+        ],
+        [
+          1884.015,
+          1751.64
+        ],
+        [
+          1351.41,
+          1751.64
+        ],
+        [
+          1351.41,
+          1888.44
+        ],
+        [
+          356.55,
+          1888.44
+        ],
+        [
+          335.15,
+          1886.756
+        ],
+        [
+          314.276,
+          1881.745
+        ],
+        [
+          294.444,
+          1873.53
+        ],
+        [
+          276.141,
+          1862.314
+        ],
+        [
+          259.818,
+          1848.372
+        ],
+        [
+          245.876,
+          1832.049
+        ],
+        [
+          234.66,
+          1813.746
+        ],
+        [
+          226.445,
+          1793.914
+        ],
+        [
+          221.434,
+          1773.04
+        ],
+        [
+          219.75,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ],
+        [
+          172.59,
+          1088.34
+        ],
+        [
+          39.93,
+          1088.34
+        ],
+        [
+          39.93,
+          814.56
+        ],
+        [
+          172.59,
+          814.56
+        ],
+        [
+          172.59,
+          151.26
+        ]
+      ],
+      "bodyOutline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ]
+      ],
+      "geometryStatus": "verified-from-floor-legend-and-vector-wall-positions",
+      "note": "Apartment selection polygons cover the interior block bounded by major walls. Separate balconies preserve the actual per-floor shape. The projected roof over the entrance is visible only as source drawing context and is not a unit.",
+      "normalizedOutline": [
+        [
+          0.0605579,
+          0.0775692
+        ],
+        [
+          0.0771053,
+          0.0775692
+        ],
+        [
+          0.0776961,
+          0.0665949
+        ],
+        [
+          0.0794544,
+          0.0558903
+        ],
+        [
+          0.0823368,
+          0.04572
+        ],
+        [
+          0.0862723,
+          0.0363338
+        ],
+        [
+          0.0911642,
+          0.0279631
+        ],
+        [
+          0.0968916,
+          0.0208133
+        ],
+        [
+          0.1033137,
+          0.0150615
+        ],
+        [
+          0.1102723,
+          0.0108487
+        ],
+        [
+          0.1175965,
+          0.008279
+        ],
+        [
+          0.1251053,
+          0.0074154
+        ],
+        [
+          0.3202632,
+          0.0074154
+        ],
+        [
+          0.3202632,
+          0.0775692
+        ],
+        [
+          0.3923263,
+          0.0775692
+        ],
+        [
+          0.3923263,
+          0.0074154
+        ],
+        [
+          0.5965105,
+          0.0074154
+        ],
+        [
+          0.5965105,
+          0.0775692
+        ],
+        [
+          0.6685737,
+          0.0775692
+        ],
+        [
+          0.6685737,
+          0.0074154
+        ],
+        [
+          0.9238579,
+          0.0074154
+        ],
+        [
+          0.9313667,
+          0.008279
+        ],
+        [
+          0.9386909,
+          0.0108487
+        ],
+        [
+          0.9456495,
+          0.0150615
+        ],
+        [
+          0.9520716,
+          0.0208133
+        ],
+        [
+          0.9577989,
+          0.0279631
+        ],
+        [
+          0.9626909,
+          0.0363338
+        ],
+        [
+          0.9666263,
+          0.04572
+        ],
+        [
+          0.9695088,
+          0.0558903
+        ],
+        [
+          0.971267,
+          0.0665949
+        ],
+        [
+          0.9718579,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.8982769
+        ],
+        [
+          0.9718579,
+          0.8982769
+        ],
+        [
+          0.971267,
+          0.9092513
+        ],
+        [
+          0.9695088,
+          0.9199559
+        ],
+        [
+          0.9666263,
+          0.9301262
+        ],
+        [
+          0.9626909,
+          0.9395123
+        ],
+        [
+          0.9577989,
+          0.9478831
+        ],
+        [
+          0.9520716,
+          0.9550328
+        ],
+        [
+          0.9456495,
+          0.9607846
+        ],
+        [
+          0.9386909,
+          0.9649974
+        ],
+        [
+          0.9313667,
+          0.9675672
+        ],
+        [
+          0.9238579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.9684308
+        ],
+        [
+          0.1251053,
+          0.9684308
+        ],
+        [
+          0.1175965,
+          0.9675672
+        ],
+        [
+          0.1102723,
+          0.9649974
+        ],
+        [
+          0.1033137,
+          0.9607846
+        ],
+        [
+          0.0968916,
+          0.9550328
+        ],
+        [
+          0.0911642,
+          0.9478831
+        ],
+        [
+          0.0862723,
+          0.9395123
+        ],
+        [
+          0.0823368,
+          0.9301262
+        ],
+        [
+          0.0794544,
+          0.9199559
+        ],
+        [
+          0.0776961,
+          0.9092513
+        ],
+        [
+          0.0771053,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.0775692
+        ]
+      ],
+      "mapImage": "assets/floors/floor-3-clean.webp"
+    },
+    {
+      "floor": 4,
+      "width": 2850,
+      "height": 1950,
+      "image": "assets/floors/floor-4.webp",
+      "source": {
+        "path": "01_sources/uschovna/extracted/Otrokovice/Půdorysy pater/4. NP (6.10.2026).pdf",
+        "page": 1,
+        "sha256": "ab010e568ef3348568dae3fe710cd11e7a4d982329b9c5f195dba61e418168ce",
+        "pageSizePdfPoints": [
+          2976.0,
+          1684.0
+        ],
+        "cropPdfPoints": [
+          220,
+          170,
+          2120,
+          1470
+        ],
+        "pixelsPerPdfPoint": 1.5,
+        "textExtraction": "No live text in PDF; text is outlined vector paths. Legends and dimensions manually verified from source renders."
+      },
+      "units": [
+        {
+          "id": 21,
+          "polygon": [
+            [
+              172.59,
+              1036.95
+            ],
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              801.6,
+              1751.64
+            ],
+            [
+              172.59,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ],
+            [
+              0.0605579,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            487.095,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                801.6,
+                1888.44
+              ],
+              [
+                356.55,
+                1888.44
+              ],
+              [
+                335.15,
+                1886.756
+              ],
+              [
+                314.276,
+                1881.745
+              ],
+              [
+                294.444,
+                1873.53
+              ],
+              [
+                276.141,
+                1862.314
+              ],
+              [
+                259.818,
+                1848.372
+              ],
+              [
+                245.876,
+                1832.049
+              ],
+              [
+                234.66,
+                1813.746
+              ],
+              [
+                226.445,
+                1793.914
+              ],
+              [
+                221.434,
+                1773.04
+              ],
+              [
+                219.75,
+                1751.64
+              ]
+            ]
+          ],
+          "balconyRoomId": "411",
+          "detailBounds": [
+            157.59,
+            1021.95,
+            816.6,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "406",
+            "406a",
+            "407",
+            "408",
+            "409",
+            "410"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 21",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "3+kk",
+          "sourceIndexArea": 65.15
+        },
+        {
+          "id": 22,
+          "polygon": [
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1404.87,
+              1751.64
+            ],
+            [
+              801.6,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.8982769
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            1103.235,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                1351.41,
+                1751.64
+              ],
+              [
+                1351.41,
+                1888.44
+              ],
+              [
+                801.6,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "417",
+          "detailBounds": [
+            786.6,
+            1021.95,
+            1419.87,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "412",
+            "412a",
+            "413",
+            "414",
+            "415",
+            "416"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 22",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 59.3
+        },
+        {
+          "id": 23,
+          "polygon": [
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2393.325,
+              1751.64
+            ],
+            [
+              1837.035,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ],
+            [
+              0.6445737,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                1884.015,
+                1751.64
+              ],
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2393.325,
+                1888.44
+              ],
+              [
+                1884.015,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "423",
+          "detailBounds": [
+            1822.035,
+            1021.95,
+            2408.325,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "418",
+            "418a",
+            "419",
+            "420",
+            "421",
+            "422"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 23",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.7
+        },
+        {
+          "id": 24,
+          "polygon": [
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              2816.955,
+              1751.64
+            ],
+            [
+              2393.325,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.8982769
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2769.795,
+                1751.64
+              ],
+              [
+                2768.111,
+                1773.04
+              ],
+              [
+                2763.1,
+                1793.914
+              ],
+              [
+                2754.885,
+                1813.746
+              ],
+              [
+                2743.669,
+                1832.049
+              ],
+              [
+                2729.727,
+                1848.372
+              ],
+              [
+                2713.404,
+                1862.314
+              ],
+              [
+                2695.101,
+                1873.53
+              ],
+              [
+                2675.269,
+                1881.745
+              ],
+              [
+                2654.395,
+                1886.756
+              ],
+              [
+                2632.995,
+                1888.44
+              ],
+              [
+                2393.325,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "428",
+          "detailBounds": [
+            2378.325,
+            1021.95,
+            2831.955,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "424",
+            "425",
+            "426",
+            "427"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 24",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 41
+        },
+        {
+          "id": 25,
+          "polygon": [
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2816.955,
+              151.26
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2393.325,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.4440308
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2632.995,
+                14.46
+              ],
+              [
+                2654.395,
+                16.144
+              ],
+              [
+                2675.269,
+                21.155
+              ],
+              [
+                2695.101,
+                29.37
+              ],
+              [
+                2713.404,
+                40.586
+              ],
+              [
+                2729.727,
+                54.528
+              ],
+              [
+                2743.669,
+                70.851
+              ],
+              [
+                2754.885,
+                89.154
+              ],
+              [
+                2763.1,
+                108.986
+              ],
+              [
+                2768.111,
+                129.86
+              ],
+              [
+                2769.795,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "433",
+          "detailBounds": [
+            2378.325,
+            0,
+            2831.955,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "429",
+            "430",
+            "431",
+            "432"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 25",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.7
+        },
+        {
+          "id": 26,
+          "polygon": [
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2393.325,
+              865.86
+            ],
+            [
+              1837.035,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1905.435,
+                14.46
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                1905.435,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "439",
+          "detailBounds": [
+            1822.035,
+            0,
+            2408.325,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "434",
+            "434a",
+            "435",
+            "436",
+            "437",
+            "438"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 26",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.3
+        },
+        {
+          "id": 27,
+          "polygon": [
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              1837.035,
+              865.86
+            ],
+            [
+              1409.1,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1623.068,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1700.055,
+                14.46
+              ],
+              [
+                1700.055,
+                151.26
+              ],
+              [
+                1409.1,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "444",
+          "detailBounds": [
+            1394.1,
+            0,
+            1852.035,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "440",
+            "441",
+            "442",
+            "443"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 27",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.45
+        },
+        {
+          "id": 28,
+          "polygon": [
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1409.1,
+              865.86
+            ],
+            [
+              1002.66,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1205.88,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1118.13,
+                14.46
+              ],
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1409.1,
+                151.26
+              ],
+              [
+                1118.13,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "449",
+          "detailBounds": [
+            987.66,
+            0,
+            1424.1,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "445",
+            "446",
+            "447",
+            "448"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 28",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 38.8
+        },
+        {
+          "id": 29,
+          "polygon": [
+            [
+              604.68,
+              151.26
+            ],
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1002.66,
+              865.86
+            ],
+            [
+              604.68,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            803.67,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                604.68,
+                14.46
+              ],
+              [
+                912.75,
+                14.46
+              ],
+              [
+                912.75,
+                151.26
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "454",
+          "detailBounds": [
+            589.68,
+            0,
+            1017.66,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "450",
+            "451",
+            "452",
+            "453"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 29",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 38.4
+        },
+        {
+          "id": 30,
+          "polygon": [
+            [
+              172.59,
+              151.26
+            ],
+            [
+              604.68,
+              151.26
+            ],
+            [
+              604.68,
+              865.86
+            ],
+            [
+              172.59,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ],
+            [
+              0.0605579,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            388.635,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                219.75,
+                151.26
+              ],
+              [
+                221.434,
+                129.86
+              ],
+              [
+                226.445,
+                108.986
+              ],
+              [
+                234.66,
+                89.154
+              ],
+              [
+                245.876,
+                70.851
+              ],
+              [
+                259.818,
+                54.528
+              ],
+              [
+                276.141,
+                40.586
+              ],
+              [
+                294.444,
+                29.37
+              ],
+              [
+                314.276,
+                21.155
+              ],
+              [
+                335.15,
+                16.144
+              ],
+              [
+                356.55,
+                14.46
+              ],
+              [
+                604.68,
+                14.46
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "459",
+          "detailBounds": [
+            157.59,
+            0,
+            619.68,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "455",
+            "456",
+            "457",
+            "458"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 30",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 41.65
+        }
+      ],
+      "commonAreas": [
+        {
+          "id": "4-corridor",
+          "label": "Společná chodba a úklidová komora",
+          "polygon": [
+            [
+              172.59,
+              865.86
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              172.59,
+              1036.95
+            ]
+          ],
+          "sourceRoomIds": [
+            "404",
+            "405"
+          ]
+        },
+        {
+          "id": "4-core",
+          "label": "Schodiště, výtah a navazující zázemí",
+          "polygon": [
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              1837.035,
+              1751.64
+            ],
+            [
+              1404.87,
+              1751.64
+            ]
+          ],
+          "sourceRoomIds": [
+            "401",
+            "402",
+            "403"
+          ],
+          "note": "Footprint group; ownership/use of the separate 03 room is not inferred."
+        },
+        {
+          "id": "4-west-balcony",
+          "label": "Boční balkon přístupný z chodby",
+          "polygon": [
+            [
+              39.93,
+              814.56
+            ],
+            [
+              172.59,
+              814.56
+            ],
+            [
+              172.59,
+              1088.34
+            ],
+            [
+              39.93,
+              1088.34
+            ]
+          ],
+          "sourceRoomIds": [
+            "460"
+          ],
+          "note": "Not assigned to an apartment because access is from the common corridor."
+        }
+      ],
+      "outline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          219.75,
+          151.26
+        ],
+        [
+          221.434,
+          129.86
+        ],
+        [
+          226.445,
+          108.986
+        ],
+        [
+          234.66,
+          89.154
+        ],
+        [
+          245.876,
+          70.851
+        ],
+        [
+          259.818,
+          54.528
+        ],
+        [
+          276.141,
+          40.586
+        ],
+        [
+          294.444,
+          29.37
+        ],
+        [
+          314.276,
+          21.155
+        ],
+        [
+          335.15,
+          16.144
+        ],
+        [
+          356.55,
+          14.46
+        ],
+        [
+          912.75,
+          14.46
+        ],
+        [
+          912.75,
+          151.26
+        ],
+        [
+          1118.13,
+          151.26
+        ],
+        [
+          1118.13,
+          14.46
+        ],
+        [
+          1700.055,
+          14.46
+        ],
+        [
+          1700.055,
+          151.26
+        ],
+        [
+          1905.435,
+          151.26
+        ],
+        [
+          1905.435,
+          14.46
+        ],
+        [
+          2632.995,
+          14.46
+        ],
+        [
+          2654.395,
+          16.144
+        ],
+        [
+          2675.269,
+          21.155
+        ],
+        [
+          2695.101,
+          29.37
+        ],
+        [
+          2713.404,
+          40.586
+        ],
+        [
+          2729.727,
+          54.528
+        ],
+        [
+          2743.669,
+          70.851
+        ],
+        [
+          2754.885,
+          89.154
+        ],
+        [
+          2763.1,
+          108.986
+        ],
+        [
+          2768.111,
+          129.86
+        ],
+        [
+          2769.795,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          2769.795,
+          1751.64
+        ],
+        [
+          2768.111,
+          1773.04
+        ],
+        [
+          2763.1,
+          1793.914
+        ],
+        [
+          2754.885,
+          1813.746
+        ],
+        [
+          2743.669,
+          1832.049
+        ],
+        [
+          2729.727,
+          1848.372
+        ],
+        [
+          2713.404,
+          1862.314
+        ],
+        [
+          2695.101,
+          1873.53
+        ],
+        [
+          2675.269,
+          1881.745
+        ],
+        [
+          2654.395,
+          1886.756
+        ],
+        [
+          2632.995,
+          1888.44
+        ],
+        [
+          1884.015,
+          1888.44
+        ],
+        [
+          1884.015,
+          1751.64
+        ],
+        [
+          1351.41,
+          1751.64
+        ],
+        [
+          1351.41,
+          1888.44
+        ],
+        [
+          356.55,
+          1888.44
+        ],
+        [
+          335.15,
+          1886.756
+        ],
+        [
+          314.276,
+          1881.745
+        ],
+        [
+          294.444,
+          1873.53
+        ],
+        [
+          276.141,
+          1862.314
+        ],
+        [
+          259.818,
+          1848.372
+        ],
+        [
+          245.876,
+          1832.049
+        ],
+        [
+          234.66,
+          1813.746
+        ],
+        [
+          226.445,
+          1793.914
+        ],
+        [
+          221.434,
+          1773.04
+        ],
+        [
+          219.75,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ],
+        [
+          172.59,
+          1088.34
+        ],
+        [
+          39.93,
+          1088.34
+        ],
+        [
+          39.93,
+          814.56
+        ],
+        [
+          172.59,
+          814.56
+        ],
+        [
+          172.59,
+          151.26
+        ]
+      ],
+      "bodyOutline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ]
+      ],
+      "geometryStatus": "verified-from-floor-legend-and-vector-wall-positions",
+      "note": "Apartment selection polygons cover the interior block bounded by major walls. Separate balconies preserve the actual per-floor shape. The projected roof over the entrance is visible only as source drawing context and is not a unit.",
+      "normalizedOutline": [
+        [
+          0.0605579,
+          0.0775692
+        ],
+        [
+          0.0771053,
+          0.0775692
+        ],
+        [
+          0.0776961,
+          0.0665949
+        ],
+        [
+          0.0794544,
+          0.0558903
+        ],
+        [
+          0.0823368,
+          0.04572
+        ],
+        [
+          0.0862723,
+          0.0363338
+        ],
+        [
+          0.0911642,
+          0.0279631
+        ],
+        [
+          0.0968916,
+          0.0208133
+        ],
+        [
+          0.1033137,
+          0.0150615
+        ],
+        [
+          0.1102723,
+          0.0108487
+        ],
+        [
+          0.1175965,
+          0.008279
+        ],
+        [
+          0.1251053,
+          0.0074154
+        ],
+        [
+          0.3202632,
+          0.0074154
+        ],
+        [
+          0.3202632,
+          0.0775692
+        ],
+        [
+          0.3923263,
+          0.0775692
+        ],
+        [
+          0.3923263,
+          0.0074154
+        ],
+        [
+          0.5965105,
+          0.0074154
+        ],
+        [
+          0.5965105,
+          0.0775692
+        ],
+        [
+          0.6685737,
+          0.0775692
+        ],
+        [
+          0.6685737,
+          0.0074154
+        ],
+        [
+          0.9238579,
+          0.0074154
+        ],
+        [
+          0.9313667,
+          0.008279
+        ],
+        [
+          0.9386909,
+          0.0108487
+        ],
+        [
+          0.9456495,
+          0.0150615
+        ],
+        [
+          0.9520716,
+          0.0208133
+        ],
+        [
+          0.9577989,
+          0.0279631
+        ],
+        [
+          0.9626909,
+          0.0363338
+        ],
+        [
+          0.9666263,
+          0.04572
+        ],
+        [
+          0.9695088,
+          0.0558903
+        ],
+        [
+          0.971267,
+          0.0665949
+        ],
+        [
+          0.9718579,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.8982769
+        ],
+        [
+          0.9718579,
+          0.8982769
+        ],
+        [
+          0.971267,
+          0.9092513
+        ],
+        [
+          0.9695088,
+          0.9199559
+        ],
+        [
+          0.9666263,
+          0.9301262
+        ],
+        [
+          0.9626909,
+          0.9395123
+        ],
+        [
+          0.9577989,
+          0.9478831
+        ],
+        [
+          0.9520716,
+          0.9550328
+        ],
+        [
+          0.9456495,
+          0.9607846
+        ],
+        [
+          0.9386909,
+          0.9649974
+        ],
+        [
+          0.9313667,
+          0.9675672
+        ],
+        [
+          0.9238579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.9684308
+        ],
+        [
+          0.1251053,
+          0.9684308
+        ],
+        [
+          0.1175965,
+          0.9675672
+        ],
+        [
+          0.1102723,
+          0.9649974
+        ],
+        [
+          0.1033137,
+          0.9607846
+        ],
+        [
+          0.0968916,
+          0.9550328
+        ],
+        [
+          0.0911642,
+          0.9478831
+        ],
+        [
+          0.0862723,
+          0.9395123
+        ],
+        [
+          0.0823368,
+          0.9301262
+        ],
+        [
+          0.0794544,
+          0.9199559
+        ],
+        [
+          0.0776961,
+          0.9092513
+        ],
+        [
+          0.0771053,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.0775692
+        ]
+      ],
+      "mapImage": "assets/floors/floor-4-clean.webp"
+    },
+    {
+      "floor": 5,
+      "width": 2850,
+      "height": 1950,
+      "image": "assets/floors/floor-5.webp",
+      "source": {
+        "path": "01_sources/uschovna/extracted/Otrokovice/Půdorysy pater/5. NP (6.10.2026).pdf",
+        "page": 1,
+        "sha256": "db9ec707354fdd4c6cc79e77017dec53b15b64506d89debc6f4059fc8bab1b20",
+        "pageSizePdfPoints": [
+          2976.0,
+          1684.0
+        ],
+        "cropPdfPoints": [
+          220,
+          170,
+          2120,
+          1470
+        ],
+        "pixelsPerPdfPoint": 1.5,
+        "textExtraction": "No live text in PDF; text is outlined vector paths. Legends and dimensions manually verified from source renders."
+      },
+      "units": [
+        {
+          "id": 31,
+          "polygon": [
+            [
+              172.59,
+              1036.95
+            ],
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              801.6,
+              1751.64
+            ],
+            [
+              172.59,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ],
+            [
+              0.0605579,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            487.095,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                801.6,
+                1888.44
+              ],
+              [
+                356.55,
+                1888.44
+              ],
+              [
+                335.15,
+                1886.756
+              ],
+              [
+                314.276,
+                1881.745
+              ],
+              [
+                294.444,
+                1873.53
+              ],
+              [
+                276.141,
+                1862.314
+              ],
+              [
+                259.818,
+                1848.372
+              ],
+              [
+                245.876,
+                1832.049
+              ],
+              [
+                234.66,
+                1813.746
+              ],
+              [
+                226.445,
+                1793.914
+              ],
+              [
+                221.434,
+                1773.04
+              ],
+              [
+                219.75,
+                1751.64
+              ]
+            ]
+          ],
+          "balconyRoomId": "511",
+          "detailBounds": [
+            157.59,
+            1021.95,
+            816.6,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "506",
+            "506a",
+            "507",
+            "508",
+            "509",
+            "510"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 31",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "3+kk",
+          "sourceIndexArea": 65
+        },
+        {
+          "id": 32,
+          "polygon": [
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1404.87,
+              1751.64
+            ],
+            [
+              801.6,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.8982769
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            1103.235,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                1351.41,
+                1751.64
+              ],
+              [
+                1351.41,
+                1888.44
+              ],
+              [
+                801.6,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "517",
+          "detailBounds": [
+            786.6,
+            1021.95,
+            1419.87,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "512",
+            "512a",
+            "513",
+            "514",
+            "515",
+            "516"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 32",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 59.3
+        },
+        {
+          "id": 33,
+          "polygon": [
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2393.325,
+              1751.64
+            ],
+            [
+              1837.035,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ],
+            [
+              0.6445737,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                1884.015,
+                1751.64
+              ],
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2393.325,
+                1888.44
+              ],
+              [
+                1884.015,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "523",
+          "detailBounds": [
+            1822.035,
+            1021.95,
+            2408.325,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "518",
+            "518a",
+            "519",
+            "520",
+            "521",
+            "522"
+          ],
+          "sourceLegendTitle": "UBYTOVACÍ JEDNOTKA č. 33",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.7
+        },
+        {
+          "id": 34,
+          "polygon": [
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              2816.955,
+              1751.64
+            ],
+            [
+              2393.325,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.8982769
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2769.795,
+                1751.64
+              ],
+              [
+                2768.111,
+                1773.04
+              ],
+              [
+                2763.1,
+                1793.914
+              ],
+              [
+                2754.885,
+                1813.746
+              ],
+              [
+                2743.669,
+                1832.049
+              ],
+              [
+                2729.727,
+                1848.372
+              ],
+              [
+                2713.404,
+                1862.314
+              ],
+              [
+                2695.101,
+                1873.53
+              ],
+              [
+                2675.269,
+                1881.745
+              ],
+              [
+                2654.395,
+                1886.756
+              ],
+              [
+                2632.995,
+                1888.44
+              ],
+              [
+                2393.325,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "528",
+          "detailBounds": [
+            2378.325,
+            1021.95,
+            2831.955,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "524",
+            "525",
+            "526",
+            "527"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 34",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.55
+        },
+        {
+          "id": 35,
+          "polygon": [
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2816.955,
+              151.26
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2393.325,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.4440308
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2632.995,
+                14.46
+              ],
+              [
+                2654.395,
+                16.144
+              ],
+              [
+                2675.269,
+                21.155
+              ],
+              [
+                2695.101,
+                29.37
+              ],
+              [
+                2713.404,
+                40.586
+              ],
+              [
+                2729.727,
+                54.528
+              ],
+              [
+                2743.669,
+                70.851
+              ],
+              [
+                2754.885,
+                89.154
+              ],
+              [
+                2763.1,
+                108.986
+              ],
+              [
+                2768.111,
+                129.86
+              ],
+              [
+                2769.795,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "533",
+          "detailBounds": [
+            2378.325,
+            0,
+            2831.955,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "529",
+            "530",
+            "531",
+            "532"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 35",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.55
+        },
+        {
+          "id": 36,
+          "polygon": [
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2393.325,
+              865.86
+            ],
+            [
+              1837.035,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1905.435,
+                14.46
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                1905.435,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "539",
+          "detailBounds": [
+            1822.035,
+            0,
+            2408.325,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "534",
+            "534a",
+            "535",
+            "536",
+            "537",
+            "538"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 36",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.3
+        },
+        {
+          "id": 37,
+          "polygon": [
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              1837.035,
+              865.86
+            ],
+            [
+              1409.1,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1623.068,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1700.055,
+                14.46
+              ],
+              [
+                1700.055,
+                151.26
+              ],
+              [
+                1409.1,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "544",
+          "detailBounds": [
+            1394.1,
+            0,
+            1852.035,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "540",
+            "541",
+            "542",
+            "543"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 37",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.35
+        },
+        {
+          "id": 38,
+          "polygon": [
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1409.1,
+              865.86
+            ],
+            [
+              1002.66,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1205.88,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1118.13,
+                14.46
+              ],
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1409.1,
+                151.26
+              ],
+              [
+                1118.13,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "549",
+          "detailBounds": [
+            987.66,
+            0,
+            1424.1,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "545",
+            "546",
+            "547",
+            "548"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 38",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 38.7
+        },
+        {
+          "id": 39,
+          "polygon": [
+            [
+              604.68,
+              151.26
+            ],
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1002.66,
+              865.86
+            ],
+            [
+              604.68,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            803.67,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                604.68,
+                14.46
+              ],
+              [
+                912.75,
+                14.46
+              ],
+              [
+                912.75,
+                151.26
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "554",
+          "detailBounds": [
+            589.68,
+            0,
+            1017.66,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "550",
+            "551",
+            "552",
+            "553"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 39",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 38.3
+        },
+        {
+          "id": 40,
+          "polygon": [
+            [
+              172.59,
+              151.26
+            ],
+            [
+              604.68,
+              151.26
+            ],
+            [
+              604.68,
+              865.86
+            ],
+            [
+              172.59,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ],
+            [
+              0.0605579,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            388.635,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                219.75,
+                151.26
+              ],
+              [
+                221.434,
+                129.86
+              ],
+              [
+                226.445,
+                108.986
+              ],
+              [
+                234.66,
+                89.154
+              ],
+              [
+                245.876,
+                70.851
+              ],
+              [
+                259.818,
+                54.528
+              ],
+              [
+                276.141,
+                40.586
+              ],
+              [
+                294.444,
+                29.37
+              ],
+              [
+                314.276,
+                21.155
+              ],
+              [
+                335.15,
+                16.144
+              ],
+              [
+                356.55,
+                14.46
+              ],
+              [
+                604.68,
+                14.46
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "559",
+          "detailBounds": [
+            157.59,
+            0,
+            619.68,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "555",
+            "556",
+            "557",
+            "558"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 40",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 41.65
+        }
+      ],
+      "commonAreas": [
+        {
+          "id": "5-corridor",
+          "label": "Společná chodba a úklidová komora",
+          "polygon": [
+            [
+              172.59,
+              865.86
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              172.59,
+              1036.95
+            ]
+          ],
+          "sourceRoomIds": [
+            "504",
+            "505"
+          ]
+        },
+        {
+          "id": "5-core",
+          "label": "Schodiště, výtah a navazující zázemí",
+          "polygon": [
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              1837.035,
+              1751.64
+            ],
+            [
+              1404.87,
+              1751.64
+            ]
+          ],
+          "sourceRoomIds": [
+            "501",
+            "502",
+            "503"
+          ],
+          "note": "Footprint group; ownership/use of the separate 03 room is not inferred."
+        },
+        {
+          "id": "5-west-balcony",
+          "label": "Boční balkon přístupný z chodby",
+          "polygon": [
+            [
+              39.93,
+              814.56
+            ],
+            [
+              172.59,
+              814.56
+            ],
+            [
+              172.59,
+              1088.34
+            ],
+            [
+              39.93,
+              1088.34
+            ]
+          ],
+          "sourceRoomIds": [
+            "560"
+          ],
+          "note": "Not assigned to an apartment because access is from the common corridor."
+        }
+      ],
+      "outline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          219.75,
+          151.26
+        ],
+        [
+          221.434,
+          129.86
+        ],
+        [
+          226.445,
+          108.986
+        ],
+        [
+          234.66,
+          89.154
+        ],
+        [
+          245.876,
+          70.851
+        ],
+        [
+          259.818,
+          54.528
+        ],
+        [
+          276.141,
+          40.586
+        ],
+        [
+          294.444,
+          29.37
+        ],
+        [
+          314.276,
+          21.155
+        ],
+        [
+          335.15,
+          16.144
+        ],
+        [
+          356.55,
+          14.46
+        ],
+        [
+          912.75,
+          14.46
+        ],
+        [
+          912.75,
+          151.26
+        ],
+        [
+          1118.13,
+          151.26
+        ],
+        [
+          1118.13,
+          14.46
+        ],
+        [
+          1700.055,
+          14.46
+        ],
+        [
+          1700.055,
+          151.26
+        ],
+        [
+          1905.435,
+          151.26
+        ],
+        [
+          1905.435,
+          14.46
+        ],
+        [
+          2632.995,
+          14.46
+        ],
+        [
+          2654.395,
+          16.144
+        ],
+        [
+          2675.269,
+          21.155
+        ],
+        [
+          2695.101,
+          29.37
+        ],
+        [
+          2713.404,
+          40.586
+        ],
+        [
+          2729.727,
+          54.528
+        ],
+        [
+          2743.669,
+          70.851
+        ],
+        [
+          2754.885,
+          89.154
+        ],
+        [
+          2763.1,
+          108.986
+        ],
+        [
+          2768.111,
+          129.86
+        ],
+        [
+          2769.795,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          2769.795,
+          1751.64
+        ],
+        [
+          2768.111,
+          1773.04
+        ],
+        [
+          2763.1,
+          1793.914
+        ],
+        [
+          2754.885,
+          1813.746
+        ],
+        [
+          2743.669,
+          1832.049
+        ],
+        [
+          2729.727,
+          1848.372
+        ],
+        [
+          2713.404,
+          1862.314
+        ],
+        [
+          2695.101,
+          1873.53
+        ],
+        [
+          2675.269,
+          1881.745
+        ],
+        [
+          2654.395,
+          1886.756
+        ],
+        [
+          2632.995,
+          1888.44
+        ],
+        [
+          1884.015,
+          1888.44
+        ],
+        [
+          1884.015,
+          1751.64
+        ],
+        [
+          1351.41,
+          1751.64
+        ],
+        [
+          1351.41,
+          1888.44
+        ],
+        [
+          356.55,
+          1888.44
+        ],
+        [
+          335.15,
+          1886.756
+        ],
+        [
+          314.276,
+          1881.745
+        ],
+        [
+          294.444,
+          1873.53
+        ],
+        [
+          276.141,
+          1862.314
+        ],
+        [
+          259.818,
+          1848.372
+        ],
+        [
+          245.876,
+          1832.049
+        ],
+        [
+          234.66,
+          1813.746
+        ],
+        [
+          226.445,
+          1793.914
+        ],
+        [
+          221.434,
+          1773.04
+        ],
+        [
+          219.75,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ],
+        [
+          172.59,
+          1088.34
+        ],
+        [
+          39.93,
+          1088.34
+        ],
+        [
+          39.93,
+          814.56
+        ],
+        [
+          172.59,
+          814.56
+        ],
+        [
+          172.59,
+          151.26
+        ]
+      ],
+      "bodyOutline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ]
+      ],
+      "geometryStatus": "verified-from-floor-legend-and-vector-wall-positions",
+      "note": "Apartment selection polygons cover the interior block bounded by major walls. Separate balconies preserve the actual per-floor shape. The projected roof over the entrance is visible only as source drawing context and is not a unit.",
+      "normalizedOutline": [
+        [
+          0.0605579,
+          0.0775692
+        ],
+        [
+          0.0771053,
+          0.0775692
+        ],
+        [
+          0.0776961,
+          0.0665949
+        ],
+        [
+          0.0794544,
+          0.0558903
+        ],
+        [
+          0.0823368,
+          0.04572
+        ],
+        [
+          0.0862723,
+          0.0363338
+        ],
+        [
+          0.0911642,
+          0.0279631
+        ],
+        [
+          0.0968916,
+          0.0208133
+        ],
+        [
+          0.1033137,
+          0.0150615
+        ],
+        [
+          0.1102723,
+          0.0108487
+        ],
+        [
+          0.1175965,
+          0.008279
+        ],
+        [
+          0.1251053,
+          0.0074154
+        ],
+        [
+          0.3202632,
+          0.0074154
+        ],
+        [
+          0.3202632,
+          0.0775692
+        ],
+        [
+          0.3923263,
+          0.0775692
+        ],
+        [
+          0.3923263,
+          0.0074154
+        ],
+        [
+          0.5965105,
+          0.0074154
+        ],
+        [
+          0.5965105,
+          0.0775692
+        ],
+        [
+          0.6685737,
+          0.0775692
+        ],
+        [
+          0.6685737,
+          0.0074154
+        ],
+        [
+          0.9238579,
+          0.0074154
+        ],
+        [
+          0.9313667,
+          0.008279
+        ],
+        [
+          0.9386909,
+          0.0108487
+        ],
+        [
+          0.9456495,
+          0.0150615
+        ],
+        [
+          0.9520716,
+          0.0208133
+        ],
+        [
+          0.9577989,
+          0.0279631
+        ],
+        [
+          0.9626909,
+          0.0363338
+        ],
+        [
+          0.9666263,
+          0.04572
+        ],
+        [
+          0.9695088,
+          0.0558903
+        ],
+        [
+          0.971267,
+          0.0665949
+        ],
+        [
+          0.9718579,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.8982769
+        ],
+        [
+          0.9718579,
+          0.8982769
+        ],
+        [
+          0.971267,
+          0.9092513
+        ],
+        [
+          0.9695088,
+          0.9199559
+        ],
+        [
+          0.9666263,
+          0.9301262
+        ],
+        [
+          0.9626909,
+          0.9395123
+        ],
+        [
+          0.9577989,
+          0.9478831
+        ],
+        [
+          0.9520716,
+          0.9550328
+        ],
+        [
+          0.9456495,
+          0.9607846
+        ],
+        [
+          0.9386909,
+          0.9649974
+        ],
+        [
+          0.9313667,
+          0.9675672
+        ],
+        [
+          0.9238579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.9684308
+        ],
+        [
+          0.1251053,
+          0.9684308
+        ],
+        [
+          0.1175965,
+          0.9675672
+        ],
+        [
+          0.1102723,
+          0.9649974
+        ],
+        [
+          0.1033137,
+          0.9607846
+        ],
+        [
+          0.0968916,
+          0.9550328
+        ],
+        [
+          0.0911642,
+          0.9478831
+        ],
+        [
+          0.0862723,
+          0.9395123
+        ],
+        [
+          0.0823368,
+          0.9301262
+        ],
+        [
+          0.0794544,
+          0.9199559
+        ],
+        [
+          0.0776961,
+          0.9092513
+        ],
+        [
+          0.0771053,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.0775692
+        ]
+      ],
+      "mapImage": "assets/floors/floor-5-clean.webp"
+    },
+    {
+      "floor": 6,
+      "width": 2850,
+      "height": 1950,
+      "image": "assets/floors/floor-6.webp",
+      "source": {
+        "path": "01_sources/uschovna/extracted/Otrokovice/Půdorysy pater/6. NP (6.10.2026).pdf",
+        "page": 1,
+        "sha256": "d89e3b5d40a75f827392c5677abe8522ad90b05809fc8d6e28fd51ff4d623fa0",
+        "pageSizePdfPoints": [
+          2976.0,
+          1684.0
+        ],
+        "cropPdfPoints": [
+          220,
+          170,
+          2120,
+          1470
+        ],
+        "pixelsPerPdfPoint": 1.5,
+        "textExtraction": "No live text in PDF; text is outlined vector paths. Legends and dimensions manually verified from source renders."
+      },
+      "units": [
+        {
+          "id": 41,
+          "polygon": [
+            [
+              172.59,
+              1036.95
+            ],
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              801.6,
+              1751.64
+            ],
+            [
+              172.59,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ],
+            [
+              0.0605579,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            487.095,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                801.6,
+                1888.44
+              ],
+              [
+                356.55,
+                1888.44
+              ],
+              [
+                335.15,
+                1886.756
+              ],
+              [
+                314.276,
+                1881.745
+              ],
+              [
+                294.444,
+                1873.53
+              ],
+              [
+                276.141,
+                1862.314
+              ],
+              [
+                259.818,
+                1848.372
+              ],
+              [
+                245.876,
+                1832.049
+              ],
+              [
+                234.66,
+                1813.746
+              ],
+              [
+                226.445,
+                1793.914
+              ],
+              [
+                221.434,
+                1773.04
+              ],
+              [
+                219.75,
+                1751.64
+              ]
+            ]
+          ],
+          "balconyRoomId": "611",
+          "detailBounds": [
+            157.59,
+            1021.95,
+            816.6,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "606",
+            "606a",
+            "607",
+            "608",
+            "609",
+            "610"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 41",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "3+kk",
+          "sourceIndexArea": 65
+        },
+        {
+          "id": 42,
+          "polygon": [
+            [
+              801.6,
+              1036.95
+            ],
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1404.87,
+              1751.64
+            ],
+            [
+              801.6,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2812632,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.5317692
+            ],
+            [
+              0.4929368,
+              0.8982769
+            ],
+            [
+              0.2812632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            1103.235,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                801.6,
+                1751.64
+              ],
+              [
+                1351.41,
+                1751.64
+              ],
+              [
+                1351.41,
+                1888.44
+              ],
+              [
+                801.6,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "617",
+          "detailBounds": [
+            786.6,
+            1021.95,
+            1419.87,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "612",
+            "612a",
+            "613",
+            "614",
+            "615",
+            "616"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 42",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 59.3
+        },
+        {
+          "id": 43,
+          "polygon": [
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2393.325,
+              1751.64
+            ],
+            [
+              1837.035,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ],
+            [
+              0.6445737,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                1884.015,
+                1751.64
+              ],
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2393.325,
+                1888.44
+              ],
+              [
+                1884.015,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "623",
+          "detailBounds": [
+            1822.035,
+            1021.95,
+            2408.325,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "618",
+            "618a",
+            "619",
+            "620",
+            "621",
+            "622"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 43",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.7
+        },
+        {
+          "id": 44,
+          "polygon": [
+            [
+              2393.325,
+              1036.95
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              2816.955,
+              1751.64
+            ],
+            [
+              2393.325,
+              1751.64
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.5317692
+            ],
+            [
+              0.9884053,
+              0.8982769
+            ],
+            [
+              0.8397632,
+              0.8982769
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            1394.295
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                1751.64
+              ],
+              [
+                2769.795,
+                1751.64
+              ],
+              [
+                2768.111,
+                1773.04
+              ],
+              [
+                2763.1,
+                1793.914
+              ],
+              [
+                2754.885,
+                1813.746
+              ],
+              [
+                2743.669,
+                1832.049
+              ],
+              [
+                2729.727,
+                1848.372
+              ],
+              [
+                2713.404,
+                1862.314
+              ],
+              [
+                2695.101,
+                1873.53
+              ],
+              [
+                2675.269,
+                1881.745
+              ],
+              [
+                2654.395,
+                1886.756
+              ],
+              [
+                2632.995,
+                1888.44
+              ],
+              [
+                2393.325,
+                1888.44
+              ]
+            ]
+          ],
+          "balconyRoomId": "628",
+          "detailBounds": [
+            2378.325,
+            1021.95,
+            2831.955,
+            1903.44
+          ],
+          "sourceRoomIds": [
+            "624",
+            "625",
+            "626",
+            "627"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 44",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.55
+        },
+        {
+          "id": 45,
+          "polygon": [
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2816.955,
+              151.26
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2393.325,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.0775692
+            ],
+            [
+              0.9884053,
+              0.4440308
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2605.14,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2632.995,
+                14.46
+              ],
+              [
+                2654.395,
+                16.144
+              ],
+              [
+                2675.269,
+                21.155
+              ],
+              [
+                2695.101,
+                29.37
+              ],
+              [
+                2713.404,
+                40.586
+              ],
+              [
+                2729.727,
+                54.528
+              ],
+              [
+                2743.669,
+                70.851
+              ],
+              [
+                2754.885,
+                89.154
+              ],
+              [
+                2763.1,
+                108.986
+              ],
+              [
+                2768.111,
+                129.86
+              ],
+              [
+                2769.795,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "633",
+          "detailBounds": [
+            2378.325,
+            0,
+            2831.955,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "629",
+            "630",
+            "631",
+            "632"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 45",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.3
+        },
+        {
+          "id": 46,
+          "polygon": [
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              2393.325,
+              151.26
+            ],
+            [
+              2393.325,
+              865.86
+            ],
+            [
+              1837.035,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.0775692
+            ],
+            [
+              0.8397632,
+              0.4440308
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            2115.18,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1905.435,
+                14.46
+              ],
+              [
+                2393.325,
+                14.46
+              ],
+              [
+                2393.325,
+                151.26
+              ],
+              [
+                1905.435,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "639",
+          "detailBounds": [
+            1822.035,
+            0,
+            2408.325,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "634",
+            "634a",
+            "635",
+            "636",
+            "637",
+            "638"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 46",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "2+kk",
+          "sourceIndexArea": 53.3
+        },
+        {
+          "id": 47,
+          "polygon": [
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1837.035,
+              151.26
+            ],
+            [
+              1837.035,
+              865.86
+            ],
+            [
+              1409.1,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.0775692
+            ],
+            [
+              0.6445737,
+              0.4440308
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1623.068,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1700.055,
+                14.46
+              ],
+              [
+                1700.055,
+                151.26
+              ],
+              [
+                1409.1,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "644",
+          "detailBounds": [
+            1394.1,
+            0,
+            1852.035,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "640",
+            "641",
+            "642",
+            "643"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 47",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 39.1
+        },
+        {
+          "id": 48,
+          "polygon": [
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1409.1,
+              151.26
+            ],
+            [
+              1409.1,
+              865.86
+            ],
+            [
+              1002.66,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.0775692
+            ],
+            [
+              0.4944211,
+              0.4440308
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            1205.88,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                1118.13,
+                14.46
+              ],
+              [
+                1409.1,
+                14.46
+              ],
+              [
+                1409.1,
+                151.26
+              ],
+              [
+                1118.13,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "649",
+          "detailBounds": [
+            987.66,
+            0,
+            1424.1,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "645",
+            "646",
+            "647",
+            "648"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 48",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 38.45
+        },
+        {
+          "id": 49,
+          "polygon": [
+            [
+              604.68,
+              151.26
+            ],
+            [
+              1002.66,
+              151.26
+            ],
+            [
+              1002.66,
+              865.86
+            ],
+            [
+              604.68,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.0775692
+            ],
+            [
+              0.3518105,
+              0.4440308
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            803.67,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                604.68,
+                14.46
+              ],
+              [
+                912.75,
+                14.46
+              ],
+              [
+                912.75,
+                151.26
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "654",
+          "detailBounds": [
+            589.68,
+            0,
+            1017.66,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "650",
+            "651",
+            "652",
+            "653"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 49",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 38.05
+        },
+        {
+          "id": 50,
+          "polygon": [
+            [
+              172.59,
+              151.26
+            ],
+            [
+              604.68,
+              151.26
+            ],
+            [
+              604.68,
+              865.86
+            ],
+            [
+              172.59,
+              865.86
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.0605579,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.0775692
+            ],
+            [
+              0.2121684,
+              0.4440308
+            ],
+            [
+              0.0605579,
+              0.4440308
+            ]
+          ],
+          "labelPoint": [
+            388.635,
+            508.56
+          ],
+          "balconies": [
+            [
+              [
+                219.75,
+                151.26
+              ],
+              [
+                221.434,
+                129.86
+              ],
+              [
+                226.445,
+                108.986
+              ],
+              [
+                234.66,
+                89.154
+              ],
+              [
+                245.876,
+                70.851
+              ],
+              [
+                259.818,
+                54.528
+              ],
+              [
+                276.141,
+                40.586
+              ],
+              [
+                294.444,
+                29.37
+              ],
+              [
+                314.276,
+                21.155
+              ],
+              [
+                335.15,
+                16.144
+              ],
+              [
+                356.55,
+                14.46
+              ],
+              [
+                604.68,
+                14.46
+              ],
+              [
+                604.68,
+                151.26
+              ]
+            ]
+          ],
+          "balconyRoomId": "659",
+          "detailBounds": [
+            157.59,
+            0,
+            619.68,
+            880.86
+          ],
+          "sourceRoomIds": [
+            "655",
+            "656",
+            "657",
+            "658"
+          ],
+          "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 50",
+          "identityConfidence": "confirmed-explicit-floor-legend",
+          "geometryConfidence": "verified-wall-aligned-selection-region",
+          "sourceIndexLayout": "1+kk",
+          "sourceIndexArea": 41.5
+        }
+      ],
+      "commonAreas": [
+        {
+          "id": "6-corridor",
+          "label": "Společná chodba a úklidová komora",
+          "polygon": [
+            [
+              172.59,
+              865.86
+            ],
+            [
+              2816.955,
+              865.86
+            ],
+            [
+              2816.955,
+              1036.95
+            ],
+            [
+              172.59,
+              1036.95
+            ]
+          ],
+          "sourceRoomIds": [
+            "604",
+            "605"
+          ]
+        },
+        {
+          "id": "6-core",
+          "label": "Schodiště, výtah a navazující zázemí",
+          "polygon": [
+            [
+              1404.87,
+              1036.95
+            ],
+            [
+              1837.035,
+              1036.95
+            ],
+            [
+              1837.035,
+              1751.64
+            ],
+            [
+              1404.87,
+              1751.64
+            ]
+          ],
+          "sourceRoomIds": [
+            "601",
+            "602",
+            "603"
+          ],
+          "note": "Footprint group; ownership/use of the separate 03 room is not inferred."
+        },
+        {
+          "id": "6-west-balcony",
+          "label": "Boční balkon přístupný z chodby",
+          "polygon": [
+            [
+              39.93,
+              814.56
+            ],
+            [
+              172.59,
+              814.56
+            ],
+            [
+              172.59,
+              1088.34
+            ],
+            [
+              39.93,
+              1088.34
+            ]
+          ],
+          "sourceRoomIds": [
+            "660"
+          ],
+          "note": "Not assigned to an apartment because access is from the common corridor."
+        }
+      ],
+      "outline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          219.75,
+          151.26
+        ],
+        [
+          221.434,
+          129.86
+        ],
+        [
+          226.445,
+          108.986
+        ],
+        [
+          234.66,
+          89.154
+        ],
+        [
+          245.876,
+          70.851
+        ],
+        [
+          259.818,
+          54.528
+        ],
+        [
+          276.141,
+          40.586
+        ],
+        [
+          294.444,
+          29.37
+        ],
+        [
+          314.276,
+          21.155
+        ],
+        [
+          335.15,
+          16.144
+        ],
+        [
+          356.55,
+          14.46
+        ],
+        [
+          912.75,
+          14.46
+        ],
+        [
+          912.75,
+          151.26
+        ],
+        [
+          1118.13,
+          151.26
+        ],
+        [
+          1118.13,
+          14.46
+        ],
+        [
+          1700.055,
+          14.46
+        ],
+        [
+          1700.055,
+          151.26
+        ],
+        [
+          1905.435,
+          151.26
+        ],
+        [
+          1905.435,
+          14.46
+        ],
+        [
+          2632.995,
+          14.46
+        ],
+        [
+          2654.395,
+          16.144
+        ],
+        [
+          2675.269,
+          21.155
+        ],
+        [
+          2695.101,
+          29.37
+        ],
+        [
+          2713.404,
+          40.586
+        ],
+        [
+          2729.727,
+          54.528
+        ],
+        [
+          2743.669,
+          70.851
+        ],
+        [
+          2754.885,
+          89.154
+        ],
+        [
+          2763.1,
+          108.986
+        ],
+        [
+          2768.111,
+          129.86
+        ],
+        [
+          2769.795,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          2769.795,
+          1751.64
+        ],
+        [
+          2768.111,
+          1773.04
+        ],
+        [
+          2763.1,
+          1793.914
+        ],
+        [
+          2754.885,
+          1813.746
+        ],
+        [
+          2743.669,
+          1832.049
+        ],
+        [
+          2729.727,
+          1848.372
+        ],
+        [
+          2713.404,
+          1862.314
+        ],
+        [
+          2695.101,
+          1873.53
+        ],
+        [
+          2675.269,
+          1881.745
+        ],
+        [
+          2654.395,
+          1886.756
+        ],
+        [
+          2632.995,
+          1888.44
+        ],
+        [
+          1884.015,
+          1888.44
+        ],
+        [
+          1884.015,
+          1751.64
+        ],
+        [
+          1351.41,
+          1751.64
+        ],
+        [
+          1351.41,
+          1888.44
+        ],
+        [
+          356.55,
+          1888.44
+        ],
+        [
+          335.15,
+          1886.756
+        ],
+        [
+          314.276,
+          1881.745
+        ],
+        [
+          294.444,
+          1873.53
+        ],
+        [
+          276.141,
+          1862.314
+        ],
+        [
+          259.818,
+          1848.372
+        ],
+        [
+          245.876,
+          1832.049
+        ],
+        [
+          234.66,
+          1813.746
+        ],
+        [
+          226.445,
+          1793.914
+        ],
+        [
+          221.434,
+          1773.04
+        ],
+        [
+          219.75,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ],
+        [
+          172.59,
+          1088.34
+        ],
+        [
+          39.93,
+          1088.34
+        ],
+        [
+          39.93,
+          814.56
+        ],
+        [
+          172.59,
+          814.56
+        ],
+        [
+          172.59,
+          151.26
+        ]
+      ],
+      "bodyOutline": [
+        [
+          172.59,
+          151.26
+        ],
+        [
+          2816.955,
+          151.26
+        ],
+        [
+          2816.955,
+          1751.64
+        ],
+        [
+          172.59,
+          1751.64
+        ]
+      ],
+      "geometryStatus": "verified-from-floor-legend-and-vector-wall-positions",
+      "note": "Apartment selection polygons cover the interior block bounded by major walls. Separate balconies preserve the actual per-floor shape. The projected roof over the entrance is visible only as source drawing context and is not a unit.",
+      "normalizedOutline": [
+        [
+          0.0605579,
+          0.0775692
+        ],
+        [
+          0.0771053,
+          0.0775692
+        ],
+        [
+          0.0776961,
+          0.0665949
+        ],
+        [
+          0.0794544,
+          0.0558903
+        ],
+        [
+          0.0823368,
+          0.04572
+        ],
+        [
+          0.0862723,
+          0.0363338
+        ],
+        [
+          0.0911642,
+          0.0279631
+        ],
+        [
+          0.0968916,
+          0.0208133
+        ],
+        [
+          0.1033137,
+          0.0150615
+        ],
+        [
+          0.1102723,
+          0.0108487
+        ],
+        [
+          0.1175965,
+          0.008279
+        ],
+        [
+          0.1251053,
+          0.0074154
+        ],
+        [
+          0.3202632,
+          0.0074154
+        ],
+        [
+          0.3202632,
+          0.0775692
+        ],
+        [
+          0.3923263,
+          0.0775692
+        ],
+        [
+          0.3923263,
+          0.0074154
+        ],
+        [
+          0.5965105,
+          0.0074154
+        ],
+        [
+          0.5965105,
+          0.0775692
+        ],
+        [
+          0.6685737,
+          0.0775692
+        ],
+        [
+          0.6685737,
+          0.0074154
+        ],
+        [
+          0.9238579,
+          0.0074154
+        ],
+        [
+          0.9313667,
+          0.008279
+        ],
+        [
+          0.9386909,
+          0.0108487
+        ],
+        [
+          0.9456495,
+          0.0150615
+        ],
+        [
+          0.9520716,
+          0.0208133
+        ],
+        [
+          0.9577989,
+          0.0279631
+        ],
+        [
+          0.9626909,
+          0.0363338
+        ],
+        [
+          0.9666263,
+          0.04572
+        ],
+        [
+          0.9695088,
+          0.0558903
+        ],
+        [
+          0.971267,
+          0.0665949
+        ],
+        [
+          0.9718579,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.0775692
+        ],
+        [
+          0.9884053,
+          0.8982769
+        ],
+        [
+          0.9718579,
+          0.8982769
+        ],
+        [
+          0.971267,
+          0.9092513
+        ],
+        [
+          0.9695088,
+          0.9199559
+        ],
+        [
+          0.9666263,
+          0.9301262
+        ],
+        [
+          0.9626909,
+          0.9395123
+        ],
+        [
+          0.9577989,
+          0.9478831
+        ],
+        [
+          0.9520716,
+          0.9550328
+        ],
+        [
+          0.9456495,
+          0.9607846
+        ],
+        [
+          0.9386909,
+          0.9649974
+        ],
+        [
+          0.9313667,
+          0.9675672
+        ],
+        [
+          0.9238579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.9684308
+        ],
+        [
+          0.6610579,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.8982769
+        ],
+        [
+          0.4741789,
+          0.9684308
+        ],
+        [
+          0.1251053,
+          0.9684308
+        ],
+        [
+          0.1175965,
+          0.9675672
+        ],
+        [
+          0.1102723,
+          0.9649974
+        ],
+        [
+          0.1033137,
+          0.9607846
+        ],
+        [
+          0.0968916,
+          0.9550328
+        ],
+        [
+          0.0911642,
+          0.9478831
+        ],
+        [
+          0.0862723,
+          0.9395123
+        ],
+        [
+          0.0823368,
+          0.9301262
+        ],
+        [
+          0.0794544,
+          0.9199559
+        ],
+        [
+          0.0776961,
+          0.9092513
+        ],
+        [
+          0.0771053,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.8982769
+        ],
+        [
+          0.0605579,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.5581231
+        ],
+        [
+          0.0140105,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.4177231
+        ],
+        [
+          0.0605579,
+          0.0775692
+        ]
+      ],
+      "mapImage": "assets/floors/floor-6-clean.webp"
+    }
+  ]
+}

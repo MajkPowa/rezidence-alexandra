@@ -16,4 +16,10 @@ Skenované materiálové textury dubu a látky pocházejí z Poly Haven (CC0); z
 
 Kontakt na webu připravuje zprávu v e-mailovém programu návštěvníka. Web neukládá kontaktní formuláře na server.
 
+Výběr bytů na hlavní stránce obsahuje prostorové schéma šesti podlaží, přepnutí do půdorysu, 50 ověřených klikacích poloh bytů a detailní výřez každého z nich ze skutečného patrového výkresu. Filtry dispozice, plochy, dostupnosti a podlaží jsou společné s tabulkou a porovnáním. Sdílená URL zachová podlaží a číslo bytu (`?podlazi=4&byt=22#byty`). Na telefonu se pro čitelnost nejprve otevře půdorys; prostorový pohled zůstává dostupný.
+
+Stavy prodeje mají jediný zdroj v `data/availability.js`. Potvrzený stav se zapisuje například jako `units: {"4":"available", "8":"reserved", "15":"sold"}`; toto je pouze ukázka formátu, nikoli skutečný stav uvedených bytů. Chybějící nebo neplatná hodnota vždy znamená „Dostupnost na dotaz“. Současný zdrojový ceník má všechny stavy prázdné, proto aktuální publikace žádný byt neoznačuje jako volný, rezervovaný ani prodaný. Po změně tohoto datového souboru a publikaci se mapa, detail, legenda, filtry i tabulka aktualizují společně. GitHub Pages neposkytuje živé napojení na prodejní systém.
+
+Geometrie v `data/floors.json` vychází z půdorysů jednotlivých podlaží ze 6. 10. 2026. Na 1. NP je v ceníku jednotka 53, zatímco výkres označuje jednotku 51; shoda není potvrzena. Katalog proto ponechává 53 a její polohu v mapě nevybarvuje. Rozsah polygonů představuje bytové bloky bez společné chodby; schéma není stavební dokumentací. Veřejné podklady v `assets/floors/` jsou optimalizované výřezy původních výkresů.
+
 Repozitář obsahuje pouze publikační soubory. Soukromá korespondence, přístupové údaje, API klíče a interní administrativní podklady zde nejsou.

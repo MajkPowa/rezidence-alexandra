@@ -1,0 +1,151 @@
+{
+  "version": 2,
+  "updated": "2026-10-18",
+  "label": "Vizualizace návrhu zařízení podle dodaných projektových podkladů. Konečný standard a vybavení podléhají potvrzení.",
+  "items": [
+    {
+      "id": "3kk-living",
+      "src": "assets/interiors-v2/3kk-living.webp",
+      "thumb": "assets/interiors-v2/3kk-living-thumb.webp",
+      "title": "Domov v přirozeném světle",
+      "typology": "3+kk",
+      "room": "Obývací pokoj",
+      "description": "Obývací pokoj s rohovou pohovkou, jídelním stolem a kuchyňskou linkou do L.",
+      "source": "3+kk · Interier vizualizace.pdf · strana 1",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "2kk-bedroom",
+      "src": "assets/interiors-v2/2kk-bedroom.webp",
+      "thumb": "assets/interiors-v2/2kk-bedroom-thumb.webp",
+      "title": "Klid na konci dne",
+      "typology": "2+kk",
+      "room": "Ložnice",
+      "description": "Čalouněná postel, vestavěné úložné prostory a jemné textilie v návrhu hlavní ložnice.",
+      "source": "2+kk · Interiér vizualizace.pdf · strana 4",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "3kk-bathroom",
+      "src": "assets/interiors-v2/3kk-bathroom.webp",
+      "thumb": "assets/interiors-v2/3kk-bathroom-thumb.webp",
+      "title": "Promyšlená koupelna",
+      "typology": "3+kk",
+      "room": "Koupelna",
+      "description": "Čtvrtkruhový sprchový kout, bílá sanita a navazující místo pro pračku.",
+      "source": "3+kk · Koupelna.pdf · strana 3",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "1kk-living",
+      "src": "assets/interiors-v2/1kk-living.webp",
+      "thumb": "assets/interiors-v2/1kk-living-thumb.webp",
+      "title": "Místo pro každý den",
+      "typology": "1+kk",
+      "room": "Obývací pokoj",
+      "description": "Obytný prostor se šalvějovou pohovkou, jídelním stolem a přímou kuchyňskou linkou.",
+      "source": "1+kk · Interier vizualizace.pdf · strana 1",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "1kk-kitchen",
+      "src": "assets/interiors-v2/1kk-kitchen.webp",
+      "thumb": "assets/interiors-v2/1kk-kitchen-thumb.webp",
+      "title": "Vše po ruce",
+      "typology": "1+kk",
+      "room": "Kuchyně",
+      "description": "Kompaktní kuchyně v šedém odstínu s dekorem dubu a navazujícím stolováním.",
+      "source": "1+kk · Interier vizualizace.pdf · strana 4",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "1kk-bathroom",
+      "src": "assets/interiors-v2/1kk-bathroom.webp",
+      "thumb": "assets/interiors-v2/1kk-bathroom-thumb.webp",
+      "title": "Světlo v koupelně",
+      "typology": "1+kk",
+      "room": "Koupelna",
+      "description": "Obdélníkový sprchový kout, bílá sanita a místo pro pračku pod oknem podle podkladu 1+kk. Výhled za oknem je ilustrativní.",
+      "source": "1+kk · Koupelna.pdf · strana 3",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "2kk-living",
+      "src": "assets/interiors-v2/2kk-living.webp",
+      "thumb": "assets/interiors-v2/2kk-living-thumb.webp",
+      "title": "Společný prostor",
+      "typology": "2+kk",
+      "room": "Obývací pokoj",
+      "description": "Rohová pohovka, kulatý jídelní stůl a kuchyně propojují každodenní činnosti.",
+      "source": "2+kk · Interiér vizualizace.pdf · strana 7",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "2kk-kitchen",
+      "src": "assets/interiors-v2/2kk-kitchen.webp",
+      "thumb": "assets/interiors-v2/2kk-kitchen-thumb.webp",
+      "title": "Vaření a stolování",
+      "typology": "2+kk",
+      "room": "Kuchyně",
+      "description": "Kuchyňská linka do L, dubový dekor a jídelní stůl u prosklení.",
+      "source": "2+kk · Interiér vizualizace.pdf · strana 6",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "2kk-bathroom",
+      "src": "assets/interiors-v2/2kk-bathroom.webp",
+      "thumb": "assets/interiors-v2/2kk-bathroom-thumb.webp",
+      "title": "Čisté linie",
+      "typology": "2+kk",
+      "room": "Koupelna",
+      "description": "Walk-in sprcha, bílá umyvadlová skříňka a chromové armatury v teplém béžovém obkladu.",
+      "source": "2+kk · Koupelna.pdf · strana 4",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "3kk-kitchen",
+      "src": "assets/interiors-v2/3kk-kitchen.webp",
+      "thumb": "assets/interiors-v2/3kk-kitchen-thumb.webp",
+      "title": "U jednoho stolu",
+      "typology": "3+kk",
+      "room": "Kuchyně",
+      "description": "Detail kompaktní kuchyně a jídelního místa se šedými dvířky a dubovým dekorem.",
+      "source": "3+kk · Interier vizualizace.pdf · strana 3",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "3kk-bedroom",
+      "src": "assets/interiors-v2/3kk-bedroom.webp",
+      "thumb": "assets/interiors-v2/3kk-bedroom-thumb.webp",
+      "title": "Prostor pro odpočinek",
+      "typology": "3+kk",
+      "room": "Ložnice",
+      "description": "Hlavní ložnice s čalouněnou postelí, šedými skříněmi a jemným botanickým motivem.",
+      "source": "3+kk · Interier vizualizace.pdf · strana 10",
+      "width": 3200,
+      "height": 1786
+    },
+    {
+      "id": "3kk-bathroom-vanity",
+      "src": "assets/interiors-v2/3kk-bathroom-vanity.webp",
+      "thumb": "assets/interiors-v2/3kk-bathroom-vanity-thumb.webp",
+      "title": "Krása jednoduchých detailů",
+      "typology": "3+kk",
+      "room": "Koupelna",
+      "description": "Bílá keramika, zrcadlová skříňka, chromová baterie a béžový obklad v opačném pohledu koupelny.",
+      "source": "3+kk · Koupelna.pdf · strana 5",
+      "width": 3200,
+      "height": 1786
+    }
+  ]
+}

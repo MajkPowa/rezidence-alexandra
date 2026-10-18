@@ -7,3 +7,6 @@
 @media(max-width:360px){.scene-card{grid-template-columns:1fr}.scene-image{width:60%;margin:16px auto 0}.scene-body{padding:20px}.voice-block blockquote{font-size:24px}.scene-kicker>span:last-child{display:block}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 @media print{.site-header nav,.hero-link,.film-actions,.player-note,.story-tabs,.frame-expand,.copy-script,.copy-status,video,dialog{display:none!important}.board-panel[hidden]{display:block!important}.film-grid{display:none}.hero,.context-section{background:white;color:black}.hero h1 em,.context-section em{color:black}.hero-copy .hero-description,.context-copy{color:black}.scene-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.scene-card{break-inside:avoid}.board-panel{break-before:page}.full-script>div{display:block}.hero{padding:24px}.storyboards-section,.context-section{padding:24px}.concept-band{display:none}}
+
+@media(max-width:380px){.site-header nav{width:100%;max-width:100%;flex-wrap:wrap;column-gap:12px;row-gap:0}}
+

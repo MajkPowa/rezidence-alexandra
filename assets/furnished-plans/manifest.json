@@ -1,0 +1,436 @@
+{
+  "version": 1,
+  "units": {
+    "1": "variant-01",
+    "11": "variant-01",
+    "21": "variant-01",
+    "31": "variant-01",
+    "41": "variant-01",
+    "2": "variant-02",
+    "12": "variant-02",
+    "22": "variant-02",
+    "32": "variant-02",
+    "42": "variant-02",
+    "3": "variant-03",
+    "13": "variant-03",
+    "23": "variant-03",
+    "33": "variant-03",
+    "43": "variant-03",
+    "4": "variant-04",
+    "14": "variant-04",
+    "24": "variant-04",
+    "34": "variant-04",
+    "44": "variant-04",
+    "5": "variant-05",
+    "15": "variant-05",
+    "25": "variant-05",
+    "35": "variant-05",
+    "45": "variant-05",
+    "6": "variant-06",
+    "16": "variant-06",
+    "26": "variant-06",
+    "36": "variant-06",
+    "46": "variant-06",
+    "7": "variant-07",
+    "17": "variant-07",
+    "27": "variant-07",
+    "37": "variant-07",
+    "47": "variant-07",
+    "8": "variant-08",
+    "18": "variant-08",
+    "28": "variant-08",
+    "38": "variant-08",
+    "48": "variant-08",
+    "9": "variant-09",
+    "19": "variant-09",
+    "29": "variant-09",
+    "39": "variant-09",
+    "49": "variant-09",
+    "10": "variant-10",
+    "20": "variant-10",
+    "30": "variant-10",
+    "40": "variant-10",
+    "50": "variant-10"
+  },
+  "variants": {
+    "variant-01": {
+      "id": "variant-01",
+      "sourceUnit": 1,
+      "image": "assets/furnished-plans/variant-01.webp",
+      "thumbnail": "assets/furnished-plans/variant-01-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obývací pokoj a kuchyně",
+          "x": 0.66697,
+          "y": 0.53415
+        },
+        {
+          "number": 2,
+          "label": "Ložnice",
+          "x": 0.4046,
+          "y": 0.67368
+        },
+        {
+          "number": 3,
+          "label": "Předsíň",
+          "x": 0.40366,
+          "y": 0.3728
+        },
+        {
+          "number": 4,
+          "label": "Koupelna",
+          "x": 0.51702,
+          "y": 0.23155
+        },
+        {
+          "number": 5,
+          "label": "Samostatné WC",
+          "x": 0.55365,
+          "y": 0.31457
+        },
+        {
+          "number": 6,
+          "label": "Komora / pracovna",
+          "x": 0.24855,
+          "y": 0.48208
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-02": {
+      "id": "variant-02",
+      "sourceUnit": 2,
+      "image": "assets/furnished-plans/variant-02.webp",
+      "thumbnail": "assets/furnished-plans/variant-02-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obývací pokoj a kuchyně",
+          "x": 0.44318,
+          "y": 0.66147
+        },
+        {
+          "number": 2,
+          "label": "Ložnice",
+          "x": 0.58524,
+          "y": 0.47133
+        },
+        {
+          "number": 3,
+          "label": "Chodba",
+          "x": 0.38843,
+          "y": 0.35754
+        },
+        {
+          "number": 4,
+          "label": "Koupelna",
+          "x": 0.21084,
+          "y": 0.40517
+        },
+        {
+          "number": 5,
+          "label": "WC",
+          "x": 0.28241,
+          "y": 0.48048
+        },
+        {
+          "number": 6,
+          "label": "Komora",
+          "x": 0.54254,
+          "y": 0.27851
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-03": {
+      "id": "variant-03",
+      "sourceUnit": 3,
+      "image": "assets/furnished-plans/variant-03.webp",
+      "thumbnail": "assets/furnished-plans/variant-03-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obývací pokoj a kuchyně",
+          "x": 0.66105,
+          "y": 0.53509
+        },
+        {
+          "number": 2,
+          "label": "Ložnice",
+          "x": 0.44497,
+          "y": 0.66505
+        },
+        {
+          "number": 3,
+          "label": "Předsíň",
+          "x": 0.36675,
+          "y": 0.35643
+        },
+        {
+          "number": 4,
+          "label": "Komora",
+          "x": 0.22131,
+          "y": 0.44391
+        },
+        {
+          "number": 5,
+          "label": "Koupelna",
+          "x": 0.49729,
+          "y": 0.23561
+        },
+        {
+          "number": 6,
+          "label": "WC",
+          "x": 0.54847,
+          "y": 0.33088
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-04": {
+      "id": "variant-04",
+      "sourceUnit": 4,
+      "image": "assets/furnished-plans/variant-04.webp",
+      "thumbnail": "assets/furnished-plans/variant-04-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obývací pokoj s kuchyňským koutem",
+          "x": 0.59085,
+          "y": 0.65402
+        },
+        {
+          "number": 2,
+          "label": "Předsíň",
+          "x": 0.31843,
+          "y": 0.37439
+        },
+        {
+          "number": 3,
+          "label": "Koupelna",
+          "x": 0.48245,
+          "y": 0.30152
+        },
+        {
+          "number": 4,
+          "label": "Samostatné WC",
+          "x": 0.52018,
+          "y": 0.42115
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-05": {
+      "id": "variant-05",
+      "sourceUnit": 5,
+      "image": "assets/furnished-plans/variant-05.webp",
+      "thumbnail": "assets/furnished-plans/variant-05-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obytná místnost s kuchyňským koutem",
+          "x": 0.60691,
+          "y": 0.655
+        },
+        {
+          "number": 2,
+          "label": "Předsíň",
+          "x": 0.34339,
+          "y": 0.41129
+        },
+        {
+          "number": 3,
+          "label": "Koupelna",
+          "x": 0.45292,
+          "y": 0.28439
+        },
+        {
+          "number": 4,
+          "label": "Samostatné WC",
+          "x": 0.52428,
+          "y": 0.42001
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-06": {
+      "id": "variant-06",
+      "sourceUnit": 6,
+      "image": "assets/furnished-plans/variant-06.webp",
+      "thumbnail": "assets/furnished-plans/variant-06-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obývací pokoj a kuchyně",
+          "x": 0.66105,
+          "y": 0.53509
+        },
+        {
+          "number": 2,
+          "label": "Ložnice",
+          "x": 0.44497,
+          "y": 0.66505
+        },
+        {
+          "number": 3,
+          "label": "Předsíň",
+          "x": 0.36675,
+          "y": 0.35643
+        },
+        {
+          "number": 4,
+          "label": "Komora",
+          "x": 0.22131,
+          "y": 0.44391
+        },
+        {
+          "number": 5,
+          "label": "Koupelna",
+          "x": 0.49729,
+          "y": 0.23561
+        },
+        {
+          "number": 6,
+          "label": "WC",
+          "x": 0.54847,
+          "y": 0.33088
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-07": {
+      "id": "variant-07",
+      "sourceUnit": 7,
+      "image": "assets/furnished-plans/variant-07.webp",
+      "thumbnail": "assets/furnished-plans/variant-07-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obytná místnost s kuchyňským koutem",
+          "x": 0.60542,
+          "y": 0.65283
+        },
+        {
+          "number": 2,
+          "label": "Předsíň",
+          "x": 0.35034,
+          "y": 0.40967
+        },
+        {
+          "number": 3,
+          "label": "Koupelna",
+          "x": 0.46939,
+          "y": 0.2779
+        },
+        {
+          "number": 4,
+          "label": "Samostatné WC",
+          "x": 0.53975,
+          "y": 0.41162
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-08": {
+      "id": "variant-08",
+      "sourceUnit": 8,
+      "image": "assets/furnished-plans/variant-08.webp",
+      "thumbnail": "assets/furnished-plans/variant-08-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obytná místnost s kuchyňským koutem",
+          "x": 0.60623,
+          "y": 0.654
+        },
+        {
+          "number": 2,
+          "label": "Předsíň",
+          "x": 0.34784,
+          "y": 0.40978
+        },
+        {
+          "number": 3,
+          "label": "Koupelna",
+          "x": 0.46353,
+          "y": 0.27957
+        },
+        {
+          "number": 4,
+          "label": "Samostatné WC",
+          "x": 0.53443,
+          "y": 0.41432
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-09": {
+      "id": "variant-09",
+      "sourceUnit": 9,
+      "image": "assets/furnished-plans/variant-09.webp",
+      "thumbnail": "assets/furnished-plans/variant-09-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obytná místnost s kuchyňským koutem",
+          "x": 0.60623,
+          "y": 0.654
+        },
+        {
+          "number": 2,
+          "label": "Předsíň",
+          "x": 0.34319,
+          "y": 0.41258
+        },
+        {
+          "number": 3,
+          "label": "Koupelna",
+          "x": 0.45603,
+          "y": 0.28408
+        },
+        {
+          "number": 4,
+          "label": "Samostatné WC",
+          "x": 0.52694,
+          "y": 0.41883
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    },
+    "variant-10": {
+      "id": "variant-10",
+      "sourceUnit": 10,
+      "image": "assets/furnished-plans/variant-10.webp",
+      "thumbnail": "assets/furnished-plans/variant-10-thumb.webp",
+      "rooms": [
+        {
+          "number": 1,
+          "label": "Obytná místnost s kuchyňským koutem",
+          "x": 0.60637,
+          "y": 0.6542
+        },
+        {
+          "number": 2,
+          "label": "Předsíň",
+          "x": 0.34276,
+          "y": 0.4126
+        },
+        {
+          "number": 3,
+          "label": "Koupelna",
+          "x": 0.45504,
+          "y": 0.28437
+        },
+        {
+          "number": 4,
+          "label": "Samostatné WC",
+          "x": 0.52603,
+          "y": 0.41929
+        }
+      ],
+      "note": "Návrh zařízení · rozložení místností podle projektových podkladů."
+    }
+  },
+  "note": "Návrh možného zařízení podle dispoziční rodiny. Balkony se liší podle podlaží a nejsou součástí 3D náhledu. Rozměry a provedení ověřte v původním výkresu a u prodejce."
+}

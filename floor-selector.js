@@ -91,6 +91,8 @@
   }
 
   function selectedPlan(unit) {
+    const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'map');
+    if (furnished) return furnished;
     const f=floorData(), shape=polygonData(unit.id);
     if(!shape) return `<a class="map-card-plan" href="plans/floor-${unit.floor}.pdf" target="_blank" rel="noopener"><img src="${esc(f.image)}" alt="Původní půdorys ${unit.floor}. NP"><span>Celé podlaží · otevřít PDF ↗</span></a>`;
     const points=shape.polygon, xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
@@ -147,6 +149,7 @@
     event.preventDefault();
     if(target.dataset.mapFloor) chooseFloor(Number(target.dataset.mapFloor));else chooseUnit(Number(target.dataset.mapUnit));
   });
+  document.addEventListener('alexandra:furnished-ready', () => { if (snapshot && floors.length) drawCard(); });
 
   async function initialize() {
     if(!catalog||!inventory)throw new Error('Katalog bytů není dostupný.');

@@ -1,19 +1,116 @@
-'use strict';
-const scenes=[
- {id:'exterior',title:'Celý dům',sub:'Dvě varianty balkonů',type:'model',file:'exterior-no-balconies.glb',description:'Šest podlaží, hlavní těleso 30,8 × 18,7 m. Přepněte mezi dvěma návrhy boční fasády a prohlédněte si dům ze všech stran.',plan:'floor-2.pdf'},
- {id:'interior-1kk',title:'Interiér 1+kk',sub:'Prostorový model · byt 04',type:'model',file:'interior-1kk.glb',description:'Prostorová studie bytu 04. Obytný pokoj přibližně 4,275 × 4 m; nábytek je zjednodušený pro orientaci v prostoru.',plan:'unit-04.pdf'},
- {id:'interior-2kk',title:'Interiér 2+kk',sub:'Prostorový model · byt 02',type:'model',file:'interior-2kk.glb',description:'Prostorová studie bytu 02 podle půdorysu. Otevřený strop umožňuje prohlédnout uspořádání místností; zařízení je zjednodušené pro orientaci v prostoru.',plan:'unit-02.pdf'},
- {id:'interior-3kk',title:'Interiér 3+kk',sub:'Prostorový model · byt 01',type:'model',file:'interior-3kk.glb',description:'Prostorová studie bytu 01. Dodaný seznam jej označuje jako 3+kk; malá místnost 206a je ve výkresu vedena jako komora. Návrh vybavení nemění její doložený účel.',plan:'unit-01.pdf'},
- {id:'panorama-1kk',title:'Vstoupit do 1+kk',sub:'360° · obytný pokoj',type:'panorama',file:'interior-1kk-panorama.jpg',description:'Rozhlédněte se z navrženého obytného pokoje. Kamera ve výšce 1,6 m. Přepněte na předsíň a prozkoumejte druhé místo v bytě.',plan:'unit-04.pdf'},
- {id:'panorama-hall',title:'Předsíň 1+kk',sub:'360° · druhý pohled',type:'panorama',file:'interior-1kk-hall-panorama.jpg',description:'Druhý bod 360° prohlídky bytu 04. Umístění příček vychází z půdorysu, zařízení a povrchy jsou zjednodušené pro orientaci v prostoru.',plan:'unit-04.pdf'},
- {id:'panorama-2kk',title:'Vstoupit do 2+kk',sub:'360° · obytný pokoj',type:'panorama',file:'interior-2kk-panorama.jpg',description:'Obytný prostor typového bytu 02. Rozhlédněte se v navrženém interiéru, nebo přejděte na druhý pohled z ložnice.',plan:'unit-02.pdf'},
- {id:'panorama-2kk-bedroom',title:'Ložnice 2+kk',sub:'360° · druhý pohled',type:'panorama',file:'interior-2kk-bedroom-panorama.jpg',description:'Druhý bod prohlídky bytu 02. Zjednodušené vybavení slouží k orientaci v půdorysu dodané dokumentace.',plan:'unit-02.pdf'},
- {id:'panorama-3kk',title:'Vstoupit do 3+kk',sub:'360° · obytný pokoj',type:'panorama',file:'interior-3kk-panorama.jpg',description:'Obytný prostor bytu 01, označeného v seznamu jako 3+kk. Finální standard a užívání místností se řídí potvrzenou dokumentací.',plan:'unit-01.pdf'},
- {id:'panorama-3kk-bedroom',title:'Ložnice 3+kk',sub:'360° · druhý pohled',type:'panorama',file:'interior-3kk-bedroom-panorama.jpg',description:'Pohled z hlavní ložnice bytu 01. Malá místnost 206a zůstává v podkladu označena jako komora a není tímto modelem vydávána za další ložnici.',plan:'unit-01.pdf'}
-];
-const $=s=>document.querySelector(s), model=$('#model');let current=scenes[0],pano;
-function loadScene(scene){current=scene;document.querySelector('#scene-select').value=scene.id;document.querySelectorAll('[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scene===scene.id)));$('#scene-title').textContent=scene.title;$('#scene-description').textContent=scene.description;$('#plan-link').href='plans/'+scene.plan;$('#variant-wrap').hidden=scene.id!=='exterior';const isPano=scene.type==='panorama';model.hidden=isPano;$('#panorama-wrap').hidden=!isPano;$('#model-controls').hidden=isPano;$('#pano-controls').hidden=!isPano;$('#mode-label').textContent=isPano?'360° PROSTOROVÁ STUDIE':'PROSTOROVÁ STUDIE';$('#load-status').textContent='Načítání…';$('#tip').textContent=isPano?'Táhnutím se rozhlížíte · šipky mění směr · + / − přibližuje':'Táhnutím otáčíte · kolečkem přibližujete · pravým tlačítkem posouváte';if(isPano){try{pano??=createPanorama($('#panorama'));pano.load('assets/3d/'+scene.file)}catch(e){$('#load-status').textContent='Pro 360° pohled je potřeba WebGL.'}}else{model.exposure=scene.id==='exterior'?1:.8;model.removeAttribute('auto-rotate');$('#rotate').setAttribute('aria-pressed','false');model.cameraTarget=scene.id==='exterior'?'15.4m 8m -9.35m':scene.id==='interior-1kk'?'2.14m 0.8m -3.9m':scene.id==='interior-2kk'?'3.37m 0.8m -3.8m':'3.34m 0.8m -3.86m';model.cameraOrbit=scene.id==='exterior'?'-35deg 68deg 66m':'-30deg 35deg 16m';model.src='assets/3d/'+(scene.id==='exterior'?`exterior-${$('#variant').value==='with'?'with':'no'}-balconies.glb`:scene.file)}}
-function drawScenes(){const list=$('#scene-list');list.replaceChildren();for(const scene of scenes){const b=document.createElement('button');b.dataset.scene=scene.id;b.setAttribute('aria-pressed','false');const title=document.createElement('span');title.textContent=scene.title;const small=document.createElement('small');small.textContent=scene.sub;b.append(title,small);b.addEventListener('click',()=>loadScene(scene));list.append(b)}}
-model.addEventListener('load',()=>$('#load-status').textContent='Připraveno k prohlížení');model.addEventListener('error',()=>$('#load-status').textContent='Model se nepodařilo načíst. Zkuste obnovit stránku.');$('#variant').addEventListener('change',()=>loadScene(scenes[0]));document.querySelectorAll('[data-orbit]').forEach(b=>b.addEventListener('click',()=>{model.cameraOrbit=current.id==='exterior'?b.dataset.orbit:b.dataset.orbit.replace('66m','16m')}));$('#rotate').addEventListener('click',e=>{const on=!model.hasAttribute('auto-rotate');model.toggleAttribute('auto-rotate',on);e.currentTarget.setAttribute('aria-pressed',String(on))});$('#reset').addEventListener('click',()=>loadScene(current));
-function createPanorama(canvas){const gl=canvas.getContext('webgl',{alpha:false});if(!gl)throw Error('WebGL');const vs='attribute vec2 a;varying vec2 uv;void main(){uv=a;gl_Position=vec4(a,0.,1.);}';const fs='precision highp float;varying vec2 uv;uniform sampler2D tex;uniform float yaw;uniform float pitch;uniform float fov;uniform float aspect;void main(){vec3 d=normalize(vec3(uv.x*aspect*tan(fov*.5),uv.y*tan(fov*.5),-1.));float cp=cos(pitch),sp=sin(pitch);d=vec3(d.x,d.y*cp-d.z*sp,d.y*sp+d.z*cp);float cy=cos(yaw),sy=sin(yaw);d=vec3(d.x*cy-d.z*sy,d.y,d.x*sy+d.z*cy);vec2 t=vec2(atan(d.x,-d.z)/6.2831853+.5,.5-asin(clamp(d.y,-1.,1.))/3.14159265);gl_FragColor=texture2D(tex,t);}';const shader=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s};const program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vs));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fs));gl.linkProgram(program);gl.useProgram(program);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);const loc=gl.getAttribLocation(program,'a');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);const texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);let yaw=0,pitch=0,fov=1.3,ready=false,drag=null;function render(){if(!ready||canvas.offsetWidth===0)return;const dpr=Math.min(devicePixelRatio,2);canvas.width=Math.round(canvas.clientWidth*dpr);canvas.height=Math.round(canvas.clientHeight*dpr);gl.viewport(0,0,canvas.width,canvas.height);gl.uniform1f(gl.getUniformLocation(program,'yaw'),yaw);gl.uniform1f(gl.getUniformLocation(program,'pitch'),pitch);gl.uniform1f(gl.getUniformLocation(program,'fov'),fov);gl.uniform1f(gl.getUniformLocation(program,'aspect'),canvas.width/canvas.height);gl.drawArrays(gl.TRIANGLES,0,6)}function move(x,y,z=0){yaw+=x;pitch=Math.max(-1.4,Math.min(1.4,pitch+y));fov=Math.max(.45,Math.min(1.7,fov+z));render()}canvas.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId);canvas.focus()});canvas.addEventListener('pointermove',e=>{if(!drag)return;move(-(e.clientX-drag[0])*.005,(e.clientY-drag[1])*.005);drag=[e.clientX,e.clientY]});canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);canvas.addEventListener('wheel',e=>{if(document.activeElement!==canvas)return;e.preventDefault();move(0,0,e.deltaY*.001)},{passive:false});canvas.addEventListener('keydown',e=>{const k={ArrowLeft:[-.12,0],ArrowRight:[.12,0],ArrowUp:[0,.12],ArrowDown:[0,-.12],'+':[0,0,-.1],'-':[0,0,.1]}[e.key];if(k){e.preventDefault();move(...k)}});new ResizeObserver(render).observe(canvas);$('#pano-left').onclick=()=>move(-.2,0);$('#pano-right').onclick=()=>move(.2,0);$('#pano-in').onclick=()=>move(0,0,-.15);$('#pano-out').onclick=()=>move(0,0,.15);$('#pano-reset').onclick=()=>{yaw=(current.id==='panorama-hall'||current.id.endsWith('-bedroom'))?Math.PI:0;pitch=0;fov=1.3;render()};return{load(url){const im=new Image();im.onload=()=>{gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,im);ready=true;yaw=(current.id==='panorama-hall'||current.id.endsWith('-bedroom'))?Math.PI:0;pitch=0;fov=1.3;render();$('#load-status').textContent='360° pohled připraven'};im.onerror=()=>$('#load-status').textContent='Panorama se nepodařilo načíst.';im.src=url}}}
-const sceneSelect=document.querySelector('#scene-select');for(const scene of scenes){const option=document.createElement('option');option.value=scene.id;option.textContent=scene.title+' · '+scene.sub;sceneSelect.append(option)}sceneSelect.addEventListener('change',()=>loadScene(scenes.find(s=>s.id===sceneSelect.value)));drawScenes();loadScene(scenes[0]);
+(() => {
+ 'use strict';
+ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+ const stage=$('#stage'), canvas=$('#panorama'), TAU=Math.PI*2;
+ const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+ const safePath=p=>typeof p==='string' && /^assets\/walkthrough-v3\/[a-zA-Z0-9_./-]+\.(jpg|webp|png)$/.test(p) && !p.includes('..');
+ const query=new URLSearchParams(location.search), seen=new Map(), cache=new Map();
+ let manifest, apartment, current, requested, requestSerial=0, view={yaw:0,pitch:0,fov:1.15}, hotspots=[], ready=false, gl, program, texture, uniforms, renderPending=false;
+ let controlsEnabled=true;
+ function effectiveFov(){const aspect=canvas.clientWidth/Math.max(1,canvas.clientHeight);return 2*Math.atan(Math.tan(view.fov/2)*Math.min(1,(16/9)/aspect));}
+ function initGL(){
+  gl=canvas.getContext('webgl',{alpha:false,antialias:false,preserveDrawingBuffer:true}); if(!gl) return false;
+  const vertex='attribute vec2 a;varying vec2 uv;void main(){uv=a;gl_Position=vec4(a,0.,1.);}';
+  const fragment=`precision highp float;varying vec2 uv;uniform sampler2D tex;uniform float yaw,pitch,fov,aspect;
+   void main(){float sy=sin(yaw),cy=cos(yaw),sp=sin(pitch),cp=cos(pitch);vec3 r=vec3(cy,-sy,0.);vec3 f=vec3(sy*cp,cy*cp,sp);vec3 u=vec3(-sy*sp,-cy*sp,cp);vec3 d=normalize(r*uv.x*aspect*tan(fov*.5)+u*uv.y*tan(fov*.5)+f);vec2 t=vec2(fract(atan(d.x,d.y)/6.283185307+.5),.5-asin(clamp(d.z,-1.,1.))/3.141592654);gl_FragColor=texture2D(tex,t);}`;
+  const shader=(type,source)=>{const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error('Shader unavailable');return s;};
+  program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vertex));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error('Renderer unavailable');gl.useProgram(program);
+  const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);const a=gl.getAttribLocation(program,'a');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
+  texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+  uniforms=Object.fromEntries(['yaw','pitch','fov','aspect'].map(k=>[k,gl.getUniformLocation(program,k)]));return true;
+ }
+ function draw(){
+  renderPending=false;if(!ready||!gl||!canvas.clientWidth)return;
+  const ratio=Math.min(devicePixelRatio||1,2),w=Math.round(canvas.clientWidth*ratio),h=Math.round(canvas.clientHeight*ratio);
+  if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h);}
+  gl.uniform1f(uniforms.yaw,view.yaw);gl.uniform1f(uniforms.pitch,view.pitch);gl.uniform1f(uniforms.fov,effectiveFov());gl.uniform1f(uniforms.aspect,w/h);gl.drawArrays(gl.TRIANGLES,0,6);projectHotspots();
+ }
+ function schedule(){if(!renderPending){renderPending=true;requestAnimationFrame(draw);}}
+ function move(dx,dy,dz=0){if(!controlsEnabled)return;view.yaw=(view.yaw+dx)%TAU;view.pitch=Math.max(-1.35,Math.min(1.35,view.pitch+dy));view.fov=Math.max(.5,Math.min(1.5,view.fov+dz));schedule();}
+ function upload(im){
+  let source=im;const max=gl.getParameter(gl.MAX_TEXTURE_SIZE);
+  if(im.width>max||im.height>max){const c=document.createElement('canvas');const scale=Math.min(max/im.width,max/im.height);c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext('2d').drawImage(im,0,0,c.width,c.height);source=c;}
+  gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,source);ready=true;schedule();
+ }
+ function image(url){
+  if(cache.has(url))return cache.get(url);
+  const promise=new Promise((resolve,reject)=>{const im=new Image();im.decoding='async';im.onload=()=>resolve(im);im.onerror=()=>{cache.delete(url);reject(Error('Image unavailable'));};im.src=url;});cache.set(url,promise);
+  // Keep only a few full panoramas in memory on phones.
+  const cacheLimit=matchMedia('(max-width:768px)').matches?3:6;if(cache.size>cacheLimit)cache.delete(cache.keys().next().value);return promise;
+ }
+ function defaultView(node){const t=node.target||[node.position[0],node.position[1]+1,node.position[2]],p=node.position;const dx=t[0]-p[0],dy=t[1]-p[1],dz=t[2]-p[2];return {yaw:Math.atan2(dx,dy),pitch:Math.atan2(dz,Math.hypot(dx,dy)),fov:1.15};}
+ function updateURL(){const url=new URL(location.href);url.searchParams.set('byt',apartment.id);url.searchParams.set('mistnost',current.id);history.replaceState(null,'',url);}
+ function roomCategory(id){return id.includes('kitchen')?'Kuchyně':id.includes('bedroom')?'Ložnice':id.includes('bath')?'Koupelna':id.includes('living')?'Obývací pokoj':null;}
+ function syncUI(){
+  const visited=seen.get(apartment.id)||new Set();visited.add(current.id);seen.set(apartment.id,visited);
+  $('#room-meta').textContent=`${apartment.label} / 360° NÁVRH INTERIÉRU`;
+  $('#room-title').textContent=current.label;
+  $('#tour-summary').textContent=`${apartment.nodes.length} propojených stanovišť`;
+  $('#source-plan').href=`plans/unit-${apartment.sourceUnit}.pdf`;
+  $('#apartment-note').textContent=apartment.note||'';
+  $('#room-description').textContent=current.description||`Návrh zařízení ${current.label.toLocaleLowerCase('cs')} podle půdorysu a interiérových podkladů. Pomocí značek přejdete do navazujících místností.`;
+  const gallery=new URL('interiors.html',location.href);gallery.searchParams.set('typology',apartment.label);const category=roomCategory(current.id);if(category)gallery.searchParams.set('room',category);$('#room-gallery').href=gallery.pathname+gallery.search;
+  $$('[data-apartment]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.apartment===apartment.id)));
+  $('#room-list').innerHTML=apartment.nodes.map((n,i)=>`<button type="button" class="room-card ${visited.has(n.id)?'visited':''}" data-node="${escape(n.id)}" aria-current="${n.id===current.id}" aria-label="Přejít do místnosti: ${escape(n.label)}"><img src="${escape(n.thumb)}" alt="" loading="lazy" width="480" height="290"><small aria-hidden="true">${visited.has(n.id)?'✓':String(i+1).padStart(2,'0')}</small><span>${escape(n.label)}</span></button>`).join('');
+  $('#visited-count').textContent=`Prohlédnuto ${visited.size} z ${apartment.nodes.length} stanovišť`;
+  $('#adjacent-rooms').innerHTML=(current.links||[]).map(link=>{const n=apartment.nodes.find(n=>n.id===link.to);return n?`<button type="button" data-adjacent="${escape(n.id)}">${escape(n.label)} <span aria-hidden="true">→</span></button>`:'';}).join('');
+  renderMap();buildHotspots();updateURL();
+ }
+ function renderMap(){
+  const [w,d]=apartment.bounds;
+  const polygons=(apartment.rooms||[]).map(r=>`<polygon class="map-room ${r.id===current.room?'active':''}" points="${r.polygon.map(p=>`${p[0]},${d-p[1]}`).join(' ')}"><title>${escape(r.label)}</title></polygon>`).join('');
+  const points=apartment.nodes.map((n,i)=>`<g data-map-node="${escape(n.id)}" role="button" tabindex="0" aria-label="Přejít: ${escape(n.label)}"><circle class="map-node ${n.id===current.id?'active':''}" cx="${n.position[0]}" cy="${d-n.position[1]}" r=".19"/><text class="map-text" x="${n.position[0]}" y="${d-n.position[1]+.055}" ${n.id===current.id?'style="fill:white"':''}>${i+1}</text><title>${escape(n.label)}</title></g>`).join('');
+  $('#floor-map').innerHTML=`<svg viewBox="-.25 -.25 ${w+.5} ${d+.5}" role="group" aria-label="Orientační půdorys ${escape(apartment.label)}">${polygons}<path id="map-bearing" class="map-bearing" d="M0,0 L-.4,-.75 Q0,-.95 .4,-.75Z" aria-hidden="true"/>${points}</svg>`;
+ }
+ function buildHotspots(){
+  hotspots=[];$('#hotspots').replaceChildren();
+  for(const link of current.links||[]){const target=apartment.nodes.find(n=>n.id===link.to);if(!target)continue;const b=document.createElement('button');b.type='button';b.className='hotspot';b.setAttribute('aria-label',`Přejít: ${target.label}`);b.innerHTML=`<span class="dot" aria-hidden="true">⌃</span><span class="hotspot-label">${escape(target.label)}</span>`;b.onclick=()=>navigate(target.id);$('#hotspots').append(b);const p=link.portal||[target.position[0],target.position[1],.45];hotspots.push({element:b,vector:p.map((v,i)=>v-current.position[i])});}
+  projectHotspots();
+ }
+ function projectHotspots(){
+  const w=canvas.clientWidth,h=canvas.clientHeight,sy=Math.sin(view.yaw),cy=Math.cos(view.yaw),sp=Math.sin(view.pitch),cp=Math.cos(view.pitch),tan=Math.tan(effectiveFov()/2);
+  const bearing=$('#map-bearing');if(bearing&&current)bearing.setAttribute('transform',`translate(${current.position[0]},${apartment.bounds[1]-current.position[1]}) rotate(${view.yaw*180/Math.PI})`);
+  for(const {element,vector:[x,y,z]} of hotspots){const right=x*cy-y*sy,along=x*sy+y*cy,forward=along*cp+z*sp,up=-along*sp+z*cp;const px=w/2+(right/forward)/(tan*w/h)*w/2,py=h/2-(up/forward)/tan*h/2;const visible=ready&&forward>.05&&px>30&&px<w-30&&py>85&&py<h-100;element.hidden=!visible;if(visible){element.style.left=`${px}px`;element.style.top=`${py}px`;element.classList.toggle('label-left',px>w*.67);}}
+ }
+ function busy(value,label){stage.setAttribute('aria-busy',String(value));$('#loading').hidden=!value;if(label)$('#load-status').textContent=label;}
+ async function navigate(id,selectedApartment=apartment){
+  const node=selectedApartment.nodes.find(n=>n.id===id);if(!node)return;const initiatingElement=document.activeElement;const focusKind=initiatingElement?.closest('[data-node]')?'room':initiatingElement?.closest('[data-map-node]')?'map':initiatingElement?.closest('.hotspot,[data-adjacent]')?'canvas':null;requested={node,apartment:selectedApartment};const serial=++requestSerial;busy(true,`Vstupujeme: ${node.label}…`);$('#error-panel').hidden=true;
+  try{
+   const im=await image(gl?node.src:node.thumb);if(serial!==requestSerial)return;
+   apartment=selectedApartment;current=node;view=defaultView(node);
+   if(gl){upload(im);canvas.hidden=false;$('#fallback-image').hidden=true;}else{canvas.hidden=true;$('#fallback-image').src=node.thumb;$('#fallback-image').hidden=false;$('#navigation-hint').textContent='Váš prohlížeč zobrazuje náhledy. Místnosti můžete dál měnit v nabídce.';}
+   ready=!!gl;busy(false);syncUI();schedule();
+   if(focusKind&&!initiatingElement.isConnected&&document.activeElement===document.body){const focusTarget=focusKind==='room'?$(`[data-node="${CSS.escape(node.id)}"]`):focusKind==='map'?$(`[data-map-node="${CSS.escape(node.id)}"]`):canvas;focusTarget?.focus({preventScroll:true});}
+   for(const link of (node.links||[]).slice(0,2)){const adjacent=apartment.nodes.find(n=>n.id===link.to);if(adjacent?.preview)image(adjacent.preview).catch(()=>{});}
+  }catch(error){if(serial!==requestSerial)return;console.warn('Panorama could not be displayed:',error.message);busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent=`Místnost „${node.label}“ se nepodařilo načíst. Zkuste to znovu nebo vyberte jinou místnost.`;}
+ }
+ function chooseApartment(id,nodeId){const a=manifest.apartments.find(x=>x.id===id);if(!a)return false;$('#map-panel').hidden=true;$('#map-toggle').setAttribute('aria-expanded','false');navigate(a.nodes.some(n=>n.id===nodeId)?nodeId:a.defaultNode||a.nodes[0].id,a);return true;}
+ const pointers=new Map();let previousPinch=0;
+ canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);canvas.focus({preventScroll:true});pointers.set(e.pointerId,[e.clientX,e.clientY]);previousPinch=0;});
+ canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;const previous=pointers.get(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size===2){const p=[...pointers.values()],distance=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);if(previousPinch)move(0,0,(previousPinch-distance)*.004);previousPinch=distance;}else{move(-(e.clientX-previous[0])*.0045,(e.clientY-previous[1])*.0045);}});
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,e=>{pointers.delete(e.pointerId);previousPinch=0;});
+ canvas.addEventListener('wheel',e=>{if(document.activeElement!==canvas)return;e.preventDefault();move(0,0,e.deltaY*.001);},{passive:false});
+ canvas.addEventListener('keydown',e=>{const delta={ArrowLeft:[-.12,0],ArrowRight:[.12,0],ArrowUp:[0,.1],ArrowDown:[0,-.1],'+':[0,0,-.1],'=':[0,0,-.1],'-':[0,0,.1]}[e.key];if(delta){e.preventDefault();move(...delta);}});
+ $('#look-left').onclick=()=>move(-.22,0);$('#look-right').onclick=()=>move(.22,0);$('#zoom-in').onclick=()=>move(0,0,-.12);$('#zoom-out').onclick=()=>move(0,0,.12);$('#view-reset').onclick=()=>{if(current){view=defaultView(current);schedule();}};
+ function expandStage(value){stage.classList.toggle('is-expanded',value);document.body.classList.toggle('tour-expanded',value);$('#fullscreen').setAttribute('aria-label',value?'Ukončit celou obrazovku':'Celá obrazovka');schedule();}
+ $('#fullscreen').onclick=async()=>{if(stage.classList.contains('is-expanded')){expandStage(false);return;}try{if(document.fullscreenElement)await document.exitFullscreen();else if(stage.requestFullscreen)await stage.requestFullscreen();else expandStage(true);}catch(_){expandStage(true);}};
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&stage.classList.contains('is-expanded')){expandStage(false);$('#fullscreen').focus();}});
+ document.addEventListener('fullscreenchange',()=>{$('#fullscreen').setAttribute('aria-label',document.fullscreenElement?'Ukončit celou obrazovku':'Celá obrazovka');schedule();});
+ function togglePanel(name,open){const p=$(`#${name}-panel`),b=$(`#${name}-toggle`);const value=open??p.hidden;p.hidden=!value;b.setAttribute('aria-expanded',String(value));if(value){const other=name==='map'?'help':'map';$(`#${other}-panel`).hidden=true;$(`#${other}-toggle`).setAttribute('aria-expanded','false');}}
+ for(const name of ['map','help']){$(`#${name}-toggle`).onclick=()=>togglePanel(name);$(`#${name}-close`).onclick=()=>{togglePanel(name,false);$(`#${name}-toggle`).focus();};}
+ $('#room-list').onclick=e=>{const b=e.target.closest('[data-node]');if(b)navigate(b.dataset.node);};
+ $('#adjacent-rooms').onclick=e=>{const b=e.target.closest('[data-adjacent]');if(b)navigate(b.dataset.adjacent);};
+ $('#floor-map').onclick=e=>{const b=e.target.closest('[data-map-node]');if(b)navigate(b.dataset.mapNode);};
+ $('#floor-map').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){const b=e.target.closest('[data-map-node]');if(b){e.preventDefault();navigate(b.dataset.mapNode);}}};
+ $$('[data-apartment]').forEach(b=>b.onclick=()=>{if(manifest)chooseApartment(b.dataset.apartment);});
+ $('#retry').onclick=()=>manifest&&requested?navigate(requested.node.id,requested.apartment):load();
+ canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;$('#navigation-hint').textContent='Obnovujeme 360° zobrazení…';});
+ canvas.addEventListener('webglcontextrestored',()=>{try{initGL();if(current)navigate(current.id);}catch(_){location.reload();}});
+ new ResizeObserver(schedule).observe(stage);
+ async function load(){
+  busy(true,'Načítání prohlídky…');$('#error-panel').hidden=true;
+  try{const r=await fetch('assets/walkthrough-v3/manifest.json');if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost')))chooseApartment('3kk');}
+  catch(_){busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent='Prohlídku se nepodařilo načíst. Zkuste stránku obnovit.';}
+ }
+ load();
+})();

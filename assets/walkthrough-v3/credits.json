@@ -1,0 +1,25 @@
+{
+  "licenseNote": "Použité skenované materiály jsou CC0; slouží jako vizuální interpretace povrchů.",
+  "textures": [
+    {
+      "name": "oak_veneer_01",
+      "author": "Jenelle van Heerden / Poly Haven",
+      "url": "https://polyhaven.com/a/oak_veneer_01",
+      "license": "CC0"
+    },
+    {
+      "name": "poly_wool_herringbone",
+      "author": "Rico Cilliers / colormass / Poly Haven",
+      "url": "https://polyhaven.com/a/poly_wool_herringbone",
+      "license": "CC0"
+    }
+  ],
+  "sourcePlans": [
+    "plans/unit-04.pdf",
+    "plans/unit-02.pdf",
+    "plans/unit-01.pdf"
+  ],
+  "tileSource": "Dodaný podklad Dlažby.pdf: OA32183 60×60 cm a OA31897 Natural 120×60 cm",
+  "renderer": "Blender 4.5 LTS / Cycles / OptiX",
+  "projection": "Skutečná sférická panoramata 2:1 vyrenderovaná ze souvislých 3D scén"
+}

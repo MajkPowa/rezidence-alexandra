@@ -45,6 +45,8 @@
     $('#detail-position').textContent = `${String(dialogIndex + 1).padStart(2,'0')} / ${String(dialogItems.length).padStart(2,'0')}`;
     $('#detail-download').href = item.src;
     $('#detail-download').setAttribute('download', item.src.split('/').pop());
+    const tourRoom = {'Obývací pokoj':'living','Kuchyně':'kitchen','Ložnice':'bedroom','Koupelna':'bathroom'}[item.room];
+    $('#detail-tour').href = `tour.html?byt=${item.typology.replace('+','')}&mistnost=${tourRoom}#walkthrough`;
     $('#detail-prev').hidden = $('#detail-next').hidden = dialogItems.length < 2;
     const next = dialogItems[(dialogIndex + 1) % dialogItems.length];
     if (next) { const preload = new Image(); preload.src = next.src; }

@@ -125,7 +125,7 @@
  new ResizeObserver(schedule).observe(stage);
  async function load(){
   busy(true,'Načítání prohlídky…');$('#error-panel').hidden=true;
-  try{const r=await fetch('assets/walkthrough-v3/manifest.json');if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost'),'replace'))chooseApartment('3kk',null,'replace');}
+  try{const r=await fetch('assets/walkthrough-v3/manifest.json?v=bathroom-20261018',{cache:'no-cache'});if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost'),'replace'))chooseApartment('3kk',null,'replace');}
   catch(_){busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent='Prohlídku se nepodařilo načíst. Zkuste stránku obnovit.';}
  }
  load();

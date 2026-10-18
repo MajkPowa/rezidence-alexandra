@@ -780,11 +780,11 @@
           "polygon": [
             [
               4.45,
-              6.275
+              6.05
             ],
             [
               6.625,
-              6.275
+              6.05
             ],
             [
               6.625,
@@ -810,11 +810,11 @@
             ],
             [
               6.175,
-              6.175
+              5.95
             ],
             [
               4.45,
-              6.175
+              5.95
             ]
           ]
         },
@@ -905,9 +905,9 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/3kk/kitchen.webp",
-          "thumb": "assets/walkthrough-v3/3kk/kitchen-thumb.jpg",
-          "preview": "assets/walkthrough-v3/3kk/kitchen-preview.webp",
+          "src": "assets/walkthrough-v3/3kk/kitchen-bathroom-20261018.webp",
+          "thumb": "assets/walkthrough-v3/3kk/kitchen-bathroom-20261018-thumb.jpg",
+          "preview": "assets/walkthrough-v3/3kk/kitchen-bathroom-20261018-preview.webp",
           "description": "Matná šedá kuchyně, dubová pracovní deska a jídelní kout. Návrh rozmístění respektuje prostor v původním půdorysu."
         },
         {
@@ -945,7 +945,7 @@
               "to": "bathroom",
               "portal": [
                 4.4,
-                6.66,
+                6.435,
                 1.05
               ]
             },
@@ -966,9 +966,9 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/3kk/hall.webp",
-          "thumb": "assets/walkthrough-v3/3kk/hall-thumb.jpg",
-          "preview": "assets/walkthrough-v3/3kk/hall-preview.webp",
+          "src": "assets/walkthrough-v3/3kk/hall-bathroom-20261018.webp",
+          "thumb": "assets/walkthrough-v3/3kk/hall-bathroom-20261018-thumb.jpg",
+          "preview": "assets/walkthrough-v3/3kk/hall-bathroom-20261018-preview.webp",
           "description": "Předsíň propojuje obytné i vedlejší místnosti. Vyberte značku u dveří nebo bod v orientačním půdorysu."
         },
         {
@@ -1019,14 +1019,14 @@
               "to": "hall",
               "portal": [
                 4.4,
-                6.66,
+                6.435,
                 1.05
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/3kk/bathroom.webp",
-          "thumb": "assets/walkthrough-v3/3kk/bathroom-thumb.jpg",
-          "preview": "assets/walkthrough-v3/3kk/bathroom-preview.webp",
+          "src": "assets/walkthrough-v3/3kk/bathroom-bathroom-20261018.webp",
+          "thumb": "assets/walkthrough-v3/3kk/bathroom-bathroom-20261018-thumb.jpg",
+          "preview": "assets/walkthrough-v3/3kk/bathroom-bathroom-20261018-preview.webp",
           "description": "Návrh koupelny podle podkladů pro tuto dispozici: světlé obklady, bílá keramika a chromové baterie."
         },
         {
@@ -1053,9 +1053,9 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/3kk/wc.webp",
-          "thumb": "assets/walkthrough-v3/3kk/wc-thumb.jpg",
-          "preview": "assets/walkthrough-v3/3kk/wc-preview.webp",
+          "src": "assets/walkthrough-v3/3kk/wc-bathroom-20261018.webp",
+          "thumb": "assets/walkthrough-v3/3kk/wc-bathroom-20261018-thumb.jpg",
+          "preview": "assets/walkthrough-v3/3kk/wc-bathroom-20261018-preview.webp",
           "description": "Samostatné WC odpovídá oddělení hygienického zázemí v původním půdorysu."
         },
         {
@@ -1089,5 +1089,6 @@
         }
       ]
     }
-  ]
+  ],
+  "revision": "bathroom-20261018"
 }

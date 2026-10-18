@@ -21,8 +21,10 @@
     const checkedVariants = new Map(), checkedAssignments = new Map();
     for (const [id, raw] of Object.entries(data.variants)) {
       if (!/^variant-(0[1-9]|10)$/.test(id) || !object(raw) || raw.id !== id || raw.sourceUnit !== Number(id.slice(-2))) throw new Error('Neplatná dispoziční rodina.');
-      const expectedImage = `assets/furnished-plans/${id}.webp`;
-      const expectedThumb = `assets/furnished-plans/${id}-thumb.webp`;
+      const expectedImage = `assets/furnished-plans-v2/${id}.webp`;
+      const expectedThumb = `assets/furnished-plans-v2/${id}-thumb.webp`;
+      const expectedFull = `assets/furnished-plans-v2/${id}-4k.webp`;
+      if (raw.fullResolution !== expectedFull || raw.renderer !== 'Blender Cycles') throw new Error('Neplatný 4K náhled.');
       if (raw.image !== expectedImage || (raw.thumbnail != null && raw.thumbnail !== expectedThumb && raw.thumbnail !== expectedImage)) throw new Error('Neplatná cesta náhledu.');
       if (!Array.isArray(raw.rooms) || !raw.rooms.length || raw.rooms.length > 20) throw new Error('Chybí legenda místností.');
       const roomNumbers = new Set();
@@ -32,7 +34,7 @@
         const normalized = value => Number.isFinite(value) && value >= 0 && value <= 1;
         return Object.freeze({ number: room.number, label: room.label, ...(normalized(room.x) && normalized(room.y) ? { x: room.x, y: room.y } : {}) });
       });
-      checkedVariants.set(id, Object.freeze({ id, sourceUnit: raw.sourceUnit, image: expectedImage, thumbnail: raw.thumbnail || expectedImage, rooms: Object.freeze(rooms), note: text(raw.note) ? raw.note : 'Návrh zařízení · dispozice dle projektových podkladů.' }));
+      checkedVariants.set(id, Object.freeze({ id, sourceUnit: raw.sourceUnit, image: expectedImage, fullResolution: expectedFull, thumbnail: raw.thumbnail || expectedImage, rooms: Object.freeze(rooms), note: text(raw.note) ? raw.note : 'Návrh zařízení · dispozice dle projektových podkladů.' }));
     }
     for (const [unitId, variantId] of Object.entries(data.units)) {
       if (!/^[1-9]\d?$/.test(unitId)) throw new Error('Neplatné číslo jednotky.');
@@ -68,7 +70,7 @@
       $('#furnished-plan-canvas').innerHTML = `<a class="furnished-source-sheet" href="${pdfFor(unit)}" target="_blank" rel="noopener"><img src="${sourceFor(unit)}" alt="${escape(sourceLabel(unit))}"><span>Otevřít původní PDF <span aria-hidden="true">↗</span></span></a>`;
       return;
     }
-    $('#furnished-plan-canvas').innerHTML = `<div class="furnished-image-plane"><img src="${escape(variant.image)}" alt="Zařízený 3D půdorys dispoziční rodiny bytu ${unit.id}; návrh interiéru bez balkonů" data-furnished-full-image>${variant.rooms.filter(room => own(room, 'x')).map(room => `<span class="furnished-room-pin" style="left:${(room.x * 100).toFixed(3)}%;top:${(room.y * 100).toFixed(3)}%" aria-hidden="true">${room.number}</span>`).join('')}<a class="furnished-zoom" href="${escape(variant.image)}" target="_blank" rel="noopener" aria-label="Zvětšit 3D náhled bytu ${unit.id}">Zvětšit <span aria-hidden="true">↗</span></a></div><div class="furnished-image-error" hidden><p>Náhled se nepodařilo načíst.</p><button type="button" data-furnished-view="source">Zobrazit zdrojový půdorys ↗</button></div>`;
+    $('#furnished-plan-canvas').innerHTML = `<div class="furnished-image-plane"><img src="${escape(variant.image)}" alt="Zařízený 3D půdorys dispoziční rodiny bytu ${unit.id}; návrh interiéru bez balkonů" data-furnished-full-image>${variant.rooms.filter(room => own(room, 'x')).map(room => `<span class="furnished-room-pin" style="left:${(room.x * 100).toFixed(3)}%;top:${(room.y * 100).toFixed(3)}%" aria-hidden="true">${room.number}</span>`).join('')}<a class="furnished-zoom" href="${escape(variant.fullResolution)}" target="_blank" rel="noopener" aria-label="Otevřít 4K půdorys bytu ${unit.id}">Otevřít 4K <span aria-hidden="true">↗</span></a></div><div class="furnished-image-error" hidden><p>Náhled se nepodařilo načíst.</p><button type="button" data-furnished-view="source">Zobrazit zdrojový půdorys ↗</button></div>`;
     $('[data-furnished-full-image]').addEventListener('error', () => {
       const plane = $('.furnished-image-plane'), error = $('.furnished-image-error');
       if (plane) plane.hidden = true;
@@ -120,7 +122,7 @@
     returnFocus = null;
   });
 
-  const ready = fetch('assets/furnished-plans/manifest.json').then(response => {
+  const ready = fetch('assets/furnished-plans-v2/manifest.json').then(response => {
     if (!response.ok) throw new Error('Zařízené půdorysy nejsou dostupné.');
     return response.json();
   }).then(data => {

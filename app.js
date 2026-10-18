@@ -75,14 +75,14 @@
     $('#interior-feature-image').alt = item.alt;
     $('#interior-feature-caption').textContent = item.featureCaption || `Obývací prostor · ${activeInterior}+kk`;
   }
-  fetch('assets/interiors-v2/manifest.json').then(response => {
+  fetch('assets/interiors-v3/manifest.json').then(response => {
     if (!response.ok) throw new Error('Collection unavailable');
     return response.json();
   }).then(data => {
     ['1', '2', '3'].forEach(type => {
       const selected = (data.items || []).filter(item => item.typology === `${type}+kk` && typeof item.src === 'string' && /^assets\/[a-zA-Z0-9_./-]+\.(webp|jpe?g|png)$/i.test(item.src) && !item.src.includes('..'));
       selected.sort((a, b) => Number(b.room === 'Obývací pokoj') - Number(a.room === 'Obývací pokoj'));
-      if (selected.length) interiorSequences[type] = selected.map((item, index) => ({src:item.src, alt:`${item.room} · ${item.typology}. ${item.title}. Návrhová vizualizace.`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length} · návrh interiéru`, featureCaption:`${item.title} · ${item.typology}`}));
+      if (selected.length) interiorSequences[type] = selected.map((item, index) => ({src:item.src, fullResolution:typeof item.fullResolution === 'string' && /^assets\/interiors-v3\/[a-z0-9-]+-4k\.webp$/.test(item.fullResolution) && item.fullResolution === item.src.replace(/\.webp$/, '-4k.webp') ? item.fullResolution : null, alt:`${item.room} · ${item.typology}. ${item.title}. Návrhová vizualizace.`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length} · návrh interiéru`, featureCaption:`${item.title} · ${item.typology}`}));
     });
     updateInteriorFeature();
   }).catch(() => { /* The original project visualizations remain available. */ });
@@ -101,7 +101,11 @@
     $$('[data-interior]').forEach(item => { item.classList.toggle('active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
     updateInteriorFeature();
   }));
-  const renderGallery = () => { const item = galleryItems[galleryIndex]; $('#gallery-image').src = item.src; $('#gallery-image').alt = item.alt; $('#gallery-caption').textContent = item.caption; };
+  const renderGallery = () => {
+    const item = galleryItems[galleryIndex];
+    $('#gallery-image').src = item.src; $('#gallery-image').alt = item.alt;
+    $('#gallery-caption').innerHTML = `${escape(item.caption)}${item.fullResolution ? `<br><a class="text-link" href="${escape(item.fullResolution)}" download>Stáhnout render ve 4K <span aria-hidden="true">↓</span></a>` : ''}`;
+  };
   $$('[data-gallery]').forEach(button => button.addEventListener('click', () => { galleryItems = button.dataset.gallery === 'architecture' ? architecture : interiorSequences[activeInterior]; galleryIndex = Number(button.dataset.index || 0); renderGallery(); openDialog($('#gallery-dialog')); }));
   const stepGallery = step => { galleryIndex = (galleryIndex + step + galleryItems.length) % galleryItems.length; renderGallery(); };
   $('#gallery-prev').addEventListener('click', () => stepGallery(-1));

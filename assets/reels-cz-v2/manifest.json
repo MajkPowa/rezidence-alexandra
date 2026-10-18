@@ -1,0 +1,183 @@
+{
+  "project": "Rezidence Alexandra",
+  "concept": "Vaše nová kapitola. Zblízka.",
+  "format": "9:16, 1080 × 1920, 24 fps",
+  "models": {
+    "video": "gemini-omni-1.1-flash",
+    "keyframes": "gemini-nano-banana-2.1",
+    "voice": "gemini-3.8-flash-tts / Kore",
+    "music": "lyria-3-clip-preview"
+  },
+  "provenance": "Návrhové AI vizualizace z dodaných podkladů. Nejde o fotografie ani záznam dokončené stavby. Video 1080p je výstupní upscale modelu.",
+  "files": [
+    "reels/architecture.mp4",
+    "reels/bumper6.mp4",
+    "reels/hero.mp4",
+    "reels/home.mp4",
+    "clean/architecture-clean.mp4",
+    "clean/bumper6-clean.mp4",
+    "clean/hero-clean.mp4",
+    "clean/home-clean.mp4",
+    "subtitles/architecture.srt",
+    "subtitles/bumper6.srt",
+    "subtitles/hero.srt",
+    "subtitles/home.srt",
+    "subtitles/architecture.vtt",
+    "subtitles/bumper6.vtt",
+    "subtitles/hero.vtt",
+    "subtitles/home.vtt",
+    "posters/architecture.jpg",
+    "posters/bumper6.jpg",
+    "posters/hero.jpg",
+    "posters/home.jpg",
+    "image/arrival.jpg",
+    "image/exterior-a.jpg",
+    "image/exterior-b.jpg",
+    "image/family-living.jpg",
+    "image/hero-street.jpg",
+    "image/home-bathroom.jpg",
+    "image/home-bedroom.jpg",
+    "image/home-kitchen.jpg",
+    "image/home-living.jpg",
+    "image/studio-living.jpg",
+    "image/arrival.webp",
+    "image/exterior-a.webp",
+    "image/exterior-b.webp",
+    "image/family-living.webp",
+    "image/hero-street.webp",
+    "image/home-bathroom.webp",
+    "image/home-bedroom.webp",
+    "image/home-kitchen.webp",
+    "image/home-living.webp",
+    "image/studio-living.webp",
+    "contact-sheets/architecture.jpg",
+    "contact-sheets/bumper6.jpg",
+    "contact-sheets/hero.jpg",
+    "contact-sheets/home.jpg",
+    "publikacni-texty.txt",
+    "README-CZ.txt",
+    "campaign.json"
+  ],
+  "reels": [
+    {
+      "id": "hero",
+      "file": "reels/hero.mp4",
+      "clean": "clean/hero-clean.mp4",
+      "poster": "posters/hero.jpg",
+      "subtitles": "subtitles/hero.srt",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1"
+          },
+          {
+            "codec_name": "aac",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "30.000000",
+          "size": "36867711"
+        }
+      },
+      "sha256": "e128f914a739d57fc8a322c3fdf502389ba967ad428f4a1e3572b59ba43cf5b2"
+    },
+    {
+      "id": "home",
+      "file": "reels/home.mp4",
+      "clean": "clean/home-clean.mp4",
+      "poster": "posters/home.jpg",
+      "subtitles": "subtitles/home.srt",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1"
+          },
+          {
+            "codec_name": "aac",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "30.000000",
+          "size": "24520035"
+        }
+      },
+      "sha256": "830fbab2c95254d860a08f02247b652263d7d2da14f74e6a6efa7563678b66c9"
+    },
+    {
+      "id": "architecture",
+      "file": "reels/architecture.mp4",
+      "clean": "clean/architecture-clean.mp4",
+      "poster": "posters/architecture.jpg",
+      "subtitles": "subtitles/architecture.srt",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1"
+          },
+          {
+            "codec_name": "aac",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "30.000000",
+          "size": "63383125"
+        }
+      },
+      "sha256": "4d65d3c9704bcabdc8411fa69429722cc76c4ff9868521a02e0aa734baf0c461"
+    },
+    {
+      "id": "bumper6",
+      "file": "reels/bumper6.mp4",
+      "clean": "clean/bumper6-clean.mp4",
+      "poster": "posters/bumper6.jpg",
+      "subtitles": "subtitles/bumper6.srt",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "r_frame_rate": "24/1"
+          },
+          {
+            "codec_name": "aac",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "6.000000",
+          "size": "8929458"
+        }
+      },
+      "sha256": "a5aa0b2bb608095f5347dbbb875841b4ff5f694590db8cb28f971420637ff93d"
+    }
+  ]
+}

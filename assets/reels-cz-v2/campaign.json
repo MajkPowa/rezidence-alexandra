@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "project": "Rezidence Alexandra",
+  "concept": "Vaše nová kapitola. Zblízka.",
+  "fps": 24,
+  "width": 1080,
+  "height": 1920,
+  "music": "music/alexandra-score",
+  "brand": {
+    "title": "ALEXANDRA",
+    "subtitle": "REZIDENCE · OTROKOVICE",
+    "disclaimer": "Návrhová AI vizualizace"
+  },
+  "reels": [
+    {
+      "id": "hero",
+      "title": "Vaše nová kapitola",
+      "duration": 30,
+      "cta": {
+        "headline": "Vaše nová kapitola.",
+        "label": "Prohlédnout byty",
+        "url": "majkpowa.github.io/rezidence-alexandra/",
+        "targetUrl": "https://majkpowa.github.io/rezidence-alexandra/#byty"
+      },
+      "scenes": [
+        {
+          "id": "01",
+          "storyboardId": "H01",
+          "shot": "hero-street",
+          "duration": 5,
+          "voice": "voice/hero-01.wav",
+          "voiceText": "Váš nový začátek. Rezidence Alexandra v Otrokovicích.",
+          "type": "footage",
+          "variantLabel": "",
+          "visual": "Celý dům z pravého předního pohledu v původním městském kontextu; první snímek už ukazuje architekturu, bez úvodní černé či samotného loga. Ve vertikálním formátu zachovat celou stavbu v čistém obrazovém poli.",
+          "motion": "Velmi pomalé přiblížení do 3 %, bez odletu a bez odhalení další ulice."
+        },
+        {
+          "id": "02",
+          "storyboardId": "H02",
+          "shot": "arrival",
+          "duration": 5,
+          "voice": "voice/hero-02.wav",
+          "voiceText": "Od architektury domu k místu, které si zařídíte po svém.",
+          "type": "footage",
+          "variantLabel": "",
+          "visual": "Detail původního vstupu a centrálních svislých prvků fasády z dodané vizualizace. Zachovat prosklení, přesah, světlou omítku a navazující tmavé balkony. Dveře zůstávají ve stejné poloze; nevstupovat kamerou dovnitř.",
+          "motion": "Jemné přiblížení do 2 % v původním pohledu; bez otevírání dveří, změny prosklení a dalšího průchodu. Listy se mohou nepatrně pohnout."
+        },
+        {
+          "id": "03",
+          "storyboardId": "H03",
+          "shot": "studio-living",
+          "duration": 5,
+          "voice": "voice/hero-03.wav",
+          "voiceText": "Tři typy dispozic. Tři způsoby, jak si představit vlastní domov.",
+          "type": "footage",
+          "variantLabel": "Návrh zařízení · 1+kk",
+          "visual": "Zařízený obytný pokoj 1+kk se šalvějovou pohovkou a přímou kuchyní; zachovat kompaktní proporce. Na snímku je pouze 1+kk, další typy uvést typograficky.",
+          "motion": "Pomalý posun vpřed do 2 %, žádné průchody stěnou ani rozšiřování pokoje."
+        },
+        {
+          "id": "04",
+          "storyboardId": "H04",
+          "shot": "family-living",
+          "duration": 5,
+          "voice": "voice/hero-04.wav",
+          "voiceText": "Nahlédněte do návrhů kuchyní, obývacích pokojů i ložnic.",
+          "type": "footage",
+          "variantLabel": "Návrh zařízení · 3+kk",
+          "visual": "Obývací pokoj 3+kk s navazující jídelnou a kuchyní; držet rohovou pohovku, kulatý stůl a skutečnou kuchyň. Přechod z 1+kk označit změnou typu, nevydávat za pokračování stejného bytu.",
+          "motion": "Nenápadné přiblížení k jídelnímu stolu; rovné svislice, bez virtuálního obletu."
+        },
+        {
+          "id": "05",
+          "storyboardId": "H05",
+          "shot": "home-bedroom",
+          "duration": 5,
+          "voice": "voice/hero-05.wav",
+          "voiceText": "Projděte si místnosti, porovnejte půdorysy a najděte svůj prostor.",
+          "type": "footage",
+          "variantLabel": "Návrh zařízení · 2+kk",
+          "visual": "Hlavní ložnice 2+kk. Viditelná čalouněná postel, povlečení a skříně; žádná nová okna. Grafický drobný odkaz na půdorysy a 360° prohlídky, nikoli falešné uživatelské rozhraní.",
+          "motion": "Velmi jemné přiblížení k textiliím. Nechat obraz přirozený, nerozpohybovávat nábytek."
+        },
+        {
+          "id": "06",
+          "storyboardId": "H06",
+          "shot": "hero-street",
+          "duration": 5,
+          "voice": "voice/hero-06.wav",
+          "voiceText": "Alexandra. Vaše nová kapitola. Začněte prohlídkou na webu.",
+          "type": "endcard",
+          "variantLabel": "",
+          "visual": "Návrat k pravému přednímu celku. Dům ponechat celý, ve spodním nebo horním volném poli vysázet ALEXANDRA / OTROKOVICE a CTA; poslední dvě sekundy stabilní.",
+          "motion": "Pohyb doznít do statického konce, žádné dodatečné proměny architektury."
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "title": "Jeden den. Vlastní tempo.",
+      "duration": 30,
+      "cta": {
+        "headline": "Vaše nová kapitola.",
+        "label": "Vstoupit do 2+kk",
+        "url": "majkpowa.github.io/rezidence-alexandra/",
+        "targetUrl": "https://majkpowa.github.io/rezidence-alexandra/tour.html?byt=2kk&mistnost=living#walkthrough"
+      },
+      "scenes": [
+        {
+          "id": "01",
+          "storyboardId": "D01",
+          "shot": "home-kitchen",
+          "duration": 5,
+          "voice": "voice/home-01.wav",
+          "voiceText": "Představte si svůj den v Alexandře. Začíná ranní kávou.",
+          "type": "footage",
+          "variantLabel": "Návrh zařízení · 2+kk",
+          "visual": "Kuchyně 2+kk s kulatým stolem a dubovým dekorem. Začít pohledem, v němž je rozpoznatelný stůl i skutečné uspořádání linky; nepřidávat člověka, ruce, kávovar nebo další nádobí.",
+          "motion": "Jemný pohyb do 2 % směrem ke stolu. Bez časosběru, bez proměny denní doby."
+        },
+        {
+          "id": "02",
+          "storyboardId": "D02",
+          "shot": "home-kitchen",
+          "duration": 5,
+          "voice": "voice/home-02.wav",
+          "voiceText": "Kuchyně s dubovým dekorem. Stůl, u kterého se potkáte.",
+          "type": "footage",
+          "variantLabel": "Návrh zařízení · 2+kk",
+          "visual": "Ověřený těsnější výřez pracovní desky, šedých dvířek a kulatého jídelního stolu ze stejného renderu. Zachovat všechny hrany a polohu dřezu.",
+          "motion": "Klidný detail, využít jiný výřez už schváleného klipu nebo statický push-in."
+        },
+        {
+          "id": "03",
+          "storyboardId": "D03",
+          "shot": "home-living",
+          "duration": 5,
+          "voice": "voice/home-03.wav",
+          "voiceText": "Obývací pokoj pro společné chvíle a vlastní tempo.",
+          "type": "footage",
+          "variantLabel": "Návrh zařízení · 2+kk",
+          "visual": "Obývací část téhož 2+kk s šedou rohovou pohovkou. Jasně čitelný vztah pohovky a stolu; žádná nová navazující místnost.",
+          "motion": "Malý posun podél původního pohledu, do 3 %; polštáře a hrany stabilní."
+        },
+        {
+          "id": "04",
+          "storyboardId": "D04",
+          "shot": "home-bedroom",
+          "duration": 5,
+          "voice": "voice/home-04.wav",
+          "voiceText": "Ložnice s měkkými textiliemi. Místo pro vaše večerní rituály.",
+          "type": "footage",
+          "variantLabel": "Návrh zařízení · 2+kk",
+          "visual": "Hlavní ložnice stejné typové dispozice 2+kk, přirozená textura přikrývky a skříně podle renderu. Pozvánka k představě, nikoli slib zařízeného prodeje.",
+          "motion": "Pomalé přiblížení do 2 %. Žádné vlnění přikrývky bez fyzické příčiny."
+        },
+        {
+          "id": "05",
+          "storyboardId": "D05",
+          "shot": "home-bathroom",
+          "duration": 5,
+          "voice": "voice/home-05.wav",
+          "voiceText": "A koupelna, kde každý detail navazuje na návrh interiéru.",
+          "type": "footage",
+          "variantLabel": "Návrh zařízení · 2+kk",
+          "visual": "Koupelna bez okna 2+kk s walk-in sprchou, bílou sanitou a chromovou baterií. Zachovat skutečné zrcadlo a skleněnou příčku, bez přidání WC či dalšího okna.",
+          "motion": "Téměř statický, lehké přiblížení k umyvadlu; nespouštět vodu a neměnit odrazy."
+        },
+        {
+          "id": "06",
+          "storyboardId": "D06",
+          "shot": "home-living",
+          "duration": 5,
+          "voice": "voice/home-06.wav",
+          "voiceText": "Jedna z možností zařízení. Projděte si ji na webu.",
+          "type": "endcard",
+          "variantLabel": "Návrh zařízení · 2+kk",
+          "visual": "Návrat do společného obytného prostoru 2+kk a závěrečná značka s jasnou pozvánkou do prohlídky. Text nezasahuje do pohovky ani kuchyně.",
+          "motion": "Pohyb se zastaví; CTA čitelné celé závěrečné tři sekundy."
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "title": "Dům v souvislostech",
+      "duration": 30,
+      "cta": {
+        "headline": "Vaše nová kapitola.",
+        "label": "Prohlédnout celý dům",
+        "url": "majkpowa.github.io/rezidence-alexandra/",
+        "targetUrl": "https://majkpowa.github.io/rezidence-alexandra/building.html"
+      },
+      "scenes": [
+        {
+          "id": "01",
+          "storyboardId": "A01",
+          "shot": "hero-street",
+          "duration": 5,
+          "voice": "voice/architecture-01.wav",
+          "voiceText": "Dům není jen fasáda. Poznejte Alexandru v jejím okolí.",
+          "type": "footage",
+          "variantLabel": "Návrh domu a okolí podle podkladu",
+          "visual": "Široký pravý přední zdrojový pohled včetně chodníku, komunikace a sousední budovy. Okolí je součástí návrhového podkladu; nelze jej označit jako aktuální záběr místa.",
+          "motion": "Velmi pomalé přiblížení, bez dronu a bez rozšiřování obrazu za hranice reference."
+        },
+        {
+          "id": "02",
+          "storyboardId": "A02",
+          "shot": "hero-street",
+          "duration": 5,
+          "voice": "voice/architecture-02.wav",
+          "voiceText": "Návrh bydlení v Otrokovicích. Zblízka i v celku.",
+          "type": "footage",
+          "variantLabel": "",
+          "visual": "Střední výřez téhož domu se zachovanou centrální svislou strukturou a plnou výškou objektu. Nevytvářet novou stranu stavby.",
+          "motion": "Krátký stabilní přejezd pouze uvnitř reference. Bez nové perspektivy odhalující neznámou geometrii."
+        },
+        {
+          "id": "03",
+          "storyboardId": "A03",
+          "shot": "arrival",
+          "duration": 5,
+          "voice": "voice/architecture-03.wav",
+          "voiceText": "Světlé plochy, tmavé balkony a výrazné svislé linie.",
+          "type": "footage",
+          "variantLabel": "",
+          "visual": "Svislé fasádní prvky, světlá omítka a tmavé zaoblené hrany balkonů ve skutečném detailu nad vstupem. Použít těsnější výřez téhož facade/entry záběru, nic nepřestavovat.",
+          "motion": "Jemné přiblížení do 2 % v původním pohledu; bez otevírání dveří, změny prosklení a dalšího průchodu. Listy se mohou nepatrně pohnout."
+        },
+        {
+          "id": "04",
+          "storyboardId": "A04",
+          "shot": "exterior-a",
+          "duration": 5,
+          "voice": "voice/architecture-04.wav",
+          "voiceText": "Levá strana má dvě navržené podoby. Prohlédněte si obě.",
+          "type": "footage",
+          "variantLabel": "Varianta A · bez bočních balkonů",
+          "visual": "Levá přední varianta A z původního samostatného snímku. Celá boční fasáda musí být čitelná; jasné označení bez bočních balkonů po celých pět sekund.",
+          "motion": "Téměř statický záběr. Žádný morph mezi variantami; následuje čistý střih."
+        },
+        {
+          "id": "05",
+          "storyboardId": "A05",
+          "shot": "exterior-b",
+          "duration": 5,
+          "voice": "voice/architecture-05.wav",
+          "voiceText": "Balkony jsou ve dvou variantách. Konečná podoba se upřesňuje.",
+          "type": "footage",
+          "variantLabel": "Varianta B · s bočními balkony",
+          "visual": "Levá přední varianta B z původního samostatného snímku. Přiblížit kompozici předchozímu záběru bez přegenerování geometrie; zobrazit přidané boční balkony.",
+          "motion": "Téměř statický, stejná míra pohybu jako varianta A. Rozdíl fasád odhalí střih, nikoli animované přirůstání balkonů."
+        },
+        {
+          "id": "06",
+          "storyboardId": "A06",
+          "shot": "hero-street",
+          "duration": 5,
+          "voice": "voice/architecture-06.wav",
+          "voiceText": "A pak si vyberte vlastní perspektivu. Objevte Alexandru na webu.",
+          "type": "endcard",
+          "variantLabel": "",
+          "visual": "Pravý přední celek a závěrečná značka. Odkázat na model domu s oběma variantami; nevkládat neověřený mapový pin nebo adresu.",
+          "motion": "Doznění do statické závěrečné karty."
+        }
+      ]
+    }
+  ],
+  "bumper": {
+    "id": "bumper6",
+    "title": "Vaše nová kapitola",
+    "duration": 6,
+    "shot": "hero-street",
+    "secondShot": "home-living",
+    "headline": "Vaše nová kapitola.",
+    "cta": "Začněte prohlídkou",
+    "voice": "voice/bumper6.wav",
+    "voiceText": "Rezidence Alexandra. Vaše nová kapitola v Otrokovicích. Začněte prohlídkou."
+  }
+}

@@ -26,13 +26,13 @@
     const view = document.createElement('div');
     view.className = 'building-selection-view';
     facade.before(view);
-    view.innerHTML = `<div class="building-selection-mode" role="group" aria-label="Zobrazení domu"><button type="button" data-building-mode="render" aria-pressed="true">Vizualizace</button><button type="button" data-building-mode="3d" aria-pressed="false" aria-controls="building-selection-3d-panel">Otočný 3D model</button></div>`;
+    view.innerHTML = `<div class="building-selection-mode" role="group" aria-label="Zobrazení domu"><button type="button" data-building-mode="render" aria-pressed="true" aria-controls="building-stack">Vizualizace</button><button type="button" data-building-mode="architecture" aria-pressed="false" aria-controls="building-selection-3d-panel">3D dům</button><button type="button" data-building-mode="availability" aria-pressed="false" aria-controls="building-selection-3d-panel">Dostupnost bytů</button></div>`;
     view.append(facade);
     const panel = document.createElement('div');
     panel.id = 'building-selection-3d-panel';
     panel.className = 'building-selection-3d-panel';
     panel.hidden = true;
-    panel.innerHTML = `<div class="building-selection-model-mode" role="group" aria-label="Obsah 3D modelu"><button type="button" data-building-content="architecture" aria-pressed="true">Architektura domu</button><button type="button" data-building-content="availability" aria-pressed="false">Dostupnost bytů</button></div><div class="building-selection-availability-tools" hidden><label class="building-selection-isolate"><input type="checkbox" data-building-isolate> Jen vybrané podlaží <strong data-building-floor-name>2. NP</strong></label><div class="building-selection-3d-legend" aria-label="Legenda dostupnosti"><span data-availability-key="available"><i aria-hidden="true"></i>Volný</span><span data-availability-key="reserved"><i aria-hidden="true"></i>Rezervovaný</span><span data-availability-key="sold"><i aria-hidden="true"></i>Prodaný</span><span data-availability-key="unknown"><i aria-hidden="true"></i>Na dotaz</span></div></div><div class="building-selection-3d-stage"><div class="building-selection-3d-loading" role="status">Načítání 3D modelu…</div><div class="building-selection-3d-error" hidden><p>3D model se nepodařilo zobrazit. Podlaží a byty můžete dál vybírat na vizualizaci.</p><button type="button" data-building-3d-retry>Zkusit znovu</button><button type="button" data-building-mode="render">Zpět na vizualizaci</button></div></div><div class="building-selection-3d-controls" role="group" aria-label="Pohled na 3D model"><button type="button" data-building-orbit="-35deg 68deg 58m" disabled>Přední pohled</button><button type="button" data-building-orbit="145deg 68deg 58m" disabled>Zadní pohled</button><button type="button" data-building-orbit="-35deg 35deg 58m" disabled>Nadhled</button></div><p class="building-selection-3d-selection" role="status" aria-live="polite" aria-atomic="true" hidden></p><p class="building-selection-3d-help" id="building-selection-3d-help"></p><p class="building-selection-3d-note"></p>`;
+    panel.innerHTML = `<div class="building-selection-availability-tools" hidden><label class="building-selection-isolate"><input type="checkbox" data-building-isolate> Jen vybrané podlaží <strong data-building-floor-name>2. NP</strong></label><div class="building-selection-3d-legend" aria-label="Legenda dostupnosti"><span data-availability-key="available"><i aria-hidden="true"></i>Volný</span><span data-availability-key="reserved"><i aria-hidden="true"></i>Rezervovaný</span><span data-availability-key="sold"><i aria-hidden="true"></i>Prodaný</span><span data-availability-key="unknown"><i aria-hidden="true"></i>Na dotaz</span></div></div><div class="building-selection-3d-stage"><div class="building-selection-3d-loading" role="status">Načítání 3D modelu…</div><div class="building-selection-3d-error" hidden><p>3D model se nepodařilo zobrazit. Podlaží a byty můžete dál vybírat na vizualizaci.</p><button type="button" data-building-3d-retry>Zkusit znovu</button><button type="button" data-building-mode="render">Zpět na vizualizaci</button></div></div><p class="building-selection-3d-selection" role="status" aria-live="polite" aria-atomic="true" hidden></p><p class="building-selection-3d-help" id="building-selection-3d-help"></p><details class="building-selection-camera"><summary>Ovládání pohledu</summary><div class="building-selection-3d-controls" role="group" aria-label="Pohled na 3D model"><button type="button" data-building-orbit="-35deg 68deg 58m" disabled>Přední pohled</button><button type="button" data-building-orbit="145deg 68deg 58m" disabled>Zadní pohled</button><button type="button" data-building-orbit="-35deg 35deg 58m" disabled>Nadhled</button></div></details><p class="building-selection-3d-note"></p>`;
     view.append(panel);
     const stage = panel.querySelector('.building-selection-3d-stage');
     const loading = panel.querySelector('.building-selection-3d-loading');
@@ -71,8 +71,8 @@
       selection.hidden = content !== 'availability';
       panel.querySelector('[data-building-floor-name]').textContent = `${activeFloor()}. NP`;
       panel.querySelector('.building-selection-3d-help').textContent = content === 'availability'
-        ? 'Otočte model tažením. Klepnutím na barevný objem vyberete byt. Pro přehled všech bytů v patře zapněte „Jen vybrané podlaží“ a vyberte číslo bytu. Výběr je propojen s půdorysem a kartou níže.'
-        : 'Otočte dům tažením, přibližte dvěma prsty nebo kolečkem. Číslovaná tlačítka na domě vybírají podlaží; samostatná tlačítka pater jsou dostupná i při pohledu zezadu. Barvy jednotlivých bytů zobrazíte přepnutím na „Dostupnost bytů“.';
+        ? 'Tažením otočíte model, klepnutím na barevný byt otevřete jeho půdorys a kartu níže. Volba „Jen vybrané podlaží“ odkryje všechny byty v patře.'
+        : 'Tažením otočíte dům, dvěma prsty nebo kolečkem přiblížíte. Klepnutím na číslo vyberete podlaží. Barvy bytů najdete v režimu „Dostupnost bytů“.';
       panel.querySelector('.building-selection-3d-note').innerHTML = content === 'availability'
         ? '<strong>Prostorové rozložení podle půdorysů.</strong> Barevné objemy vycházejí z hranic bytů ve zdrojových výkresech; šedé společné prostory nejsou byty. Barvy se aktualizují ze stejného seznamu dostupnosti jako ceník. U nepotvrzených stavů uvádíme „Na dotaz“. Jde o orientační schéma bez balkonů, nikoli dokončenou architekturu či právní hranice jednotek.'
         : '<strong>Orientační prostorová rekonstrukce.</strong> Model vychází z dostupných výkresů a vizualizací, nejde o závazné provedení stavby. Obě varianty bočních balkonů čekají na potvrzení.';
@@ -238,24 +238,20 @@
       } catch { if (currentRequest===requestNumber) {loadingSource='';showError();} }
     }
     function setMode(next) {
-      mode = next;
+      mode = next === 'render' ? 'render' : '3d';
+      if (mode === '3d') content = next;
       // The facade is SVG: its .hidden property is not reflected consistently
       // by browsers, so use the global attribute explicitly.
-      facade.toggleAttribute('hidden', next === '3d');
-      panel.hidden = next !== '3d';
+      facade.toggleAttribute('hidden', mode === '3d');
+      panel.hidden = mode !== '3d';
       view.querySelectorAll('.building-selection-mode [data-building-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.buildingMode === next)));
-      if (next === '3d') loadModel();
+      updateCopy();
+      if (mode === '3d') loadModel();
     }
     explorer.addEventListener('click', event => {
       const modeButton = event.target.closest('[data-building-mode]');
       if (modeButton) { setMode(modeButton.dataset.buildingMode); return; }
       if (event.target.closest('[data-building-3d-retry]')) { loadModel(true); return; }
-      const contentButton = event.target.closest('[data-building-content]');
-      if (contentButton) {
-        content=contentButton.dataset.buildingContent;
-        panel.querySelectorAll('[data-building-content]').forEach(button=>button.setAttribute('aria-pressed',String(button===contentButton)));
-        updateCopy();loadModel();return;
-      }
       const unitButton = event.target.closest('[data-volume-unit]');
       if (unitButton) { chooseVolume(Number(unitButton.dataset.volumeUnit));return; }
       if (event.target.closest('[data-building-unit],[data-map-unit]')) { queueMicrotask(syncFloor);return; }

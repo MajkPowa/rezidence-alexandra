@@ -96,7 +96,7 @@
 .building-page .building-controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:20px}
 .building-page .building-controls button,.building-page .building-error button{display:inline-flex;justify-content:center;align-items:center;gap:8px;min-width:48px;min-height:48px;border:1px solid var(--line);padding:12px 16px;border-radius:6px;background:var(--surface);font-size:14px}
 .building-page .building-controls button:hover:not(:disabled),.building-page .building-error button:hover{border-color:var(--olive);background:var(--cream)}
-.building-page .building-controls button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.building-page .building-controls button[aria-pressed=true],.building-page .building-controls button[aria-pressed=true]:is(:hover,:focus-visible,:active){background:var(--ink);color:var(--surface);border-color:var(--ink)}
 .building-page .building-controls svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .building-page .building-control-row{display:flex;flex-wrap:wrap;gap:8px}
 .building-page .building-control-row+.building-control-row{margin-left:auto}
@@ -289,3 +289,19 @@
 @media print{
   .companion-header,.companion-footer,.companion-skip,.storyboard-tools,.chapter-navigation,.media-error{display:none!important}
 }
+
+/* Keep mobile captions in the document flow instead of stacking over a short image. */
+@media screen and (max-width:640px){
+  .storyboard-page .shot .frame{display:flex;flex-direction:column;aspect-ratio:auto}
+  .storyboard-page .shot .frame>img{height:auto;aspect-ratio:16/9;object-fit:cover}
+  .storyboard-page .shot .frame .chip{position:static;order:-1;width:auto;max-width:none;padding:10px 12px;letter-spacing:.03em}
+  .storyboard-page .shot .frame .overlay{position:static!important;width:100%;max-width:none!important;padding:16px;background:var(--ink);text-shadow:none;font-size:23px!important}
+  .storyboard-page .shot .frame .underlay,.storyboard-page .shot .frame .target{display:none}
+}
+.creative-page .story>*{min-width:0}
+.building-page .building-more-controls{flex-basis:100%;min-width:0;border-top:1px solid var(--line);margin-top:4px}
+.building-page .building-more-controls summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:48px;list-style:none;cursor:pointer;font-size:14px;color:var(--muted)}
+.building-page .building-more-controls summary::-webkit-details-marker{display:none}
+.building-page .building-more-controls summary:after{content:'+';font-size:24px;font-weight:400}
+.building-page .building-more-controls[open] summary:after{content:'−'}
+.building-page .building-more-controls>.building-control-row{padding:8px 0 16px;margin-left:0}

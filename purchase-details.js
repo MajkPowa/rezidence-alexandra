@@ -16,7 +16,7 @@
   function detailHTML(unit) {
     const details = get(unit);
     const bathroom = details.bathroom;
-    return `<section class="unit-included" aria-label="Vybavení bytu ${esc(unit.id)}"><h3>Co je v ceně tohoto bytu</h3><p>Standard pro byt ${esc(unit.id)} podle dokumentu Vybavení bytu.</p><ul class="equipment-list">${(details.equipment || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul><div class="unit-bathroom"><strong>Projektový návrh koupelny</strong>${bathroom?.referenceType ? `<p>${esc(bathroom.referenceType)}</p><ul>${(bathroom.items || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul>` : ''}<p class="small">${esc(bathroom?.note || 'Konkrétní výrobky a případné odchylky pro tento byt upřesní prodejce.')} Individuální soupis potvrzený pro tuto jednotku zatím nebyl dodán.</p></div><div class="excluded-box"><strong>Není součástí ceny bytu</strong><p>${esc(data.excluded.join(', '))}.</p></div><p class="small">${esc(data.balconies?.message)}</p></section>`;
+    return `<section class="unit-included" aria-label="Vybavení bytu ${esc(unit.id)}"><h3>Co je v ceně tohoto bytu</h3><p>V ceně jsou vinylové podlahy, dveře, plastová okna, koupelnová sanita a uvedené technické přípravy. Úplný soupis pro byt ${esc(unit.id)} najdete níže.</p><details class="ux-disclosure"><summary>Úplný standard v ceně bytu</summary><ul class="equipment-list">${(details.equipment || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul></details><div class="unit-bathroom"><strong>Projektový návrh koupelny</strong>${bathroom?.referenceType ? `<p>${esc(bathroom.referenceType)}</p><ul>${(bathroom.items || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul>` : ''}<p class="small">${esc(bathroom?.note || 'Konkrétní výrobky a případné odchylky pro tento byt upřesní prodejce.')} Individuální soupis potvrzený pro tuto jednotku zatím nebyl dodán.</p></div><div class="excluded-box"><strong>Není součástí ceny bytu</strong><p>${esc(data.excluded.join(', '))}.</p></div><p class="small">${esc(data.balconies?.message)}</p></section>`;
   }
   window.AlexandraDetails = Object.freeze({ get, area, areasHTML, cardHTML, detailHTML });
 
@@ -44,17 +44,22 @@
     showPoint('flooring',false);
   }
   document.addEventListener('click', event => {
-    const link = event.target.closest('[data-section-link]');
+    const link = event.target.closest('[data-section-link], a[href="#vybaveni"]');
     if (!link) return;
-    const section = document.getElementById(link.dataset.sectionLink);
+    const sectionId = link.dataset.sectionLink || 'vybaveni';
+    const section = document.getElementById(sectionId);
     if (!section) return;
+    const selection = document.querySelector('#equipment-unit-context');
+    if (section.id === 'vybaveni' && selection) {
+      const unit = (window.ALEXANDRA_UNITS || []).find(item=>item.id===Number(link.dataset.unitId));
+      selection.hidden = !unit;
+      selection.innerHTML = unit ? `Prohlížíte standard pro <strong>byt ${unit.id} · ${esc(unit.layout)}</strong>. <button type="button" class="text-link" data-unit="${unit.id}">Zpět do karty bytu</button>` : '';
+    }
+    // Ordinary navigation keeps its native anchor behaviour; only links leaving
+    // a dialog need explicit closing and focus restoration to the section.
+    if (!link.dataset.sectionLink) return;
     event.preventDefault();
     document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
-    if (section.id === 'vybaveni' && link.dataset.unitId) {
-      const unit = (window.ALEXANDRA_UNITS || []).find(item=>item.id===Number(link.dataset.unitId));
-      const selection = document.querySelector('#equipment-unit-context');
-      if (unit && selection) { selection.hidden=false; selection.innerHTML=`Prohlížíte standard pro <strong>byt ${unit.id} · ${esc(unit.layout)}</strong>. <button type="button" class="text-link" data-unit="${unit.id}">Zpět do karty bytu</button>`; }
-    }
     requestAnimationFrame(()=>{ section.tabIndex=-1; section.focus({preventScroll:true}); section.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}); });
     history.pushState(null,'',`#${section.id}`);
   });

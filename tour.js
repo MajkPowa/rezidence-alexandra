@@ -77,14 +77,20 @@
   for(const {element,vector:[x,y,z]} of hotspots){const right=x*cy-y*sy,along=x*sy+y*cy,forward=along*cp+z*sp,up=-along*sp+z*cp;const px=w/2+(right/forward)/(tan*w/h)*w/2,py=h/2-(up/forward)/tan*h/2;const visible=ready&&forward>.05&&px>32&&px<w-32&&py>topLimit&&py<h-bottomLimit;element.hidden=!visible;if(visible){element.style.left=`${px}px`;element.style.top=`${py}px`;element.classList.toggle('label-left',px>w*.5);}}
  }
  function busy(value,label){stage.setAttribute('aria-busy',String(value));$('#loading').hidden=!value;if(label)$('#load-status').textContent=label;}
- async function navigate(id,selectedApartment=apartment,{historyMode='push'}={}){
+ async function navigate(id,selectedApartment=apartment,{historyMode='push',revealStage=false}={}){
   const node=selectedApartment.nodes.find(n=>n.id===id);if(!node)return;const initiatingElement=document.activeElement;const focusKind=initiatingElement?.closest('[data-node]')?'room':initiatingElement?.closest('[data-map-node]')?'map':initiatingElement?.closest('.hotspot,[data-adjacent]')?'canvas':null;requested={node,apartment:selectedApartment};const serial=++requestSerial;busy(true,`Vstupujeme: ${node.label}…`);$('#error-panel').hidden=true;
   try{
    const im=await image(gl?node.src:node.thumb);if(serial!==requestSerial)return;
    apartment=selectedApartment;current=node;view=defaultView(node);
    if(gl){upload(im);canvas.hidden=false;$('#fallback-image').hidden=true;}else{canvas.hidden=true;$('#fallback-image').src=node.thumb;$('#fallback-image').hidden=false;$('#navigation-hint').textContent='Váš prohlížeč zobrazuje náhledy. Místnosti můžete dál měnit v nabídce.';}
    ready=!!gl;busy(false);syncUI(historyMode);schedule();
-   if(focusKind&&!initiatingElement.isConnected&&document.activeElement===document.body){const focusTarget=focusKind==='room'?$(`[data-node="${CSS.escape(node.id)}"]`):focusKind==='map'?$(`[data-map-node="${CSS.escape(node.id)}"]`):canvas;focusTarget?.focus({preventScroll:true});}
+   const actionStillFocused=document.activeElement===initiatingElement||(document.activeElement===document.body&&!initiatingElement?.isConnected);
+   if(revealStage&&actionStillFocused){
+    const focusTarget=canvas.hidden?$('#room-title'):canvas;
+    if(canvas.hidden)focusTarget.setAttribute('tabindex','-1');
+    focusTarget.focus({preventScroll:true});
+    stage.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+   }else if(focusKind&&!initiatingElement.isConnected&&document.activeElement===document.body){const focusTarget=focusKind==='room'?$(`[data-node="${CSS.escape(node.id)}"]`):focusKind==='map'?$(`[data-map-node="${CSS.escape(node.id)}"]`):canvas;focusTarget?.focus({preventScroll:true});}
    for(const link of (node.links||[]).slice(0,2)){const adjacent=apartment.nodes.find(n=>n.id===link.to);if(adjacent?.preview)image(adjacent.preview).catch(()=>{});}
   }catch(error){if(serial!==requestSerial)return;console.warn('Panorama could not be displayed:',error.message);busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent=`Místnost „${node.label}“ se nepodařilo načíst. Zkuste to znovu nebo vyberte jinou místnost.`;}
  }
@@ -106,14 +112,14 @@
  $('#fullscreen').onclick=async()=>{if(stage.classList.contains('is-expanded')){expandStage(false);return;}try{if(document.fullscreenElement)await document.exitFullscreen();else if(stage.requestFullscreen)await stage.requestFullscreen();else expandStage(true);}catch(_){expandStage(true);}};
  document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){const name=['map','help'].find(n=>!$(`#${n}-panel`).hidden);if(name){e.preventDefault();togglePanel(name,false);$(`#${name}-toggle`).focus();return;}if(stage.classList.contains('is-expanded')){e.preventDefault();expandStage(false);$('#fullscreen').focus();}}
-  if(e.key==='Tab'&&(stage.classList.contains('is-expanded')||document.fullscreenElement===stage)){const focusable=[...stage.querySelectorAll('button:not(:disabled),a[href],canvas[tabindex="0"],[role="button"][tabindex="0"]')].filter(el=>!el.closest('[hidden]')&&el.getClientRects().length);const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&(document.activeElement===first||!stage.contains(document.activeElement))){e.preventDefault();last?.focus();}else if(!e.shiftKey&&(document.activeElement===last||!stage.contains(document.activeElement))){e.preventDefault();first?.focus();}}
+  if(e.key==='Tab'&&(stage.classList.contains('is-expanded')||document.fullscreenElement===stage)){const focusable=[...stage.querySelectorAll('button:not(:disabled),summary,a[href],canvas[tabindex="0"],[role="button"][tabindex="0"]')].filter(el=>!el.closest('[hidden]')&&el.getClientRects().length);const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&(document.activeElement===first||!stage.contains(document.activeElement))){e.preventDefault();last?.focus();}else if(!e.shiftKey&&(document.activeElement===last||!stage.contains(document.activeElement))){e.preventDefault();first?.focus();}}
  });
  document.addEventListener('fullscreenchange',()=>{const active=document.fullscreenElement===stage;fullscreenState(active);if(!active)$('#fullscreen').focus({preventScroll:true});schedule();});
  function togglePanel(name,open){const p=$(`#${name}-panel`),b=$(`#${name}-toggle`);const value=open??p.hidden;p.hidden=!value;b.setAttribute('aria-expanded',String(value));if(value){const other=name==='map'?'help':'map';$(`#${other}-panel`).hidden=true;$(`#${other}-toggle`).setAttribute('aria-expanded','false');p.scrollTop=0;$(`#${name}-close`).focus({preventScroll:true});}}
  for(const name of ['map','help']){$(`#${name}-toggle`).onclick=()=>togglePanel(name);$(`#${name}-close`).onclick=()=>{togglePanel(name,false);$(`#${name}-toggle`).focus();};}
  document.addEventListener('pointerdown',e=>{for(const name of ['map','help']){const panel=$(`#${name}-panel`);if(!panel.hidden&&!panel.contains(e.target)&&!$(`#${name}-toggle`).contains(e.target))togglePanel(name,false);}});
- $('#room-list').onclick=e=>{const b=e.target.closest('[data-node]');if(b)navigate(b.dataset.node);};
- $('#adjacent-rooms').onclick=e=>{const b=e.target.closest('[data-adjacent]');if(b)navigate(b.dataset.adjacent);};
+ $('#room-list').onclick=e=>{const b=e.target.closest('[data-node]');if(b)navigate(b.dataset.node,apartment,{revealStage:true});};
+ $('#adjacent-rooms').onclick=e=>{const b=e.target.closest('[data-adjacent]');if(b)navigate(b.dataset.adjacent,apartment,{revealStage:true});};
  function mapNavigate(e){const b=e.target.closest('[data-map-node]');if(b){navigate(b.dataset.mapNode);togglePanel('map',false);if(!canvas.hidden)canvas.focus({preventScroll:true});else $('#map-toggle').focus({preventScroll:true});}}
  $('#floor-map').onclick=mapNavigate;$('#map-room-list').onclick=mapNavigate;
  $('#floor-map').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){const b=e.target.closest('[data-map-node]');if(b){e.preventDefault();mapNavigate(e);}}};
@@ -125,7 +131,7 @@
  new ResizeObserver(schedule).observe(stage);
  async function load(){
   busy(true,'Načítání prohlídky…');$('#error-panel').hidden=true;
-  try{const r=await fetch('assets/walkthrough-v3/manifest.json?v=bathroom-20261018',{cache:'no-cache'});if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost'),'replace'))chooseApartment('3kk',null,'replace');}
+  try{const r=await fetch('assets/walkthrough-v3/manifest.json?v=bathroom-20261018',{cache:'no-cache'});if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button,.direction-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost'),'replace'))chooseApartment('3kk',null,'replace');}
   catch(_){busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent='Prohlídku se nepodařilo načíst. Zkuste stránku obnovit.';}
  }
  load();

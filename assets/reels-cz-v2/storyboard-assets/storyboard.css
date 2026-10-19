@@ -10,3 +10,25 @@
 
 @media(max-width:380px){.site-header nav{width:100%;max-width:100%;flex-wrap:wrap;column-gap:12px;row-gap:0}}
 
+/* Separate download collections clearly without oversized mobile headings. */
+#downloads h2{margin-bottom:24px}
+#downloads .context-copy>div{padding:24px 0;border-top:1px solid #ffffff30}
+#downloads .context-copy>div:first-child{padding-top:0;border-top:0}
+#downloads .context-copy>div:last-child{padding-bottom:0}
+#downloads .context-copy h3{font-size:clamp(24px,2.5vw,30px);line-height:1.22;letter-spacing:-.025em}
+#downloads .context-copy .source-links{margin-top:12px;gap:8px 20px}
+/* A storyboard should remain readable at every phone width, not only below 360px. */
+@media(max-width:600px){
+  .scene-card{grid-template-columns:minmax(0,1fr)}
+  .scene-image{width:min(64%,240px);margin:20px auto 0}
+  .scene-body{padding:24px}
+  .scene-body h4{font-size:28px}
+  .voice-block blockquote{font-size:23px;line-height:1.45}
+  .scene-kicker{font-size:11px}
+  .scene-kicker>span:last-child{display:block}
+  .scene-direction summary,.scene-direction p{font-size:14px}
+  .source-links>a{max-width:100%;overflow-wrap:anywhere}
+  .story-tabs button{min-width:0;flex-wrap:wrap;gap:4px 8px}
+  .story-tabs button>small{margin-left:0}
+}
+

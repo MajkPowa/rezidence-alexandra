@@ -22,10 +22,10 @@
   const polygonData = id => floorData()?.units.find(u => u.id === id);
   const badge = unit => `<span class="status-badge status-${status(unit).key}"><span class="availability-dot" aria-hidden="true"></span>${esc(status(unit).label)}</span>`;
   const signature = () => `${activeFloor}:${selectedId}:${projection}`;
-  let lastURLSignature = '', selectionInteracted = false;
+  let lastURLSignature = '', selectionInteracted = false, restoringURL = false;
 
   function updateURL() {
-    if (!selectionInteracted) return;
+    if (!selectionInteracted || restoringURL) return;
     if (signature() === lastURLSignature) return;
     const url = new URL(location.href);
     url.searchParams.set('podlazi', String(activeFloor));
@@ -187,7 +187,7 @@
       restoreCardFocus();
       return;
     }
-    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${unit.floor}. nadzemní podlaží</p>${selectedPlan(unit)}<dl class="map-card-data"><div><dt><span class="icon-label">${icon('plan', 'art')} <span>Dispozice</span></span></dt><dd>${esc(unit.layout)}</dd></div><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl>${window.AlexandraDetails?.cardHTML(unit) || ''}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><a class="text-link" href="#parkovani" data-section-link="parkovani">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni">Vybavení v ceně ${icon('arrow-up-right')}</a><button class="button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>`;
+    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${unit.floor}. nadzemní podlaží</p>${selectedPlan(unit)}<dl class="map-card-data"><div><dt><span class="icon-label">${icon('plan', 'art')} <span>Dispozice</span></span></dt><dd>${esc(unit.layout)}</dd></div><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl>${window.AlexandraDetails?.cardHTML(unit) || ''}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a><button class="button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>`;
     restoreCardFocus();
   }
 
@@ -197,7 +197,7 @@
     const next=Number(snapshot.filters.floor);
     const changed=Number.isInteger(next)&&next>=1&&next<=6&&next!==activeFloor;
     if(changed) { activeFloor=next; selectionInteracted=true; }
-    if (detail && snapshot.filters.floor==='all' && previousFloor && previousFloor!=='all') {
+    if (!restoringURL && detail && snapshot.filters.floor==='all' && previousFloor && previousFloor!=='all') {
       selectionInteracted=false;
       const url=new URL(location.href);
       url.searchParams.delete('podlazi');url.searchParams.delete('byt');
@@ -214,6 +214,27 @@
     selectionInteracted=true;
     catalog.setFilters({floor:String(floor)});
     $('#map-status-live').textContent=`Zobrazeno ${floor}. podlaží. Vyberte byt v půdorysu.`;
+  }
+
+  function restoreSelectionFromURL() {
+    if (!floors.length) return;
+    const url = new URL(location.href);
+    const requestedUnit = units.find(unit => unit.id === Number(url.searchParams.get('byt')));
+    const requestedFloor = Number(url.searchParams.get('podlazi'));
+    const validFloor = Number.isInteger(requestedFloor) && floors.some(floor => floor.floor === requestedFloor);
+    // History carries the selected floor/unit, not transient catalogue filters.
+    // Reset those filters so a valid deep-linked unit cannot remain disabled.
+    restoringURL = true;
+    activeFloor = requestedUnit?.floor || (validFloor ? requestedFloor : 2);
+    selectedId = requestedUnit?.id ?? null;
+    selectionInteracted = Boolean(requestedUnit || validFloor);
+    try {
+      catalog.setFilters({ floor: selectionInteracted ? String(activeFloor) : 'all', layout: 'all', area: 'all', status: 'all', favorites: false });
+      sync(null, true);
+      lastURLSignature = selectionInteracted ? signature() : '';
+    } finally {
+      restoringURL = false;
+    }
   }
   function chooseUnit(id) {
     if(!snapshot.filteredIds.includes(id)) return;
@@ -316,6 +337,7 @@
     root.querySelectorAll('[data-map-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mapView===projection)));
     drawStack();
     document.addEventListener('alexandra:catalog-change',event=>sync(event.detail));
+    window.addEventListener('popstate', restoreSelectionFromURL);
     // Opening the catalogue must retain the complete offer. Filter by floor only
     // when a visitor explicitly selects it, or follows a deep link to a floor/unit.
     if (requestedUnit || (Number.isInteger(requestedFloor) && floors.some(f=>f.floor===requestedFloor))) catalog.setFilters({floor:String(activeFloor)});
@@ -326,8 +348,7 @@
   initialize().catch(error=>{
     root.setAttribute('aria-busy','false');
     $('#explorer-loading').hidden=false;$('#explorer-workbench').hidden=true;$('#map-legend').hidden=true;
-    $('#explorer-loading').innerHTML=`<p>Interaktivní mapu se nepodařilo načíst.</p><a href="#catalog-list">Pokračovat do seznamu bytů ${icon('arrow-down')}</a>`;
-    document.querySelector('#catalog-list').open=true;
+    $('#explorer-loading').innerHTML=`<p>Interaktivní mapu se nepodařilo načíst.</p><a href="#cenik">Pokračovat do seznamu bytů ${icon('arrow-down')}</a>`;
     console.warn('Apartment selector:',error.message);
   });
 })();

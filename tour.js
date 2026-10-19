@@ -55,7 +55,7 @@
   $$('[data-apartment]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.apartment===apartment.id)));
   $('#room-list').innerHTML=apartment.nodes.map((n,i)=>`<button type="button" class="room-card ${visited.has(n.id)?'visited':''}" data-node="${escape(n.id)}" aria-current="${n.id===current.id}" aria-label="Přejít do místnosti: ${escape(n.label)}"><img src="${escape(n.thumb)}" alt="" loading="lazy" width="480" height="290"><small aria-hidden="true">${visited.has(n.id)?'✓':String(i+1).padStart(2,'0')}</small><span>${escape(n.label)}</span></button>`).join('');
   $('#visited-count').textContent=`Prohlédnuto ${visited.size} z ${apartment.nodes.length} stanovišť`;
-  $('#adjacent-rooms').innerHTML=(current.links||[]).map(link=>{const n=apartment.nodes.find(n=>n.id===link.to);return n?`<button type="button" data-adjacent="${escape(n.id)}">${escape(n.label)} <span aria-hidden="true">→</span></button>`:'';}).join('');
+  $('#adjacent-rooms').innerHTML=(current.links||[]).map(link=>{const n=apartment.nodes.find(n=>n.id===link.to);return n?`<button type="button" data-adjacent="${escape(n.id)}">${escape(n.label)} <span aria-hidden="true">${window.AlexandraArrows.svg('arrow-right')}</span></button>`:'';}).join('');
   renderMap();buildHotspots();updateURL(historyMode);
  }
  function renderMap(){
@@ -67,7 +67,7 @@
  }
  function buildHotspots(){
   hotspots=[];$('#hotspots').replaceChildren();
-  for(const link of current.links||[]){const target=apartment.nodes.find(n=>n.id===link.to);if(!target)continue;const b=document.createElement('button');b.type='button';b.className='hotspot';b.setAttribute('aria-label',`Přejít: ${target.label}`);b.innerHTML=`<span class="dot" aria-hidden="true">⌃</span><span class="hotspot-label">${escape(target.label)}</span>`;b.onclick=()=>navigate(target.id);$('#hotspots').append(b);const p=link.portal||[target.position[0],target.position[1],.45];hotspots.push({element:b,vector:p.map((v,i)=>v-current.position[i])});}
+  for(const link of current.links||[]){const target=apartment.nodes.find(n=>n.id===link.to);if(!target)continue;const b=document.createElement('button');b.type='button';b.className='hotspot';b.setAttribute('aria-label',`Přejít: ${target.label}`);b.innerHTML=`<span class="dot" aria-hidden="true">${window.AlexandraArrows.svg('chevron-up')}</span><span class="hotspot-label">${escape(target.label)}</span>`;b.onclick=()=>navigate(target.id);$('#hotspots').append(b);const p=link.portal||[target.position[0],target.position[1],.45];hotspots.push({element:b,vector:p.map((v,i)=>v-current.position[i])});}
   projectHotspots();
  }
  function projectHotspots(){

@@ -1,0 +1,10 @@
+/* Inline vectors retain Alexandra's linework on mobile, independent of emoji fonts. */
+svg.alex-arrow {
+  display:inline-block; width:20px; height:20px; flex:none;
+  vertical-align:-.2em; fill:none; stroke:currentColor; stroke-width:1.5;
+  stroke-linecap:round; stroke-linejoin:round; pointer-events:none;
+}
+.view-controls svg.alex-arrow,.image-step svg.alex-arrow,.image-arrow svg.alex-arrow {
+  width:24px; height:24px;
+}
+.hotspot .dot>svg.alex-arrow { display:block; width:26px; height:26px; }

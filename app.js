@@ -83,10 +83,8 @@
   $('#privacy-open').addEventListener('click', () => openDialog($('#privacy-dialog')));
 
   const architecture = [
-    { src: 'assets/exterior-balconies.webp', caption: 'Levá strana · varianta s balkony', alt: 'Architektonická vizualizace levé strany domu s balkony' },
-    { src: 'assets/exterior-no-balconies.webp', caption: 'Levá strana · varianta bez balkonů', alt: 'Architektonická vizualizace levé strany domu bez balkonů' },
-    { src: 'assets/exterior-rear.webp', caption: 'Zadní pohled · zdrojová vizualizace', alt: 'Architektonická vizualizace zadní strany domu' },
-    { src: 'assets/exterior-rear-no-balconies.webp', caption: 'Zadní pohled · varianta bez balkonů vlevo', alt: 'Zadní strana domu ve variantě bez balkonů vlevo' },
+    { src: 'assets/exterior-no-balconies.webp', caption: 'Levá strana · bez bočních balkonů', alt: 'Architektonická vizualizace levé strany domu bez bočních balkonů' },
+    { src: 'assets/exterior-rear-no-balconies.webp', caption: 'Zadní pohled · bez bočních balkonů', alt: 'Zadní strana domu bez bočních balkonů' },
     { src: 'assets/exterior-hero.webp', caption: 'Pravý přední pohled · zdrojová vizualizace', alt: 'Rezidence Alexandra z pravé přední strany' },
     { src: 'assets/balcony-detail.webp', caption: 'Balkon · zdrojová vizualizace', alt: 'Detail návrhu balkonů' },
     { src: 'assets/facade-detail.webp', caption: 'Stínolam · zdrojová vizualizace', alt: 'Detail návrhu stínolamu a fasády' }
@@ -118,7 +116,7 @@
   let galleryIndex = 0;
   $$('[data-variant]').forEach(button => button.addEventListener('click', () => {
     $$('[data-variant]').forEach(item => { item.classList.toggle('active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
-    const index = { balconies: 0, 'no-balconies': 1, rear: 2 }[button.dataset.variant];
+    const index = { 'no-balconies': 0, rear: 1 }[button.dataset.variant];
     $('#architecture-image').src = architecture[index].src;
     $('#architecture-image').alt = architecture[index].alt;
     $('#architecture-caption').textContent = architecture[index].caption;

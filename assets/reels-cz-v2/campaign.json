@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "project": "Rezidence Alexandra",
   "concept": "Vaše nová kapitola. Zblízka.",
   "fps": 24,
@@ -185,7 +185,7 @@
     {
       "id": "architecture",
       "title": "Dům v souvislostech",
-      "duration": 30,
+      "duration": 20,
       "cta": {
         "headline": "Vaše nová kapitola.",
         "label": "Prohlédnout celý dům",
@@ -232,37 +232,13 @@
         {
           "id": "04",
           "storyboardId": "A04",
-          "shot": "exterior-a",
-          "duration": 5,
-          "voice": "voice/architecture-04.wav",
-          "voiceText": "Levá strana má dvě navržené podoby. Prohlédněte si obě.",
-          "type": "footage",
-          "variantLabel": "Varianta A · bez bočních balkonů",
-          "visual": "Levá přední varianta A z původního samostatného snímku. Celá boční fasáda musí být čitelná; jasné označení bez bočních balkonů po celých pět sekund.",
-          "motion": "Téměř statický záběr. Žádný morph mezi variantami; následuje čistý střih."
-        },
-        {
-          "id": "05",
-          "storyboardId": "A05",
-          "shot": "exterior-b",
-          "duration": 5,
-          "voice": "voice/architecture-05.wav",
-          "voiceText": "Balkony jsou ve dvou variantách. Konečná podoba se upřesňuje.",
-          "type": "footage",
-          "variantLabel": "Varianta B · s bočními balkony",
-          "visual": "Levá přední varianta B z původního samostatného snímku. Přiblížit kompozici předchozímu záběru bez přegenerování geometrie; zobrazit přidané boční balkony.",
-          "motion": "Téměř statický, stejná míra pohybu jako varianta A. Rozdíl fasád odhalí střih, nikoli animované přirůstání balkonů."
-        },
-        {
-          "id": "06",
-          "storyboardId": "A06",
           "shot": "hero-street",
           "duration": 5,
           "voice": "voice/architecture-06.wav",
           "voiceText": "A pak si vyberte vlastní perspektivu. Objevte Alexandru na webu.",
           "type": "endcard",
           "variantLabel": "",
-          "visual": "Pravý přední celek a závěrečná značka. Odkázat na model domu s oběma variantami; nevkládat neověřený mapový pin nebo adresu.",
+          "visual": "Pravý přední celek a závěrečná značka. Odkázat na model domu bez bočních balkonů; nevkládat neověřený mapový pin nebo adresu.",
           "motion": "Doznění do statické závěrečné karty."
         }
       ]

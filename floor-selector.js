@@ -12,7 +12,7 @@
   const area = value => `${number.format(value)} m²`;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   const status = unit => inventory.status(unit);
-  let floors = [], activeFloor = 2, selectedId = null, projection = window.matchMedia('(max-width:900px)').matches ? 'plan' : 'space', snapshot, unitPicker, buildingVariant = 'balconies';
+  let floors = [], activeFloor = 2, selectedId = null, projection = window.matchMedia('(max-width:900px)').matches ? 'plan' : 'space', snapshot, unitPicker;
   const safeImage = path => typeof path === 'string' && /^assets\/floors\/[a-z0-9-]+\.webp$/.test(path);
   const validPoint = p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite);
   const path = points => points.map((p,i) => `${i ? 'L' : 'M'}${p[0].toFixed(2)} ${p[1].toFixed(2)}`).join(' ') + 'Z';
@@ -50,7 +50,7 @@
     stack.setAttribute('viewBox', '465 65 1000 660');
     stack.setAttribute('aria-label', 'Vyberte jedno ze šesti podlaží na vizualizaci domu');
     stack.setAttribute('aria-describedby', 'building-selection-caption');
-    stack.innerHTML = `<title>Rezidence Alexandra · výběr podlaží</title><image id="building-selection-image" href="assets/exterior-${buildingVariant}.webp" width="1672" height="941"/>` + [...floors].reverse().map(f => {
+    stack.innerHTML = `<title>Rezidence Alexandra · výběr podlaží</title><image id="building-selection-image" href="assets/exterior-no-balconies.webp" width="1672" height="941"/>` + [...floors].reverse().map(f => {
       const index = 6 - f.floor, upper = levels[index], lower = levels[index + 1];
       const count = units.filter(u => u.floor === f.floor).length;
       const y = (upper[2][1] + lower[2][1]) / 2;
@@ -60,15 +60,7 @@
     $('#floor-buttons').innerHTML = [...floors].reverse().map(f=>`<button type="button" data-map-floor="${f.floor}" aria-pressed="${f.floor === activeFloor}"><span class="building-floor-name">${f.floor}. NP</span><span class="building-floor-availability" data-floor-summary="${f.floor}"></span></button>`).join('');
     const caption = $('.building-caption');
     caption.id = 'building-selection-caption';
-    caption.innerHTML = 'Vyberte podlaží přímo na vizualizaci nebo tlačítkem. Hranice podlaží jsou orientační; rozložení a dostupnost jednotlivých bytů ukazuje půdorys níže. <strong>Obě varianty bočních balkonů čekají na potvrzení.</strong>';
-    if (!$('.building-selection-variants')) {
-      const variants = document.createElement('div');
-      variants.className = 'building-selection-variants';
-      variants.setAttribute('role', 'group');
-      variants.setAttribute('aria-label', 'Návrhová varianta bočních balkonů');
-      variants.innerHTML = '<button type="button" data-building-variant="no-balconies" aria-pressed="false">A · bez bočních balkonů</button><button type="button" data-building-variant="balconies" aria-pressed="true">B · s bočními balkony</button>';
-      $('.building-picker').insertBefore(variants, stack);
-    }
+    caption.innerHTML = 'Vyberte podlaží přímo na vizualizaci nebo tlačítkem. Hranice podlaží jsou orientační; rozložení a dostupnost jednotlivých bytů ukazuje půdorys níže. <strong>Zobrazená podoba domu je bez bočních balkonů.</strong>';
     if (!$('#building-selection-units')) {
       const strip=document.createElement('div');
       strip.id='building-selection-units';
@@ -248,14 +240,6 @@
   root.addEventListener('click', event=>{
     const buildingUnit=event.target.closest('[data-building-unit]');
     if (buildingUnit) { chooseUnit(Number(buildingUnit.dataset.buildingUnit)); return; }
-    const variant=event.target.closest('[data-building-variant]');
-    if (variant && ['balconies','no-balconies'].includes(variant.dataset.buildingVariant)) {
-      buildingVariant=variant.dataset.buildingVariant;
-      $('#building-selection-image').setAttribute('href',`assets/exterior-${buildingVariant}.webp`);
-      root.querySelectorAll('[data-building-variant]').forEach(button=>button.setAttribute('aria-pressed',String(button===variant)));
-      $('#map-status-live').textContent=buildingVariant==='balconies'?'Varianta B: dům s bočními balkony. Konečné řešení čeká na potvrzení.':'Varianta A: dům bez bočních balkonů. Konečné řešení čeká na potvrzení.';
-      return;
-    }
     const jump = event.target.closest('.map-mobile-jump');
     if (jump) {
       event.preventDefault();

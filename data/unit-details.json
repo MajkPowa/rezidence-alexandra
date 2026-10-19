@@ -77,7 +77,7 @@
   },
   "balconies": {
     "status": "awaiting_final_design",
-    "message": "Výměry jsou převzaty z aktuálního ceníku. Konečné řešení balkonů čeká na upřesnění projektanta."
+    "message": "Na webu prezentujeme dům bez bočních balkonů. Výměry balkonů u jednotlivých bytů vycházejí z dodaného ceníku; konečné provedení a rozsah ploch potvrdí prodejce."
   },
   "units": {
     "51": {

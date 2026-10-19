@@ -55,7 +55,6 @@
 
   const model = document.querySelector('#building');
   if (!model) return;
-  const variant = document.querySelector('#variant');
   const status = document.querySelector('#building-status');
   const loading = document.querySelector('#building-loading');
   const error = document.querySelector('#building-error');
@@ -65,8 +64,8 @@
   const cameraButtons = [...document.querySelectorAll('[data-camera-action], [data-orbit]')];
   let ready = false;
   let loadTimer;
-  const srcForVariant = () => `assets/3d/exterior-${variant.value === 'with' ? 'with' : 'no'}-balconies.glb`;
-  const variantName = () => variant.value === 'with' ? 'Varianta B · s bočními balkony' : 'Varianta A · bez bočních balkonů';
+  const modelSource = 'assets/3d/exterior-no-balconies.glb';
+  const modelDescription = 'bez bočních balkonů';
 
   function setRotation(on) {
     on = Boolean(on && ready && !motion.matches);
@@ -94,8 +93,8 @@
     setRotation(false);
     setBusy(true);
     error.hidden = true;
-    status.textContent = `Načítání modelu — ${variantName()}.`;
-    model.alt = `Prostorový model domu Rezidence Alexandra. ${variantName()}.`;
+    status.textContent = `Načítání modelu — ${modelDescription}.`;
+    model.alt = `Prostorový model domu Rezidence Alexandra. ${modelDescription}.`;
     loadTimer = setTimeout(showLoadError, 45000);
   }
   function clearPreset() {
@@ -111,7 +110,7 @@
     clearTimeout(loadTimer);
     setBusy(false);
     error.hidden = true;
-    status.textContent = `Připraveno k prohlížení — ${variantName()}.`;
+    status.textContent = `Připraveno k prohlížení — ${modelDescription}.`;
   });
   model.addEventListener('error', showLoadError);
   model.addEventListener('camera-change', event => {
@@ -123,10 +122,6 @@
   ['pointerdown', 'pointerenter', 'focusin'].forEach(name => model.addEventListener(name, () => setRotation(false)));
   document.querySelector('.building-controls').addEventListener('focusin', event => {
     if (event.target !== rotate) setRotation(false);
-  });
-  variant.addEventListener('change', () => {
-    beginLoad();
-    model.src = srcForVariant();
   });
   rotate.addEventListener('click', () => {
     setRotation(!model.hasAttribute('auto-rotate'));
@@ -150,7 +145,7 @@
   document.querySelector('#building-retry').addEventListener('click', () => {
     beginLoad();
     model.removeAttribute('src');
-    requestAnimationFrame(() => { model.src = srcForVariant(); });
+    requestAnimationFrame(() => { model.src = modelSource; });
   });
   motion.addEventListener('change', () => {
     setRotation(false);
@@ -172,7 +167,7 @@
     if (model.loaded) {
       clearTimeout(loadTimer);
       setBusy(false);
-      status.textContent = `Připraveno k prohlížení — ${variantName()}.`;
+      status.textContent = `Připraveno k prohlížení — ${modelDescription}.`;
     }
   });
 })();

@@ -13,20 +13,20 @@
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.purchaseView === view)));
   }
   function fromHash() {
-    if (['#vyber-v-dome','#map-unit-card','#floor-explorer'].includes(location.hash)) setView('model');
-    else if (['#byty','#cenik'].includes(location.hash) || !location.hash) setView('catalog');
+    if (['#byty','#vyber-v-dome','#map-unit-card','#floor-explorer'].includes(location.hash) || !location.hash) setView('model');
+    else if (location.hash === '#cenik') setView('catalog');
   }
   buttons.forEach(button => button.addEventListener('click', () => {
     setView(button.dataset.purchaseView);
     const url = new URL(location.href);
-    url.hash = button.dataset.purchaseView === 'model' ? 'vyber-v-dome' : 'byty';
+    url.hash = button.dataset.purchaseView === 'model' ? 'vyber-v-dome' : 'cenik';
     history.replaceState(null, '', url);
   }));
   document.addEventListener('click', event => {
     const link = event.target.closest('a[href^="#"]');
     if (!link) return;
-    if (['#vyber-v-dome','#map-unit-card','#floor-explorer'].includes(link.hash)) setView('model');
-    else if (['#byty','#cenik'].includes(link.hash)) setView('catalog');
+    if (['#byty','#vyber-v-dome','#map-unit-card','#floor-explorer'].includes(link.hash)) setView('model');
+    else if (link.hash === '#cenik') setView('catalog');
   });
   function describeFilters() {
     const {filters: state} = catalog.snapshot();
@@ -49,5 +49,5 @@
   window.addEventListener('hashchange', fromHash);
   window.addEventListener('popstate', fromHash);
   document.addEventListener('alexandra:catalog-change', describeFilters);
-  setView('catalog'); fromHash(); describeFilters();
+  setView('model'); fromHash(); describeFilters();
 })();

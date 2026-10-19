@@ -1,5 +1,5 @@
 ALEXANDRA — TEXTY K FILMOVÉ KOLEKCI
-Pracovní publikační podklady · 18. 10. 2026
+Pracovní publikační podklady · 19. 10. 2026
 
 01 / HERO — VAŠE NOVÁ KAPITOLA
 Soubor: reels/hero.mp4 · 30 sekund
@@ -36,10 +36,10 @@ Alt popis: Návrh interiéru jednoho typového 2+kk. Kuchyně s šedými dvířk
 
 
 03 / ARCHITEKTURA — DŮM V SOUVISLOSTECH
-Soubor: reels/architecture.mp4 · 30 sekund
+Soubor: reels/architecture.mp4 · 20 sekund
 
 Popisek:
-Poznejte Alexandru zblízka i v celku. Světlá fasáda, tmavé balkony a výrazné svislé linie. Levou stranu ukazujeme ve dvou označených návrhových variantách — jejich konečná podoba se upřesňuje.
+Poznejte Alexandru zblízka i v celku. Světlá fasáda, tmavé balkony a výrazné svislé linie. Prezentujeme podobu domu bez bočních balkonů.
 
 Prohlédněte si celý dům:
 https://majkpowa.github.io/rezidence-alexandra/building.html
@@ -49,7 +49,7 @@ Návrhová AI vizualizace. Okolí vychází z dodaných obrazových podkladů; r
 #RezidenceAlexandra #Otrokovice #Architektura
 
 CTA: Prohlédnout celý dům
-Alt popis: Návrhové pohledy na Rezidenci Alexandra s ulicí a sousedními budovami podle projektových vizualizací. Detail vstupu a fasády, poté samostatně označená varianta A bez bočních balkonů a varianta B s bočními balkony. Konečná varianta není potvrzena. Návrhová AI vizualizace.
+Alt popis: Návrhové pohledy na Rezidenci Alexandra s ulicí a sousedními budovami podle projektových vizualizací. Detail vstupu a fasády, poté závěrečná pozvánka k prohlídce modelu domu bez bočních balkonů. Návrhová AI vizualizace.
 
 
 04 / BUMPER — KRÁTKÁ POZVÁNKA

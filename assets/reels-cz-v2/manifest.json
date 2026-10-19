@@ -32,7 +32,6 @@
     "posters/home.jpg",
     "image/arrival.jpg",
     "image/exterior-a.jpg",
-    "image/exterior-b.jpg",
     "image/family-living.jpg",
     "image/hero-street.jpg",
     "image/home-bathroom.jpg",
@@ -42,7 +41,6 @@
     "image/studio-living.jpg",
     "image/arrival.webp",
     "image/exterior-a.webp",
-    "image/exterior-b.webp",
     "image/family-living.webp",
     "image/hero-street.webp",
     "image/home-bathroom.webp",
@@ -143,11 +141,11 @@
           }
         ],
         "format": {
-          "duration": "30.000000",
-          "size": "63383125"
+          "duration": "20.000000",
+          "size": "29354615"
         }
       },
-      "sha256": "4d65d3c9704bcabdc8411fa69429722cc76c4ff9868521a02e0aa734baf0c461"
+      "sha256": "d2ce27558848071f3583d2fcb0cef433b3264b2afe86df236e721eb96af6d84c"
     },
     {
       "id": "bumper6",
@@ -179,5 +177,6 @@
       },
       "sha256": "a5aa0b2bb608095f5347dbbb875841b4ff5f694590db8cb28f971420637ff93d"
     }
-  ]
+  ],
+  "revision": "2026-10-19: podoba domu bez bočních balkonů; architecture 20 s."
 }

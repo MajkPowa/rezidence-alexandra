@@ -26,31 +26,11 @@ balkony a výrazné
 svislé linie.
 
 7
-00:00:15,208 --> 00:00:17,750
-Levá strana má dvě
-navržené podoby.
-
-8
-00:00:17,750 --> 00:00:19,167
-Prohlédněte si obě.
-
-9
-00:00:20,208 --> 00:00:22,208
-Balkony jsou ve dvou
-variantách.
-
-10
-00:00:22,208 --> 00:00:24,000
-Konečná podoba se
-upřesňuje.
-
-11
-00:00:25,208 --> 00:00:27,625
+00:00:15,208 --> 00:00:17,625
 A pak si vyberte vlastní
 perspektivu.
 
-12
-00:00:27,625 --> 00:00:29,375
+8
+00:00:17,625 --> 00:00:19,375
 Objevte Alexandru na
 webu.
-

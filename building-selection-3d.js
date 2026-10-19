@@ -47,8 +47,7 @@
     const colors = { available:'#4b805a', reserved:'#b17c2f', sold:'#aa5552', unknown:'#8d968c' };
     const labels = { available:'Volný', reserved:'Rezervovaný', sold:'Prodaný', unknown:'Dostupnost na dotaz' };
     let model, ready = false, loadTimer, mode = 'render', content = 'architecture', requestedSrc = '', loadingSource = '', geometry, geometryPromise, requestNumber = 0, lastFloor = 2;
-    const selectedVariant = () => explorer.querySelector('[data-building-variant][aria-pressed="true"]')?.dataset.buildingVariant || 'balconies';
-    const srcForVariant = () => content === 'availability' ? (isolate.checked ? `assets/3d/availability-floor-${activeFloor()}.glb` : 'assets/3d/availability-building.glb') : `assets/3d/exterior-${selectedVariant() === 'balconies' ? 'with' : 'no'}-balconies.glb`;
+    const srcForVariant = () => content === 'availability' ? (isolate.checked ? `assets/3d/availability-floor-${activeFloor()}.glb` : 'assets/3d/availability-building.glb') : 'assets/3d/exterior-no-balconies.glb';
     const activeFloor = () => Number(facade.querySelector('[data-map-floor][aria-pressed="true"]')?.dataset.mapFloor) || 2;
     const selectedUnit = () => Number(explorer.querySelector('#building-selection-units [aria-pressed="true"]')?.dataset.buildingUnit) || null;
     const unitStatus = unit => { const key = inventory?.status(unit)?.key; return Object.hasOwn(colors,key) ? key : 'unknown'; };
@@ -75,7 +74,7 @@
         : 'Tažením otočíte dům, dvěma prsty nebo kolečkem přiblížíte. Klepnutím na číslo vyberete podlaží. Barvy bytů najdete v režimu „Dostupnost bytů“.';
       panel.querySelector('.building-selection-3d-note').innerHTML = content === 'availability'
         ? '<strong>Prostorové rozložení podle půdorysů.</strong> Barevné objemy vycházejí z hranic bytů ve zdrojových výkresech; šedé společné prostory nejsou byty. Barvy se aktualizují ze stejného seznamu dostupnosti jako ceník. U nepotvrzených stavů uvádíme „Na dotaz“. Jde o orientační schéma bez balkonů, nikoli dokončenou architekturu či právní hranice jednotek.'
-        : '<strong>Orientační prostorová rekonstrukce.</strong> Model vychází z dostupných výkresů a vizualizací, nejde o závazné provedení stavby. Obě varianty bočních balkonů čekají na potvrzení.';
+        : '<strong>Orientační prostorová rekonstrukce.</strong> Zobrazujeme dům bez bočních balkonů. Model vychází z dostupných výkresů a vizualizací, nejde o závazné provedení stavby.';
     }
 
     function syncAvailability() {
@@ -227,7 +226,7 @@
         const src = srcForVariant();
         const changed = requestedSrc !== src;
         requestedSrc = src;
-        model.alt = content === 'availability' ? `Prostorové rozložení a dostupnost bytů Rezidence Alexandra podle zdrojových půdorysů. ${isolate.checked ? `${activeFloor()}. nadzemní podlaží.` : 'Celý dům, šest podlaží.'} Klepnutím vyberte byt; barvu doplňuje text dostupnosti v kartě.` : `Orientační prostorový model Rezidence Alexandra. ${selectedVariant() === 'balconies' ? 'Varianta B s bočními balkony.' : 'Varianta A bez bočních balkonů.'} Vyberte číslo podlaží.`;
+        model.alt = content === 'availability' ? `Prostorové rozložení a dostupnost bytů Rezidence Alexandra podle zdrojových půdorysů. ${isolate.checked ? `${activeFloor()}. nadzemní podlaží.` : 'Celý dům, šest podlaží.'} Klepnutím vyberte byt; barvu doplňuje text dostupnosti v kartě.` : 'Orientační prostorový model Rezidence Alexandra bez bočních balkonů. Vyberte číslo podlaží.';
         drawHotspots();
         setCameraForSource();
         if (retry && !changed) {
@@ -255,7 +254,6 @@
       const unitButton = event.target.closest('[data-volume-unit]');
       if (unitButton) { chooseVolume(Number(unitButton.dataset.volumeUnit));return; }
       if (event.target.closest('[data-building-unit],[data-map-unit]')) { queueMicrotask(syncFloor);return; }
-      if (event.target.closest('[data-building-variant]') && mode === '3d' && content === 'architecture') { loadModel(); return; }
       const orbitButton = event.target.closest('[data-building-orbit]');
       if (orbitButton && ready) {
         model.cameraOrbit = orbitButton.dataset.buildingOrbit;

@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,1.8)" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="document-title"><title id="document-title">Dokumentace</title><path d="M14 8h25l11 11v37H14zM39 8v11h11M21 44h22M21 49h15M10 19H8v40h31" />
+    <path d="M22 36V25h18v11M22 30h18M28 25v11M34 25v11M21 36h21" stroke="var(--icon-accent,currentColor)" />
+  </svg>

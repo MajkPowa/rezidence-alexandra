@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,1.8)" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="fittings-title"><title id="fittings-title">Vybavení a zařizovací předměty</title><path d="M8 50h29M15 50V35a9 9 0 0 1 9-9h11v6H24a3 3 0 0 0-3 3v15M35 26v10h-6v-4M15 42h6M18 26v-8M18 18h14M45 12h10v40H45zM50 26V16M50 26H39v5h11" />
+    <path d="M29 41v4M35 41v4M50 39v5M11 56h45" stroke="var(--icon-accent,currentColor)" />
+  </svg>

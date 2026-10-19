@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,1.8)" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="kitchen-title"><title id="kitchen-title">Kuchyně</title><path d="M7 31h36V20h14v34H7zM7 35h40V24h10M24 35v19M43 35v19M47 24v30M12 40h6M30 40h7M51 30v6" />
+    <path d="M11 29v-9h24v9M11 20l5-10h14l5 10M17 10V7M28 10V7M14 31h6M26 31h6" />
+    <path d="M48 20v-9a3 3 0 0 1 6 0v2M46 20h10" stroke="var(--icon-accent,currentColor)" />
+    <path d="M7 58h50" />
+  </svg>

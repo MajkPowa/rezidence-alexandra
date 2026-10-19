@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  const icon = (name, variant = 'ui') => window.AlexandraIcons?.svg(name, variant) || '';
   const root = document.querySelector('#floor-explorer');
   if (!root) return;
   const $ = selector => root.querySelector(selector);
@@ -54,7 +55,7 @@
     const f = floorData();
     $('#map-floor-title').textContent = `${activeFloor}. nadzemní podlaží`;
     $('#map-floor-pdf').href = `plans/floor-${activeFloor}.pdf`;
-    $('#map-floor-pdf').textContent = 'Původní výkres ↗';
+    $('#map-floor-pdf').innerHTML = `Původní výkres ${icon('arrow-up-right')}`;
     const normalizedOutline = normalized(f,f.outline);
     const edges = normalizedOutline.map((p,i)=>{
       const q = normalizedOutline[(i+1)%normalizedOutline.length];
@@ -95,18 +96,21 @@
     Object.keys(counts).forEach(key=>$('#legend-'+key).textContent=String(counts[key]));
     const unknown=units.filter(u=>status(u).key==='unknown').length;
     const note=document.querySelector('#availability-note');
-    if(note) note.textContent=unknown===units.length?'Stavy prodeje zatím nejsou potvrzené. Dostupnost jednotlivých bytů ověří prodejce.':`Barevné označení ukazuje potvrzené stavy. ${unknown ? `U ${unknown} jednotek je dostupnost na dotaz.` : ''}`;
+    if (note) {
+      const message=unknown===units.length?'Stavy prodeje zatím nejsou potvrzené. Dostupnost jednotlivých bytů ověří prodejce.':`Barevné označení ukazuje potvrzené stavy. ${unknown ? `U ${unknown} jednotek je dostupnost na dotaz.` : ''}`;
+      note.innerHTML=`${icon('info')} <span>${esc(message)}</span>`;
+    }
   }
 
   function selectedPlan(unit) {
     const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'map');
     if (furnished) return furnished;
     const f=floorData(), shape=polygonData(unit.id);
-    if(!shape) return `<a class="map-card-plan" href="plans/floor-${unit.floor}.pdf" target="_blank" rel="noopener"><img src="${esc(f.image)}" alt="Původní půdorys ${unit.floor}. NP"><span>Celé podlaží · otevřít PDF ↗</span></a>`;
+    if(!shape) return `<a class="map-card-plan" href="plans/floor-${unit.floor}.pdf" target="_blank" rel="noopener"><img src="${esc(f.image)}" alt="Původní půdorys ${unit.floor}. NP"><span>Celé podlaží · otevřít PDF ${icon('arrow-up-right')}</span></a>`;
     const points=shape.polygon, xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
     const x=Math.min(...xs),y=Math.min(...ys),w=Math.max(...xs)-x,h=Math.max(...ys)-y,pad=Math.min(w,h)*.045;
     const pdf=unit.plan || `plans/floor-${unit.floor}.pdf`;
-    return `<a class="map-card-plan" href="${esc(pdf)}" target="_blank" rel="noopener" aria-label="Otevřít ${unit.plan?'půdorys bytu':'zdrojový půdorys podlaží'} v PDF"><svg viewBox="${x-pad} ${y-pad} ${w+pad*2} ${h+pad*2}" role="img" aria-label="Výřez rozložení bytu ${unit.id} ze zdrojového půdorysu ${unit.floor}. NP"><defs><clipPath id="selected-unit-clip"><path d="${path(points)}"/></clipPath></defs><image href="${esc(f.image)}" width="${f.width}" height="${f.height}" clip-path="url(#selected-unit-clip)"/></svg><span>Rozložení bytu · zdrojový výkres ↗</span></a>`;
+    return `<a class="map-card-plan" href="${esc(pdf)}" target="_blank" rel="noopener" aria-label="Otevřít ${unit.plan?'půdorys bytu':'zdrojový půdorys podlaží'} v PDF"><svg viewBox="${x-pad} ${y-pad} ${w+pad*2} ${h+pad*2}" role="img" aria-label="Výřez rozložení bytu ${unit.id} ze zdrojového půdorysu ${unit.floor}. NP"><defs><clipPath id="selected-unit-clip"><path d="${path(points)}"/></clipPath></defs><image href="${esc(f.image)}" width="${f.width}" height="${f.height}" clip-path="url(#selected-unit-clip)"/></svg><span>Rozložení bytu · zdrojový výkres ${icon('arrow-up-right')}</span></a>`;
   }
 
   function drawCard() {
@@ -120,11 +124,11 @@
       target?.focus({preventScroll:true});
     };
     if(!unit){
-      card.innerHTML=`<div class="map-card-empty"><p class="explorer-step"><b>03</b> VÁŠ VÝBĚR</p><h3>${snapshot.filteredIds.some(id=>units.find(u=>u.id===id)?.floor===activeFloor)?'Prohlédněte si byt.':'Zkuste jiný výběr.'}</h3><p>Vyberte byt v půdorysu, jiné podlaží nebo upravte filtry dispozice a dostupnosti.</p><button class="button button-dark" data-map-reset>Zrušit filtry ↗</button></div>`;
+      card.innerHTML=`<div class="map-card-empty"><p class="explorer-step"><b>03</b> VÁŠ VÝBĚR</p><h3>${snapshot.filteredIds.some(id=>units.find(u=>u.id===id)?.floor===activeFloor)?'Prohlédněte si byt.':'Zkuste jiný výběr.'}</h3><p>Vyberte byt v půdorysu, jiné podlaží nebo upravte filtry dispozice a dostupnosti.</p><button class="button button-dark" data-map-reset>Zrušit filtry ${icon('arrow-up-right')}</button></div>`;
       restoreCardFocus();
       return;
     }
-    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.6a5.1 5.1 0 0 0-7.2 0L12 5.9l-1.3-1.3a5.1 5.1 0 0 0-7.2 7.2L12 20.3l8.5-8.5a5.1 5.1 0 0 0 0-7.2Z"/></svg></button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${unit.floor}. nadzemní podlaží</p>${selectedPlan(unit)}<dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div></dl><p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><button class="button" data-unit="${unit.id}">Detail bytu <span aria-hidden="true">↗</span></button><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ↗</a></div>${unit.id===53?'<p class="map-card-caveat">Ceník uvádí jednotku 53. Její poloha není ve výkresu potvrzena; byt 51 jí automaticky nepřiřazujeme.</p>':''}`;
+    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${unit.floor}. nadzemní podlaží</p>${selectedPlan(unit)}<dl class="map-card-data"><div><dt><span class="icon-label">${icon('plan', 'art')} <span>Dispozice</span></span></dt><dd>${esc(unit.layout)}</dd></div><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div></dl><p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><button class="button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>${unit.id===53?'<p class="map-card-caveat">Ceník uvádí jednotku 53. Její poloha není ve výkresu potvrzena; byt 51 jí automaticky nepřiřazujeme.</p>':''}`;
     restoreCardFocus();
   }
 
@@ -239,7 +243,7 @@
   initialize().catch(error=>{
     root.setAttribute('aria-busy','false');
     $('#explorer-loading').hidden=false;$('#explorer-workbench').hidden=true;$('#map-legend').hidden=true;
-    $('#explorer-loading').innerHTML='<p>Interaktivní mapu se nepodařilo načíst.</p><a href="#catalog-list">Pokračovat do seznamu bytů ↓</a>';
+    $('#explorer-loading').innerHTML=`<p>Interaktivní mapu se nepodařilo načíst.</p><a href="#catalog-list">Pokračovat do seznamu bytů ${icon('arrow-down')}</a>`;
     document.querySelector('#catalog-list').open=true;
     console.warn('Apartment selector:',error.message);
   });

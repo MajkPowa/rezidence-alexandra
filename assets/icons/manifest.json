@@ -1,0 +1,541 @@
+{
+  "name": "Alexandra — Rám a práh",
+  "version": "1.0.0",
+  "created": "2026-10-19",
+  "count": 36,
+  "authorship": "Original SVG paths drawn for Rezidence Alexandra. No icon libraries or generative image tools.",
+  "visualLanguage": "Dvě balkonová pole, pět balkonových pásů nad vstupním podlažím, svislé fasádní lamely, diagonála A a otevřený práh.",
+  "sourceReferences": [
+    "07_github_pages/assets/mark.svg",
+    "07_github_pages/assets/exterior-hero.webp",
+    "07_github_pages/assets/exterior-balconies.webp"
+  ],
+  "sourceNote": "Architektonické motivy jsou stylizované; ikony nejsou stavební výkresy ani vyobrazení konkrétního vybavení k prodeji.",
+  "sprite": "assets/icons/alexandra.svg",
+  "color": {
+    "primary": "#253a32",
+    "accent": "#a77950",
+    "stroke": "currentColor",
+    "accentVariable": "--icon-accent",
+    "strokeWidthVariable": "--icon-stroke"
+  },
+  "usage": {
+    "architectureViewBox": "0 0 64 64",
+    "utilityViewBox": "0 0 24 24",
+    "smallArtworkStroke": {
+      "32px": 2.8,
+      "24px": 3.2
+    },
+    "decorative": "Set aria-hidden=\"true\" on the caller SVG; label the enclosing link or button.",
+    "meaningful": "Set role=\"img\" and an accessible label on the caller SVG. Do not rely on titles inside the external sprite.",
+    "standalone": "SVG files inherit currentColor when inlined. An img element cannot inherit page color; use the external symbol for theme-aware UI.",
+    "note": "External symbols require the same-origin HTTP(S) page; file:// cross-document use may be restricted.",
+    "sample": "<svg class=\"alex-icon\" viewBox=\"0 0 64 64\" aria-hidden=\"true\"><use href=\"assets/icons/alexandra.svg#residence\"></use></svg>"
+  },
+  "icons": [
+    {
+      "id": "residence",
+      "label": "Rezidence Alexandra",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#residence",
+      "standalone": "assets/icons/residence.svg",
+      "recommendedSizes": [
+        64,
+        80
+      ]
+    },
+    {
+      "id": "interior",
+      "label": "Interiér Alexandry",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#interior",
+      "standalone": "assets/icons/interior.svg",
+      "recommendedSizes": [
+        64,
+        80
+      ]
+    },
+    {
+      "id": "walkthrough",
+      "label": "Prohlídka jednotlivými místnostmi",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#walkthrough",
+      "standalone": "assets/icons/walkthrough.svg",
+      "recommendedSizes": [
+        64,
+        80
+      ]
+    },
+    {
+      "id": "plan",
+      "label": "Půdorys bytu",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#plan",
+      "standalone": "assets/icons/plan.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "layers",
+      "label": "Podlaží domu",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#layers",
+      "standalone": "assets/icons/layers.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "area",
+      "label": "Plocha bytu",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#area",
+      "standalone": "assets/icons/area.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "living",
+      "label": "Obývací pokoj",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#living",
+      "standalone": "assets/icons/living.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "kitchen",
+      "label": "Kuchyně",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#kitchen",
+      "standalone": "assets/icons/kitchen.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "bedroom",
+      "label": "Ložnice",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#bedroom",
+      "standalone": "assets/icons/bedroom.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "bathroom",
+      "label": "Koupelna",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#bathroom",
+      "standalone": "assets/icons/bathroom.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "balcony",
+      "label": "Balkon",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#balcony",
+      "standalone": "assets/icons/balcony.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "parking-open",
+      "label": "Venkovní parkování",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#parking-open",
+      "standalone": "assets/icons/parking-open.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "parking-covered",
+      "label": "Kryté parkování",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#parking-covered",
+      "standalone": "assets/icons/parking-covered.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "garage",
+      "label": "Garáž",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#garage",
+      "standalone": "assets/icons/garage.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "location",
+      "label": "Lokalita",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#location",
+      "standalone": "assets/icons/location.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "document",
+      "label": "Dokumentace",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#document",
+      "standalone": "assets/icons/document.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "materials",
+      "label": "Materiály",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#materials",
+      "standalone": "assets/icons/materials.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "fittings",
+      "label": "Vybavení a zařizovací předměty",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#fittings",
+      "standalone": "assets/icons/fittings.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "entrance",
+      "label": "Vstup do domu",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#entrance",
+      "standalone": "assets/icons/entrance.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "Kontakt",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#contact",
+      "standalone": "assets/icons/contact.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "film",
+      "label": "Film",
+      "group": "architecture",
+      "viewBox": "0 0 64 64",
+      "strokeWidthDefault": 1.8,
+      "spriteHref": "assets/icons/alexandra.svg#film",
+      "standalone": "assets/icons/film.svg",
+      "recommendedSizes": [
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    {
+      "id": "favorite",
+      "label": "Oblíbené",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#favorite",
+      "standalone": "assets/icons/favorite.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "favorite-filled",
+      "label": "Uloženo v oblíbených",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#favorite-filled",
+      "standalone": "assets/icons/favorite-filled.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "arrow-up-right",
+      "label": "Šikmá šipka",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#arrow-up-right",
+      "standalone": "assets/icons/arrow-up-right.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "arrow-right",
+      "label": "Doprava",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#arrow-right",
+      "standalone": "assets/icons/arrow-right.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "arrow-left",
+      "label": "Doleva",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#arrow-left",
+      "standalone": "assets/icons/arrow-left.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "arrow-down",
+      "label": "Dolů",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#arrow-down",
+      "standalone": "assets/icons/arrow-down.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "arrow-up",
+      "label": "Nahoru",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#arrow-up",
+      "standalone": "assets/icons/arrow-up.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "download",
+      "label": "Stáhnout",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#download",
+      "standalone": "assets/icons/download.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "close",
+      "label": "Zavřít",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#close",
+      "standalone": "assets/icons/close.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "plus",
+      "label": "Přiblížit nebo přidat",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#plus",
+      "standalone": "assets/icons/plus.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "minus",
+      "label": "Oddálit nebo odebrat",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#minus",
+      "standalone": "assets/icons/minus.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "menu",
+      "label": "Menu",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#menu",
+      "standalone": "assets/icons/menu.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "expand",
+      "label": "Zvětšit náhled",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#expand",
+      "standalone": "assets/icons/expand.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "check",
+      "label": "Potvrzeno",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#check",
+      "standalone": "assets/icons/check.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    },
+    {
+      "id": "info",
+      "label": "Informace",
+      "group": "utility",
+      "viewBox": "0 0 24 24",
+      "strokeWidthDefault": 1.5,
+      "spriteHref": "assets/icons/alexandra.svg#info",
+      "standalone": "assets/icons/info.svg",
+      "recommendedSizes": [
+        20,
+        24
+      ]
+    }
+  ]
+}

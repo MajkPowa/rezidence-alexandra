@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,1.8)" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="walkthrough-title"><title id="walkthrough-title">Prohlídka jednotlivými místnostmi</title><path d="M9 52V14h23v31M9 14l7-5h23v32M32 14l7-5M23 49V23h23v15M46 23l9-5v28M23 23l9-5h23M9 52l7 4 7-3M46 38v9l9-1" />
+    <path d="M18 48c5 4 12 3 14-3s-1-9 5-11c4-1 7 0 10-4M40 29l7 1-1 7" stroke="var(--icon-accent,currentColor)" />
+    <circle cx="14" cy="46" r="2.5" stroke="var(--icon-accent,currentColor)" />
+    <path d="M13 58h30M30 58l6-5" />
+  </svg>

@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,1.8)" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="balcony-title"><title id="balcony-title">Balkon</title><path d="M15 35V9h34v26M19 35V13h26v22M32 13v22M10 35h44v14a7 7 0 0 1-7 7H17a7 7 0 0 1-7-7zM10 49h44M15 56v3M49 56v3" />
+    <path d="M17 35v14M24 35v14M32 35v14M40 35v14M47 35v14M35 25v4" stroke="var(--icon-accent,currentColor)" />
+  </svg>

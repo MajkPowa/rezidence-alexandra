@@ -1,0 +1,113 @@
+/* Original Alexandra linework: balcony rhythms, lamellae, soft corners, the A diagonal. */
+.alex-icon { display:inline-block; flex:none; width:24px; height:24px; vertical-align:middle; fill:none; stroke:none; color:inherit; pointer-events:none; overflow:visible; }
+.alex-icon--art { width:64px; height:64px; --icon-accent:#a77950; --icon-stroke:1.8; }
+.icon-label { display:inline-flex; align-items:center; gap:9px; }
+.button>.alex-icon,.text-link>.alex-icon,.unit-detail-button>.alex-icon { width:21px; height:21px; }
+.button>span:has(>.alex-icon),.text-link>span:has(>.alex-icon),.header-contact>span { display:inline-flex; align-items:center; line-height:1; }
+.unit-actions .button>span { font:inherit; line-height:inherit; }
+.unit-detail-button,.tour-fullscreen,.floor-caption a,.furnished-plan-links a,.footer-links a,.footer-bottom>a { display:inline-flex; align-items:center; gap:9px; }
+.map-mobile-jump { align-items:center; gap:9px; }
+.floor-plan-links a>span,.document-link>span:last-child { display:inline-flex; align-items:center; gap:7px; flex:none; }
+.floor-plan-links .alex-icon,.document-link>span:last-child .alex-icon { width:18px; height:18px; }
+.expand-label b,.explore-links b,.faq-list summary>span { display:flex; align-items:center; justify-content:center; flex:none; }
+.expand-label .alex-icon { width:22px; height:22px; }
+.circle-arrow .alex-icon { width:32px; height:32px; }
+.icon-button { align-items:center; justify-content:center; }
+.favorite-button { display:inline-flex; align-items:center; justify-content:center; }
+.favorite-button .alex-icon,.map-card-topline .favorite-button .alex-icon { width:24px; height:24px; fill:none; stroke:none; }
+.map-card-topline .favorite-button.saved .alex-icon { fill:none; stroke:none; }
+.menu-toggle .alex-icon { width:28px; height:28px; }
+.menu-toggle .menu-close,.menu-toggle[aria-expanded=true] .menu-open { display:none; }
+.menu-toggle[aria-expanded=true] .menu-close { display:block; }
+
+/* The first three drawings are navigation landmarks, sized as illustrations. */
+.explore-links { padding:12px 0; }
+.explore-links a { position:relative; min-height:152px; padding:24px 28px; gap:22px; transition:background .2s ease; }
+.explore-links a:first-child { padding-left:12px; }
+.explore-links a>.alex-icon--art { display:block; width:76px; height:76px; color:var(--ink); stroke:none; fill:none; }
+.explore-links b>.alex-icon--ui { display:block; width:22px; height:22px; color:var(--ink); stroke:none; fill:none; }
+.explore-links strong { font-family:var(--serif); font-size:22px; font-weight:400; line-height:1.25; letter-spacing:-.025em; }
+.explore-links small { font-size:12px; line-height:1.65; margin-top:7px; }
+.explore-links a>span { min-width:0; }
+.explore-links b { align-self:flex-start; margin-top:6px; margin-left:auto; }
+
+/* Room navigation uses a distinct drawing for each room, with labels retained. */
+.interior-room-links { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; margin:8px 0 0; border-top:1px solid #bbc5b6; border-bottom:1px solid #bbc5b6; }
+.interior-room-links>span { grid-column:1/-1; margin:20px 0 0; font-size:11px; }
+.interior-room-links a { position:relative; display:flex; justify-content:flex-start; min-height:104px; padding:16px 22px 16px 0; gap:14px; border:0; font-size:14px; }
+.interior-room-links a>.alex-icon--art { width:48px; height:48px; --icon-stroke:2.1; }
+.interior-room-links a>.alex-icon--ui { width:18px; height:18px; margin-left:auto; }
+.interior-room-links a:hover { color:#77512f; }
+
+/* Small artwork uses an optical stroke weight rather than shrinking a hairline. */
+.explorer-title>.alex-icon { width:36px; height:36px; --icon-stroke:2.6; stroke:none; fill:none; }
+.map-view-switch button { display:inline-flex; align-items:center; justify-content:center; gap:7px; }
+.map-view-switch .alex-icon { width:24px; height:24px; --icon-stroke:3.3; --icon-accent:currentColor; }
+.unit-data dt .alex-icon,.map-card-data dt .alex-icon,.furnished-plan-meta .alex-icon { width:24px; height:24px; --icon-stroke:3.2; --icon-accent:currentColor; }
+.furnished-plan-meta { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+.map-card-plan .alex-icon { width:20px; height:20px; min-height:0; display:inline-block; }
+.availability-note { display:flex; align-items:flex-start; gap:10px; }
+.availability-note:before { display:none; }
+.availability-note>.alex-icon { width:20px; height:20px; margin-top:2px; }
+.catalog-disclosure>summary:after { display:none; }
+.catalog-disclosure>summary>.alex-icon { margin-left:auto; transition:transform .2s ease; }
+.catalog-disclosure[open]>summary>.alex-icon { transform:rotate(45deg); }
+
+.parking-options article { position:relative; padding:26px 0 26px 96px; }
+.parking-options article>.alex-icon { position:absolute; top:26px; left:0; width:72px; height:72px; }
+.parking-options article>div { gap:16px; }
+.documents-grid h3 { display:flex; align-items:center; gap:18px; }
+.documents-grid h3>.alex-icon { width:48px; height:48px; --icon-stroke:2.1; }
+.document-link .document-kind { display:inline-flex; align-items:center; gap:12px; color:inherit; font:inherit; }
+.document-kind>.alex-icon { width:30px; height:30px; --icon-stroke:2.8; }
+.locality-name>.alex-icon { display:block; width:88px; height:88px; margin-bottom:28px; color:var(--ink); }
+.contact-copy>.alex-icon { width:60px; height:60px; margin-bottom:24px; --icon-accent:#d3b393; }
+.contact-person a .alex-icon { width:19px; height:19px; margin-left:6px; }
+.tour-heading>.alex-icon { display:block; width:64px; height:64px; margin-bottom:24px; --icon-accent:#d3b393; }
+.footer-links .alex-icon { width:19px; height:19px; }
+
+@media(min-width:901px) and (max-width:1200px) {
+  .explore-links a { gap:14px; padding:24px 16px; }
+  .explore-links a>.alex-icon--art { width:60px; height:60px; }
+  .explore-links strong { font-size:20px; }
+  .parking-options article>div { flex-wrap:wrap; gap:8px 16px; }
+}
+@media(max-width:900px) {
+  .explore-links a { min-height:156px; padding:22px 16px; gap:12px; flex-wrap:wrap; align-content:center; }
+  .explore-links a:first-child { padding-left:0; }
+  .explore-links a>.alex-icon--art { display:block; width:56px; height:56px; }
+  .explore-links a>span { order:2; flex-basis:100%; }
+  .explore-links b { margin-left:auto; }
+  .explore-links strong { font-size:20px; }
+  .interior-room-links { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .interior-room-links a { min-height:88px; }
+  .interior-room-links a:nth-of-type(even) { padding-left:22px; }
+  .parking-options article>div { flex-wrap:wrap; gap:8px 16px; }
+}
+@media(max-width:600px) {
+  .explore-links { padding:8px 0; }
+  .explore-links a,.explore-links a:first-child { min-height:112px; padding:20px 0; gap:18px; flex-wrap:nowrap; }
+  .explore-links a>.alex-icon--art { width:60px; height:60px; }
+  .explore-links a>span { order:0; flex-basis:auto; flex:1; }
+  .explore-links b { align-self:center; margin:0; }
+  .explore-links strong { font-size:21px; }
+  .explore-links small { font-size:12px; margin-top:4px; }
+  .interior-room-links { margin-top:24px; }
+  .interior-room-links>span { font-size:11px; }
+  .interior-room-links a { min-height:112px; padding:16px 12px 16px 0; gap:8px; flex-wrap:wrap; align-content:center; font-size:13px; }
+  .interior-room-links a:nth-of-type(even) { padding-left:16px; }
+  .interior-room-links a>.alex-icon--art { width:44px; height:44px; }
+  .interior-room-links a>.room-label { order:2; flex-basis:100%; }
+  .interior-room-links a>.alex-icon--ui { margin-left:auto; margin-right:4px; }
+  .parking-options article { padding:24px 0 24px 80px; }
+  .parking-options article>.alex-icon { width:60px; height:60px; top:24px; }
+  .parking-options strong { font-size:32px; }
+  .parking-options article div>span { font-size:12px; }
+  .documents-grid h3 { gap:14px; font-size:25px; }
+  .documents-grid h3>.alex-icon { width:40px; height:40px; --icon-stroke:2.4; }
+  .document-link .document-kind { gap:9px; }
+  .document-kind>.alex-icon { width:26px; height:26px; --icon-stroke:3; }
+  .document-link { gap:10px; }
+  .locality-name>.alex-icon { width:64px; height:64px; margin-bottom:20px; }
+}
+@media(prefers-reduced-motion:reduce) { .explore-links a { transition:none; } }

@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="var(--icon-stroke,1.8)" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="parking-open-title"><title id="parking-open-title">Venkovní parkování</title><path d="M12 20H7v35h13M52 20h5v35H44M17 35l4-12h22l4 12M17 35l-4 5v9h38v-9l-4-5zM18 49v5h7v-5M39 49v5h7v-5M22 23l3 12M42 23l-3 12M19 42h7M38 42h7" />
+    <path d="M32 7v8M28 11l4-4 4 4M29 43h6" stroke="var(--icon-accent,currentColor)" />
+  </svg>

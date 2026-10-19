@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  const icon = (name, variant = 'ui') => window.AlexandraIcons?.svg(name, variant) || '';
   const dialog = document.getElementById('furnished-plan-dialog');
   if (!dialog) return;
   const $ = selector => dialog.querySelector(selector);
@@ -56,7 +57,7 @@
     const unit = findUnit(value), variant = variantFor(unit);
     if (!variant) return '';
     const detail = scope === 'detail';
-    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Návrh zařízení dispoziční rodiny bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Zařízený půdorys</strong><span>Prohlédnout návrh <span aria-hidden="true">↗</span></span></span></button>`;
+    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Návrh zařízení dispoziční rodiny bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Zařízený půdorys</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
   }
 
   function watchImage(image, source = false) {
@@ -74,7 +75,7 @@
       if (ok) return;
       if (source) {
         image.hidden = true;
-        $('.furnished-source-sheet>span').textContent = 'Náhled není dostupný. Otevřít původní PDF ↗';
+        $('.furnished-source-sheet>span').innerHTML = `Náhled není dostupný. Otevřít původní PDF ${icon('arrow-up-right')}`;
       } else {
         const plane = $('.furnished-image-plane'), error = $('.furnished-image-error');
         if (plane) plane.hidden = true;
@@ -94,11 +95,11 @@
     $('#furnished-room-legend').hidden = view !== '3d';
     $('#furnished-view-note').textContent = view === '3d' ? variant.note : `${sourceLabel(unit)}. Otevřete PDF pro podrobné kóty a původní legendu.`;
     if (view === 'source') {
-      $('#furnished-plan-canvas').innerHTML = `<a class="furnished-source-sheet" href="${pdfFor(unit)}" target="_blank" rel="noopener"><img src="${sourceFor(unit)}" alt="${escape(sourceLabel(unit))}" decoding="async"><span>Otevřít původní PDF <span aria-hidden="true">↗</span></span></a>`;
+      $('#furnished-plan-canvas').innerHTML = `<a class="furnished-source-sheet" href="${pdfFor(unit)}" target="_blank" rel="noopener"><img src="${sourceFor(unit)}" alt="${escape(sourceLabel(unit))}" decoding="async"><span>Otevřít původní PDF ${icon('arrow-up-right')}</span></a>`;
       watchImage($('.furnished-source-sheet>img'), true);
       return;
     }
-    $('#furnished-plan-canvas').innerHTML = `<div class="furnished-image-plane"><img src="${escape(variant.image)}" srcset="${escape(variant.thumbnail)} 640w, ${escape(variant.image)} 2200w" sizes="(max-width:900px) calc(100vw - 64px), 680px" width="2200" height="2200" alt="Zařízený 3D půdorys dispoziční rodiny bytu ${unit.id}; návrh interiéru bez balkonů" decoding="async" data-furnished-full-image>${variant.rooms.filter(room => own(room, 'x')).map(room => `<span class="furnished-room-pin" style="left:${(room.x * 100).toFixed(3)}%;top:${(room.y * 100).toFixed(3)}%" aria-hidden="true">${room.number}</span>`).join('')}<a class="furnished-zoom" href="${escape(variant.fullResolution)}" target="_blank" rel="noopener" aria-label="Otevřít 4K půdorys bytu ${unit.id} v nové záložce">Otevřít 4K <span aria-hidden="true">↗</span></a></div><div class="furnished-image-error" hidden role="status"><p>Náhled se nepodařilo načíst.</p><button type="button" data-furnished-view="source">Zobrazit zdrojový půdorys ↗</button></div>`;
+    $('#furnished-plan-canvas').innerHTML = `<div class="furnished-image-plane"><img src="${escape(variant.image)}" srcset="${escape(variant.thumbnail)} 640w, ${escape(variant.image)} 2200w" sizes="(max-width:900px) calc(100vw - 64px), 680px" width="2200" height="2200" alt="Zařízený 3D půdorys dispoziční rodiny bytu ${unit.id}; návrh interiéru bez balkonů" decoding="async" data-furnished-full-image>${variant.rooms.filter(room => own(room, 'x')).map(room => `<span class="furnished-room-pin" style="left:${(room.x * 100).toFixed(3)}%;top:${(room.y * 100).toFixed(3)}%" aria-hidden="true">${room.number}</span>`).join('')}<a class="furnished-zoom" href="${escape(variant.fullResolution)}" target="_blank" rel="noopener" aria-label="Otevřít 4K půdorys bytu ${unit.id} v nové záložce">Otevřít 4K ${icon('arrow-up-right')}</a></div><div class="furnished-image-error" hidden role="status"><p>Náhled se nepodařilo načíst.</p><button type="button" data-furnished-view="source">Zobrazit zdrojový půdorys ${icon('arrow-up-right')}</button></div>`;
     watchImage($('[data-furnished-full-image]'));
   }
 
@@ -109,12 +110,12 @@
     view = '3d';
     returnFocus = { element: trigger, scope: trigger?.closest?.('#unit-dialog, #map-unit-card')?.id, unit: unit.id };
     $('#furnished-plan-title').textContent = `Byt ${String(unit.id).padStart(2, '0')}`;
-    $('#furnished-plan-meta').textContent = `${unit.layout} · ${unit.floor}. nadzemní podlaží · ${number.format(unit.area)} m²`;
+    $('#furnished-plan-meta').innerHTML = `<span class="icon-label">${icon('plan', 'art')} <span>${escape(unit.layout)}</span></span> · ${escape(unit.floor)}. nadzemní podlaží · <span class="icon-label">${icon('area', 'art')} <span>${escape(number.format(unit.area))} m²</span></span>`;
     $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(unit).label || 'Dostupnost na dotaz';
     $('#furnished-plan-price').textContent = `${number.format(unit.price)} Kč`;
     $('#furnished-room-legend').innerHTML = `<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Zařízení ukazuje jednu z možností využití prostoru.</p>`;
     $('#furnished-plan-pdf').href = pdfFor(unit);
-    $('#furnished-plan-pdf').textContent = unit.id <= 10 ? 'Půdorys bytu PDF ↗' : `Půdorys ${unit.floor}. NP PDF ↗`;
+    $('#furnished-plan-pdf').innerHTML = `${unit.id <= 10 ? 'Půdorys bytu PDF' : `Půdorys ${escape(unit.floor)}. NP PDF`} ${icon('arrow-up-right')}`;
     const tour = { '1+kk': '1kk', '2+kk': '2kk', '3+kk': '3kk' }[unit.layout];
     $('#furnished-plan-tour').href = `tour.html?byt=${tour}#walkthrough`;
     $('#furnished-plan-tour').hidden = !tour;

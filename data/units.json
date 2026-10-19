@@ -1,6 +1,6 @@
 [
   {
-    "id": 53,
+    "id": 51,
     "floor": 1,
     "layout": "1+kk",
     "area": 35.7,
@@ -11,7 +11,9 @@
     "sourcePrice": 3181369.8000000003,
     "availability": null,
     "sourceRow": 10,
-    "plan": null
+    "plan": "plans/unit-51.pdf",
+    "balconyArea": null,
+    "cellarArea": 1.3
   },
   {
     "id": 1,
@@ -25,7 +27,9 @@
     "sourcePrice": 5805777.100000001,
     "availability": null,
     "sourceRow": 15,
-    "plan": "plans/unit-01.pdf"
+    "plan": "plans/unit-01.pdf",
+    "balconyArea": 10.35,
+    "cellarArea": 5.95
   },
   {
     "id": 2,
@@ -39,7 +43,9 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 16,
-    "plan": "plans/unit-02.pdf"
+    "plan": "plans/unit-02.pdf",
+    "balconyArea": 9.45,
+    "cellarArea": null
   },
   {
     "id": 3,
@@ -53,7 +59,9 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 17,
-    "plan": "plans/unit-03.pdf"
+    "plan": "plans/unit-03.pdf",
+    "balconyArea": 8.75,
+    "cellarArea": null
   },
   {
     "id": 4,
@@ -67,7 +75,9 @@
     "sourcePrice": 3560104.3000000003,
     "availability": null,
     "sourceRow": 18,
-    "plan": "plans/unit-04.pdf"
+    "plan": "plans/unit-04.pdf",
+    "balconyArea": 6.75,
+    "cellarArea": 1.95
   },
   {
     "id": 5,
@@ -81,7 +91,9 @@
     "sourcePrice": 3564560,
     "availability": null,
     "sourceRow": 19,
-    "plan": "plans/unit-05.pdf"
+    "plan": "plans/unit-05.pdf",
+    "balconyArea": 6.75,
+    "cellarArea": 2
   },
   {
     "id": 6,
@@ -95,7 +107,9 @@
     "sourcePrice": 4870080.1,
     "availability": null,
     "sourceRow": 20,
-    "plan": "plans/unit-06.pdf"
+    "plan": "plans/unit-06.pdf",
+    "balconyArea": 9.7,
+    "cellarArea": null
   },
   {
     "id": 7,
@@ -109,7 +123,9 @@
     "sourcePrice": 3769522.1999999993,
     "availability": null,
     "sourceRow": 21,
-    "plan": "plans/unit-07.pdf"
+    "plan": "plans/unit-07.pdf",
+    "balconyArea": 7.4,
+    "cellarArea": 2
   },
   {
     "id": 8,
@@ -123,7 +139,9 @@
     "sourcePrice": 3613572.6999999993,
     "availability": null,
     "sourceRow": 22,
-    "plan": "plans/unit-08.pdf"
+    "plan": "plans/unit-08.pdf",
+    "balconyArea": 7.05,
+    "cellarArea": 1.65
   },
   {
     "id": 9,
@@ -137,7 +155,9 @@
     "sourcePrice": 3573471.4,
     "availability": null,
     "sourceRow": 23,
-    "plan": "plans/unit-09.pdf"
+    "plan": "plans/unit-09.pdf",
+    "balconyArea": 6.9,
+    "cellarArea": 1.65
   },
   {
     "id": 10,
@@ -151,7 +171,9 @@
     "sourcePrice": 3720509.5,
     "availability": null,
     "sourceRow": 24,
-    "plan": "plans/unit-10.pdf"
+    "plan": "plans/unit-10.pdf",
+    "balconyArea": 6.9,
+    "cellarArea": 1.65
   },
   {
     "id": 11,
@@ -165,7 +187,9 @@
     "sourcePrice": 5805777.100000001,
     "availability": null,
     "sourceRow": 28,
-    "plan": null
+    "plan": null,
+    "balconyArea": 10.35,
+    "cellarArea": 5.95
   },
   {
     "id": 12,
@@ -179,7 +203,9 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 29,
-    "plan": null
+    "plan": null,
+    "balconyArea": 9.45,
+    "cellarArea": null
   },
   {
     "id": 13,
@@ -193,7 +219,9 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 30,
-    "plan": null
+    "plan": null,
+    "balconyArea": 8.75,
+    "cellarArea": null
   },
   {
     "id": 14,
@@ -207,7 +235,9 @@
     "sourcePrice": 3533370.1,
     "availability": null,
     "sourceRow": 31,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.75,
+    "cellarArea": 1.65
   },
   {
     "id": 15,
@@ -221,7 +251,9 @@
     "sourcePrice": 3533370.1,
     "availability": null,
     "sourceRow": 32,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.75,
+    "cellarArea": 1.65
   },
   {
     "id": 16,
@@ -235,7 +267,9 @@
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 33,
-    "plan": null
+    "plan": null,
+    "balconyArea": 8.35,
+    "cellarArea": null
   },
   {
     "id": 17,
@@ -249,7 +283,9 @@
     "sourcePrice": 3506635.9,
     "availability": null,
     "sourceRow": 34,
-    "plan": null
+    "plan": null,
+    "balconyArea": 4.9,
+    "cellarArea": 1.55
   },
   {
     "id": 18,
@@ -263,7 +299,9 @@
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 35,
-    "plan": null
+    "plan": null,
+    "balconyArea": 4.9,
+    "cellarArea": 1.65
   },
   {
     "id": 19,
@@ -277,7 +315,9 @@
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 36,
-    "plan": null
+    "plan": null,
+    "balconyArea": 5.2,
+    "cellarArea": 1.65
   },
   {
     "id": 20,
@@ -291,7 +331,9 @@
     "sourcePrice": 3720509.5,
     "availability": null,
     "sourceRow": 37,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.9,
+    "cellarArea": 1.65
   },
   {
     "id": 21,
@@ -305,7 +347,9 @@
     "sourcePrice": 5805777.100000001,
     "availability": null,
     "sourceRow": 42,
-    "plan": null
+    "plan": null,
+    "balconyArea": 10.35,
+    "cellarArea": 5.95
   },
   {
     "id": 22,
@@ -319,7 +363,9 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 43,
-    "plan": null
+    "plan": null,
+    "balconyArea": 9.45,
+    "cellarArea": null
   },
   {
     "id": 23,
@@ -333,7 +379,9 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 44,
-    "plan": null
+    "plan": null,
+    "balconyArea": 8.75,
+    "cellarArea": null
   },
   {
     "id": 24,
@@ -347,7 +395,9 @@
     "sourcePrice": 3653674,
     "availability": null,
     "sourceRow": 45,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.75,
+    "cellarArea": 3
   },
   {
     "id": 25,
@@ -361,7 +411,9 @@
     "sourcePrice": 3537825.8000000003,
     "availability": null,
     "sourceRow": 46,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.75,
+    "cellarArea": 1.7
   },
   {
     "id": 26,
@@ -375,7 +427,9 @@
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 47,
-    "plan": null
+    "plan": null,
+    "balconyArea": 8.35,
+    "cellarArea": null
   },
   {
     "id": 27,
@@ -389,7 +443,9 @@
     "sourcePrice": 3515547.3000000003,
     "availability": null,
     "sourceRow": 48,
-    "plan": null
+    "plan": null,
+    "balconyArea": 4.9,
+    "cellarArea": 1.65
   },
   {
     "id": 28,
@@ -403,7 +459,9 @@
     "sourcePrice": 3457623.1999999993,
     "availability": null,
     "sourceRow": 49,
-    "plan": null
+    "plan": null,
+    "balconyArea": 4.9,
+    "cellarArea": 1.65
   },
   {
     "id": 29,
@@ -417,7 +475,9 @@
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 50,
-    "plan": null
+    "plan": null,
+    "balconyArea": 5.2,
+    "cellarArea": 1.65
   },
   {
     "id": 30,
@@ -431,7 +491,9 @@
     "sourcePrice": 3711598.1,
     "availability": null,
     "sourceRow": 51,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.9,
+    "cellarArea": 1.55
   },
   {
     "id": 31,
@@ -445,7 +507,9 @@
     "sourcePrice": 5792410,
     "availability": null,
     "sourceRow": 57,
-    "plan": null
+    "plan": null,
+    "balconyArea": 10.35,
+    "cellarArea": 5.8
   },
   {
     "id": 32,
@@ -459,7 +523,9 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 58,
-    "plan": null
+    "plan": null,
+    "balconyArea": 9.45,
+    "cellarArea": null
   },
   {
     "id": 33,
@@ -473,7 +539,9 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 59,
-    "plan": null
+    "plan": null,
+    "balconyArea": 8.75,
+    "cellarArea": null
   },
   {
     "id": 34,
@@ -487,7 +555,9 @@
     "sourcePrice": 3524458.6999999993,
     "availability": null,
     "sourceRow": 60,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.75,
+    "cellarArea": 1.55
   },
   {
     "id": 35,
@@ -501,7 +571,9 @@
     "sourcePrice": 3524458.6999999993,
     "availability": null,
     "sourceRow": 61,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.75,
+    "cellarArea": 1.55
   },
   {
     "id": 36,
@@ -515,7 +587,9 @@
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 62,
-    "plan": null
+    "plan": null,
+    "balconyArea": 8.35,
+    "cellarArea": null
   },
   {
     "id": 37,
@@ -529,7 +603,9 @@
     "sourcePrice": 3506635.9,
     "availability": null,
     "sourceRow": 63,
-    "plan": null
+    "plan": null,
+    "balconyArea": 4.9,
+    "cellarArea": 1.55
   },
   {
     "id": 38,
@@ -543,7 +619,9 @@
     "sourcePrice": 3448711.8000000003,
     "availability": null,
     "sourceRow": 64,
-    "plan": null
+    "plan": null,
+    "balconyArea": 4.9,
+    "cellarArea": 1.55
   },
   {
     "id": 39,
@@ -557,7 +635,9 @@
     "sourcePrice": 3413066.1999999997,
     "availability": null,
     "sourceRow": 65,
-    "plan": null
+    "plan": null,
+    "balconyArea": 5.2,
+    "cellarArea": 1.55
   },
   {
     "id": 40,
@@ -571,7 +651,9 @@
     "sourcePrice": 3711598.1,
     "availability": null,
     "sourceRow": 66,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.9,
+    "cellarArea": 1.55
   },
   {
     "id": 41,
@@ -585,7 +667,9 @@
     "sourcePrice": 5792410,
     "availability": null,
     "sourceRow": 73,
-    "plan": null
+    "plan": null,
+    "balconyArea": 10.35,
+    "cellarArea": 5.8
   },
   {
     "id": 42,
@@ -599,7 +683,9 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 74,
-    "plan": null
+    "plan": null,
+    "balconyArea": 9.45,
+    "cellarArea": null
   },
   {
     "id": 43,
@@ -613,7 +699,9 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 75,
-    "plan": null
+    "plan": null,
+    "balconyArea": 8.75,
+    "cellarArea": null
   },
   {
     "id": 44,
@@ -627,7 +715,9 @@
     "sourcePrice": 3524458.6999999993,
     "availability": null,
     "sourceRow": 76,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.75,
+    "cellarArea": 1.55
   },
   {
     "id": 45,
@@ -641,7 +731,9 @@
     "sourcePrice": 3502180.1999999993,
     "availability": null,
     "sourceRow": 77,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.75,
+    "cellarArea": 1.3
   },
   {
     "id": 46,
@@ -655,7 +747,9 @@
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 78,
-    "plan": null
+    "plan": null,
+    "balconyArea": 8.35,
+    "cellarArea": null
   },
   {
     "id": 47,
@@ -669,7 +763,9 @@
     "sourcePrice": 3484357.4,
     "availability": null,
     "sourceRow": 79,
-    "plan": null
+    "plan": null,
+    "balconyArea": 4.9,
+    "cellarArea": 1.3
   },
   {
     "id": 48,
@@ -683,7 +779,9 @@
     "sourcePrice": 3426433.3000000003,
     "availability": null,
     "sourceRow": 80,
-    "plan": null
+    "plan": null,
+    "balconyArea": 4.9,
+    "cellarArea": 1.3
   },
   {
     "id": 49,
@@ -697,7 +795,9 @@
     "sourcePrice": 3390787.6999999997,
     "availability": null,
     "sourceRow": 81,
-    "plan": null
+    "plan": null,
+    "balconyArea": 5.2,
+    "cellarArea": 1.3
   },
   {
     "id": 50,
@@ -711,6 +811,8 @@
     "sourcePrice": 3698231,
     "availability": null,
     "sourceRow": 82,
-    "plan": null
+    "plan": null,
+    "balconyArea": 6.9,
+    "cellarArea": 1.4
   }
 ]

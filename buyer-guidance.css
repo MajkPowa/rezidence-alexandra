@@ -1,0 +1,16 @@
+/* A direct route back to the offer and a clear distinction between render and delivery. */
+.buyer-header{flex-wrap:wrap}
+.buyer-header .buyer-nav{display:flex;flex-wrap:wrap;align-items:center;gap:4px 20px;max-width:100%;justify-content:flex-start}
+.buyer-header .buyer-nav a{display:inline-flex;align-items:center;min-height:48px;padding:8px 0;font-size:14px;white-space:normal;text-decoration:none}
+.buyer-header .buyer-nav a:first-child{font-weight:600}
+.visual-disclosure{max-width:90ch;margin:20px 0 28px;padding:16px 20px;border-left:2px solid var(--olive,#727d62);background:var(--cream,#ebe8df);color:var(--ink,#252a24);font:400 14px/1.7 var(--sans,Arial,sans-serif);overflow-wrap:break-word}
+.visual-disclosure strong{font-weight:600}
+.visual-disclosure a,.visual-disclosure--compact a,.visual-note a{text-decoration:underline;text-underline-offset:.2em;color:inherit}
+.visual-disclosure a:focus-visible,.visual-disclosure--compact a:focus-visible{outline:3px solid var(--olive,#727d62);outline-offset:4px}
+.visual-disclosure--compact{margin:12px 0 0;padding:0;border:0;background:transparent;font-size:13px;line-height:1.65;color:inherit}
+.dialog-foot .visual-disclosure{margin:0;max-width:70ch}
+.dialog-foot .visual-disclosure a{display:inline;min-height:0;white-space:normal;font-size:inherit}
+.production-disclosure{max-width:1360px;margin:24px auto 0;padding:0 var(--gutter,24px)}
+.production-disclosure .visual-disclosure{max-width:none;margin:0}
+@media(max-width:700px){.buyer-header .buyer-nav{width:100%;justify-content:flex-start;gap:0 20px}.buyer-header .buyer-nav a{min-height:44px;font-size:13px}.visual-disclosure{padding:14px 16px}.production-disclosure{margin-top:16px}}
+@media print{.buyer-header .buyer-nav{display:none}.visual-disclosure{background:none;color:#222;border-color:#555}}

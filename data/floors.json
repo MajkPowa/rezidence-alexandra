@@ -33,7 +33,58 @@
         "pixelsPerPdfPoint": 1.5,
         "textExtraction": "No live text in PDF; text is outlined vector paths. Legends and dimensions manually verified from source renders."
       },
-      "units": [],
+      "units": [
+        {
+          "id": 51,
+          "polygon": [
+            [
+              1447.5,
+              151.26
+            ],
+            [
+              1875.5,
+              151.26
+            ],
+            [
+              1875.5,
+              865.0
+            ],
+            [
+              1447.5,
+              865.0
+            ]
+          ],
+          "normalizedPolygon": [
+            [
+              0.4984504,
+              0.0766261
+            ],
+            [
+              0.6458333,
+              0.0766261
+            ],
+            [
+              0.6458333,
+              0.4381966
+            ],
+            [
+              0.4984504,
+              0.4381966
+            ]
+          ],
+          "labelPoint": [
+            1661.5,
+            510.0
+          ],
+          "balconies": [],
+          "sourceRooms": [
+            126,
+            127,
+            128
+          ],
+          "verification": "Unit 51 identity confirmed by revised price list dated 19 October 2026 and original unit-51.pdf. Selection region follows the major outside and party-wall centerlines around rooms 126–128 in floor-1.pdf; not a cadastral boundary or area measurement."
+        }
+      ],
       "commonAreas": [],
       "outline": [
         [
@@ -71,14 +122,9 @@
           1755.78
         ]
       ],
-      "geometryStatus": "reference-only-no-confirmed-unit-polygons",
-      "excludedUnits": [
-        {
-          "id": 53,
-          "reason": "Listed on 1NP in commercial index; no position assigned pending source identity confirmation. Do not equate with unit 51."
-        }
-      ],
-      "note": "1NP image is an original ground-floor plan. Outline marks the principal rectangular body only; west access platform/stairs and entrance projection are not modeled.",
+      "geometryStatus": "unit-51-identity-confirmed-revised-pricelist-2026-10-19",
+      "excludedUnits": [],
+      "note": "Ground-floor apartment 51 follows source rooms 126, 127 and 128. Identity matches the revised price list dated 19 October 2026. Building outline still marks the principal rectangular body only; the west access platform, stairs and entrance projection are not modeled.",
       "mapImage": "assets/floors/floor-1-clean.webp"
     },
     {

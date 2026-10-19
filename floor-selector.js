@@ -12,7 +12,7 @@
   const area = value => `${number.format(value)} m²`;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   const status = unit => inventory.status(unit);
-  let floors = [], activeFloor = 2, selectedId = null, projection = window.matchMedia('(max-width:900px)').matches ? 'plan' : 'space', snapshot, unitPicker;
+  let floors = [], activeFloor = 2, selectedId = null, projection = window.matchMedia('(max-width:900px)').matches ? 'plan' : 'space', snapshot, unitPicker, buildingVariant = 'balconies';
   const safeImage = path => typeof path === 'string' && /^assets\/floors\/[a-z0-9-]+\.webp$/.test(path);
   const validPoint = p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite);
   const path = points => points.map((p,i) => `${i ? 'L' : 'M'}${p[0].toFixed(2)} ${p[1].toFixed(2)}`).join(' ') + 'Z';
@@ -22,9 +22,10 @@
   const polygonData = id => floorData()?.units.find(u => u.id === id);
   const badge = unit => `<span class="status-badge status-${status(unit).key}"><span class="availability-dot" aria-hidden="true"></span>${esc(status(unit).label)}</span>`;
   const signature = () => `${activeFloor}:${selectedId}:${projection}`;
-  let lastURLSignature = '';
+  let lastURLSignature = '', selectionInteracted = false;
 
   function updateURL() {
+    if (!selectionInteracted) return;
     if (signature() === lastURLSignature) return;
     const url = new URL(location.href);
     url.searchParams.set('podlazi', String(activeFloor));
@@ -34,15 +35,67 @@
   }
 
   function drawStack() {
-    const project = (p, floor) => [31 + p[0] * .235 + p[1] * .11, 502 - (floor - 1) * 67 - p[0] * .043 + p[1] * .092];
-    $('#building-stack').innerHTML = `<defs><filter id="plate-shadow" x="-20%" y="-20%" width="150%" height="180%"><feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#66755b" flood-opacity=".13"/></filter></defs>` + floors.map(f => {
-      const outline = normalized(f, f.outline).map(p => project(p, f.floor));
-      const side = outline.map(p => [p[0],p[1]+10]);
+    // These regions select whole floors on the supplied perspective render.
+    // Apartment boundaries are shown only in the surveyed floor-plan polygons below.
+    const levels = [
+      [[548,245],[812,92],[1304,282]],
+      [[548,329],[812,236],[1304,357]],
+      [[548,406],[812,333],[1304,429]],
+      [[548,482],[812,431],[1304,500]],
+      [[548,556],[812,529],[1304,570]],
+      [[548,629],[812,626],[1304,639]],
+      [[548,674],[812,682],[1304,683]]
+    ];
+    const stack = $('#building-stack');
+    stack.setAttribute('viewBox', '465 65 1000 660');
+    stack.setAttribute('aria-label', 'Vyberte jedno ze šesti podlaží na vizualizaci domu');
+    stack.setAttribute('aria-describedby', 'building-selection-caption');
+    stack.innerHTML = `<title>Rezidence Alexandra · výběr podlaží</title><image id="building-selection-image" href="assets/exterior-${buildingVariant}.webp" width="1672" height="941"/>` + [...floors].reverse().map(f => {
+      const index = 6 - f.floor, upper = levels[index], lower = levels[index + 1];
       const count = units.filter(u => u.floor === f.floor).length;
-      const y = 521 - (f.floor - 1) * 67;
-      return `<g class="stack-floor" role="button" tabindex="0" data-map-floor="${f.floor}" aria-label="Zobrazit ${f.floor}. nadzemní podlaží, ${count === 1 ? '1 jednotka' : `${count} jednotek`}" aria-pressed="${f.floor === activeFloor}"><g filter="url(#plate-shadow)"><path class="stack-side" d="${path(side)}"/><path class="stack-top" d="${path(outline)}"/></g>${f.units.map(u=>`<path class="stack-plan-line" d="${path(normalized(f,u.polygon).map(p=>project(p,f.floor)))}"/>`).join('')}<path class="stack-label-line" d="M306 ${y-5} L348 ${y-5}"/><text x="359" y="${y-3}" class="stack-floor-number">${f.floor}. NP</text><text x="359" y="${y+13}" class="stack-floor-count">${count === 1 ? '1 jednotka' : `${count} jednotek`}</text></g>`;
+      const y = (upper[2][1] + lower[2][1]) / 2;
+      const polygon = [...upper, ...[...lower].reverse()];
+      return `<g class="stack-floor building-selection-floor" role="button" tabindex="0" data-map-floor="${f.floor}" aria-label="Zobrazit ${f.floor}. nadzemní podlaží, ${count === 1 ? '1 jednotka' : `${count} jednotek`}" aria-pressed="${f.floor === activeFloor}"><path class="building-selection-zone" d="${path(polygon)}"/><path class="building-selection-leader" d="M1285 ${y}H1345"/><rect class="building-selection-label" x="1340" y="${y-24}" width="108" height="48" rx="7"/><text class="building-selection-number" x="1394" y="${y+1}">${f.floor}. NP</text></g>`;
     }).join('');
-    $('#floor-buttons').innerHTML = floors.map(f=>`<button type="button" data-map-floor="${f.floor}" aria-label="${f.floor}. podlaží" aria-pressed="${f.floor === activeFloor}">${f.floor}. NP</button>`).join('');
+    $('#floor-buttons').innerHTML = [...floors].reverse().map(f=>`<button type="button" data-map-floor="${f.floor}" aria-pressed="${f.floor === activeFloor}"><span class="building-floor-name">${f.floor}. NP</span><span class="building-floor-availability" data-floor-summary="${f.floor}"></span></button>`).join('');
+    const caption = $('.building-caption');
+    caption.id = 'building-selection-caption';
+    caption.innerHTML = 'Vyberte podlaží přímo na vizualizaci nebo tlačítkem. Hranice podlaží jsou orientační; rozložení a dostupnost jednotlivých bytů ukazuje půdorys níže. <strong>Obě varianty bočních balkonů čekají na potvrzení.</strong>';
+    if (!$('.building-selection-variants')) {
+      const variants = document.createElement('div');
+      variants.className = 'building-selection-variants';
+      variants.setAttribute('role', 'group');
+      variants.setAttribute('aria-label', 'Návrhová varianta bočních balkonů');
+      variants.innerHTML = '<button type="button" data-building-variant="no-balconies" aria-pressed="false">A · bez bočních balkonů</button><button type="button" data-building-variant="balconies" aria-pressed="true">B · s bočními balkony</button>';
+      $('.building-picker').insertBefore(variants, stack);
+    }
+    if (!$('#building-selection-units')) {
+      const strip=document.createElement('div');
+      strip.id='building-selection-units';
+      strip.className='building-selection-units';
+      $('.building-picker').insertBefore(strip, caption);
+    }
+    updateBuildingSummary();
+  }
+
+  function updateBuildingSummary() {
+    root.querySelectorAll('[data-floor-summary]').forEach(target => {
+      const floor = Number(target.dataset.floorSummary), list = units.filter(u => u.floor === floor);
+      const counts = {available:0,reserved:0,sold:0,unknown:0};
+      list.forEach(u => counts[status(u).key]++);
+      const labels = {available:'volné',reserved:'rezervované',sold:'prodané',unknown:'na dotaz'};
+      target.innerHTML = Object.entries(counts).filter(([,count])=>count).map(([key,count])=>`<span class="building-status-count status-${key}"><i aria-hidden="true"></i>${count} <span>${labels[key]}</span></span>`).join('');
+      target.parentElement.setAttribute('aria-label', `${floor}. nadzemní podlaží: ${Object.entries(counts).filter(([,count])=>count).map(([key,count])=>`${count} ${labels[key]}`).join(', ')}`);
+    });
+    const strip=$('#building-selection-units');
+    if (strip) {
+      const focusedId=strip.contains(document.activeElement)?document.activeElement.dataset.buildingUnit:null;
+      strip.innerHTML=`<p>Byty v ${activeFloor}. NP <span>Vyberte číslo; přesnou polohu ukáže půdorys.</span></p><div role="group" aria-label="Byty a dostupnost v ${activeFloor}. nadzemním podlaží">${units.filter(u=>u.floor===activeFloor).map(u=>{
+        const s=status(u), filtered=snapshot && !snapshot.filteredIds.includes(u.id);
+        return `<button type="button" class="building-unit-chip status-${s.key}" data-building-unit="${u.id}" aria-label="Byt ${u.id}, ${esc(u.layout)}, ${area(u.area)}, ${esc(s.label)}" aria-pressed="${u.id===selectedId}" ${filtered?'disabled':''}><strong>${String(u.id).padStart(2,'0')}</strong><span><i aria-hidden="true"></i>${esc(s.shortLabel||s.label)}</span></button>`;
+      }).join('')}</div>`;
+      if (focusedId) strip.querySelector(`[data-building-unit="${focusedId}"]`)?.focus({preventScroll:true});
+    }
   }
 
   function floorTransform() {
@@ -66,8 +119,8 @@
       const s=status(u), center=normalized(f,[p.labelPoint])[0];
       return `<g class="map-apartment" role="button" tabindex="0" data-map-unit="${u.id}" data-status="${s.key}" aria-label="Byt ${u.id}, ${esc(u.layout)}, ${area(u.area)}, ${esc(s.label)}" aria-pressed="false"><path class="unit-shape" d="${path(normalized(f,p.polygon))}"/><g transform="translate(${center[0]},${center[1]})" pointer-events="none"><rect class="unit-tag-bg" x="-59" y="-32" width="118" height="66" rx="8"/><text class="unit-tag-number" y="-7">${String(u.id).padStart(2,'0')}</text><text class="unit-tag-layout" y="19">${esc(u.layout)}</text></g></g>`;
     }).join('')}</g>`;
-    $('#map-floor-description').textContent = activeFloor === 1 ? 'Původní půdorys přízemí. Poloha jednotky 53 čeká na potvrzení.' : 'Vyberte byt přímo v půdorysu.';
-    $('#map-floor-special').hidden = activeFloor !== 1;
+    $('#map-floor-description').textContent = activeFloor === 1 ? 'Byt 51 v přízemí · poloha dle místností 126–128 ve zdrojovém výkresu.' : 'Vyberte byt přímo v půdorysu.';
+    $('#map-floor-special').hidden = true;
     const picker = unitPicker;
     if (picker) picker.innerHTML = '<option value="">Vyberte byt</option>' + units.filter(u => u.floor === activeFloor).map(u => `<option value="${u.id}">Byt ${String(u.id).padStart(2,'0')} · ${esc(u.layout)} · ${area(u.area)}</option>`).join('');
     updatePlanState();
@@ -77,6 +130,11 @@
     root.querySelectorAll('[data-map-floor]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.mapFloor)===activeFloor)));
     root.querySelectorAll('[data-map-unit]').forEach(b=>{
       const id=Number(b.dataset.mapUnit), match=snapshot.filteredIds.includes(id);
+      const unit=units.find(u=>u.id===id);
+      if (unit) {
+        b.dataset.status=status(unit).key;
+        b.setAttribute('aria-label',`Byt ${unit.id}, ${unit.layout}, ${area(unit.area)}, ${status(unit).label}`);
+      }
       b.setAttribute('aria-pressed',String(id===selectedId));
       b.dataset.filtered=String(!match);
       b.setAttribute('aria-disabled',String(!match));
@@ -94,6 +152,7 @@
     const counts={available:0,reserved:0,sold:0,unknown:0};
     floorUnits.forEach(u=>counts[status(u).key]++);
     Object.keys(counts).forEach(key=>$('#legend-'+key).textContent=String(counts[key]));
+    updateBuildingSummary();
     const unknown=units.filter(u=>status(u).key==='unknown').length;
     const note=document.querySelector('#availability-note');
     if (note) {
@@ -128,15 +187,22 @@
       restoreCardFocus();
       return;
     }
-    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${unit.floor}. nadzemní podlaží</p>${selectedPlan(unit)}<dl class="map-card-data"><div><dt><span class="icon-label">${icon('plan', 'art')} <span>Dispozice</span></span></dt><dd>${esc(unit.layout)}</dd></div><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div></dl><p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><button class="button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>${unit.id===53?'<p class="map-card-caveat">Ceník uvádí jednotku 53. Její poloha není ve výkresu potvrzena; byt 51 jí automaticky nepřiřazujeme.</p>':''}`;
+    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${unit.floor}. nadzemní podlaží</p>${selectedPlan(unit)}<dl class="map-card-data"><div><dt><span class="icon-label">${icon('plan', 'art')} <span>Dispozice</span></span></dt><dd>${esc(unit.layout)}</dd></div><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl>${window.AlexandraDetails?.cardHTML(unit) || ''}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><a class="text-link" href="#parkovani" data-section-link="parkovani">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni">Vybavení v ceně ${icon('arrow-up-right')}</a><button class="button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>`;
     restoreCardFocus();
   }
 
   function sync(detail, force=false) {
+    const previousFloor=snapshot?.filters.floor;
     snapshot=detail || catalog.snapshot();
     const next=Number(snapshot.filters.floor);
     const changed=Number.isInteger(next)&&next>=1&&next<=6&&next!==activeFloor;
-    if(changed) activeFloor=next;
+    if(changed) { activeFloor=next; selectionInteracted=true; }
+    if (detail && snapshot.filters.floor==='all' && previousFloor && previousFloor!=='all') {
+      selectionInteracted=false;
+      const url=new URL(location.href);
+      url.searchParams.delete('podlazi');url.searchParams.delete('byt');
+      history.replaceState(null,'',url);lastURLSignature='';
+    }
     const candidates=units.filter(u=>u.floor===activeFloor&&matching(u));
     if(!candidates.some(u=>u.id===selectedId)) selectedId=candidates[0]?.id??null;
     if(changed||force) drawFloor(); else updatePlanState();
@@ -145,6 +211,7 @@
 
   function chooseFloor(floor) {
     if(!floors.some(f=>f.floor===floor)) return;
+    selectionInteracted=true;
     catalog.setFilters({floor:String(floor)});
     $('#map-status-live').textContent=`Zobrazeno ${floor}. podlaží. Vyberte byt v půdorysu.`;
   }
@@ -152,11 +219,22 @@
     if(!snapshot.filteredIds.includes(id)) return;
     const unit=units.find(u=>u.id===id);
     if(!unit||unit.floor!==activeFloor) return;
+    selectionInteracted=true;
     selectedId=id; updatePlanState(); drawCard(); updateURL();
     $('#map-status-live').textContent=`Vybrán byt ${id}, ${unit.layout}, ${area(unit.area)}, ${status(unit).label}. Detail je pod půdorysem nebo vpravo.`;
   }
 
   root.addEventListener('click', event=>{
+    const buildingUnit=event.target.closest('[data-building-unit]');
+    if (buildingUnit) { chooseUnit(Number(buildingUnit.dataset.buildingUnit)); return; }
+    const variant=event.target.closest('[data-building-variant]');
+    if (variant && ['balconies','no-balconies'].includes(variant.dataset.buildingVariant)) {
+      buildingVariant=variant.dataset.buildingVariant;
+      $('#building-selection-image').setAttribute('href',`assets/exterior-${buildingVariant}.webp`);
+      root.querySelectorAll('[data-building-variant]').forEach(button=>button.setAttribute('aria-pressed',String(button===variant)));
+      $('#map-status-live').textContent=buildingVariant==='balconies'?'Varianta B: dům s bočními balkony. Konečné řešení čeká na potvrzení.':'Varianta A: dům bez bočních balkonů. Konečné řešení čeká na potvrzení.';
+      return;
+    }
     const jump = event.target.closest('.map-mobile-jump');
     if (jump) {
       event.preventDefault();
@@ -210,6 +288,7 @@
     if (next) { chooseUnit(next.id); $(`#floor-canvas [data-map-unit="${next.id}"]`)?.focus({preventScroll:true}); }
   });
   document.addEventListener('alexandra:furnished-ready', () => { if (snapshot && floors.length) drawCard(); });
+  document.addEventListener('alexandra:inventory-change', () => { if (snapshot && floors.length) sync(); });
 
   async function initialize() {
     root.setAttribute('aria-busy','true');
@@ -232,13 +311,17 @@
     $('#map-status-live').setAttribute('aria-atomic','true');
     const url=new URL(location.href), requestedUnit=units.find(u=>u.id===Number(url.searchParams.get('byt'))), requestedFloor=Number(url.searchParams.get('podlazi'));
     activeFloor=requestedUnit?.floor||(Number.isInteger(requestedFloor)&&floors.some(f=>f.floor===requestedFloor)?requestedFloor:2);selectedId=requestedUnit?.id??null;
+    selectionInteracted=Boolean(requestedUnit || (Number.isInteger(requestedFloor)&&floors.some(f=>f.floor===requestedFloor)));
     $('#explorer-loading').hidden=true;$('#explorer-workbench').hidden=false;$('#map-legend').hidden=false;
     root.querySelectorAll('[data-map-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mapView===projection)));
     drawStack();
     document.addEventListener('alexandra:catalog-change',event=>sync(event.detail));
-    catalog.setFilters({floor:String(activeFloor)});
+    // Opening the catalogue must retain the complete offer. Filter by floor only
+    // when a visitor explicitly selects it, or follows a deep link to a floor/unit.
+    if (requestedUnit || (Number.isInteger(requestedFloor) && floors.some(f=>f.floor===requestedFloor))) catalog.setFilters({floor:String(activeFloor)});
     sync(null,true);
     root.setAttribute('aria-busy','false');
+    document.dispatchEvent(new CustomEvent('alexandra:floor-selector-ready'));
   }
   initialize().catch(error=>{
     root.setAttribute('aria-busy','false');

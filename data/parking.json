@@ -1,0 +1,1761 @@
+{
+  "updatedAt": "2026-10-19",
+  "source": "Situační výkres a půdorys 1. NP; ceny podle aktualizovaného ceníku ze dne 19. 10. 2026.",
+  "availabilityNote": "Dostupnost konkrétních parkovacích míst potvrdíme na dotaz.",
+  "purchaseRule": "K bytu lze přikoupit jedno parkovací místo. Další místo je možné řešit až po dokončení prodeje bytů, pokud zbude volná kapacita.",
+  "views": [
+    {
+      "id": "site",
+      "label": "Situační výkres",
+      "image": "assets/parking/site-plan.svg",
+      "width": 2400,
+      "height": 1760,
+      "description": "Venkovní a krytá stání podle skutečného situačního výkresu."
+    },
+    {
+      "id": "ground",
+      "label": "Garáže v 1. NP",
+      "image": "assets/parking/ground-plan.webp",
+      "width": 2400,
+      "height": 1132,
+      "pdf": "plans/floor-1.pdf",
+      "description": "Umístění obou garáží v původním půdorysu 1. NP."
+    }
+  ],
+  "spaces": [
+    {
+      "id": "P1",
+      "label": "Stání 1",
+      "number": 1,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        437.56,
+        752.16
+      ],
+      "polygon": [
+        [
+          407.56,
+          722.16
+        ],
+        [
+          467.56,
+          722.16
+        ],
+        [
+          467.56,
+          782.16
+        ],
+        [
+          407.56,
+          782.16
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "1"
+    },
+    {
+      "id": "P2",
+      "label": "Stání 2",
+      "number": 2,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        449.25,
+        833.97
+      ],
+      "polygon": [
+        [
+          419.25,
+          803.97
+        ],
+        [
+          479.25,
+          803.97
+        ],
+        [
+          479.25,
+          863.97
+        ],
+        [
+          419.25,
+          863.97
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "2"
+    },
+    {
+      "id": "P3",
+      "label": "Stání 3",
+      "number": 3,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        459.82,
+        912.82
+      ],
+      "polygon": [
+        [
+          429.82,
+          882.82
+        ],
+        [
+          489.82,
+          882.82
+        ],
+        [
+          489.82,
+          942.82
+        ],
+        [
+          429.82,
+          942.82
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "3"
+    },
+    {
+      "id": "P4",
+      "label": "Stání 4",
+      "number": 4,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        470.99,
+        992.93
+      ],
+      "polygon": [
+        [
+          440.99,
+          962.93
+        ],
+        [
+          500.99,
+          962.93
+        ],
+        [
+          500.99,
+          1022.93
+        ],
+        [
+          440.99,
+          1022.93
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "4"
+    },
+    {
+      "id": "P5",
+      "label": "Stání 5",
+      "number": 5,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        481.32,
+        1069.97
+      ],
+      "polygon": [
+        [
+          451.32,
+          1039.97
+        ],
+        [
+          511.32,
+          1039.97
+        ],
+        [
+          511.32,
+          1099.97
+        ],
+        [
+          451.32,
+          1099.97
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "5"
+    },
+    {
+      "id": "P6",
+      "label": "Stání 6",
+      "number": 6,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        492.2,
+        1147.0
+      ],
+      "polygon": [
+        [
+          462.2,
+          1117.0
+        ],
+        [
+          522.2,
+          1117.0
+        ],
+        [
+          522.2,
+          1177.0
+        ],
+        [
+          462.2,
+          1177.0
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "6"
+    },
+    {
+      "id": "P7",
+      "label": "Stání 7",
+      "number": 7,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        503.09,
+        1227.11
+      ],
+      "polygon": [
+        [
+          473.09,
+          1197.11
+        ],
+        [
+          533.09,
+          1197.11
+        ],
+        [
+          533.09,
+          1257.11
+        ],
+        [
+          473.09,
+          1257.11
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "7"
+    },
+    {
+      "id": "P8",
+      "label": "Stání 8",
+      "number": 8,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        513.69,
+        1305.79
+      ],
+      "polygon": [
+        [
+          483.69,
+          1275.79
+        ],
+        [
+          543.69,
+          1275.79
+        ],
+        [
+          543.69,
+          1335.79
+        ],
+        [
+          483.69,
+          1335.79
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "8"
+    },
+    {
+      "id": "P9",
+      "label": "Stání 9",
+      "number": 9,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        524.57,
+        1385.86
+      ],
+      "polygon": [
+        [
+          494.57,
+          1355.86
+        ],
+        [
+          554.57,
+          1355.86
+        ],
+        [
+          554.57,
+          1415.86
+        ],
+        [
+          494.57,
+          1415.86
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "9"
+    },
+    {
+      "id": "P10",
+      "label": "Stání 10",
+      "number": 10,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        635.76,
+        1406.59
+      ],
+      "polygon": [
+        [
+          605.76,
+          1376.59
+        ],
+        [
+          665.76,
+          1376.59
+        ],
+        [
+          665.76,
+          1436.59
+        ],
+        [
+          605.76,
+          1436.59
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "10"
+    },
+    {
+      "id": "P11",
+      "label": "Stání 11",
+      "number": 11,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        717.4,
+        1394.95
+      ],
+      "polygon": [
+        [
+          687.4,
+          1364.95
+        ],
+        [
+          747.4,
+          1364.95
+        ],
+        [
+          747.4,
+          1424.95
+        ],
+        [
+          687.4,
+          1424.95
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "11"
+    },
+    {
+      "id": "P12",
+      "label": "Stání 12",
+      "number": 12,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        796.06,
+        1385.2
+      ],
+      "polygon": [
+        [
+          766.06,
+          1355.2
+        ],
+        [
+          826.06,
+          1355.2
+        ],
+        [
+          826.06,
+          1415.2
+        ],
+        [
+          766.06,
+          1415.2
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "12"
+    },
+    {
+      "id": "P13",
+      "label": "Stání 13",
+      "number": 13,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        876.12,
+        1375.44
+      ],
+      "polygon": [
+        [
+          846.12,
+          1345.44
+        ],
+        [
+          906.12,
+          1345.44
+        ],
+        [
+          906.12,
+          1405.44
+        ],
+        [
+          846.12,
+          1405.44
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "13"
+    },
+    {
+      "id": "P14",
+      "label": "Stání 14",
+      "number": 14,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        955.69,
+        1364.53
+      ],
+      "polygon": [
+        [
+          925.69,
+          1334.53
+        ],
+        [
+          985.69,
+          1334.53
+        ],
+        [
+          985.69,
+          1394.53
+        ],
+        [
+          925.69,
+          1394.53
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "14"
+    },
+    {
+      "id": "P15",
+      "label": "Stání 15",
+      "number": 15,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1035.23,
+        1353.64
+      ],
+      "polygon": [
+        [
+          1005.23,
+          1323.64
+        ],
+        [
+          1065.23,
+          1323.64
+        ],
+        [
+          1065.23,
+          1383.64
+        ],
+        [
+          1005.23,
+          1383.64
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "15"
+    },
+    {
+      "id": "P16",
+      "label": "Stání 16",
+      "number": 16,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1113.96,
+        1342.73
+      ],
+      "polygon": [
+        [
+          1083.96,
+          1312.73
+        ],
+        [
+          1143.96,
+          1312.73
+        ],
+        [
+          1143.96,
+          1372.73
+        ],
+        [
+          1083.96,
+          1372.73
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "16"
+    },
+    {
+      "id": "P17",
+      "label": "Stání 17",
+      "number": 17,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1192.34,
+        1332.98
+      ],
+      "polygon": [
+        [
+          1162.34,
+          1302.98
+        ],
+        [
+          1222.34,
+          1302.98
+        ],
+        [
+          1222.34,
+          1362.98
+        ],
+        [
+          1162.34,
+          1362.98
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "17"
+    },
+    {
+      "id": "P18",
+      "label": "Stání 18",
+      "number": 18,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1274.42,
+        1322.94
+      ],
+      "polygon": [
+        [
+          1244.42,
+          1292.94
+        ],
+        [
+          1304.42,
+          1292.94
+        ],
+        [
+          1304.42,
+          1352.94
+        ],
+        [
+          1244.42,
+          1352.94
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "18"
+    },
+    {
+      "id": "P19",
+      "label": "Stání 19",
+      "number": 19,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1336.95,
+        1321.18
+      ],
+      "polygon": [
+        [
+          1306.95,
+          1291.18
+        ],
+        [
+          1366.95,
+          1291.18
+        ],
+        [
+          1366.95,
+          1351.18
+        ],
+        [
+          1306.95,
+          1351.18
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "19"
+    },
+    {
+      "id": "P20",
+      "label": "Stání 20",
+      "number": 20,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1404.64,
+        1313.53
+      ],
+      "polygon": [
+        [
+          1374.64,
+          1283.53
+        ],
+        [
+          1434.64,
+          1283.53
+        ],
+        [
+          1434.64,
+          1343.53
+        ],
+        [
+          1374.64,
+          1343.53
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "20"
+    },
+    {
+      "id": "P21",
+      "label": "Stání 21",
+      "number": 21,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1521.95,
+        1296.98
+      ],
+      "polygon": [
+        [
+          1491.95,
+          1266.98
+        ],
+        [
+          1551.95,
+          1266.98
+        ],
+        [
+          1551.95,
+          1326.98
+        ],
+        [
+          1491.95,
+          1326.98
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "21"
+    },
+    {
+      "id": "P22",
+      "label": "Stání 22",
+      "number": 22,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1600.37,
+        1286.37
+      ],
+      "polygon": [
+        [
+          1570.37,
+          1256.37
+        ],
+        [
+          1630.37,
+          1256.37
+        ],
+        [
+          1630.37,
+          1316.37
+        ],
+        [
+          1570.37,
+          1316.37
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "22"
+    },
+    {
+      "id": "P23",
+      "label": "Stání 23",
+      "number": 23,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1757.0,
+        1266.36
+      ],
+      "polygon": [
+        [
+          1727.0,
+          1236.36
+        ],
+        [
+          1787.0,
+          1236.36
+        ],
+        [
+          1787.0,
+          1296.36
+        ],
+        [
+          1727.0,
+          1296.36
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "23"
+    },
+    {
+      "id": "P24",
+      "label": "Stání 24",
+      "number": 24,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1836.51,
+        1255.39
+      ],
+      "polygon": [
+        [
+          1806.51,
+          1225.39
+        ],
+        [
+          1866.51,
+          1225.39
+        ],
+        [
+          1866.51,
+          1285.39
+        ],
+        [
+          1806.51,
+          1285.39
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "24"
+    },
+    {
+      "id": "P25",
+      "label": "Stání 25",
+      "number": 25,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1916.06,
+        1245.61
+      ],
+      "polygon": [
+        [
+          1886.06,
+          1215.61
+        ],
+        [
+          1946.06,
+          1215.61
+        ],
+        [
+          1946.06,
+          1275.61
+        ],
+        [
+          1886.06,
+          1275.61
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "25"
+    },
+    {
+      "id": "P26",
+      "label": "Stání 26",
+      "number": 26,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1889.81,
+        1009.05
+      ],
+      "polygon": [
+        [
+          1859.81,
+          979.05
+        ],
+        [
+          1919.81,
+          979.05
+        ],
+        [
+          1919.81,
+          1039.05
+        ],
+        [
+          1859.81,
+          1039.05
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "26"
+    },
+    {
+      "id": "P27",
+      "label": "Stání 27",
+      "number": 27,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1789.38,
+        1023.19
+      ],
+      "polygon": [
+        [
+          1759.38,
+          993.19
+        ],
+        [
+          1819.38,
+          993.19
+        ],
+        [
+          1819.38,
+          1053.19
+        ],
+        [
+          1759.38,
+          1053.19
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "27"
+    },
+    {
+      "id": "P28",
+      "label": "Stání 28",
+      "number": 28,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1710.08,
+        1034.39
+      ],
+      "polygon": [
+        [
+          1680.08,
+          1004.39
+        ],
+        [
+          1740.08,
+          1004.39
+        ],
+        [
+          1740.08,
+          1064.39
+        ],
+        [
+          1680.08,
+          1064.39
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "28"
+    },
+    {
+      "id": "P29",
+      "label": "Stání 29",
+      "number": 29,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1559.63,
+        1050.61
+      ],
+      "polygon": [
+        [
+          1529.63,
+          1020.61
+        ],
+        [
+          1589.63,
+          1020.61
+        ],
+        [
+          1589.63,
+          1080.61
+        ],
+        [
+          1529.63,
+          1080.61
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "29"
+    },
+    {
+      "id": "P30",
+      "label": "Stání 30",
+      "number": 30,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1474.27,
+        1065.44
+      ],
+      "polygon": [
+        [
+          1444.27,
+          1035.44
+        ],
+        [
+          1504.27,
+          1035.44
+        ],
+        [
+          1504.27,
+          1095.44
+        ],
+        [
+          1444.27,
+          1095.44
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "30"
+    },
+    {
+      "id": "P31",
+      "label": "Stání 31",
+      "number": 31,
+      "type": "covered",
+      "price": 710000,
+      "view": "site",
+      "anchor": [
+        1380.86,
+        1019.4
+      ],
+      "polygon": [
+        [
+          1350.86,
+          989.4
+        ],
+        [
+          1410.86,
+          989.4
+        ],
+        [
+          1410.86,
+          1049.4
+        ],
+        [
+          1350.86,
+          1049.4
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "31"
+    },
+    {
+      "id": "P32",
+      "label": "Stání 32",
+      "number": 32,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1304.18,
+        1083.56
+      ],
+      "polygon": [
+        [
+          1274.18,
+          1053.56
+        ],
+        [
+          1334.18,
+          1053.56
+        ],
+        [
+          1334.18,
+          1113.56
+        ],
+        [
+          1274.18,
+          1113.56
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "32"
+    },
+    {
+      "id": "P33",
+      "label": "Stání 33",
+      "number": 33,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1223.1,
+        1097.67
+      ],
+      "polygon": [
+        [
+          1193.1,
+          1067.67
+        ],
+        [
+          1253.1,
+          1067.67
+        ],
+        [
+          1253.1,
+          1127.67
+        ],
+        [
+          1193.1,
+          1127.67
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "33"
+    },
+    {
+      "id": "P34",
+      "label": "Stání 34",
+      "number": 34,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1134.88,
+        1110.31
+      ],
+      "polygon": [
+        [
+          1104.88,
+          1080.31
+        ],
+        [
+          1164.88,
+          1080.31
+        ],
+        [
+          1164.88,
+          1140.31
+        ],
+        [
+          1104.88,
+          1140.31
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "34"
+    },
+    {
+      "id": "P35",
+      "label": "Stání 35",
+      "number": 35,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1045.88,
+        1124.27
+      ],
+      "polygon": [
+        [
+          1015.88,
+          1094.27
+        ],
+        [
+          1075.88,
+          1094.27
+        ],
+        [
+          1075.88,
+          1154.27
+        ],
+        [
+          1015.88,
+          1154.27
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "35"
+    },
+    {
+      "id": "P36",
+      "label": "Stání 36",
+      "number": 36,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        962.11,
+        1134.07
+      ],
+      "polygon": [
+        [
+          932.11,
+          1104.07
+        ],
+        [
+          992.11,
+          1104.07
+        ],
+        [
+          992.11,
+          1164.07
+        ],
+        [
+          932.11,
+          1164.07
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "36"
+    },
+    {
+      "id": "P37",
+      "label": "Stání 37",
+      "number": 37,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        885.23,
+        1145.9
+      ],
+      "polygon": [
+        [
+          855.23,
+          1115.9
+        ],
+        [
+          915.23,
+          1115.9
+        ],
+        [
+          915.23,
+          1175.9
+        ],
+        [
+          855.23,
+          1175.9
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "37"
+    },
+    {
+      "id": "P38",
+      "label": "Stání 38",
+      "number": 38,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        809.37,
+        1157.29
+      ],
+      "polygon": [
+        [
+          779.37,
+          1127.29
+        ],
+        [
+          839.37,
+          1127.29
+        ],
+        [
+          839.37,
+          1187.29
+        ],
+        [
+          779.37,
+          1187.29
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "38"
+    },
+    {
+      "id": "P39",
+      "label": "Stání 39",
+      "number": 39,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        771.7,
+        864.94
+      ],
+      "polygon": [
+        [
+          741.7,
+          834.94
+        ],
+        [
+          801.7,
+          834.94
+        ],
+        [
+          801.7,
+          894.94
+        ],
+        [
+          741.7,
+          894.94
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "39"
+    },
+    {
+      "id": "P40",
+      "label": "Stání 40",
+      "number": 40,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        850.99,
+        855.81
+      ],
+      "polygon": [
+        [
+          820.99,
+          825.81
+        ],
+        [
+          880.99,
+          825.81
+        ],
+        [
+          880.99,
+          885.81
+        ],
+        [
+          820.99,
+          885.81
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "40"
+    },
+    {
+      "id": "P41",
+      "label": "Stání 41",
+      "number": 41,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        931.56,
+        841.86
+      ],
+      "polygon": [
+        [
+          901.56,
+          811.86
+        ],
+        [
+          961.56,
+          811.86
+        ],
+        [
+          961.56,
+          871.86
+        ],
+        [
+          901.56,
+          871.86
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "41"
+    },
+    {
+      "id": "P42",
+      "label": "Stání 42",
+      "number": 42,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1010.85,
+        832.3
+      ],
+      "polygon": [
+        [
+          980.85,
+          802.3
+        ],
+        [
+          1040.85,
+          802.3
+        ],
+        [
+          1040.85,
+          862.3
+        ],
+        [
+          980.85,
+          862.3
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "42"
+    },
+    {
+      "id": "P43",
+      "label": "Stání 43",
+      "number": 43,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1089.8,
+        822.54
+      ],
+      "polygon": [
+        [
+          1059.8,
+          792.54
+        ],
+        [
+          1119.8,
+          792.54
+        ],
+        [
+          1119.8,
+          852.54
+        ],
+        [
+          1059.8,
+          852.54
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "43"
+    },
+    {
+      "id": "P44",
+      "label": "Stání 44",
+      "number": 44,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1167.19,
+        811.08
+      ],
+      "polygon": [
+        [
+          1137.19,
+          781.08
+        ],
+        [
+          1197.19,
+          781.08
+        ],
+        [
+          1197.19,
+          841.08
+        ],
+        [
+          1137.19,
+          841.08
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "44"
+    },
+    {
+      "id": "P45",
+      "label": "Stání 45",
+      "number": 45,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1247.61,
+        801.53
+      ],
+      "polygon": [
+        [
+          1217.61,
+          771.53
+        ],
+        [
+          1277.61,
+          771.53
+        ],
+        [
+          1277.61,
+          831.53
+        ],
+        [
+          1217.61,
+          831.53
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "45"
+    },
+    {
+      "id": "P46",
+      "label": "Stání 46",
+      "number": 46,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1146.35,
+        590.63
+      ],
+      "polygon": [
+        [
+          1116.35,
+          560.63
+        ],
+        [
+          1176.35,
+          560.63
+        ],
+        [
+          1176.35,
+          620.63
+        ],
+        [
+          1116.35,
+          620.63
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "46"
+    },
+    {
+      "id": "P47",
+      "label": "Stání 47",
+      "number": 47,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        1059.44,
+        602.97
+      ],
+      "polygon": [
+        [
+          1029.44,
+          572.97
+        ],
+        [
+          1089.44,
+          572.97
+        ],
+        [
+          1089.44,
+          632.97
+        ],
+        [
+          1029.44,
+          632.97
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "47"
+    },
+    {
+      "id": "P48",
+      "label": "Stání 48",
+      "number": 48,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        910.29,
+        623.35
+      ],
+      "polygon": [
+        [
+          880.29,
+          593.35
+        ],
+        [
+          940.29,
+          593.35
+        ],
+        [
+          940.29,
+          653.35
+        ],
+        [
+          880.29,
+          653.35
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "48"
+    },
+    {
+      "id": "P49",
+      "label": "Stání 49",
+      "number": 49,
+      "type": "outdoor",
+      "price": 460000,
+      "view": "site",
+      "anchor": [
+        827.14,
+        634.08
+      ],
+      "polygon": [
+        [
+          797.14,
+          604.08
+        ],
+        [
+          857.14,
+          604.08
+        ],
+        [
+          857.14,
+          664.08
+        ],
+        [
+          797.14,
+          664.08
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "Situace.dwg, vrstva 1parkovací stání",
+      "sourceLabel": "49"
+    },
+    {
+      "id": "G1",
+      "label": "Garáž 1",
+      "number": 1,
+      "type": "garage",
+      "price": 960000,
+      "view": "ground",
+      "anchor": [
+        1044,
+        350
+      ],
+      "polygon": [
+        [
+          1002,
+          308
+        ],
+        [
+          1086,
+          308
+        ],
+        [
+          1086,
+          392
+        ],
+        [
+          1002,
+          392
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "1. NP (6.10.2026).pdf, Garáž č. 1",
+      "sourceLabel": "Garáž č. 1"
+    },
+    {
+      "id": "G2",
+      "label": "Garáž 2",
+      "number": 2,
+      "type": "garage",
+      "price": 960000,
+      "view": "ground",
+      "anchor": [
+        1166,
+        350
+      ],
+      "polygon": [
+        [
+          1124,
+          308
+        ],
+        [
+          1208,
+          308
+        ],
+        [
+          1208,
+          392
+        ],
+        [
+          1124,
+          392
+        ]
+      ],
+      "geometryRole": "marker",
+      "status": "inquiry",
+      "source": "1. NP (6.10.2026).pdf, Garáž č. 2",
+      "sourceLabel": "Garáž č. 2"
+    }
+  ]
+}

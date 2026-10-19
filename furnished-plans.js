@@ -57,7 +57,7 @@
     const unit = findUnit(value), variant = variantFor(unit);
     if (!variant) return '';
     const detail = scope === 'detail';
-    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Návrh zařízení dispoziční rodiny bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Zařízený půdorys</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
+    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Návrh zařízení dispoziční rodiny bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Návrh zařízení bytu</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
   }
 
   function watchImage(image, source = false) {
@@ -113,7 +113,7 @@
     $('#furnished-plan-meta').innerHTML = `<span class="icon-label">${icon('plan', 'art')} <span>${escape(unit.layout)}</span></span> · ${escape(unit.floor)}. nadzemní podlaží · <span class="icon-label">${icon('area', 'art')} <span>${escape(number.format(unit.area))} m²</span></span>`;
     $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(unit).label || 'Dostupnost na dotaz';
     $('#furnished-plan-price').textContent = `${number.format(unit.price)} Kč`;
-    $('#furnished-room-legend').innerHTML = `<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Zařízení ukazuje jednu z možností využití prostoru.</p>`;
+    $('#furnished-room-legend').innerHTML = `<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Kuchyňská linka, domácí spotřebiče, nábytek a předokenní žaluzie nejsou součástí prodejní ceny. <a href="#vybaveni" data-furnished-equipment>Vybavení v ceně bytu</a>.</p>`;
     $('#furnished-plan-pdf').href = pdfFor(unit);
     $('#furnished-plan-pdf').innerHTML = `${unit.id <= 10 ? 'Půdorys bytu PDF' : `Půdorys ${escape(unit.floor)}. NP PDF`} ${icon('arrow-up-right')}`;
     const tour = { '1+kk': '1kk', '2+kk': '2kk', '3+kk': '3kk' }[unit.layout];
@@ -133,6 +133,19 @@
     if (open(trigger.dataset.furnishedUnit, trigger)) event.preventDefault();
   });
   dialog.addEventListener('click', event => {
+    if (event.target.closest?.('[data-furnished-equipment]')) {
+      const equipment = document.getElementById('vybaveni');
+      if (!equipment) return;
+      event.preventDefault();
+      document.querySelectorAll('dialog[open]').forEach(openDialog => openDialog.close());
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        equipment.tabIndex = -1;
+        equipment.focus({ preventScroll: true });
+        equipment.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        const url = new URL(location.href); url.hash = 'vybaveni'; history.replaceState(null, '', url);
+      }));
+      return;
+    }
     const button = event.target.closest?.('[data-furnished-view]');
     if (button && ['3d', 'source'].includes(button.dataset.furnishedView)) {
       const wasFocused = document.activeElement === button;
@@ -162,6 +175,11 @@
     const otherDialog = document.querySelector('dialog[open]');
     if (target && (!otherDialog || otherDialog.contains(target))) target.focus({ preventScroll: true });
     returnFocus = null;
+  });
+
+  document.addEventListener('alexandra:inventory-change', () => {
+    if (!currentUnit || !dialog.open) return;
+    $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(currentUnit).label || 'Dostupnost na dotaz';
   });
 
   const ready = fetch('assets/furnished-plans-v2/manifest.json').then(response => {

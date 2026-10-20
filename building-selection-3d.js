@@ -1,6 +1,7 @@
 (() => {
   'use strict';
   let initialized = false;
+  const floorLabel = window.AlexandraFloorLabels.label;
   const runtimeURL = new URL('vendor/model-viewer.min.js', document.baseURI);
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let runtimePromise, runtimeAttempt = 0;
@@ -32,7 +33,7 @@
     panel.id = 'building-selection-3d-panel';
     panel.className = 'building-selection-3d-panel';
     panel.hidden = true;
-    panel.innerHTML = `<div class="building-selection-availability-tools" hidden><label class="building-selection-isolate"><input type="checkbox" data-building-isolate> Jen vybrané podlaží <strong data-building-floor-name>2. NP</strong></label><div class="building-selection-3d-legend" aria-label="Legenda dostupnosti"><span data-availability-key="available"><i aria-hidden="true"></i>Volný</span><span data-availability-key="reserved"><i aria-hidden="true"></i>Rezervovaný</span><span data-availability-key="sold"><i aria-hidden="true"></i>Prodaný</span><span data-availability-key="unknown"><i aria-hidden="true"></i>Na dotaz</span></div></div><div class="building-selection-3d-stage"><div class="building-selection-3d-loading" role="status">Načítání 3D modelu…</div><div class="building-selection-3d-error" hidden><p>3D model se nepodařilo zobrazit. Podlaží a byty můžete dál vybírat na vizualizaci.</p><button type="button" data-building-3d-retry>Zkusit znovu</button><button type="button" data-building-mode="render">Zpět na vizualizaci</button></div></div><p class="building-selection-3d-selection" role="status" aria-live="polite" aria-atomic="true" hidden></p><p class="building-selection-3d-help" id="building-selection-3d-help"></p><details class="building-selection-camera"><summary>Ovládání pohledu</summary><div class="building-selection-3d-controls" role="group" aria-label="Pohled na 3D model"><button type="button" data-building-orbit="-35deg 68deg 58m" disabled>Přední pohled</button><button type="button" data-building-orbit="145deg 68deg 58m" disabled>Zadní pohled</button><button type="button" data-building-orbit="-35deg 35deg 58m" disabled>Nadhled</button></div></details><p class="building-selection-3d-note"></p>`;
+    panel.innerHTML = `<div class="building-selection-availability-tools" hidden><label class="building-selection-isolate"><input type="checkbox" data-building-isolate> Jen vybrané podlaží <strong data-building-floor-name>1. NP</strong></label><div class="building-selection-3d-legend" aria-label="Legenda dostupnosti"><span data-availability-key="available"><i aria-hidden="true"></i>Volný</span><span data-availability-key="reserved"><i aria-hidden="true"></i>Rezervovaný</span><span data-availability-key="sold"><i aria-hidden="true"></i>Prodaný</span><span data-availability-key="unknown"><i aria-hidden="true"></i>Na dotaz</span></div></div><div class="building-selection-3d-stage"><div class="building-selection-3d-loading" role="status">Načítání 3D modelu…</div><div class="building-selection-3d-error" hidden><p>3D model se nepodařilo zobrazit. Podlaží a byty můžete dál vybírat na vizualizaci.</p><button type="button" data-building-3d-retry>Zkusit znovu</button><button type="button" data-building-mode="render">Zpět na vizualizaci</button></div></div><p class="building-selection-3d-selection" role="status" aria-live="polite" aria-atomic="true" hidden></p><p class="building-selection-3d-help" id="building-selection-3d-help"></p><details class="building-selection-camera"><summary>Ovládání pohledu</summary><div class="building-selection-3d-controls" role="group" aria-label="Pohled na 3D model"><button type="button" data-building-orbit="-35deg 68deg 58m" disabled>Přední pohled</button><button type="button" data-building-orbit="145deg 68deg 58m" disabled>Zadní pohled</button><button type="button" data-building-orbit="-35deg 35deg 58m" disabled>Nadhled</button></div></details><p class="building-selection-3d-note"></p>`;
     view.append(panel);
     const stage = panel.querySelector('.building-selection-3d-stage');
     const loading = panel.querySelector('.building-selection-3d-loading');
@@ -68,7 +69,7 @@
     function updateCopy() {
       availabilityTools.hidden = content !== 'availability';
       selection.hidden = content !== 'availability';
-      panel.querySelector('[data-building-floor-name]').textContent = `${activeFloor()}. NP`;
+      panel.querySelector('[data-building-floor-name]').textContent = floorLabel(activeFloor());
       panel.querySelector('.building-selection-3d-help').textContent = content === 'availability'
         ? 'Tažením otočíte model, klepnutím na barevný byt otevřete jeho půdorys a kartu níže. Volba „Jen vybrané podlaží“ odkryje všechny byty v patře.'
         : 'Tažením otočíte dům, dvěma prsty nebo kolečkem přiblížíte. Klepnutím na číslo vyberete podlaží. Barvy bytů najdete v režimu „Dostupnost bytů“.';
@@ -97,7 +98,7 @@
         button.setAttribute('aria-label', `Vybrat byt ${unit.id}, ${unit.layout}, ${labels[key]}`);
       });
       const unit = units.find(unit=>unit.id===chosen);
-      selection.textContent = unit ? `Vybrán byt ${String(unit.id).padStart(2,'0')} · ${unit.layout} · ${unit.floor}. NP · ${labels[unitStatus(unit)]}` : 'Vyberte byt přímo v modelu nebo v seznamu podlaží.';
+      selection.textContent = unit ? `Vybrán byt ${String(unit.id).padStart(2,'0')} · ${unit.layout} · ${floorLabel(unit.floor)} · ${labels[unitStatus(unit)]}` : 'Vyberte byt přímo v modelu nebo v seznamu podlaží.';
     }
 
     function chooseVolume(id) {
@@ -147,7 +148,7 @@
       model?.querySelectorAll('[data-map-floor]').forEach(button => {
         button.setAttribute('aria-pressed', String(Number(button.dataset.mapFloor) === floor));
       });
-      panel.querySelector('[data-building-floor-name]').textContent = `${floor}. NP`;
+      panel.querySelector('[data-building-floor-name]').textContent = floorLabel(floor);
       if (floorChanged && content === 'availability' && isolate.checked && mode === '3d') loadModel();
       else syncAvailability();
     }
@@ -159,7 +160,7 @@
         // Anchors identify whole storeys. Apartment volumes and their labels use
         // separately verified plan geometry, never an inferred facade division.
         const anchors = [[1,16.9,1.55,2.1],[2,4.2,4.85,1.8],[3,27,7.85,1.8],[4,4.2,10.85,1.8],[5,27,13.85,1.8],[6,4.2,16.85,1.8]];
-        model.innerHTML = anchors.map(([floor,x,y,z]) => `<button type="button" class="building-selection-hotspot" slot="hotspot-floor-${floor}" data-position="${x}m ${y}m ${z}m" data-normal="0m 0m 1m" data-visibility-attribute="visible" data-map-floor="${floor}" aria-label="Vybrat ${floor}. nadzemní podlaží" aria-pressed="${floor === activeFloor()}">${floor}. NP</button>`).join('');
+        model.innerHTML = anchors.map(([floor,x,y,z]) => `<button type="button" class="building-selection-hotspot" slot="hotspot-floor-${floor}" data-position="${x}m ${y}m ${z}m" data-normal="0m 0m 1m" data-visibility-attribute="visible" data-map-floor="${floor}" aria-label="Vybrat ${floorLabel(floor)}" aria-pressed="${floor === activeFloor()}">${floorLabel(floor)}</button>`).join('');
         model.querySelectorAll('[data-map-floor]').forEach(button => {
           button.addEventListener('hotspot-visibility', event => { button.tabIndex = event.detail.visible ? 0 : -1; });
         });
@@ -226,7 +227,7 @@
         const src = srcForVariant();
         const changed = requestedSrc !== src;
         requestedSrc = src;
-        model.alt = content === 'availability' ? `Prostorové rozložení a dostupnost bytů Rezidence Alexandra podle zdrojových půdorysů. ${isolate.checked ? `${activeFloor()}. nadzemní podlaží.` : 'Celý dům, šest podlaží.'} Klepnutím vyberte byt; barvu doplňuje text dostupnosti v kartě.` : 'Orientační prostorový model Rezidence Alexandra bez bočních balkonů. Vyberte číslo podlaží.';
+        model.alt = content === 'availability' ? `Prostorové rozložení a dostupnost bytů Rezidence Alexandra podle zdrojových půdorysů. ${isolate.checked ? `${floorLabel(activeFloor())}.` : 'Celý dům, šest podlaží.'} Klepnutím vyberte byt; barvu doplňuje text dostupnosti v kartě.` : 'Orientační prostorový model Rezidence Alexandra bez bočních balkonů. Vyberte číslo podlaží.';
         drawHotspots();
         setCameraForSource();
         if (retry && !changed) {

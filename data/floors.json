@@ -8117,5 +8117,14 @@
       ],
       "mapImage": "assets/floors/floor-6-clean.webp"
     }
-  ]
+  ],
+  "displayFloorNames": {
+    "1": "Přízemí",
+    "2": "1. NP",
+    "3": "2. NP",
+    "4": "3. NP",
+    "5": "4. NP",
+    "6": "5. NP"
+  },
+  "displayFloorNote": "Presentation labels confirmed 20 October 2026; source floor IDs 1–6, geometry, file paths and original PDF numbering remain unchanged."
 }

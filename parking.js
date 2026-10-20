@@ -68,7 +68,7 @@
     activeView=space?.view || 'site';selectedId=space?.id || null;filter='all';$('#parking-status-filter').value='all';
   }
   window.addEventListener('popstate',()=>{if(data){fromUrl();render();}});
-  fetch('data/parking.json?v=1').then(r=>{if(!r.ok)throw new Error('Parking unavailable');return r.json();}).then(result=>{
+  fetch('data/parking.json?v=corrections-20261020', {cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Parking unavailable');return r.json();}).then(result=>{
     if(!Array.isArray(result.views)||!Array.isArray(result.spaces)||!result.views.length)throw new Error('Invalid parking');
     if(!result.views.every(v=>/^[a-z-]+$/.test(v.id)&&/^assets\/parking\/[a-z-]+\.(svg|webp)$/.test(v.image)&&Number.isFinite(v.width)&&Number.isFinite(v.height)))throw new Error('Invalid view');
     if(!result.spaces.every(p=>/^[PG]\d+$/.test(p.id)&&types[p.type]&&result.views.some(v=>v.id===p.view)&&Number.isFinite(p.price)&&Array.isArray(p.anchor)&&p.anchor.length===2&&p.anchor.every(Number.isFinite)))throw new Error('Invalid space');

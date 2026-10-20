@@ -5,6 +5,7 @@
   if (!dialog) return;
   const $ = selector => dialog.querySelector(selector);
   const units = window.ALEXANDRA_UNITS || [];
+  const floorLabel = window.AlexandraFloorLabels.label;
   const number = new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 2 });
   const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const findUnit = value => {
@@ -19,12 +20,14 @@
 
   function validateManifest(data) {
     if (!object(data) || data.version !== 1 || !object(data.units) || !object(data.variants)) throw new Error('Neplatný přehled zařízených půdorysů.');
+    if (data.revision != null && data.revision !== 'catalog-20261020') throw new Error('Neplatná revize zařízených půdorysů.');
+    const revisionSuffix = data.revision === 'catalog-20261020' ? '-catalog-20261020' : '';
     const checkedVariants = new Map(), checkedAssignments = new Map();
     for (const [id, raw] of Object.entries(data.variants)) {
       if (!/^variant-(0[1-9]|10)$/.test(id) || !object(raw) || raw.id !== id || raw.sourceUnit !== Number(id.slice(-2))) throw new Error('Neplatná dispoziční rodina.');
-      const expectedImage = `assets/furnished-plans-v2/${id}.webp`;
-      const expectedThumb = `assets/furnished-plans-v2/${id}-thumb.webp`;
-      const expectedFull = `assets/furnished-plans-v2/${id}-4k.webp`;
+      const expectedImage = `assets/furnished-plans-v2/${id}${revisionSuffix}.webp`;
+      const expectedThumb = `assets/furnished-plans-v2/${id}${revisionSuffix}-thumb.webp`;
+      const expectedFull = `assets/furnished-plans-v2/${id}${revisionSuffix}-4k.webp`;
       if (raw.fullResolution !== expectedFull || raw.renderer !== 'Blender Cycles') throw new Error('Neplatný 4K náhled.');
       if (raw.image !== expectedImage || (raw.thumbnail != null && raw.thumbnail !== expectedThumb && raw.thumbnail !== expectedImage)) throw new Error('Neplatná cesta náhledu.');
       if (!Array.isArray(raw.rooms) || !raw.rooms.length || raw.rooms.length > 20) throw new Error('Chybí legenda místností.');
@@ -51,7 +54,7 @@
   const variantFor = unit => unit && variants.get(assignments.get(unit.id));
   const pdfFor = unit => unit.id >= 1 && unit.id <= 10 ? `plans/unit-${String(unit.id).padStart(2, '0')}.pdf` : `plans/floor-${unit.floor}.pdf`;
   const sourceFor = unit => unit.id >= 1 && unit.id <= 10 ? `assets/plan-unit-${String(unit.id).padStart(2, '0')}.webp` : `assets/plan-floor-${unit.floor}.webp`;
-  const sourceLabel = unit => unit.id >= 1 && unit.id <= 10 ? `Původní půdorys bytu ${unit.id}` : `Původní půdorys ${unit.floor}. nadzemního podlaží`;
+  const sourceLabel = unit => unit.id >= 1 && unit.id <= 10 ? `Původní půdorys bytu ${unit.id}` : `Původní půdorys · ${window.AlexandraFloorLabels.source(unit.floor)}`;
 
   function previewHTML(value, scope = 'map') {
     const unit = findUnit(value), variant = variantFor(unit);
@@ -110,13 +113,13 @@
     view = '3d';
     returnFocus = { element: trigger, scope: trigger?.closest?.('#unit-dialog, #map-unit-card')?.id, unit: unit.id };
     $('#furnished-plan-title').textContent = `Byt ${String(unit.id).padStart(2, '0')}`;
-    $('#furnished-plan-meta').innerHTML = `<span class="icon-label">${icon('plan', 'art')} <span>${escape(unit.layout)}</span></span> · ${escape(unit.floor)}. nadzemní podlaží · <span class="icon-label">${icon('area', 'art')} <span>${escape(number.format(unit.area))} m²</span></span>`;
+    $('#furnished-plan-meta').innerHTML = `<span class="icon-label">${icon('plan', 'art')} <span>${escape(unit.layout)}</span></span> · ${escape(floorLabel(unit.floor))} · <span class="icon-label">${icon('area', 'art')} <span>${escape(number.format(unit.area))} m²</span></span>`;
     $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(unit).label || 'Dostupnost na dotaz';
     $('#furnished-plan-price').textContent = `${number.format(unit.price)} Kč`;
-    $('#furnished-room-legend').innerHTML = `<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Kuchyňská linka, domácí spotřebiče, nábytek a předokenní žaluzie nejsou součástí prodejní ceny. <a href="#vybaveni" data-furnished-equipment>Vybavení v ceně bytu</a>.</p>`;
+    $('#furnished-room-legend').innerHTML = `<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Kuchyňská linka, domácí spotřebiče, volný nábytek a předokenní žaluzie nejsou součástí prodejní ceny. <a href="#vybaveni" data-furnished-equipment>Vybavení v ceně bytu</a>.</p>`;
     $('#furnished-plan-pdf').href = pdfFor(unit);
-    $('#furnished-plan-pdf').innerHTML = `${unit.id <= 10 ? 'Půdorys bytu PDF' : `Půdorys ${escape(unit.floor)}. NP PDF`} ${icon('arrow-up-right')}`;
-    const tour = { '1+kk': '1kk', '2+kk': '2kk', '3+kk': '3kk' }[unit.layout];
+    $('#furnished-plan-pdf').innerHTML = `${unit.id <= 10 ? 'Půdorys bytu PDF' : `Půdorys ${escape(floorLabel(unit.floor))} PDF`} ${icon('arrow-up-right')}`;
+    const tour = unit.id === 51 ? null : { '1+kk': '1kk', '2+kk': '2kk', '3+kk': '3kk' }[unit.layout];
     $('#furnished-plan-tour').href = `tour.html?byt=${tour}#walkthrough`;
     $('#furnished-plan-tour').hidden = !tour;
     $('#furnished-plan-caveat').textContent = globalNote || 'Návrh možného zařízení podle dispoziční rodiny. Balkony nejsou součástí 3D náhledu a liší se podle podlaží. Přesné rozměry a závazné provedení ověřte ve zdrojovém výkresu a u prodejce.';
@@ -182,7 +185,7 @@
     $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(currentUnit).label || 'Dostupnost na dotaz';
   });
 
-  const ready = fetch('assets/furnished-plans-v2/manifest.json').then(response => {
+  const ready = fetch('assets/furnished-plans-v2/manifest.json?v=catalog20261020', {cache:'no-cache'}).then(response => {
     if (!response.ok) throw new Error('Zařízené půdorysy nejsou dostupné.');
     return response.json();
   }).then(data => {

@@ -104,7 +104,7 @@
     $('#interior-grid').setAttribute('aria-busy', 'true');
     $('#gallery-status').textContent = 'Načítání kolekce interiérů…';
     try {
-      const response = await fetch('assets/interiors-v3/manifest.json');
+      const response = await fetch('assets/interiors-v3/manifest.json?v=catalog20261020', {cache:'no-cache'});
       if (!response.ok) throw new Error('Collection unavailable');
       const data = await response.json();
       items = (Array.isArray(data.items) ? data.items : []).filter(item => item && isLocalAsset(item.src) && (!item.thumb || isLocalAsset(item.thumb)) && typologies.includes(item.typology) && rooms.includes(item.room)).map(item => ({...item, fullResolution:isLocalAsset(item.fullResolution) ? item.fullResolution : null, renderer:(item.renderer || data.renderer) === 'Blender Cycles' ? 'Blender Cycles' : null}));

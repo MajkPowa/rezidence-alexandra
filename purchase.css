@@ -61,6 +61,36 @@
 .unit-included li { margin:5px 0; }
 .unit-bathroom { margin-top:24px;padding:20px;background:var(--cream);border-radius:8px; }
 .unit-bathroom>p { font-size:14px;margin:8px 0; }
+.unit-location-note { padding:12px 14px;border-left:3px solid var(--olive,#788265);background:var(--cream);font-size:14px;line-height:1.6; }
+.bathroom-guide { margin-top:48px;padding-top:32px;border-top:1px solid var(--line);scroll-margin-top:110px; }
+.bathroom-guide-heading { display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:24px; }
+.bathroom-guide-heading h3 { margin:8px 0;font:400 clamp(28px,3vw,40px)/1.15 var(--serif); }
+#bathroom-guide-title { scroll-margin-top:130px; }
+.bathroom-guide-heading>p { max-width:430px;font-size:15px;line-height:1.7; }
+.bathroom-catalog-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start; }
+.bathroom-catalog { min-width:0;border:1px solid var(--line);background:var(--paper,#faf8f2); }
+.bathroom-catalog>a { display:block;overflow:hidden; }
+.bathroom-catalog img { display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover; }
+.bathroom-catalog>div { padding:22px; }
+.bathroom-catalog h4 { font:500 18px/1.45 var(--sans);margin:8px 0 18px; }
+.bathroom-catalog .eyebrow { font-size:11px; }
+.bathroom-catalog .ux-disclosure { margin:0 0 16px; }
+.bathroom-catalog .ux-disclosure summary { padding:14px 0;min-height:44px; }
+.bathroom-catalog ul { padding-left:18px;font-size:14px;line-height:1.65; }
+.bathroom-catalog li { margin-bottom:8px; }
+.bathroom-catalog .text-link { font-size:13px;min-height:44px;display:inline-flex;align-items:center; }
+.bathroom-catalog-ground { grid-column:1/-1; }
+.bathroom-catalog-ground>div { display:grid;grid-template-columns:1fr 2fr;gap:8px 32px;align-items:start; }
+.bathroom-catalog-ground .eyebrow { grid-column:1; }
+.bathroom-catalog-ground h4 { grid-column:1; }
+.bathroom-catalog-ground details { grid-column:2;grid-row:1/4; }
+@media(max-width:800px) {
+ .bathroom-guide-heading { display:block; }
+ .bathroom-guide-heading>p { max-width:none; }
+ .bathroom-catalog-grid { grid-template-columns:1fr; }
+ .bathroom-catalog-ground>div { display:block; }
+ .bathroom-catalog>div { padding:20px; }
+}
 .excluded-box { margin-top:20px;border-left:3px solid #916f4c;padding:12px 16px;background:#f5eee6; }
 .excluded-box p { font-size:14px;margin:8px 0 0; }
 .unit-purchase-links { display:flex;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:20px;padding-top:8px; }

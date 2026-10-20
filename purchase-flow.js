@@ -32,7 +32,7 @@
     const {filters: state} = catalog.snapshot();
     const labels = [];
     if (state.layout !== 'all') labels.push(state.layout);
-    if (state.floor !== 'all') labels.push(`${state.floor}. NP`);
+    if (state.floor !== 'all') labels.push(window.AlexandraFloorLabels.label(state.floor));
     for (const [key,id] of [['status','status-filter'],['area','area-filter']]) {
       if (state[key] !== 'all') labels.push(document.getElementById(id).selectedOptions[0].textContent);
     }

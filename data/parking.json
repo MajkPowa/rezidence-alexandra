@@ -14,12 +14,12 @@
     },
     {
       "id": "ground",
-      "label": "Garáže v 1. NP",
+      "label": "Garáže v přízemí",
       "image": "assets/parking/ground-plan.webp",
       "width": 2400,
       "height": 1132,
       "pdf": "plans/floor-1.pdf",
-      "description": "Umístění obou garáží v původním půdorysu 1. NP."
+      "description": "Umístění obou garáží v přízemí. Původní projektový výkres označuje toto podlaží jako 1. NP."
     }
   ],
   "spaces": [

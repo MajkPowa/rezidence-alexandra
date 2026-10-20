@@ -56,9 +56,9 @@
     "variant-01": {
       "id": "variant-01",
       "sourceUnit": 1,
-      "image": "assets/furnished-plans-v2/variant-01.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-01-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-01-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-01-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-01-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-01-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -100,14 +100,15 @@
           "y": 0.48954
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-02": {
       "id": "variant-02",
       "sourceUnit": 2,
-      "image": "assets/furnished-plans-v2/variant-02.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-02-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-02-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-02-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-02-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-02-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -149,14 +150,15 @@
           "y": 0.29449
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-03": {
       "id": "variant-03",
       "sourceUnit": 3,
-      "image": "assets/furnished-plans-v2/variant-03.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-03-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-03-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-03-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-03-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-03-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -198,14 +200,15 @@
           "y": 0.34568
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-04": {
       "id": "variant-04",
       "sourceUnit": 4,
-      "image": "assets/furnished-plans-v2/variant-04.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-04-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-04-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-04-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-04-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-04-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -235,14 +238,15 @@
           "y": 0.43307
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-05": {
       "id": "variant-05",
       "sourceUnit": 5,
-      "image": "assets/furnished-plans-v2/variant-05.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-05-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-05-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-05-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-05-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-05-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -272,14 +276,15 @@
           "y": 0.43125
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-06": {
       "id": "variant-06",
       "sourceUnit": 6,
-      "image": "assets/furnished-plans-v2/variant-06.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-06-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-06-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-06-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-06-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-06-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -321,14 +326,15 @@
           "y": 0.34568
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-07": {
       "id": "variant-07",
       "sourceUnit": 7,
-      "image": "assets/furnished-plans-v2/variant-07.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-07-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-07-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-07-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-07-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-07-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -358,14 +364,15 @@
           "y": 0.42316
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-08": {
       "id": "variant-08",
       "sourceUnit": 8,
-      "image": "assets/furnished-plans-v2/variant-08.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-08-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-08-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-08-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-08-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-08-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -395,14 +402,15 @@
           "y": 0.4258
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-09": {
       "id": "variant-09",
       "sourceUnit": 9,
-      "image": "assets/furnished-plans-v2/variant-09.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-09-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-09-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-09-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-09-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-09-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -432,14 +440,15 @@
           "y": 0.43007
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     "variant-10": {
       "id": "variant-10",
       "sourceUnit": 10,
-      "image": "assets/furnished-plans-v2/variant-10.webp",
-      "thumbnail": "assets/furnished-plans-v2/variant-10-thumb.webp",
-      "fullResolution": "assets/furnished-plans-v2/variant-10-4k.webp",
+      "image": "assets/furnished-plans-v2/variant-10-catalog-20261020.webp",
+      "thumbnail": "assets/furnished-plans-v2/variant-10-catalog-20261020-thumb.webp",
+      "fullResolution": "assets/furnished-plans-v2/variant-10-catalog-20261020-4k.webp",
       "width": 2200,
       "height": 2200,
       "renderer": "Blender Cycles",
@@ -469,8 +478,11 @@
           "y": 0.43051
         }
       ],
-      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů."
+      "note": "Návrh zařízení · 4K prostorový náhled · dispozice podle projektových podkladů.",
+      "bathroomCatalogRevision": "catalog-20261020"
     }
   },
-  "note": "Návrh možného zařízení podle dispoziční rodiny. Balkony se liší podle podlaží a nejsou součástí 3D náhledu. Rozměry a provedení ověřte v původním výkresu a u prodejce."
+  "note": "Návrh možného zařízení podle dispoziční rodiny. Balkony se liší podle podlaží a nejsou součástí 3D náhledu. Rozměry a provedení ověřte v původním výkresu a u prodejce.",
+  "updated": "2026-10-20",
+  "revision": "catalog-20261020"
 }

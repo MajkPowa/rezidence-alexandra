@@ -232,10 +232,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/1kk/hall.webp",
-          "thumb": "assets/walkthrough-v3/1kk/hall-thumb.jpg",
-          "preview": "assets/walkthrough-v3/1kk/hall-preview.webp",
-          "description": "Předsíň propojuje obytné i vedlejší místnosti. Vyberte značku u dveří nebo bod v orientačním půdorysu."
+          "src": "assets/walkthrough-v3/1kk/hall-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/1kk/hall-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/1kk/hall-catalog-20261020-preview.webp",
+          "description": "Předsíň propojuje obytné i vedlejší místnosti. Vyberte značku u dveří nebo bod v orientačním půdorysu.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "bathroom",
@@ -246,9 +247,9 @@
             1.55
           ],
           "target": [
-            4.17,
-            6.1,
-            1.45
+            3.6,
+            7.4,
+            1.25
           ],
           "room": "bathroom",
           "links": [
@@ -263,10 +264,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/1kk/bathroom.webp",
-          "thumb": "assets/walkthrough-v3/1kk/bathroom-thumb.jpg",
-          "preview": "assets/walkthrough-v3/1kk/bathroom-preview.webp",
-          "description": "Návrh koupelny podle podkladů pro tuto dispozici: světlé obklady, bílá keramika a chromové baterie."
+          "src": "assets/walkthrough-v3/1kk/bathroom-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/1kk/bathroom-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/1kk/bathroom-catalog-20261020-preview.webp",
+          "description": "Umyvadlová skříňka DS3764 šířky 60 cm, obdélníkové umyvadlo DS3755, dvoudveřová galerka DS32590 a baterie NOVASERV 02192. Pračka a dekorace jsou ilustrační vybavení.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "wc",
@@ -294,12 +296,14 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/1kk/wc.webp",
-          "thumb": "assets/walkthrough-v3/1kk/wc-thumb.jpg",
-          "preview": "assets/walkthrough-v3/1kk/wc-preview.webp",
-          "description": "Samostatné WC odpovídá oddělení hygienického zázemí v původním půdorysu."
+          "src": "assets/walkthrough-v3/1kk/wc-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/1kk/wc-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/1kk/wc-catalog-20261020-preview.webp",
+          "description": "Samostatné WC odpovídá oddělení hygienického zázemí v původním půdorysu.",
+          "bathroomCatalogRevision": "catalog-20261020"
         }
-      ]
+      ],
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     {
       "id": "2kk",
@@ -568,10 +572,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/2kk/hall.webp",
-          "thumb": "assets/walkthrough-v3/2kk/hall-thumb.jpg",
-          "preview": "assets/walkthrough-v3/2kk/hall-preview.webp",
-          "description": "Předsíň propojuje obytné i vedlejší místnosti. Vyberte značku u dveří nebo bod v orientačním půdorysu."
+          "src": "assets/walkthrough-v3/2kk/hall-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/2kk/hall-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/2kk/hall-catalog-20261020-preview.webp",
+          "description": "Předsíň propojuje obytné i vedlejší místnosti. Vyberte značku u dveří nebo bod v orientačním půdorysu.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "bedroom",
@@ -626,10 +631,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/2kk/bathroom.webp",
-          "thumb": "assets/walkthrough-v3/2kk/bathroom-thumb.jpg",
-          "preview": "assets/walkthrough-v3/2kk/bathroom-preview.webp",
-          "description": "Návrh koupelny podle podkladů pro tuto dispozici: světlé obklady, bílá keramika a chromové baterie."
+          "src": "assets/walkthrough-v3/2kk/bathroom-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/2kk/bathroom-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/2kk/bathroom-catalog-20261020-preview.webp",
+          "description": "Zástěna Walk-In RT01501 100 cm, sprchový sloup DS3713, žlab DCZ8 70 cm a umyvadlová sestava šířky 60 cm. Dlažba OA31897 Natural 120 × 60 cm.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "wc",
@@ -655,10 +661,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/2kk/wc.webp",
-          "thumb": "assets/walkthrough-v3/2kk/wc-thumb.jpg",
-          "preview": "assets/walkthrough-v3/2kk/wc-preview.webp",
-          "description": "Samostatné WC odpovídá oddělení hygienického zázemí v původním půdorysu."
+          "src": "assets/walkthrough-v3/2kk/wc-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/2kk/wc-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/2kk/wc-catalog-20261020-preview.webp",
+          "description": "Samostatné WC odpovídá oddělení hygienického zázemí v původním půdorysu.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "storage",
@@ -689,7 +696,8 @@
           "preview": "assets/walkthrough-v3/2kk/storage-preview.webp",
           "description": "Návrh úložné místnosti. Rozměry a konečné využití ověřte v půdorysu konkrétního bytu."
         }
-      ]
+      ],
+      "bathroomCatalogRevision": "catalog-20261020"
     },
     {
       "id": "3kk",
@@ -905,10 +913,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/3kk/kitchen-bathroom-20261018.webp",
-          "thumb": "assets/walkthrough-v3/3kk/kitchen-bathroom-20261018-thumb.jpg",
-          "preview": "assets/walkthrough-v3/3kk/kitchen-bathroom-20261018-preview.webp",
-          "description": "Matná šedá kuchyně, dubová pracovní deska a jídelní kout. Návrh rozmístění respektuje prostor v původním půdorysu."
+          "src": "assets/walkthrough-v3/3kk/kitchen-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/3kk/kitchen-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/3kk/kitchen-catalog-20261020-preview.webp",
+          "description": "Matná šedá kuchyně, dubová pracovní deska a jídelní kout. Návrh rozmístění respektuje prostor v původním půdorysu.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "hall",
@@ -966,10 +975,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/3kk/hall-bathroom-20261018.webp",
-          "thumb": "assets/walkthrough-v3/3kk/hall-bathroom-20261018-thumb.jpg",
-          "preview": "assets/walkthrough-v3/3kk/hall-bathroom-20261018-preview.webp",
-          "description": "Předsíň propojuje obytné i vedlejší místnosti. Vyberte značku u dveří nebo bod v orientačním půdorysu."
+          "src": "assets/walkthrough-v3/3kk/hall-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/3kk/hall-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/3kk/hall-catalog-20261020-preview.webp",
+          "description": "Předsíň propojuje obytné i vedlejší místnosti. Vyberte značku u dveří nebo bod v orientačním půdorysu.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "bedroom",
@@ -1024,10 +1034,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/3kk/bathroom-bathroom-20261018.webp",
-          "thumb": "assets/walkthrough-v3/3kk/bathroom-bathroom-20261018-thumb.jpg",
-          "preview": "assets/walkthrough-v3/3kk/bathroom-bathroom-20261018-preview.webp",
-          "description": "Návrh koupelny podle podkladů pro tuto dispozici: světlé obklady, bílá keramika a chromové baterie."
+          "src": "assets/walkthrough-v3/3kk/bathroom-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/3kk/bathroom-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/3kk/bathroom-catalog-20261020-preview.webp",
+          "description": "Čtvrtkruhový sprchový kout NC14281 s vaničkou 90 × 90 cm, sprchový sloup DS3713 a umyvadlová sestava šířky 60 cm. Pračka a dekorace jsou ilustrační vybavení.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "wc",
@@ -1053,10 +1064,11 @@
               ]
             }
           ],
-          "src": "assets/walkthrough-v3/3kk/wc-bathroom-20261018.webp",
-          "thumb": "assets/walkthrough-v3/3kk/wc-bathroom-20261018-thumb.jpg",
-          "preview": "assets/walkthrough-v3/3kk/wc-bathroom-20261018-preview.webp",
-          "description": "Samostatné WC odpovídá oddělení hygienického zázemí v původním půdorysu."
+          "src": "assets/walkthrough-v3/3kk/wc-catalog-20261020.webp",
+          "thumb": "assets/walkthrough-v3/3kk/wc-catalog-20261020-thumb.jpg",
+          "preview": "assets/walkthrough-v3/3kk/wc-catalog-20261020-preview.webp",
+          "description": "Samostatné WC odpovídá oddělení hygienického zázemí v původním půdorysu.",
+          "bathroomCatalogRevision": "catalog-20261020"
         },
         {
           "id": "komora",
@@ -1087,8 +1099,10 @@
           "preview": "assets/walkthrough-v3/3kk/komora-preview.webp",
           "description": "Komora s návrhem pracovního a úložného místa. Místnost není prezentována jako další ložnice."
         }
-      ]
+      ],
+      "bathroomCatalogRevision": "catalog-20261020"
     }
   ],
-  "revision": "bathroom-20261018"
+  "revision": "catalog-20261020",
+  "updated": "2026-10-20"
 }

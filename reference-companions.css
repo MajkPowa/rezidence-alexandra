@@ -1,0 +1,10 @@
+/* Shared Alexandra identity for the gallery, tours and presentation pages. */
+body.reference-companion{--paper:#f1eee7;--bg:#f1eee7;--cream:#e6e2d8;--surface:#faf8f3;--ink:#17242a;--text:#17242a;--muted:#596267;--line:#d0cfc6;--olive:#735d39;--accent:#735d39;--serif:'AlexandraDisplay',Georgia,'Times New Roman',serif;--sans:'AlexandraSans',Arial,Helvetica,sans-serif;background:var(--paper);color:var(--ink);font-family:var(--sans)}
+.reference-companion :is(.site-header,.interior-header,.companion-header){background:#f1eee7f7;color:#17242a;border-bottom-color:#d0cfc6;box-shadow:none}
+.reference-companion :is(.site-header,.interior-header,.companion-header) nav a{color:#17242a}
+.reference-companion :is(h1,h2,h3){font-family:var(--serif);font-weight:400;letter-spacing:-.035em}
+.reference-companion :is(.buyer-standard-link,.buyer-back-link,.header-cta){border-radius:1px}
+.reference-companion :is(.filter,.filters,.tour-types,.apartment-tabs,.view-switch) button{border-radius:1px}
+.reference-companion :is(button,a,input,select,textarea,summary):focus-visible{outline-color:#805d2b;outline-offset:4px}
+.reference-companion :is(.page-footer,.site-footer,.interior-footer,.companion-footer){border-color:#d0cfc6}
+@media(prefers-reduced-motion:reduce){.reference-companion{scroll-behavior:auto}}

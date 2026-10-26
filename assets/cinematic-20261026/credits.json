@@ -1,0 +1,21 @@
+{
+  "revision": "cinematic-20261026",
+  "created": "2026-10-26",
+  "generation": "Higgsfield / Grok Video1.5",
+  "inputs": [
+    "assets/exterior-no-balconies.webp",
+    "assets/interiors-v3/3kk-living-4k.webp"
+  ],
+  "scope": "Illustrative camera movement based on existing project visualizations. Confirmed apartment data and source plans remain the factual source.",
+  "desktop": [
+    "exterior.mp4",
+    "interior.mp4"
+  ],
+  "mobile": [
+    "exterior-mobile.mp4",
+    "interior-mobile.mp4"
+  ],
+  "interiorApprovedCutSeconds": 2.6,
+  "audio": false,
+  "interaction": "Native scrolling, manual chapter navigation, reduced-motion and data-saving fallbacks."
+}

@@ -1,0 +1,650 @@
+/* Alexandra · reference-inspired editorial shell.
+   Scoped to this landing page. Apartment data, interaction hooks, and SVG statuses are unchanged.
+   Motion contract: .is-cinematic on body switches the fixed header to its film overlay treatment. */
+body.reference-redesign {
+  --paper:#f1eee7;
+  --cream:#e6e2d8;
+  --surface:#faf8f3;
+  --ink:#17242a;
+  --muted:#596267;
+  --line:#d0cfc6;
+  --olive:#735d39;
+  --reference-gold:#c7ab79;
+  --reference-control:#858b8b;
+  --radius:2px;
+  --header-height:88px;
+  --gutter:clamp(20px,4.4vw,80px);
+  background:var(--paper);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.7;
+}
+body.reference-redesign :is(button,input,select,textarea,summary) { font-family:var(--sans); }
+body.reference-redesign :is(button,a,summary) { -webkit-tap-highlight-color:transparent; }
+body.reference-redesign :is(a,button,input,select,textarea,summary,[tabindex]):focus-visible {
+  outline:3px solid #805d2b;
+  outline-offset:4px;
+}
+body.reference-redesign :is(#byty,#cenik,#parkovani,#vybaveni,#financovani,#vyber-v-dome,#map-unit-card,#projekt,#architektura,#interiery,#prohlidka,#kontakt,#dokumenty,#bathroom-guide-title) {
+  scroll-margin-top:calc(var(--header-height) + 24px);
+}
+body.reference-redesign .section-pad {
+  padding:clamp(64px,7vw,112px) max(var(--gutter),calc((100vw - 1560px)/2));
+}
+body.reference-redesign h2 {
+  font-size:clamp(40px,4.7vw,70px);
+  line-height:1.1;
+  letter-spacing:-.042em;
+}
+body.reference-redesign h3 { line-height:1.25; letter-spacing:-.018em; }
+body.reference-redesign h2 em { color:#786c58; }
+body.reference-redesign :is(.eyebrow,.section-marker) {
+  font-size:11px;
+  line-height:1.6;
+  letter-spacing:.19em;
+  font-weight:500;
+}
+body.reference-redesign .section-heading {
+  grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
+  align-items:end;
+  gap:clamp(28px,6vw,100px);
+  margin-bottom:40px;
+}
+body.reference-redesign .section-heading>div+div,
+body.reference-redesign .section-heading>p {
+  font-size:15px;
+  line-height:1.8;
+  color:var(--muted);
+  max-width:460px;
+}
+body.reference-redesign .text-link {
+  min-height:48px;
+  font-size:13px;
+  line-height:1.5;
+  font-weight:500;
+  gap:22px;
+  text-underline-offset:6px;
+}
+body.reference-redesign .button {
+  min-height:52px;
+  padding:14px 24px;
+  border-radius:1px;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.45;
+  letter-spacing:.04em;
+  gap:24px;
+  box-shadow:none;
+}
+body.reference-redesign .button-dark {
+  color:#fffefa;
+  background:var(--ink);
+  border-color:var(--ink);
+}
+body.reference-redesign .button-light {
+  color:var(--ink);
+  background:var(--reference-gold);
+  border-color:var(--reference-gold);
+}
+body.reference-redesign .icon-button { min-width:48px; min-height:48px; border-radius:1px; }
+body.reference-redesign .site-header,
+body.reference-redesign .site-header.scrolled,
+body.reference-redesign .site-header.menu-open {
+  position:fixed;
+  inset:0 0 auto;
+  display:flex;
+  height:var(--header-height);
+  padding:12px var(--gutter);
+  background:rgba(241,238,231,.97);
+  color:var(--ink);
+  border-bottom:1px solid #d2d1c8;
+  box-shadow:none;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  transition:background-color .35s ease,color .35s ease,border-color .35s ease;
+}
+body.reference-redesign .brand { flex:none; gap:11px; min-height:48px; }
+body.reference-redesign .brand-symbol { font-size:46px; line-height:1; }
+body.reference-redesign .brand-text {
+  font:400 20px/1.1 var(--serif);
+  letter-spacing:.16em;
+}
+body.reference-redesign .brand-text small {
+  margin-top:7px;
+  font:500 8px/1.35 var(--sans);
+  letter-spacing:.23em;
+}
+body.reference-redesign .desktop-nav {
+  min-width:0;
+  gap:clamp(14px,1.7vw,28px);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.025em;
+}
+body.reference-redesign .desktop-nav a { min-height:48px; align-items:center; }
+body.reference-redesign .desktop-nav a::after { bottom:10px; background:currentColor; }
+body.reference-redesign .header-contact,
+body.reference-redesign .scrolled .header-contact {
+  display:inline-flex;
+  align-items:center;
+  white-space:nowrap;
+  flex-shrink:0;
+  min-height:48px;
+  padding:12px 20px;
+  border:1px solid var(--reference-gold);
+  border-radius:1px;
+  gap:20px;
+  background:var(--reference-gold);
+  color:var(--ink);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.06em;
+}
+body.reference-redesign .header-contact svg { width:20px; height:20px; }
+body.reference-redesign .menu-toggle {
+  min-width:48px;
+  min-height:48px;
+  background:transparent;
+  border:1px solid #858b8b;
+  color:inherit;
+}
+body.reference-redesign.is-cinematic .site-header,
+body.reference-redesign.is-cinematic .site-header.scrolled {
+  color:#fffefa;
+  background:rgba(12,26,36,.46);
+  border-color:rgba(255,254,250,.27);
+}
+body.reference-redesign.is-cinematic .site-header .menu-toggle {
+  border-color:rgba(255,254,250,.62);
+}
+body.reference-redesign.is-cinematic .site-header :focus-visible {
+  outline-color:#edd7af;
+}
+body.reference-redesign .site-header.menu-open {
+  color:#fffefa;
+  background:#17242a;
+  border-color:#5c686d;
+}
+body.reference-redesign .site-header.menu-open .menu-toggle { border-color:#a6afb0; }
+body.reference-redesign .mobile-nav {
+  position:fixed;
+  top:var(--header-height);
+  bottom:0;
+  height:calc(100dvh - var(--header-height));
+  padding:32px var(--gutter) max(40px,env(safe-area-inset-bottom));
+  background:#17242a;
+  color:#fffefa;
+  font:400 clamp(26px,5vw,38px)/1.2 var(--serif);
+  z-index:59;
+}
+body.reference-redesign .mobile-nav a {
+  display:flex;
+  align-items:center;
+  min-height:68px;
+  padding:14px 0;
+  border-bottom:1px solid #536067;
+}
+body.reference-redesign .mobile-nav a:focus-visible { outline-color:#edd7af; }
+body.reference-redesign .explore-links {
+  margin:0 var(--gutter);
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+body.reference-redesign .explore-links a {
+  padding-block:30px;
+  min-height:112px;
+  gap:22px;
+}
+body.reference-redesign .explore-links strong { font-weight:500; font-size:15px; }
+body.reference-redesign .explore-links small { font-size:12px; color:var(--muted); }
+body.reference-redesign .explore-links> a>svg { color:#75613d; stroke:currentColor; width:32px; height:32px; }
+body.reference-redesign .intro-body { gap:clamp(32px,7vw,120px); }
+body.reference-redesign .intro-copy { font-size:16px; line-height:1.85; }
+body.reference-redesign .project-facts {
+  border-block:1px solid var(--line);
+  padding-block:32px;
+}
+body.reference-redesign .project-facts strong { font-size:clamp(30px,3.8vw,54px); letter-spacing:-.03em; }
+body.reference-redesign .project-facts div>span { font-size:10px; letter-spacing:.12em; line-height:1.65; }
+body.reference-redesign #byty {
+  background:#e6e2d8;
+  border-top:1px solid #d3d0c6;
+  padding-block:clamp(64px,7vw,104px);
+}
+body.reference-redesign #byty>.section-heading { margin-bottom:32px; }
+body.reference-redesign #byty>.section-heading h2 { font-size:clamp(40px,4.5vw,66px); }
+body.reference-redesign .data-date {
+  display:inline-block;
+  padding:6px 0;
+  border-radius:0;
+  background:none;
+  font-size:11px;
+  line-height:1.6;
+  color:var(--muted);
+}
+body.reference-redesign .availability-note { margin-top:20px; font-size:13px; color:#465259; max-width:800px; }
+body.reference-redesign .purchase-view-switch { gap:0; width:fit-content; max-width:100%; border:1px solid #7d8787; }
+body.reference-redesign .purchase-view-switch button {
+  min-height:50px;
+  padding:13px 25px;
+  border:0;
+  border-radius:0;
+  color:var(--ink);
+  background:transparent;
+  font-size:14px;
+}
+body.reference-redesign .purchase-view-switch button+button { border-left:1px solid #7d8787; }
+body.reference-redesign .purchase-view-switch button[aria-pressed=true] { background:var(--ink); color:#fffefa; }
+body.reference-redesign .unit-filters {
+  margin-top:24px;
+  padding:24px;
+  background:rgba(250,248,243,.6);
+  border:1px solid #c9c6bb;
+  border-radius:0;
+}
+body.reference-redesign .unit-filters label,
+body.reference-redesign .unit-filters legend { color:#465259; font-size:11px; font-weight:500; letter-spacing:.09em; }
+body.reference-redesign .unit-filters select,
+body.reference-redesign .parking-toolbar select {
+  min-height:48px;
+  border:1px solid var(--reference-control);
+  border-radius:0;
+  background:var(--surface);
+  color:var(--ink);
+  font-size:15px;
+}
+body.reference-redesign .segmented,
+body.reference-redesign .map-view-switch,
+body.reference-redesign .furnished-view-switch { border-radius:0; background:#e6e2d8; }
+body.reference-redesign .segmented button,
+body.reference-redesign .map-view-switch button,
+body.reference-redesign .furnished-view-switch button,
+body.reference-redesign .advanced-filters>summary { min-height:48px; border-radius:0; }
+body.reference-redesign .unit-filters .segmented { gap:0; padding:0; margin-top:8px; border:1px solid var(--reference-control); }
+body.reference-redesign .unit-filters .segmented button { border:0; border-right:1px solid var(--reference-control); min-height:46px; background:var(--surface); }
+body.reference-redesign .unit-filters .segmented button:last-child { border-right:0; }
+body.reference-redesign .unit-filters .segmented button[aria-pressed=true] { background:var(--ink); color:#fffefa; }
+body.reference-redesign .advanced-filters>summary { border-color:var(--reference-control); background:var(--surface); }
+body.reference-redesign .building-flow-heading { margin-top:40px; margin-bottom:24px; gap:32px; }
+body.reference-redesign .building-flow-heading h3 { font-size:clamp(30px,3vw,42px); }
+body.reference-redesign .building-flow-heading p { font-size:14px; line-height:1.75; }
+body.reference-redesign .floor-explorer {
+  border:1px solid #babdb5;
+  border-radius:0;
+  box-shadow:none;
+  background:var(--surface);
+  overflow:visible;
+}
+body.reference-redesign .explorer-toolbar { padding:24px; border-color:var(--line); }
+body.reference-redesign .explorer-title { font-size:14px; }
+body.reference-redesign .map-view-switch { padding:3px; gap:2px; }
+body.reference-redesign .map-view-switch button { font-size:13px; min-height:46px; }
+body.reference-redesign .map-view-switch button[aria-pressed=true] { background:var(--surface); color:var(--ink); border-color:#8a9290; box-shadow:none; }
+body.reference-redesign .building-picker { background:#e9e7de; }
+body.reference-redesign .building-selection-mode { gap:0; }
+body.reference-redesign .building-selection-mode button {
+  min-height:48px;
+  border:1px solid #929993;
+  border-right-width:0;
+  border-radius:0;
+  background:var(--surface);
+  color:var(--ink);
+  font-size:13px;
+}
+body.reference-redesign .building-selection-mode button:last-child { border-right-width:1px; }
+body.reference-redesign .building-selection-mode button[aria-pressed=true] { background:var(--ink); color:#fffefa; }
+body.reference-redesign .building-selection-variants { border-color:#a9ada4; }
+body.reference-redesign .building-selection-variants button { border-radius:0; }
+body.reference-redesign .building-picker .floor-buttons { gap:6px; }
+body.reference-redesign .floor-buttons button { border:1px solid #8a938e; border-radius:0; background:var(--surface); }
+body.reference-redesign .floor-buttons button[aria-pressed=true] { color:#fffefa; background:var(--ink); border-color:var(--ink); }
+body.reference-redesign .building-floor-name { font-size:15px; font-weight:500; }
+body.reference-redesign .building-floor-availability { font-size:11px; }
+body.reference-redesign .building-unit-chip { border-radius:0; }
+body.reference-redesign .building-unit-chip strong { font-weight:500; }
+body.reference-redesign .building-caption { color:#4d595d; }
+body.reference-redesign .building-selection-3d-stage { border-radius:0; border-color:#b4bdb5; background:#ebece5; }
+body.reference-redesign .building-selection-3d-controls button,
+body.reference-redesign .building-selection-3d-error button,
+body.reference-redesign .building-selection-hotspot { border-radius:1px; }
+body.reference-redesign .building-selection-3d-selection { border-radius:0; background:#e1e4da; color:var(--ink); }
+body.reference-redesign .floor-stage { background:#f5f3ed; }
+body.reference-redesign .map-unit-card { background:var(--surface); }
+body.reference-redesign .map-unit-card h3 { font-size:44px; letter-spacing:-.04em; }
+body.reference-redesign .map-card-topline .favorite-button,
+body.reference-redesign .map-card-plan,
+body.reference-redesign .furnished-preview { border-radius:0; }
+body.reference-redesign .map-card-plan { background:#eeede5; }
+body.reference-redesign .map-card-data dt { color:#5a6567; font-size:13px; }
+body.reference-redesign .map-card-data dd { font-size:16px; }
+body.reference-redesign .map-card-price { font-size:32px; }
+body.reference-redesign .map-card-actions :is(.button,.text-link) { border-radius:0; }
+body.reference-redesign .map-card-actions .text-link { border-color:#7b8581; }
+body.reference-redesign .map-legend { font-size:12px; background:#f4f1e9; padding:20px 24px; }
+body.reference-redesign .catalog-section h3 { font-size:32px; }
+body.reference-redesign .unit-table-wrap { border-radius:0; border-color:#bdc0b7; }
+body.reference-redesign .unit-table th { background:#e6e2d8; font-size:10px; letter-spacing:.075em; padding-block:18px; color:#445258; }
+body.reference-redesign .unit-table td { border-color:#d2d2c9; padding-block:19px; }
+body.reference-redesign .unit-table tr:hover td { background:#edeae1; }
+body.reference-redesign .unit-table .unit-detail-button { min-height:48px; font-size:13px; }
+body.reference-redesign .unit-table .favorite-button { min-width:48px; min-height:48px; }
+body.reference-redesign .compare-bar { border-radius:0; background:#17242a; color:#fffefa; border:1px solid #788183; box-shadow:0 12px 36px #17242a29; }
+body.reference-redesign .compare-bar .button { border-color:#c7ab79; color:#17242a; background:#c7ab79; }
+body.reference-redesign .compare-bar .icon-button { color:#fffefa; border-color:#788183; }
+body.reference-redesign .compare-bar div span { color:#cbd3d3; }
+body.reference-redesign .architecture { background:var(--paper); }
+body.reference-redesign .architecture-view,
+body.reference-redesign .interior-feature .image-expand,
+body.reference-redesign .standard-visual img,
+body.reference-redesign .tour-stage { border-radius:0; }
+body.reference-redesign .image-caption { background:rgba(250,248,243,.94); border-top:1px solid #d0cfc6; padding:20px 24px; }
+body.reference-redesign .expand-label { border-radius:0; font-size:10px; letter-spacing:.12em; }
+body.reference-redesign .architecture-controls { margin-top:24px; gap:32px; }
+body.reference-redesign .architecture-controls .segmented { padding:0; gap:0; border:1px solid #7e8985; background:transparent; }
+body.reference-redesign .architecture-controls .segmented button { border-radius:0; border:0; padding:12px 22px; background:transparent; color:var(--ink); }
+body.reference-redesign .architecture-controls .segmented button.active { background:var(--ink); color:#fffefa; }
+body.reference-redesign .architecture-controls p { font-size:13px; line-height:1.7; }
+body.reference-redesign .interiors { background:#e8e4db; padding-block:clamp(64px,7vw,108px); gap:36px 64px; }
+body.reference-redesign .interior-title h2 { margin-top:28px; font-size:clamp(40px,4vw,64px); }
+body.reference-redesign .interior-title p { font-size:15px; line-height:1.85; }
+body.reference-redesign .interior-caption { margin-top:20px; color:#4f5c60; font-size:12px; }
+body.reference-redesign .interior-picker button { border-color:#bfc1b7; min-height:76px; background:transparent; }
+body.reference-redesign .interior-picker button.active { background:#17242a; color:#fffefa; }
+body.reference-redesign .interior-room-links { gap:12px 28px; }
+body.reference-redesign .interior-room-links a { font-size:13px; border-color:#929c94; }
+body.reference-redesign .interior-note { color:#4f5c60; }
+body.reference-redesign .tour { background:#17242a; color:#fffefa; }
+body.reference-redesign .tour h2,
+body.reference-redesign .contact h2 { color:#fffefa; }
+body.reference-redesign .tour h2 em,
+body.reference-redesign .contact h2 em { color:#dcc6a2; }
+body.reference-redesign .tour .section-marker,
+body.reference-redesign .tour .eyebrow,
+body.reference-redesign .contact .eyebrow { color:#d6c9b2; }
+body.reference-redesign .tour-heading>p:not(.eyebrow),
+body.reference-redesign .tour-note { color:#cbd2d1; font-size:14px; line-height:1.8; }
+body.reference-redesign .tour .text-link { color:#fffefa; border-color:#94a3a4; }
+body.reference-redesign .tour-cta { background:rgba(15,31,40,.84); color:#fffefa; border:1px solid #819092; border-radius:0; padding:20px; }
+body.reference-redesign .tour .circle-arrow { background:#c7ab79; color:#17242a; border-color:#c7ab79; }
+body.reference-redesign :is(.tour,.contact) :focus-visible { outline-color:#edd7af; }
+body.reference-redesign .purchase-section { border-top:1px solid var(--line); }
+body.reference-redesign .parking-options { gap:0; border:1px solid #bfc1b6; background:transparent; }
+body.reference-redesign .parking-options article { padding:24px; border:0; border-radius:0; }
+body.reference-redesign .parking-options article+article { border-left:1px solid #bfc1b6; }
+body.reference-redesign .parking-options>p { padding:16px 24px; margin:0; border-top:1px solid #bfc1b6; background:#e6e2d8; color:#536064; }
+body.reference-redesign .parking-options strong { font-size:32px; letter-spacing:-.035em; }
+body.reference-redesign .parking-toolbar { margin-top:28px; }
+body.reference-redesign .parking-toolbar .segmented { background:transparent; border:1px solid #818c88; padding:0; gap:0; }
+body.reference-redesign .parking-toolbar .segmented button { border:0; background:transparent; padding:12px 20px; color:var(--ink); }
+body.reference-redesign .parking-toolbar .segmented button.active,
+body.reference-redesign .parking-toolbar .segmented button[aria-pressed=true] { background:#17242a; color:#fffefa; }
+body.reference-redesign .parking-map-wrap { border-radius:0; border-color:#b5bdb4; }
+body.reference-redesign .parking-detail { border-radius:0; padding:28px; box-shadow:none; }
+body.reference-redesign .parking-detail h3 { font-size:34px; }
+body.reference-redesign .parking-list button { border-radius:0; border-color:#8d9890; }
+body.reference-redesign .equipment-visual { gap:40px; }
+body.reference-redesign #standard-hotspot-detail { background:#e7e3da; border:0; border-left:1px solid #bcbfb5; border-radius:0; padding:24px 28px; }
+body.reference-redesign #standard-hotspot-detail h3 { font-size:32px; }
+body.reference-redesign #standard-hotspot-tabs { gap:0; }
+body.reference-redesign #standard-hotspot-tabs button { border:1px solid #8e9790; border-radius:0; margin-right:-1px; margin-bottom:-1px; background:var(--surface); padding:10px 14px; min-height:48px; }
+body.reference-redesign #standard-hotspot-tabs button[aria-pressed=true] { background:#17242a; border-color:#17242a; color:#fffefa; }
+body.reference-redesign .standard-tag { border-radius:0; background:#dfe5d8; color:#2f4e36; }
+body.reference-redesign .standard-tag.is-extra { background:#ede0cf; color:#674b2b; }
+body.reference-redesign .standard-number { color:#735d39; font-size:26px; }
+body.reference-redesign .standard-grid { gap:0 48px; margin-top:48px; }
+body.reference-redesign .standard-grid article { padding-block:28px; border-color:#c3c6bb; }
+body.reference-redesign .standard-grid h3 { font-size:17px; font-weight:500; }
+body.reference-redesign .standard-grid li { font-size:14px; line-height:1.8; }
+body.reference-redesign .visual-scope { color:#566267; font-size:12px; line-height:1.8; }
+body.reference-redesign .equipment-boundaries { gap:32px; border-top:1px solid #c1c5ba; padding-top:28px; }
+body.reference-redesign .equipment-boundaries>article { border-radius:0; background:transparent; padding:16px 0; }
+body.reference-redesign .equipment-boundaries>article+article { border-left:1px solid #c1c5ba; padding-left:32px; }
+body.reference-redesign .equipment-boundaries h3 { font-size:32px; }
+body.reference-redesign .equipment-boundaries :is(p,li) { font-size:14px; line-height:1.8; }
+body.reference-redesign .equipment-unit-context { border-radius:0; background:#e2dfd2; }
+body.reference-redesign .unit-bathroom { border-radius:0; background:#ebe7dc; }
+body.reference-redesign .unit-location-note { background:#e9e4d7; border-color:#7b6742; }
+body.reference-redesign .bathroom-guide { margin-top:56px; padding-top:36px; }
+body.reference-redesign .bathroom-guide-heading { margin-bottom:28px; }
+body.reference-redesign .bathroom-guide-heading h3 { font-size:clamp(30px,3.2vw,44px); }
+body.reference-redesign .bathroom-guide-heading>p { font-size:14px; color:var(--muted); }
+body.reference-redesign .bathroom-catalog-grid { gap:28px; }
+body.reference-redesign .bathroom-catalog { background:transparent; border:0; }
+body.reference-redesign .bathroom-catalog>div { border:1px solid #c4c5bb; border-top:0; padding:24px; }
+body.reference-redesign .bathroom-catalog h4 { font-size:17px; font-weight:500; line-height:1.55; }
+body.reference-redesign .bathroom-catalog-ground { border-top:1px solid #c4c5bb; }
+body.reference-redesign .bathroom-catalog-ground>div { border:0; padding-inline:0; }
+body.reference-redesign .finance-panel { background:#e6e2d8; border:1px solid #c9c8be; border-radius:0; padding:clamp(24px,3.5vw,52px); }
+body.reference-redesign .finance-panel h3 { font-size:34px; }
+body.reference-redesign .locality { background:#e6e2d8; border-top:1px solid #d1cfc4; }
+body.reference-redesign .locality-name { color:#31434a; font-size:clamp(56px,7.3vw,104px); letter-spacing:-.05em; }
+body.reference-redesign .locality-name span { letter-spacing:.14em; font-size:10px; }
+body.reference-redesign .locality:before { opacity:.18; }
+body.reference-redesign .locality-copy>p:not(.eyebrow) { font-size:16px; line-height:1.85; }
+body.reference-redesign .documents-grid { padding-top:32px; border-top:1px solid var(--line); gap:64px; }
+body.reference-redesign .documents-grid h3 { font-size:32px; }
+body.reference-redesign .floor-plan-links a,
+body.reference-redesign .document-link { font-size:14px; min-height:60px; border-color:#bfc2b7; }
+body.reference-redesign .floor-plan-links a span,
+body.reference-redesign .document-link span { font-size:11px; letter-spacing:.08em; }
+body.reference-redesign .faq { border-top:1px solid var(--line); }
+body.reference-redesign .faq-list summary { min-height:76px; padding:22px 0; font-size:16px; }
+body.reference-redesign .faq-list details { border-color:#bcc2b5; }
+body.reference-redesign .faq-list details>p { color:#566267; font-size:15px; line-height:1.8; }
+body.reference-redesign .contact { background:#17242a; color:#fffefa; }
+body.reference-redesign .contact-copy>p:not(.eyebrow) { font-size:15px; line-height:1.85; color:#cbd3d3; }
+body.reference-redesign .contact-person { margin-top:40px; }
+body.reference-redesign .contact-monogram { color:#ddc8a5; border-color:#8a9290; }
+body.reference-redesign .contact-person strong { font-size:28px; }
+body.reference-redesign .contact-person div>span { font-size:12px; color:#cbd3d3; }
+body.reference-redesign .contact-person a { color:#fffefa; min-height:48px; font-size:16px; }
+body.reference-redesign .contact-form {
+  border:0;
+  border-left:1px solid #5e6b70;
+  border-radius:0;
+  padding:0 0 0 48px;
+  background:transparent;
+}
+body.reference-redesign .contact-form h3 { font-size:36px; color:#fffefa; margin-bottom:28px; }
+body.reference-redesign .contact-form label { color:#f3f2ec; font-size:11px; letter-spacing:.09em; }
+body.reference-redesign .contact-form label>span { color:#c5cece; }
+body.reference-redesign .contact-form :is(input,select,textarea) {
+  background:#213139;
+  border:1px solid #8c999c;
+  border-radius:0;
+  padding:12px 14px;
+  min-height:48px;
+  font-size:16px;
+  color:#fffefa;
+}
+body.reference-redesign .contact-form select option { background:#213139; color:#fffefa; }
+body.reference-redesign .contact-form :is(input,textarea)::placeholder { color:#c9d0ce; }
+body.reference-redesign .contact-form textarea { min-height:132px; }
+body.reference-redesign .contact-form .button { color:#17242a; background:#c7ab79; border-color:#c7ab79; }
+body.reference-redesign .form-note,
+body.reference-redesign .form-status { color:#cbd3d3; font-size:12px; line-height:1.8; }
+body.reference-redesign .form-errors { border-radius:0; }
+body.reference-redesign .field-error { color:#ffe0c5; }
+body.reference-redesign .site-footer { background:#f1eee7; color:#17242a; padding-top:52px; padding-bottom:32px; }
+body.reference-redesign .footer-links { font-size:12px; gap:14px 26px; }
+body.reference-redesign .footer-links :is(a,button) { min-height:48px; }
+body.reference-redesign .footer-bottom { border-color:#c7c9be; padding-top:28px; color:#526065; font-size:11px; }
+body.reference-redesign .footer-bottom p { font-size:11px; line-height:1.8; max-width:760px; }
+body.reference-redesign :is(.unit-dialog,.compare-dialog,.gallery-dialog,.text-dialog,.furnished-plan-dialog) {
+  border-radius:2px;
+  border:1px solid #aeb8ae;
+  background:var(--surface);
+  color:var(--ink);
+}
+body.reference-redesign dialog::backdrop { background:rgba(10,24,31,.86); }
+body.reference-redesign .dialog-close { border-radius:0; }
+body.reference-redesign .gallery-dialog>img,
+body.reference-redesign .furnished-image-plane,
+body.reference-redesign .furnished-source-sheet,
+body.reference-redesign .furnished-plan-links a,
+body.reference-redesign .furnished-zoom { border-radius:0; }
+body.reference-redesign .toast { border-radius:0; }
+@media(hover:hover) {
+  body.reference-redesign .button-dark:hover { background:#31444c; border-color:#31444c; }
+  body.reference-redesign .button-light:hover,
+  body.reference-redesign .header-contact:hover,
+  body.reference-redesign .contact-form .button:hover { background:#dbc397; border-color:#dbc397; color:#17242a; }
+  body.reference-redesign .explore-links a:hover { background:#e6e2d8; }
+  body.reference-redesign .purchase-view-switch button:not([aria-pressed=true]):hover { background:#f7f4ed; }
+  body.reference-redesign .building-unit-chip:not(:disabled):hover { border-color:#17242a; }
+  body.reference-redesign .floor-plan-links a:hover,
+  body.reference-redesign .document-link:hover { background:#e8e5dc; }
+}
+@media(min-width:1600px) {
+  body.reference-redesign { --gutter:max(72px,calc((100vw - 1560px)/2)); }
+}
+@media(max-width:1200px) and (min-width:901px) {
+  body.reference-redesign .header-contact { padding-inline:14px; gap:12px; font-size:11px; letter-spacing:.025em; }
+  body.reference-redesign .desktop-nav { font-size:12px; gap:18px; }
+  body.reference-redesign .brand-text { font-size:18px; }
+  body.reference-redesign .brand-text small { font-size:8px; }
+  body.reference-redesign .brand-symbol { font-size:42px; }
+  body.reference-redesign .contact-form { padding-left:32px; }
+}
+@media(max-width:1024px) {
+  body.reference-redesign .section-heading { gap:32px; }
+  body.reference-redesign .interiors { gap:32px; }
+  body.reference-redesign .equipment-visual { gap:24px; }
+  body.reference-redesign .documents-grid { gap:36px; }
+  body.reference-redesign .parking-options article { padding:20px; }
+  body.reference-redesign .parking-options strong { font-size:28px; }
+}
+@media(max-width:900px) {
+  body.reference-redesign .desktop-nav,
+  body.reference-redesign .header-contact { display:none; }
+  body.reference-redesign .menu-toggle { display:flex; }
+  body.reference-redesign .section-heading { grid-template-columns:1fr 1fr; gap:28px; }
+  body.reference-redesign .section-heading>div+div { max-width:none; }
+  body.reference-redesign .interiors { grid-template-columns:1fr; }
+  body.reference-redesign .interior-title p { max-width:620px; }
+  body.reference-redesign .unit-filters { padding:20px; }
+  body.reference-redesign .building-picker { padding:24px; }
+  body.reference-redesign .explorer-toolbar { padding:20px 24px; }
+  body.reference-redesign .building-flow-heading h3 { font-size:34px; }
+  body.reference-redesign .equipment-boundaries { gap:24px; }
+  body.reference-redesign .equipment-boundaries>article+article { padding-left:24px; }
+  body.reference-redesign .contact { grid-template-columns:1fr; gap:40px; }
+  body.reference-redesign .contact-form { border-left:0; border-top:1px solid #5e6b70; padding:32px 0 0; }
+  body.reference-redesign .finance-panel h3 { font-size:32px; }
+}
+@media(max-width:700px) {
+  body.reference-redesign { --header-height:76px; --gutter:20px; }
+  body.reference-redesign .site-header,
+  body.reference-redesign .site-header.scrolled,
+  body.reference-redesign .site-header.menu-open { padding:10px 20px; }
+  body.reference-redesign .brand-text { font-size:17px; letter-spacing:.15em; }
+  body.reference-redesign .brand-text small { font-size:8px; letter-spacing:.17em; }
+  body.reference-redesign .brand-symbol { font-size:39px; }
+  body.reference-redesign .brand { gap:9px; }
+  body.reference-redesign .section-pad { padding-block:64px; }
+  body.reference-redesign #byty { padding-block:64px; }
+  body.reference-redesign h2,
+  body.reference-redesign #byty>.section-heading h2,
+  body.reference-redesign .interior-title h2 { font-size:clamp(36px,9.6vw,52px); line-height:1.13; }
+  body.reference-redesign .section-heading { grid-template-columns:1fr; gap:22px; margin-bottom:28px; }
+  body.reference-redesign .section-heading>div+div,
+  body.reference-redesign .section-heading>p { max-width:none; }
+  body.reference-redesign .explore-links { grid-template-columns:1fr; }
+  body.reference-redesign .explore-links a,
+  body.reference-redesign .explore-links a:first-child { padding:22px 0; min-height:92px; gap:18px; }
+  body.reference-redesign .explore-links a+a { border-left:0; border-top:1px solid #d0cfc6; }
+  body.reference-redesign .explore-links svg { display:block; }
+  body.reference-redesign .explore-links strong { font-size:15px; }
+  body.reference-redesign .intro-body { grid-template-columns:1fr; gap:28px; }
+  body.reference-redesign .project-facts { padding-block:0; margin-top:32px; }
+  body.reference-redesign .project-facts>div { padding-block:24px!important; }
+  body.reference-redesign .project-facts strong { font-size:32px; }
+  body.reference-redesign .project-facts div>span { font-size:10px; letter-spacing:.08em; }
+  body.reference-redesign .purchase-view-switch { width:100%; }
+  body.reference-redesign .purchase-view-switch button { flex:1; padding:12px 10px; min-height:50px; font-size:13px; }
+  body.reference-redesign .unit-filters { padding:16px; gap:18px 12px; }
+  body.reference-redesign .unit-filters .segmented button { padding-inline:6px; min-height:46px; font-size:13px; }
+  body.reference-redesign .advanced-filters>summary { min-height:48px; padding:10px; font-size:12px; }
+  body.reference-redesign .building-flow-heading { margin-top:32px; }
+  body.reference-redesign .building-flow-heading h3 { font-size:30px; }
+  body.reference-redesign .building-picker { padding:20px 16px; }
+  body.reference-redesign .explorer-toolbar { flex-wrap:wrap; padding:20px 16px; gap:16px; }
+  body.reference-redesign .map-view-switch { width:100%; flex:none; }
+  body.reference-redesign .map-view-switch button { flex:1; }
+  body.reference-redesign .building-selection-mode button { padding-inline:6px; font-size:12px; }
+  body.reference-redesign .building-floor-name { font-size:13px; }
+  body.reference-redesign .building-floor-availability { font-size:11px; }
+  body.reference-redesign .floor-buttons button { min-height:72px; }
+  body.reference-redesign .building-selection-units>p { font-size:13px; }
+  body.reference-redesign .floor-stage,
+  body.reference-redesign .map-unit-card { padding:24px 16px; }
+  body.reference-redesign .floor-heading { gap:12px; }
+  body.reference-redesign .floor-heading>span { font-size:12px; max-width:130px; }
+  body.reference-redesign .map-unit-card h3 { font-size:40px; }
+  body.reference-redesign .map-legend { padding:20px 16px; gap:12px 18px; }
+  body.reference-redesign .map-legend>strong { flex-basis:100%; }
+  body.reference-redesign .unit-table tr { padding:20px 16px; border-radius:0; border-color:#aeb8aa; background:var(--surface); }
+  body.reference-redesign .unit-table tr:hover td { background:transparent; }
+  body.reference-redesign .unit-table td { padding:0!important; }
+  body.reference-redesign .unit-table .favorite-button { min-width:44px; min-height:44px; }
+  body.reference-redesign .unit-table .unit-detail-button { min-height:44px; font-size:12px; }
+  body.reference-redesign .table-footer { gap:20px; }
+  body.reference-redesign .architecture-controls { flex-direction:column; gap:20px; }
+  body.reference-redesign .architecture-controls .segmented { display:flex; width:100%; }
+  body.reference-redesign .architecture-controls .segmented button { flex:1; padding:12px 8px; font-size:13px; }
+  body.reference-redesign .architecture-view .image-expand { aspect-ratio:4/3; }
+  body.reference-redesign .image-caption { padding:16px; font-size:12px; }
+  body.reference-redesign .interiors { padding-inline:20px; gap:28px; }
+  body.reference-redesign .interior-title h2 { margin-top:24px; }
+  body.reference-redesign .interior-picker button { min-height:64px; padding:16px; font-size:15px; }
+  body.reference-redesign .interior-room-links { display:flex; gap:8px 22px; }
+  body.reference-redesign .interior-room-links>span { flex-basis:100%; }
+  body.reference-redesign .interior-room-links a { font-size:13px; }
+  body.reference-redesign .tour { gap:32px; }
+  body.reference-redesign .tour-cta { left:16px; right:16px; bottom:16px; padding:16px; }
+  body.reference-redesign .tour .circle-arrow { min-width:44px; width:44px; height:44px; }
+  body.reference-redesign .parking-options { grid-template-columns:1fr; }
+  body.reference-redesign .parking-options article { padding:22px 20px; }
+  body.reference-redesign .parking-options article+article { border-left:0; border-top:1px solid #bfc1b6; }
+  body.reference-redesign .parking-options>p { padding:16px 20px; font-size:12px; }
+  body.reference-redesign .parking-options strong { font-size:30px; }
+  body.reference-redesign .parking-toolbar .segmented button { padding-inline:10px; font-size:13px; }
+  body.reference-redesign .parking-detail { padding:24px 20px; }
+  body.reference-redesign .parking-detail h3 { font-size:32px; }
+  body.reference-redesign .parking-legend { gap:12px 18px; font-size:12px; }
+  body.reference-redesign .equipment-visual { grid-template-columns:1fr; gap:24px; }
+  body.reference-redesign #standard-hotspot-detail { padding:24px; border:1px solid #bcbfb5; min-height:0; }
+  body.reference-redesign #standard-hotspot-tabs button { font-size:12px; padding:10px; }
+  body.reference-redesign .standard-grid { grid-template-columns:1fr; margin-top:32px; gap:0; }
+  body.reference-redesign .standard-grid article { padding-block:24px; }
+  body.reference-redesign .equipment-boundaries { grid-template-columns:1fr; gap:0; }
+  body.reference-redesign .equipment-boundaries>article { padding-block:24px; }
+  body.reference-redesign .equipment-boundaries>article+article { border-left:0; border-top:1px solid #c1c5ba; padding-left:0; }
+  body.reference-redesign .bathroom-guide { margin-top:40px; }
+  body.reference-redesign .bathroom-catalog-grid { gap:28px; }
+  body.reference-redesign .bathroom-catalog>div { padding:22px 20px; }
+  body.reference-redesign .bathroom-catalog-ground>div { padding-inline:0; }
+  body.reference-redesign .finance-panel { padding:28px 24px; }
+  body.reference-redesign .finance-panel h3 { font-size:30px; }
+  body.reference-redesign .locality-name { font-size:clamp(48px,12.5vw,74px); }
+  body.reference-redesign .documents-grid { grid-template-columns:1fr; gap:36px; }
+  body.reference-redesign .documents-grid h3 { font-size:30px; }
+  body.reference-redesign .floor-plan-links a,
+  body.reference-redesign .document-link { font-size:13px; }
+  body.reference-redesign .faq { gap:28px; }
+  body.reference-redesign .faq-list summary { font-size:15px; min-height:72px; }
+  body.reference-redesign .contact { gap:36px; }
+  body.reference-redesign .contact-form h3 { font-size:32px; }
+  body.reference-redesign .form-row { grid-template-columns:1fr; gap:0; }
+  body.reference-redesign .contact-person a { font-size:15px; }
+  body.reference-redesign .site-footer { padding:40px 20px 28px; }
+  body.reference-redesign .footer-links { gap:8px 24px; margin-top:28px; font-size:12px; }
+  body.reference-redesign .footer-bottom { gap:18px; margin-top:24px; }
+  body.reference-redesign .footer-bottom p { font-size:11px; line-height:1.8; }
+}
+@media(prefers-reduced-motion:reduce) {
+  body.reference-redesign .site-header { transition:none; }
+  body.reference-redesign .image-expand:hover img,
+  body.reference-redesign .furnished-preview:hover .furnished-preview-media img { transform:none; }
+}
+

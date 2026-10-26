@@ -26,6 +26,8 @@ body.reference-companion {
   --forest:var(--ink); --deep:#101b20; --ivory:var(--paper); --gold:var(--reference-gold);
   --wash:var(--cream); --bg:var(--paper); --text:var(--ink); --accent:var(--olive);
 }
+body.reference-redesign #kontakt,
+body.reference-companion :is(.hero,.context-section) { --color-focus:var(--alex-gold-400); }
 body:is(.reference-redesign,.reference-companion) :is(a,button,input,select,textarea,summary,[tabindex]):focus-visible {
   outline:3px solid var(--color-focus); outline-offset:4px;
 }

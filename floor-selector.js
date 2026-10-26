@@ -68,6 +68,12 @@
       strip.className='building-selection-units';
       $('.building-picker').insertBefore(strip, caption);
     }
+    if (!$('#selection-summary')) {
+      const confirmation=document.createElement('div');
+      confirmation.id='selection-summary'; confirmation.className='selection-summary';
+      confirmation.innerHTML=`<p><strong data-selection-name></strong><span data-selection-price></span></p><a class="map-mobile-jump" href="#map-unit-card">Zobrazit vybraný byt ${icon('arrow-down')}</a>`;
+      $('.building-picker').insertBefore(confirmation, caption);
+    }
     updateBuildingSummary();
   }
 
@@ -177,12 +183,21 @@
       const target = card.querySelector(`[${focusAttribute}="${CSS.escape(value)}"]`) || card.querySelector('[data-unit]');
       target?.focus({preventScroll:true});
     };
+    const confirmation=$('#selection-summary');
+    if (confirmation) {
+      confirmation.hidden=!unit;
+      if (unit) {
+        confirmation.querySelector('[data-selection-name]').textContent=`Byt ${String(unit.id).padStart(2,'0')} · ${unit.layout} · ${area(unit.area)}`;
+        confirmation.querySelector('[data-selection-price]').textContent=`${price(unit.price)} · ${status(unit).label} · bez parkování`;
+      }
+    }
     if(!unit){
       card.innerHTML=`<div class="map-card-empty"><p class="explorer-step"><b>03</b> VÁŠ VÝBĚR</p><h3>${snapshot.filteredIds.some(id=>units.find(u=>u.id===id)?.floor===activeFloor)?'Prohlédněte si byt.':'Zkuste jiný výběr.'}</h3><p>Vyberte byt v půdorysu, jiné podlaží nebo upravte filtry dispozice a dostupnosti.</p><button class="button button-dark" data-map-reset>Zrušit filtry ${icon('arrow-up-right')}</button></div>`;
       restoreCardFocus();
       return;
     }
-    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}</p>${selectedPlan(unit)}<dl class="map-card-data"><div><dt><span class="icon-label">${icon('plan', 'art')} <span>Dispozice</span></span></dt><dd>${esc(unit.layout)}</dd></div><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl>${window.AlexandraDetails?.cardHTML(unit) || ''}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a><button class="button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button>${unit.id !== 51 ? `<a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a>` : ''}</div>`;
+    const details=window.AlexandraDetails?.get(unit) || {};
+    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}</p>${details.locationNote?`<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>`:''}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl><div class="map-card-actions"><button class="button" data-unit="${unit.id}">Detail a poptávka ${icon('arrow-up-right')}</button><div class="map-card-links"><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div></div>${selectedPlan(unit)}<details class="ux-disclosure map-standard-disclosure"><summary>Standard a koupelna</summary><p>Vinylové podlahy, dveře, plastová okna, koupelnová sanita a technické přípravy.</p><p>${esc(details.bathroom?.referenceType || 'Konkrétní podobu koupelny upřesníme.')}</p></details><p class="map-excluded-note">V ceně není kuchyňská linka, spotřebiče, volný nábytek ani žaluzie. Koupelnové skříňky dle katalogu.</p>${unit.id !== 51 ? `<div class="map-card-links"><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>` : ''}`;
     restoreCardFocus();
   }
 

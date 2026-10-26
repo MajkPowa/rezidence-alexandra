@@ -17,6 +17,7 @@
   const statusBadge = unit => { const status = statusOf(unit); return `<span class="status-badge status-${status.key}" aria-label="Dostupnost bytu ${unit.id}: ${escape(status.label)}"><span class="availability-dot" aria-hidden="true"></span>${escape(status.label)}</span>`; };
   const findUnit = id => { const value = typeof id === 'number' ? id : typeof id === 'string' && /^\d+$/.test(id) ? Number(id) : NaN; return Number.isSafeInteger(value) ? units.find(unit => unit.id === value) : undefined; };
   let currentUnit = null;
+  let parkingUnit = null;
   let toastTimer;
   const dialogFocus = new WeakMap();
   const notify = message => { $('#toast').textContent = message; $('#toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('#toast').hidden = true; }, 3200); };
@@ -56,7 +57,8 @@
     const index = controls.indexOf(document.activeElement);
     event.preventDefault(); controls[(index + (event.shiftKey ? -1 : 1) + controls.length) % controls.length].focus();
   });
-  window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
+  const mobileMenuQuery = window.matchMedia('(max-width: 1100px)');
+  window.addEventListener('resize', () => { if (!mobileMenuQuery.matches) closeMenu(); });
 
   function captureFocus(element = document.activeElement) {
     const control = element?.closest?.('[data-save], [data-unit], [data-map-unit], button, a, input, select, textarea') || element;
@@ -197,6 +199,18 @@
     notify(existed ? `Byt ${id} byl odebrán z výběru.` : `Byt ${id} byl uložen k porovnání.`);
   }
   document.addEventListener('click', event => {
+    const clearParkingUnit = event.target.closest('[data-clear-parking-unit]');
+    if (clearParkingUnit) {
+      parkingUnit = null;
+      renderParkingUnitContext();
+      $('#parking-quick-select')?.focus({ preventScroll: true });
+      return;
+    }
+    const parkingLink = event.target.closest('[data-section-link="parkovani"][data-unit-id]');
+    if (parkingLink) {
+      const unit = findUnit(parkingLink.dataset.unitId);
+      if (unit) { parkingUnit = unit; renderParkingUnitContext(); }
+    }
     const saveButton = event.target.closest('[data-save]');
     if (saveButton) { const unit = findUnit(saveButton.dataset.save); if (!unit) return; const focus = captureFocus(saveButton); saveUnit(unit.id); restoreFocus(focus); return; }
     const unitButton = event.target.closest('[data-unit]');
@@ -237,13 +251,18 @@
     const planPath = directPlan ? unit.plan : `plans/floor-${unit.floor}.pdf`;
     const previewPath = directPlan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : `assets/plan-floor-${unit.floor}.webp`;
     const notice = directPlan ? 'Samostatný půdorys je dodaný pod číslem tohoto bytu. Konečnou revizi a rozsah ploch potvrďte u prodejce.' : `Zobrazen je původní půdorys podlaží ${window.AlexandraFloorLabels.source(unit.floor)}. Samostatné dodané výkresy bytů 01–10 nepřiřazujeme automaticky k jednotkám ve vyšších podlažích.`;
-    $('#unit-dialog-content').innerHTML = `<header class="unit-dialog-identity"><p class="eyebrow">REZIDENCE ALEXANDRA · BYDLENÍ</p><h2 id="unit-dialog-title">Byt ${String(unit.id).padStart(2,'0')}</h2><p class="unit-meta">${escape(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}${unit.belowGroundLevel ? " · pod úrovní terénu" : ""}</p></header><div class="unit-dialog-grid"><div><a class="unit-plan" href="${planPath}" target="_blank" rel="noopener" aria-label="Otevřít půdorys v PDF"><img src="${previewPath}" alt="${directPlan ? `Zdrojový půdorys bytu ${unit.id}` : `Zdrojový půdorys ${floorLabel(unit.floor)}`}" loading="lazy"><span class="plan-caption">${directPlan ? `Půdorys bytu ${String(unit.id).padStart(2,'0')}` : `Půdorys · ${floorLabel(unit.floor)}`} · otevřít PDF ${icon('arrow-up-right')}</span></a><p class="unit-notice">${notice}</p></div><div><dl class="unit-data"><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div><div><dt>Otápěná plocha dle ceníku</dt><dd>${area(unit.heatedArea)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}<div><dt><span class="icon-label">${icon('parking-open', 'art')} <span>Parkování</span></span></dt><dd>Samostatně k dokoupení</dd></div><div><dt>Dostupnost</dt><dd>${statusBadge(unit)}</dd></div></dl><p class="unit-price">${money(unit.price)}</p><span>Orientační cena bytu · ceník k 19. 10. 2026</span><div class="unit-purchase-links"><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div><div class="unit-actions"><button class="button button-dark" id="inquire-unit" data-id="${unit.id}">Mám zájem ${icon('arrow-up-right')}</button><button class="button" data-save="${unit.id}" aria-label="${saved.includes(unit.id) ? 'Odebrat' : 'Uložit'} byt ${unit.id}" aria-pressed="${saved.includes(unit.id)}">${icon(saved.includes(unit.id) ? 'favorite-filled' : 'favorite')} <span>${saved.includes(unit.id) ? 'Uloženo' : 'Uložit'}</span></button><a class="text-link" href="${planPath}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>${tour ? `<a class="text-link unit-tour-link" href="tour.html?byt=${tour.id}">Typová 360° prohlídka ${escape(unit.layout)} ${icon('arrow-up-right')}</a>` : ''}</div>${tour ? `<p class="unit-tour-note">Typová prohlídka vychází z bytu ${tour.source} a ukazuje návrh zařízení. Nemusí odpovídat přesné dispozici vybrané jednotky.</p>` : ''}<p class="unit-footnote">Cena nezahrnuje parkování. Celková a otápěná plocha jsou samostatné údaje z ceníku; jejich rozdíl není automaticky výměrou balkonu nebo sklepa. Konečnou cenu, individuální variantu standardu a dostupnost potvrdí prodejce.</p>${window.AlexandraDetails?.detailHTML(unit) || ''}</div></div>`;
+    $('#unit-dialog-content').innerHTML = `<header class="unit-dialog-identity"><p class="eyebrow">REZIDENCE ALEXANDRA · BYDLENÍ</p><h2 id="unit-dialog-title">Byt ${String(unit.id).padStart(2,'0')}</h2><p class="unit-meta">${escape(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}${unit.belowGroundLevel ? " · pod úrovní terénu" : ""}</p></header><div class="unit-dialog-grid"><div class="unit-overview"><p class="unit-price">${money(unit.price)}</p><span class="unit-price-note">Orientační cena bytu · ceník k 19. 10. 2026</span><dl class="unit-data"><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div><div><dt>Otápěná plocha dle ceníku</dt><dd>${area(unit.heatedArea)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}<div><dt><span class="icon-label">${icon('parking-open', 'art')} <span>Parkování</span></span></dt><dd>Samostatně k dokoupení</dd></div><div><dt>Dostupnost</dt><dd>${statusBadge(unit)}</dd></div></dl><div class="unit-actions"><button class="button button-dark" id="inquire-unit" data-id="${unit.id}">Mám zájem ${icon('arrow-up-right')}</button><button class="button" data-save="${unit.id}" aria-label="${saved.includes(unit.id) ? 'Odebrat' : 'Uložit'} byt ${unit.id}" aria-pressed="${saved.includes(unit.id)}">${icon(saved.includes(unit.id) ? 'favorite-filled' : 'favorite')} <span>${saved.includes(unit.id) ? 'Uloženo' : 'Uložit'}</span></button><a class="text-link" href="${planPath}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>${tour ? `<a class="text-link unit-tour-link" href="tour.html?byt=${tour.id}">Typová 360° prohlídka ${escape(unit.layout)} ${icon('arrow-up-right')}</a>` : ''}</div><div class="unit-purchase-links"><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div></div><div class="unit-preview"><a class="unit-plan" href="${planPath}" target="_blank" rel="noopener" aria-label="Otevřít půdorys v PDF"><img src="${previewPath}" alt="${directPlan ? `Zdrojový půdorys bytu ${unit.id}` : `Zdrojový půdorys ${floorLabel(unit.floor)}`}" loading="lazy"><span class="plan-caption">${directPlan ? `Půdorys bytu ${String(unit.id).padStart(2,'0')}` : `Půdorys · ${floorLabel(unit.floor)}`} · otevřít PDF ${icon('arrow-up-right')}</span></a><p class="unit-notice">${notice}</p></div><div class="unit-detail-notes">${tour ? `<p class="unit-tour-note">Typová prohlídka vychází z bytu ${tour.source} a ukazuje návrh zařízení. Nemusí odpovídat přesné dispozici vybrané jednotky.</p>` : ''}<p class="unit-footnote">Cena nezahrnuje parkování. Celková a otápěná plocha jsou samostatné údaje z ceníku; jejich rozdíl není automaticky výměrou balkonu nebo sklepa. Konečnou cenu, individuální variantu standardu a dostupnost potvrdí prodejce.</p>${window.AlexandraDetails?.detailHTML(unit) || ''}</div></div>`;
     const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'detail');
     if (furnished) {
       $('.unit-plan', $('#unit-dialog-content')).outerHTML = furnished;
       $('.unit-notice', $('#unit-dialog-content')).textContent = 'Návrh zařízení vychází z dispoziční rodiny tohoto bytu. Kliknutím jej zvětšíte a můžete přepnout na původní výkres. Balkony se liší podle podlaží a nejsou součástí 3D náhledu.';
     }
-    $('#inquire-unit').addEventListener('click', () => { $('#unit-dialog').close(); selectInterest(`Byt ${unit.id} · ${unit.layout} · ${floorLabel(unit.floor)}`); $('#contact-message').value = `Dobrý den, mám zájem o byt č. ${unit.id} (${unit.layout}, ${floorLabel(unit.floor)}) v Rezidenci Alexandra. Prosím o potvrzení aktuální dostupnosti, ceny a podmínek prodeje.`; $('#kontakt').scrollIntoView({behavior:'smooth'}); setTimeout(() => $('#contact-name').focus({preventScroll:true}), 400); });
+    $('#inquire-unit').addEventListener('click', () => {
+      $('#unit-dialog').close();
+      prepareInquiry(`Byt ${unit.id} · ${unit.layout} · ${floorLabel(unit.floor)}`, `Dobrý den, mám zájem o byt č. ${unit.id} (${unit.layout}, ${floorLabel(unit.floor)}) v Rezidenci Alexandra. Prosím o potvrzení aktuální dostupnosti, ceny a podmínek prodeje.`);
+      $('#kontakt').scrollIntoView({behavior:'smooth'});
+      setTimeout(() => $('#contact-name').focus({preventScroll:true}), 400);
+    });
   }
   document.addEventListener('alexandra:furnished-ready', () => { if (currentUnit && $('#unit-dialog').open) renderUnitDetail(currentUnit); });
   function renderCompare() {
@@ -255,6 +274,24 @@
   $('#open-compare').addEventListener('click', () => { renderCompare(); openDialog($('#compare-dialog')); });
 
   function selectInterest(value) { const select = $('#contact-interest'); let option = [...select.options].find(item => item.value === value); if (!option) { option = document.createElement('option'); option.value = value; option.textContent = value; select.appendChild(option); } select.value = value; }
+  let lastInquiryTemplate = null;
+  function prepareInquiry(interest, template) {
+    selectInterest(interest);
+    const message = $('#contact-message');
+    const mayReplace = !message.value.trim() || message.value === lastInquiryTemplate;
+    if (mayReplace) { message.value = template; lastInquiryTemplate = template; }
+    // Keep the selected context in the interest field and the outgoing e-mail,
+    // without changing a visitor's own wording or stacking notifications.
+    const status = $('#form-status');
+    const feedback = mayReplace ? '' : `Vybráno: ${interest}. Váš rozepsaný text zůstává zachován.`;
+    if (status.textContent !== feedback) status.textContent = feedback;
+  }
+  function renderParkingUnitContext() {
+    const context = $('#parking-unit-context');
+    if (!context) return;
+    context.hidden = !parkingUnit;
+    context.innerHTML = parkingUnit ? `<p>Vybíráte parkování k <strong>bytu ${parkingUnit.id} · ${escape(parkingUnit.layout)} · ${escape(floorLabel(parkingUnit.floor))}</strong>.</p><button type="button" class="text-link" data-unit="${parkingUnit.id}">Detail bytu ${parkingUnit.id} ${icon('arrow-up-right')}</button><button type="button" class="text-link" data-clear-parking-unit>Zrušit výběr bytu ${icon('close')}</button>` : '';
+  }
   const inquiryForm = $('#inquiry-form');
   inquiryForm.noValidate = true;
   const formErrors = document.createElement('div');
@@ -309,12 +346,14 @@
     restoreFocus(focus);
   });
   document.querySelector('[data-finance-inquiry]')?.addEventListener('click', () => {
-    selectInterest('Financování bytu');
-    $('#contact-message').value = 'Dobrý den, prosím o informace k možnostem financování a platebnímu harmonogramu Rezidence Alexandra.';
+    prepareInquiry('Financování bytu', 'Dobrý den, prosím o informace k možnostem financování a platebnímu harmonogramu Rezidence Alexandra.');
   });
   document.addEventListener('alexandra:parking-inquiry', event => {
-    selectInterest(`Parkovací místo ${event.detail.id}`);
-    $('#contact-message').value = `Dobrý den, mám zájem o parkovací místo ${event.detail.id}. Prosím o potvrzení dostupnosti, ceny a podmínek přiřazení k bytu.`;
+    const id = event.detail?.id;
+    if (typeof id !== 'string' || !/^[PG]\d+$/.test(id)) return;
+    const interest = parkingUnit ? `Byt ${parkingUnit.id} · ${parkingUnit.layout} · ${floorLabel(parkingUnit.floor)} + parkovací místo ${id}` : `Parkovací místo ${id}`;
+    const subject = parkingUnit ? `byt č. ${parkingUnit.id} (${parkingUnit.layout}, ${floorLabel(parkingUnit.floor)}) a parkovací místo ${id}` : `parkovací místo ${id}`;
+    prepareInquiry(interest, `Dobrý den, mám zájem o ${subject}. Prosím o potvrzení dostupnosti, ceny a podmínek přiřazení k bytu.`);
   });
   const legacyUrl = new URL(location.href);
   if (legacyUrl.searchParams.get('byt') === '53') { legacyUrl.searchParams.set('byt','51'); legacyUrl.searchParams.set('podlazi','1'); history.replaceState(null,'',legacyUrl); }

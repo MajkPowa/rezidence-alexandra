@@ -1,0 +1,157 @@
+/* Alexandra UI system · primitives → semantic roles → component states.
+   The cinematic sequence keeps its own timing and responsive media contract. */
+:root {
+  --alex-ivory-50:#faf8f3; --alex-ivory-100:#f1eee7; --alex-ivory-200:#e6e2d8;
+  --alex-navy-900:#17242a; --alex-slate-600:#596267; --alex-stone-300:#d0cfc6;
+  --alex-gold-400:#c7ab79; --alex-gold-700:#735d39;
+  --alex-green-700:#365f45; --alex-amber-700:#805a21; --alex-red-700:#8e453c;
+  --alex-space-1:4px; --alex-space-2:8px; --alex-space-3:12px; --alex-space-4:16px;
+  --alex-space-6:24px; --alex-space-8:32px; --alex-space-12:48px; --alex-space-16:64px;
+  --alex-radius-control:8px; --alex-radius-panel:12px; --alex-radius-dialog:16px;
+  --alex-motion-fast:160ms; --alex-motion-normal:240ms;
+}
+/* Targets already own their header offset; do not add it a second time. */
+html:has(body.home-page) { scroll-padding-top:0; }
+body:is(.reference-redesign,.reference-companion) {
+  --paper:var(--alex-ivory-100); --cream:var(--alex-ivory-200); --surface:var(--alex-ivory-50);
+  --ink:var(--alex-navy-900); --muted:var(--alex-slate-600); --line:var(--alex-stone-300);
+  --olive:var(--alex-gold-700); --reference-gold:var(--alex-gold-400);
+  --color-text:var(--ink); --color-text-secondary:var(--muted); --color-action:var(--ink);
+  --color-action-text:var(--surface); --color-focus:var(--alex-gold-700);
+  --color-status-unknown:var(--muted); --color-status-available:var(--alex-green-700);
+  --color-status-reserved:var(--alex-amber-700); --color-status-sold:var(--alex-red-700);
+  --radius:var(--alex-radius-panel);
+}
+body.reference-companion {
+  --forest:var(--ink); --deep:#101b20; --ivory:var(--paper); --gold:var(--reference-gold);
+  --wash:var(--cream); --bg:var(--paper); --text:var(--ink); --accent:var(--olive);
+}
+body:is(.reference-redesign,.reference-companion) :is(a,button,input,select,textarea,summary,[tabindex]):focus-visible {
+  outline:3px solid var(--color-focus); outline-offset:4px;
+}
+body:is(.reference-redesign,.reference-companion) :is(button,input,select,textarea) { font-family:var(--sans); }
+body:is(.reference-redesign,.reference-companion) :is(.button,.header-cta,.header-contact) {
+  min-height:48px; border-radius:var(--alex-radius-control); font-weight:600;
+}
+body:is(.reference-redesign,.reference-companion) button:disabled { cursor:not-allowed; }
+body:is(.reference-redesign,.reference-companion) .alex-icon { flex-shrink:0; }
+body.reference-redesign .mobile-nav { overflow-y:auto; overscroll-behavior:contain; padding-bottom:max(32px,env(safe-area-inset-bottom)); }
+body.reference-redesign .mobile-nav a { flex-shrink:0; }
+body.reference-redesign :is(.unit-filters select,.parking-toolbar select,.contact-form input,.contact-form select,.contact-form textarea) {
+  border-color:#858b8b; border-radius:var(--alex-radius-control); background:var(--surface);
+}
+body.reference-redesign .contact-form :is(input,select,textarea) { color:var(--ink); }
+body.reference-redesign .contact-form :is(input,textarea)::placeholder { color:var(--muted); opacity:1; }
+body.reference-redesign :is(.section-heading>p,.intro-copy,.contact-copy>p:not(.eyebrow)) { max-width:62ch; }
+body.reference-redesign :is(.unit-table,.map-card-price,.map-card-data,.parking-price) { font-variant-numeric:tabular-nums; }
+body.reference-redesign .status-unknown { color:var(--color-status-unknown); }
+body.reference-redesign .status-unknown .availability-dot { background:var(--color-status-unknown); }
+body.reference-redesign .status-available { color:var(--color-status-available); }
+body.reference-redesign .status-reserved { color:var(--color-status-reserved); }
+body.reference-redesign .status-sold { color:var(--color-status-sold); }
+/* A quieter offer header, then one primary selection task. */
+body.reference-redesign #byty { background:var(--paper); padding-block:64px; }
+body.reference-redesign #byty>.section-heading { margin-bottom:16px; align-items:start; }
+body.reference-redesign #byty>.section-heading h2 { font-size:clamp(34px,3.6vw,52px); }
+body.reference-redesign #byty .availability-note { margin-top:16px; font-size:14px; }
+body.reference-redesign #byty .data-date { border:0; padding:0; color:var(--muted); background:none; }
+body.reference-redesign .purchase-view-switch { margin-top:24px; background:var(--cream); width:fit-content; border:1px solid var(--line); }
+body.reference-redesign .purchase-view-switch button { border:0; min-height:48px; padding-inline:20px; }
+body.reference-redesign .purchase-view-switch button[aria-pressed=false] { background:transparent; }
+body.reference-redesign .unit-filters { padding:20px; border:1px solid var(--line); background:var(--surface); }
+body.reference-redesign #byty[data-purchase-mode=model] .unit-filters { grid-template-columns:minmax(250px,1fr) minmax(230px,.65fr); }
+body.reference-redesign #byty[data-purchase-mode=model] .unit-filters>label:has(#floor-filter),
+body.reference-redesign #byty[data-purchase-mode=model] label:has(#sort-filter) { display:none; }
+body.reference-redesign #byty[data-purchase-mode=model] .advanced-filters[open] .advanced-filter-fields { grid-template-columns:repeat(2,minmax(0,1fr)); }
+body.reference-redesign .building-flow-heading { margin-block:28px 16px; }
+body.reference-redesign .building-flow-heading h3 { font-size:24px; }
+body.reference-redesign .building-flow-heading p { font-size:14px; }
+body.reference-redesign .floor-explorer { margin-top:16px; box-shadow:none; }
+body.reference-redesign .explorer-toolbar { padding:16px 24px; }
+body.reference-redesign .building-picker {
+  background:var(--surface); padding:24px; gap:20px 24px;
+  grid-template-areas:'title variants' 'image controls' 'units units' 'selection selection' 'caption caption';
+}
+body.reference-redesign .building-selection-mode { flex-wrap:wrap; gap:8px; }
+body.reference-redesign .building-selection-mode button { border:1px solid var(--line); border-radius:8px; font-size:14px; }
+body.reference-redesign .building-stack { border-radius:12px; }
+body.reference-redesign .floor-buttons button { min-height:64px; border-color:#858b8b; }
+body.reference-redesign .building-floor-name { font-weight:600; }
+body.reference-redesign .building-caption { font-size:13px; margin:0; max-width:90ch; }
+body.reference-redesign .building-selection-units>p { margin:0 0 12px; font-size:16px; font-weight:600; }
+body.reference-redesign .building-selection-units>p>span { font-size:13px; font-weight:400; }
+body.reference-redesign .building-unit-chip { min-height:64px; border-color:#858b8b; }
+body.reference-redesign .building-unit-chip[aria-pressed=true] { box-shadow:0 0 0 2px var(--ink); }
+body.reference-redesign .selection-summary {
+  grid-area:selection; display:flex; justify-content:space-between; align-items:center; gap:16px;
+  padding:16px 20px; border:1px solid var(--line); border-left:3px solid var(--ink); border-radius:8px; background:var(--paper);
+}
+body.reference-redesign .selection-summary p { margin:0; font-size:15px; line-height:1.5; }
+body.reference-redesign .selection-summary strong { display:block; font-size:17px; font-weight:600; }
+body.reference-redesign .selection-summary [data-selection-price] { display:block; color:var(--muted); font-size:14px; font-variant-numeric:tabular-nums; }
+body.reference-redesign .selection-summary .map-mobile-jump {
+  display:flex; min-height:48px; width:auto; margin:0; padding:12px 16px; flex-shrink:0;
+  background:var(--ink); color:var(--surface); border:1px solid var(--ink); border-radius:8px; font-size:15px; gap:12px;
+}
+body.reference-redesign .floor-stage { background:var(--paper); padding:24px; }
+body.reference-redesign .floor-heading h3 { font-size:30px; margin-top:8px; }
+body.reference-redesign .floor-heading>span { font-size:14px; }
+body.reference-redesign .map-unit-card { padding:24px; gap:0; background:var(--surface); }
+body.reference-redesign .map-unit-card h3 { font-size:34px; margin:4px 0 8px; }
+body.reference-redesign .map-unit-meta { margin:8px 0 0; font-size:15px; }
+body.reference-redesign .map-card-price { font-size:28px; font-weight:600; margin:16px 0 0; line-height:1.25; }
+body.reference-redesign .map-price-note { margin:6px 0 0; font-size:13px; }
+body.reference-redesign .map-card-data { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 16px; margin:20px 0; }
+body.reference-redesign .map-card-data>div { display:block; padding:0 0 12px; }
+body.reference-redesign .map-card-data dt { font-size:13px; }
+body.reference-redesign .map-card-data dd { font-size:17px; margin-top:4px; }
+body.reference-redesign .map-card-data .alex-icon { display:none; }
+body.reference-redesign .map-card-actions { display:flex; gap:12px; margin:0 0 20px; }
+body.reference-redesign .map-card-actions>.button { justify-content:space-between; min-height:48px; background:var(--ink); color:var(--surface); border:1px solid var(--ink); }
+body.reference-redesign .map-card-links { display:flex; flex-wrap:wrap; gap:8px 20px; }
+body.reference-redesign .map-card-links .text-link { display:inline-flex; width:auto; min-height:44px; padding:8px 0; border:0; border-radius:0; font-size:14px; }
+body.reference-redesign .map-unit-card>.furnished-preview,body.reference-redesign .map-unit-card>.map-card-plan { width:100%; margin:0 0 16px; }
+body.reference-redesign .map-unit-card .unit-location-note { margin:12px 0 0; font-size:14px; }
+body.reference-redesign .map-standard-disclosure { margin-top:0; }
+body.reference-redesign .map-standard-disclosure>summary { font-size:15px; }
+body.reference-redesign .map-standard-disclosure p { font-size:14px; line-height:1.65; margin:12px 0; }
+body.reference-redesign .map-excluded-note { margin:12px 0 0; padding-top:12px; border-top:1px solid var(--line); font-size:13px; line-height:1.6; color:var(--muted); }
+body.reference-redesign .parking-unit-context { display:flex; align-items:center; flex-wrap:wrap; gap:12px 20px; padding:16px; margin-bottom:20px; border:1px solid var(--line); border-radius:8px; background:var(--surface); font-size:15px; }
+body.reference-redesign .parking-unit-context :is(a,button) { display:inline-flex; align-items:center; min-height:44px; color:var(--ink); background:none; font-size:14px; text-decoration:underline; text-underline-offset:4px; }
+body.reference-redesign .parking-unit-context button { margin-left:auto; }
+body.reference-redesign .unit-overview { grid-column:2; grid-row:1; }
+body.reference-redesign .unit-preview { grid-column:1; grid-row:1; }
+body.reference-redesign .unit-detail-notes { grid-column:1/-1; }
+body.reference-redesign .unit-overview .unit-price { margin:0; font:600 clamp(28px,3vw,38px)/1.25 var(--sans); letter-spacing:-.025em; }
+body.reference-redesign .unit-overview .unit-price-note { display:block; margin-top:8px; font-size:13px; color:var(--muted); }
+body.reference-redesign .unit-overview .unit-data { margin-top:24px; }
+body.reference-redesign .unit-overview .unit-actions>.button { padding-inline:16px; gap:12px; white-space:nowrap; }
+body.reference-redesign .unit-detail-notes .unit-included { max-width:85ch; }
+@media(max-width:900px) {
+  body.reference-redesign #byty[data-purchase-mode=model] .unit-filters { grid-template-columns:1fr; }
+  body.reference-redesign #byty[data-purchase-mode=model] .unit-filters .layout-filter { grid-column:auto; }
+  body.reference-redesign .building-picker { padding:20px; }
+  body.reference-redesign .map-unit-card { padding:24px; }
+  body.reference-redesign .map-unit-card>.furnished-preview { max-width:520px; align-self:center; }
+  body.reference-redesign .unit-dialog-grid { grid-template-columns:minmax(0,1fr); }
+  body.reference-redesign :is(.unit-overview,.unit-preview,.unit-detail-notes) { grid-column:1; grid-row:auto; }
+}
+@media(max-width:700px) {
+  body.reference-redesign #byty { padding-block:40px; }
+  body.reference-redesign .purchase-view-switch { width:100%; }
+  body.reference-redesign .purchase-view-switch button { flex:1; padding-inline:10px; font-size:14px; }
+  body.reference-redesign .unit-filters { padding:16px; }
+  body.reference-redesign .explorer-toolbar { padding:16px; }
+  body.reference-redesign .building-picker { display:grid; grid-template-columns:minmax(0,1fr); grid-template-areas:'title' 'variants' 'image' 'controls' 'units' 'selection' 'caption'; gap:16px; padding:16px; }
+  body.reference-redesign .building-selection-view { grid-area:image; }
+  body.reference-redesign .building-picker .floor-buttons { margin:0; width:100%; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  body.reference-redesign .building-selection-mode button { font-size:13px; padding-inline:10px; }
+  body.reference-redesign .selection-summary { display:block; padding:16px; }
+  body.reference-redesign .selection-summary .map-mobile-jump { width:100%; margin-top:12px; }
+  body.reference-redesign .floor-stage,body.reference-redesign .map-unit-card { padding:20px 16px; }
+  body.reference-redesign .map-card-price { font-size:28px; }
+  body.reference-redesign .map-card-data { gap:12px; }
+  body.reference-redesign .map-unit-card .map-card-links { flex-direction:row; }
+  body.reference-redesign .map-unit-card .status-badge { font-size:14px; }
+}
+@media(prefers-reduced-motion:reduce) { :root { --alex-motion-fast:0ms; --alex-motion-normal:0ms; } }

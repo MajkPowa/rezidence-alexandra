@@ -4,7 +4,7 @@ Prezentační web rezidenčního projektu s katalogem 51 jednotek, interaktivní
 
 Statická publikace pro GitHub Pages. Výchozí stránka je `index.html`; další části jsou `interiors.html`, `creative.html`, `storyboard.html`, `tour.html` a `building.html`. Soubor `.nojekyll` zachovává statické soubory beze změn. Všechny odkazy na lokální média používají relativní cesty.
 
-Galerie interiérů obsahuje 14 pohledů vyrenderovaných z nativních zařízených 3D scén v Blender Cycles. Obývací pokoje, kuchyně, hlavní ložnice a koupelny doplňuje odpočinkový kout 1+kk, který je součástí jediného obytného pokoje. Vychází z dodaných půdorysů a interiérových i koupelnových PDF; zdroj je uveden v detailu každého pohledu. Filtry lze sdílet v URL. Manifest `assets/interiors-v3/manifest.json` odkazuje na responzivní WebP náhledy o šířce 720/2200 px a samostatné soubory `fullResolution` ke stažení v rozlišení 4096 × 2304 px. Nativní scény a PNG originály zůstávají v soukromém pracovním projektu.
+Galerie interiérů nyní obsahuje všech 41 původních vizualizací dodaných realitní kanceláří: 27 interiérových pohledů a 14 koupelen či WC. Zdrojem je `assets/agency-interiors-20261026/manifest.json`. Detail nabízí originál ve skutečném nativním rozlišení; tyto podklady nejsou označovány jako nativní 4K. Typové zařízené půdorysy a 360° rekonstrukce jsou samostatné výstupy z Blenderu a mají vlastní manifesty. Původní vizualizace koupelen mohou předcházet aktuálním katalogům; rozsah dodávky určuje potvrzený katalog.
 
 Publikační zdroj: větev `main`, kořen repozitáře. Aktualizace této větve automaticky aktualizuje GitHub Pages.
 
@@ -51,3 +51,11 @@ Nativní scroll, přímý přístup k nabídce i vypnutí pohybu jsou zachované
 Kamerové úseky vznikly v Higgsfieldu (Kling 3.0 Omni Frames); pro ostřejší prezentaci prošly konzervativním ByteDance Video Upscale z 1080p do 2160p. Nejde o nativně vyrenderované 4K ani metrický BIM. Na zastávkách se zobrazuje přesně registrovaný AVIF/WebP snímek, v pohybu automaticky zvolená varianta 1080p/1440p/2160p. První obraz domu má v AVIF přibližně 87 KB na mobilu, 253 KB v 1920 px a 452 KB ve 4K. Video se načítá až po zahájení prohlídky; první statický obraz tak nečeká na film. Formáty a kontrolní součty obsahuje assets/journey-sharp-20261026/manifest.json. Původní galerie 41 pohledů zůstává bez generativních úprav.
 
 Pro místní testování přetáčení je nutný server s byte ranges (HTTP 206, Accept-Ranges: bytes). U staršího náhledu na portu 8765 používá přehrávač pomocný server stejného projektu na portu 8766; při jeho nedostupnosti zkusí zveřejněnou kompatibilní variantu. GitHub Pages podporu ranges poskytuje. Výběr VP9 pro MediaCapabilities používá úplný profil vp09.00.50.08, protože obecné vp9 může vracet nepřesnou odpověď o podpoře.
+
+### Vizuální a nákupní systém · 26. 10. 2026
+
+`ui-system.css` je společná poslední vrstva na všech sedmi stránkách: primitivní tokeny `--alex-*`, sémantické role barev a pravidla komponent. Zachovává lokální Inter, značku v Playfair, vlastní SVG ikonografii, měkké rádiusy 8/12/16 px a neutrální označení nepotvrzené dostupnosti. Filmový průchod si zachovává vlastní mediální a pohybový kontrakt.
+
+Výchozí režim nabídky je stále Vybrat v domě. V tomto režimu se podlaží nevybírá duplicitním filtrem a řazení skryté tabulky se nenabízí. Režim Přehled a ceny oba nástroje zpřístupňuje. Výběr bytu potvrzuje souhrn u čísel bytů; karta i mobilní detail upřednostňují cenu a další krok před vizuálním náhledem. Byt 51 zachovává vlastní výkres a upozornění na polohu pod terénem.
+
+Poptávka uchovává vlastní rozepsaný text. Automatickou šablonu aktualizuje pouze, pokud je prázdná nebo nebyla upravena. Přechod z karty bytu na parkování nese viditelný a zrušitelný kontext bytu; poptávka pak zahrnuje byt i zvolené stání. Zpráva se stále pouze připravuje v e-mailovém programu návštěvníka.

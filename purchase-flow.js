@@ -8,9 +8,11 @@
   const summary = document.querySelector('#active-filter-summary');
   const clear = document.querySelector('#clear-all-filters');
   function setView(view) {
+    document.querySelector('#byty').dataset.purchaseMode = view;
     list.hidden = view === 'model';
     model.hidden = view !== 'model';
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.purchaseView === view)));
+    describeFilters();
   }
   function fromHash() {
     if (['#byty','#vyber-v-dome','#map-unit-card','#floor-explorer'].includes(location.hash) || !location.hash) setView('model');
@@ -39,7 +41,7 @@
     if (state.favorites) labels.push('Jen uložené');
     summary.textContent = labels.length ? `Výběr: ${labels.join(' · ')}` : '';
     clear.hidden = !labels.length && state.sort === 'floor';
-    const advanced = Number(state.status !== 'all') + Number(state.area !== 'all') + Number(state.sort !== 'floor');
+    const advanced = Number(state.status !== 'all') + Number(state.area !== 'all') + Number(document.querySelector('#byty').dataset.purchaseMode !== 'model' && state.sort !== 'floor');
     document.querySelector('#advanced-filter-count').textContent = advanced ? `(${advanced})` : '';
   }
   clear.addEventListener('click', () => {

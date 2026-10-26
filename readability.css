@@ -1,0 +1,156 @@
+/* Alexandra: readable local Inter typography and restrained corner radii. */
+body:is(.reference-redesign,.reference-companion) {
+  --radius:12px;
+  --radius-control:8px;
+  --serif:var(--sans);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.7;
+  font-optical-sizing:auto;
+}
+body:is(.reference-redesign,.reference-companion) :is(.brand,.brand-text,.brand-symbol,.brand-mark,.wordmark,.companion-brand) { font-family:'AlexandraDisplay',Georgia,serif; }
+body:is(.reference-redesign,.reference-companion) :is(h1,h2,h3,h4) {
+  font-family:var(--sans);
+  font-weight:600;
+  letter-spacing:-.025em;
+  line-height:1.18;
+}
+body:is(.reference-redesign,.reference-companion) :is(h1,h2,h3) em { font-style:normal; font-weight:inherit; }
+body.reference-redesign h2, body.reference-redesign #byty>.section-heading h2, body.reference-redesign .interior-title h2 { font-size:clamp(36px,3.8vw,58px); }
+body.reference-redesign :is(.intro-copy,.section-heading>p,.section-heading>div+div,.interior-title p,.locality-copy>p:not(.eyebrow),.contact-copy>p:not(.eyebrow),.tour-heading>p:not(.eyebrow),.equipment-boundaries p,.equipment-boundaries li,.standard-grid li,.unit-included p,.unit-included li,.parking-detail p,.faq-list details>p) {
+  font-size:17px;
+  line-height:1.7;
+}
+body:is(.reference-redesign,.reference-companion) :is(.eyebrow,.section-marker) { font-size:12px; line-height:1.6; letter-spacing:.08em; font-weight:600; }
+body.reference-redesign :is(.button,.text-link,.map-card-actions .button,.map-card-actions .text-link,.unit-table .unit-detail-button) { font-size:15px; line-height:1.5; font-weight:500; letter-spacing:0; }
+body.reference-redesign .desktop-nav { font-size:14px; gap:clamp(14px,1.5vw,24px); letter-spacing:0; }
+body.reference-redesign .header-contact,
+body.reference-redesign .scrolled .header-contact { font-size:14px; gap:16px; letter-spacing:0; border-radius:8px; }
+body.reference-redesign .mobile-nav { font-family:var(--sans); font-size:26px; font-weight:500; letter-spacing:-.02em; }
+body.reference-redesign :is(.unit-filters label,.unit-filters legend,.contact-form label) { font-size:13px; line-height:1.5; letter-spacing:.025em; font-weight:600; }
+body.reference-redesign :is(.unit-filters select,.parking-toolbar select,.contact-form input,.contact-form select,.contact-form textarea) { font-size:16px; line-height:1.5; }
+body.reference-redesign :is(.segmented button,.map-view-switch button,.furnished-view-switch button,.building-selection-mode button,.building-selection-variants button,.purchase-view-switch button,.floor-buttons button,.advanced-filters>summary,.ux-disclosure>summary,.parking-list button,#standard-hotspot-tabs button) { font-size:15px; line-height:1.5; font-weight:500; }
+body.reference-redesign :is(.building-floor-availability,.building-unit-chip>span,.data-date,.map-legend,.map-legend>strong,.visual-scope,.interior-note,.form-note,.form-status,.form-consent,.image-caption,.interior-caption,.expand-label,.floor-plan-links a span,.document-link span,.contact-person div>span,.footer-bottom p,.footer-bottom,.map-price-note,.map-card-caveat,.unit-tour-note,.furnished-scope-note) {
+  font-size:13px;
+  line-height:1.65;
+  letter-spacing:0;
+}
+body.reference-redesign :is(.availability-note,.building-caption,.floor-caption,.building-flow-heading p,.map-unit-meta,.explorer-step,.active-filter-line,.architecture-controls p,.tour-note,.map-legend .legend-selected,.status-badge) { font-size:15px; line-height:1.65; letter-spacing:0; }
+body.reference-redesign :is(.explorer-title,.building-floor-name,.explore-links strong,.interior-room-links a,.footer-links,.document-link,.floor-plan-links a) { font-size:16px; line-height:1.5; }
+body.reference-redesign :is(.explore-links small,.project-facts div>span,.parking-options article>span) { font-size:13px; line-height:1.6; letter-spacing:.025em; }
+body.reference-redesign :is(.project-facts strong,.map-card-price,.parking-options strong,.locality-name,.unit-data dd,.map-card-data dd) { font-family:var(--sans); font-weight:600; font-variant-numeric:tabular-nums; letter-spacing:-.025em; }
+body.reference-redesign .map-card-data dt { font-size:14px; line-height:1.5; }
+body.reference-redesign .map-card-data dd { font-size:18px; line-height:1.5; }
+body.reference-redesign .unit-table { font-variant-numeric:tabular-nums; }
+body.reference-redesign .unit-table th { font-size:13px; line-height:1.5; letter-spacing:.015em; }
+body.reference-redesign .unit-table td { font-size:15px; line-height:1.5; }
+body.reference-redesign .unit-table td:nth-child(5) { font-size:17px; font-weight:600; }
+body.reference-redesign .unit-table .status-badge { font-size:13px; }
+body.reference-redesign .standard-grid h3 { font-size:19px; font-weight:600; }
+body.reference-redesign .unit-standard-preview p { font-size:15px; line-height:1.65; }
+body.reference-redesign .unit-standard-preview strong { font-size:15px; }
+body.reference-redesign :is(.map-unit-card h3,.building-flow-heading h3) { font-size:clamp(28px,2.8vw,38px); font-weight:600; letter-spacing:-.025em; }
+body.reference-redesign :is(.parking-detail h3,.finance-panel h3,.documents-grid h3,.equipment-boundaries h3,#standard-hotspot-detail h3) { font-size:28px; }
+body.reference-redesign .faq-list summary { font-size:18px; line-height:1.5; }
+
+/* Controls are softly squared; status dots and circular panorama hotspots stay round. */
+body.reference-redesign :is(.button,.icon-button,.dialog-close,.unit-filters select,.parking-toolbar select,.contact-form input,.contact-form select,.contact-form textarea,.advanced-filters>summary,.floor-buttons button,.building-unit-chip,.building-selection-mode button,.building-selection-variants button,.building-selection-3d-controls button,.building-selection-3d-error button,.building-selection-hotspot,.map-card-topline .favorite-button,.map-card-actions .button,.map-card-actions .text-link,.parking-list button,.furnished-plan-links a,.furnished-zoom,.furnished-view-switch button,.expand-label,.journey-cta,.journey-motion-toggle) { border-radius:8px; }
+body.reference-redesign :is(.unit-filters,.floor-explorer,.building-selection-3d-stage,.building-selection-3d-selection,.map-card-plan,.furnished-preview,.unit-table-wrap,.compare-bar,.architecture-view,.interior-feature .image-expand,.tour-stage,.parking-options,.parking-map-wrap,.parking-detail,.finance-panel,.equipment-unit-context,.form-errors,.toast,.gallery-dialog>img,.furnished-image-plane,.furnished-source-sheet) { border-radius:12px; }
+body.reference-redesign .floor-explorer { overflow:clip; }
+body.reference-redesign :is(.architecture-view,.interior-feature .image-expand,.tour-stage,.parking-options) { overflow:hidden; }
+body.reference-redesign :is(.architecture-view,.interior-feature,.tour-stage) :focus-visible,
+body.reference-companion :is(.card-image,.hero-open):focus-visible { outline-offset:-5px; }
+body.reference-redesign .standard-visual { border-radius:12px; overflow:hidden; }
+body.reference-redesign .standard-visual img { border-radius:12px; }
+body.reference-redesign :is(.unit-dialog,.compare-dialog,.gallery-dialog,.text-dialog,.furnished-plan-dialog) { border-radius:16px; }
+body.reference-redesign :is(.segmented,.map-view-switch,.furnished-view-switch,.purchase-view-switch) { border-radius:10px; padding:4px; gap:4px; }
+body.reference-redesign :is(.segmented button,.map-view-switch button,.furnished-view-switch button,.purchase-view-switch button) { border-radius:6px; }
+body.reference-redesign .purchase-view-switch button+button { border-left:0; }
+body.reference-redesign .unit-filters .segmented { padding:4px; gap:4px; }
+body.reference-redesign .unit-filters .segmented button { border:0; border-radius:6px; }
+body.reference-redesign .building-selection-mode { gap:6px; }
+body.reference-redesign .building-selection-mode button { border-right-width:1px; }
+body.reference-redesign #standard-hotspot-tabs { gap:6px; margin-top:12px; }
+body.reference-redesign #standard-hotspot-tabs button { margin:0; border-radius:8px; }
+body.reference-redesign .standard-tag { border-radius:6px; font-size:12px; letter-spacing:.035em; }
+body.reference-redesign #standard-hotspot-detail { border-radius:12px; }
+body.reference-redesign .bathroom-catalog { border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+body.reference-redesign .bathroom-catalog>div { border:0; }
+body.reference-redesign .bathroom-catalog-ground>div { padding-inline:24px; }
+
+/* A quieter title leaves more of the original architectural imagery visible. */
+body.reference-redesign .journey-copy :is(h1,h2),
+body.reference-redesign .journey-copy[data-chapter="5"] h2 {
+  font-family:var(--sans);
+  font-size:clamp(54px,5.8vw,90px);
+  font-weight:600;
+  line-height:1.09;
+  letter-spacing:-.035em;
+  text-transform:none;
+}
+body.reference-redesign .journey-copy:not([data-chapter="0"]):not([data-chapter="5"]) h2 { font-size:clamp(42px,4.6vw,68px); }
+body.reference-redesign .journey-copy .eyebrow { font-size:12px; letter-spacing:.08em; }
+body.reference-redesign .journey-copy p.journey-description { font-size:17px; line-height:1.65; max-width:390px; }
+body.reference-redesign .journey-copy .journey-cta { font-size:15px; line-height:1.5; letter-spacing:0; }
+body.reference-redesign .journey-copy .journey-note { font-size:13px; line-height:1.55; max-width:390px; }
+body.reference-redesign :is(.journey-credit,.journey-scroll-hint,.journey-static-link,.journey-motion-toggle) { font-size:12px; letter-spacing:.015em; }
+body.reference-redesign .journey-rail button>span { font-family:var(--sans); font-size:12px; font-weight:500; letter-spacing:0; }
+body.reference-redesign .journey-floor-link strong { font-family:var(--sans); font-size:23px; font-weight:500; }
+body.reference-redesign .journey-floor-link small { font-size:11px; }
+body.reference-redesign .journey-floor-choices a { border-radius:8px; font-size:14px; }
+
+/* The same legibility carries through to gallery, tours and film pages. */
+body.reference-companion :is(.intro h1,.companion-intro h1) { font-size:clamp(44px,5.6vw,80px); line-height:1.12; }
+body.reference-companion :is(.gallery-heading h2,.detail-note h2,.next-step h2) { font-size:clamp(34px,3.6vw,52px); }
+body.reference-companion :is(.intro-copy,.visual-note,.gallery-heading>p,.detail-note-copy,.detail-caption p,.card-text>p) { font-size:17px; line-height:1.7; }
+body.reference-companion :is(.card-meta,.detail-caption .eyebrow,.detail-caption p.detail-source,.detail-caption .detail-export #detail-resolution,.hero-caption,.visual-disclosure--compact,.navigation-hint,.tour-foot) { font-size:14px; line-height:1.6; }
+body.reference-companion .card-text h3 { font-size:27px; }
+body.reference-companion :is(.button,.text-link,.filter-group button,.tour-types button,.apartment-tabs button,.view-switch button,.map-room-list button,.floating-panel p) { font-size:15px; line-height:1.5; }
+body.reference-companion :is(.button,.icon-button,.image-step,.filter-group button,.tour-types button,.apartment-tabs button,.view-switch button,.buyer-standard-link,.buyer-back-link,.header-cta,.hero-expand,.detail-export .text-link,.map-room-list button) { border-radius:8px; }
+body.reference-companion :is(.hero-image-wrap,.hero-image,.card-image,.viewer,.floating-panel,.room-card,.film-card,.storyboard-card) { border-radius:12px; }
+body.reference-companion dialog { border-radius:16px; }
+
+@media(max-width:1100px) {
+  body.reference-redesign .desktop-nav,
+  body.reference-redesign .header-contact,
+  body.reference-redesign .site-header.scrolled .header-contact { display:none; }
+  body.reference-redesign .menu-toggle { display:flex; }
+  body.reference-redesign .unit-table-wrap { overflow-x:auto; }
+}
+@media(max-width:700px) {
+  body:is(.reference-redesign,.reference-companion) { font-size:16px; }
+  body.reference-redesign :is(.intro-copy,.section-heading>p,.section-heading>div+div,.interior-title p,.equipment-boundaries p,.equipment-boundaries li,.standard-grid li,.unit-included p,.unit-included li,.parking-detail p,.faq-list details>p) { font-size:16px; }
+  body.reference-redesign h2, body.reference-redesign #byty>.section-heading h2, body.reference-redesign .interior-title h2 { font-size:clamp(32px,8.4vw,42px); }
+  body.reference-redesign .journey-copy :is(h1,h2),
+  body.reference-redesign .journey-copy[data-chapter="5"] h2,
+  body.reference-redesign .journey-copy:not([data-chapter="0"]):not([data-chapter="5"]) h2 { font-size:clamp(40px,11.4vw,58px); line-height:1.12; }
+  body.reference-redesign .journey-copy .eyebrow { font-size:11px; margin-bottom:18px; }
+  body.reference-redesign .journey-copy p.journey-description { font-size:15px; line-height:1.6; max-width:300px; margin-top:18px; }
+  body.reference-redesign .journey-copy .journey-cta { font-size:14px; margin-top:20px; }
+  body.reference-redesign .journey-copy .journey-note { font-size:11px; line-height:1.55; max-width:300px; }
+  body.reference-redesign :is(.journey-credit,.journey-scroll-hint,.journey-static-link,.journey-motion-toggle) { font-size:10px; }
+  body.reference-redesign .journey-floor-link strong { font-size:18px; }
+  body.reference-redesign .journey-floor-link small { font-size:10px; }
+  body.reference-redesign .journey-floor-choices a { font-size:13px; }
+  body.reference-redesign .journey-bottom-left { max-width:205px; }
+  body.reference-redesign .unit-table th { font-size:13px; }
+  body.reference-redesign .unit-table td:first-child,
+  body.reference-redesign .unit-table td:nth-child(2) { font-size:21px; }
+  body.reference-redesign .unit-table td:nth-child(5) { font-size:16px; }
+  body.reference-redesign .unit-table td:before { font-size:12px!important; }
+  body.reference-redesign .unit-filters .segmented button { padding-inline:8px; }
+  body.reference-companion :is(.intro h1,.companion-intro h1) { font-size:clamp(40px,11vw,58px); }
+  body.reference-companion :is(.intro-copy,.visual-note,.gallery-heading>p,.detail-note-copy,.detail-caption p,.card-text>p) { font-size:16px; }
+}
+@media(max-width:700px) and (max-height:720px) {
+  body.reference-redesign .journey-copy { top:24%; }
+  body.reference-redesign .journey-copy[data-chapter="5"] { top:24%; }
+  body.reference-redesign .journey-copy :is(h1,h2),
+  body.reference-redesign .journey-copy[data-chapter="5"] h2,
+  body.reference-redesign .journey-copy:not([data-chapter="0"]):not([data-chapter="5"]) h2 { font-size:36px; }
+  body.reference-redesign .journey-copy .eyebrow { margin-bottom:12px; }
+  body.reference-redesign .journey-copy p.journey-description { font-size:14px; line-height:1.55; margin-top:14px; }
+  body.reference-redesign .journey-copy .journey-cta { margin-top:16px; min-height:44px; }
+  body.reference-redesign .journey-floor-choices { margin-top:14px; }
+}
+@media(max-width:600px) { body.reference-companion dialog { border-radius:0; } }

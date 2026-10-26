@@ -41,8 +41,10 @@ Označení podlaží na přání klienta: Přízemí, nad ním 1.–5. NP. Inter
 Koupelnová revize 20. 10. 2026 (`catalog-20261020`) upravuje 5 galerijních pohledů, všech 10 rodin zařízených půdorysů a 10 dotčených panoramat. Vybavení vychází z dodaných katalogů: posuvná sprcha 120 cm pro 1+kk, Walk-In 100 cm pro 2+kk a čtvrtkruhový kout 90 × 90 cm pro 3+kk. Modely používají upravené umyvadlové sestavy, zrcadlové skříňky, baterie a samostatná WC. Nové soubory mají datované názvy proti záměně se starší verzí v mezipaměti. Byt 51 má vlastní katalog a původní půdorys; nenabízí se mu neodpovídající typová prohlídka jiného bytu.
 
 
-## Filmová prezentace — 26. 10. 2026
+## Filmová prezentace a původní interiéry — 26. 10. 2026
 
-Úvod tvoří šest kapitol se souvislou kompozicí podle scrollování. Nové záběry exteriéru a typového interiéru vznikly v Higgsfieldu z dosavadních podkladů projektu; mají vlastní odlehčené mobilní verze. Nativní scroll zůstává zachovaný, nabídka je přímo dostupná z navigace. Režim omezeného pohybu používá ruční kapitoly a statické obrázky. Přímý vstup do nabídky nestahuje úvodní filmy.
+Úvod používá jednu třicetisekundovou časovou osu: pohyb od domu do obývacího pokoje 3+kk, ke kuchyni a stejnou cestou zpět. Kamerové úseky vznikly v Higgsfieldu (Kling 3.0 Omni Frames) mezi původními vizualizacemi projektu. Jde o ilustrační animaci, nikoli zaměřený průchod konkrétní jednotkou. Scroll plynule řídí stejný film vpřed i vzad; žádné přepínání samostatných scén nebo prolínání místností. Mobilní výřez má tutéž časovou osu.
 
-Datové soubory, ceny, dostupnosti a půdorysy zůstávají shodné s potvrzenou revizí z 20. 10. 2026. Interiérové video je ilustrační návrh zařízení; rozsah dodávky určuje vybavení konkrétního bytu.
+Galerie obsahuje všech 41 původních pohledů ze šesti PDF dodaných realitní kanceláří: 27 interiérů a 14 koupelen/WC, bez generativních úprav a bez upscalu. Nativní soubory jsou ke stažení, manifest uvádí zdrojové PDF, stranu, rozlišení a kontrolní součty. Rozsah aktuální koupelnové dodávky určuje katalog; původní vizualizace se v detailech může lišit. Samostatné 360° prohlídky a zařízené půdorysy zůstávají označené jako prostorové rekonstrukce.
+
+Nativní scroll, přímý přístup k nabídce i vypnutí pohybu jsou zachované. Režim omezeného pohybu a úspory dat používá statické originály. Přímý vstup pod úvod nestahuje film. Datové soubory, ceny, dostupnosti a půdorysy jsou shodné s potvrzenou revizí z 20. 10. 2026.

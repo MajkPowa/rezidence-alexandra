@@ -27,24 +27,24 @@
   const catalogs = document.querySelector('#bathroom-catalogs');
   if (catalogs) {
     const variants = [
-      { unit: 4, title: '1+kk', image: '1kk-bathroom-shower' },
-      { unit: 2, title: '2+kk', image: '2kk-bathroom' },
-      { unit: 1, title: '3+kk', image: '3kk-bathroom' },
+      { unit: 4, title: '1+kk', image: '1kk-bathroom-05' },
+      { unit: 2, title: '2+kk', image: '2kk-bathroom-04' },
+      { unit: 1, title: '3+kk', image: '3kk-bathroom-03' },
       { unit: 51, title: 'Byt 51 · pod úrovní terénu' }
     ];
     catalogs.innerHTML = variants.map(variant => {
       const bathroom = data.units[String(variant.unit)]?.bathroom;
       if (!bathroom) return '';
       const pdf = bathroom.catalogUrl && /^plans\/[a-z0-9-]+\.pdf$/.test(bathroom.catalogUrl) ? bathroom.catalogUrl : null;
-      const preview = variant.image ? `<a href="interiors.html?typology=${encodeURIComponent(variant.title)}&amp;room=Koupelna#gallery" aria-label="Prohlédnout koupelnu ${esc(variant.title)}"><img src="assets/interiors-v3/${variant.image}-catalog-20261020-thumb.webp" alt="Návrh koupelny ${esc(variant.title)} dle dodaného katalogu" width="720" height="405" loading="lazy"></a>` : '';
-      return `<article class="bathroom-catalog${variant.image ? '' : ' bathroom-catalog-ground'}">${preview}<div><p class="eyebrow">${esc(variant.title)}</p><h4>${esc(bathroom.referenceType)}</h4><details class="ux-disclosure"><summary>Sanita a materiály</summary><ul>${(bathroom.items || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul><p class="small">${esc(bathroom.note)}</p></details>${pdf ? `<a class="text-link" href="${esc(pdf)}" target="_blank" rel="noopener">Katalog koupelny (PDF)</a>` : ''}</div></article>`;
+      const preview = variant.image ? `<a href="interiors.html?typology=${encodeURIComponent(variant.title)}&amp;room=Koupelna#gallery" aria-label="Prohlédnout koupelnu ${esc(variant.title)}"><img src="assets/agency-interiors-20261026/${variant.image}-thumb.webp" alt="Původní vizualizace koupelny ${esc(variant.title)} z podkladů projektu" width="720" height="405" loading="lazy"></a>` : '';
+      return `<article class="bathroom-catalog${variant.image ? '' : ' bathroom-catalog-ground'}">${preview}<div>${variant.image ? '<p class="visual-scope">Původní vizualizace. Aktuální vybavení určuje katalog koupelny.</p>' : ''}<p class="eyebrow">${esc(variant.title)}</p><h4>${esc(bathroom.referenceType)}</h4><details class="ux-disclosure"><summary>Sanita a materiály</summary><ul>${(bathroom.items || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul><p class="small">${esc(bathroom.note)}</p></details>${pdf ? `<a class="text-link" href="${esc(pdf)}" target="_blank" rel="noopener">Katalog koupelny (PDF)</a>` : ''}</div></article>`;
     }).join('');
   }
   const points = [
-    { id:'flooring', label:'Vinylová podlaha', x:45,y:85, text:'Vinylové podlahy v obytných místnostech jsou součástí standardu v ceně.' },
-    { id:'doors', label:'Interiérové dveře', x:13,y:42, text:'Interiérové dveře včetně zárubní jsou součástí standardu v ceně. Konkrétní dekor a provedení potvrdí prodejce.' },
-    { id:'preparations', label:'Příprava kuchyně', x:45,y:43, text:'V ceně jsou rozvody a přípojná místa pro kuchyň. Vyobrazená kuchyňská linka a spotřebiče v ceně nejsou.' },
-    { id:'furniture', label:'Volné zařízení', x:81,y:72, text:'Pohovka, stůl, židle a další nábytek ukazují možné zařízení interiéru. Nejsou součástí ceny bytu.' }
+    { id:'flooring', label:'Vinylová podlaha', x:14,y:84, text:'Vinylové podlahy v obytných místnostech jsou součástí standardu v ceně.' },
+    { id:'doors', label:'Interiérové dveře', x:9,y:43, text:'Interiérové dveře včetně zárubní jsou součástí standardu v ceně. Konkrétní dekor a provedení potvrdí prodejce.' },
+    { id:'preparations', label:'Příprava kuchyně', x:34,y:43, text:'V ceně jsou rozvody a přípojná místa pro kuchyň. Vyobrazená kuchyňská linka a spotřebiče v ceně nejsou.' },
+    { id:'furniture', label:'Volné zařízení', x:75,y:67, text:'Pohovka, stůl, židle a další nábytek ukazují možné zařízení interiéru. Nejsou součástí ceny bytu.' }
   ];
   const stage = document.querySelector('#standard-hotspots');
   const detail = document.querySelector('#standard-hotspot-detail');

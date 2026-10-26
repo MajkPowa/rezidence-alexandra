@@ -91,25 +91,27 @@
     { src: 'assets/facade-detail.webp', caption: 'Stínolam · zdrojová vizualizace', alt: 'Detail návrhu stínolamu a fasády' }
   ];
   const interiorSequences = {
-    '1': ['01','03','04','02','05','06','07'].map((n,i) => ({ src: `assets/interior-1-${n}.webp`, caption: `1+kk · vizualizace možného zařízení · ${i+1}/7`, alt: `Návrh interiéru bytu 1+kk, pohled ${i+1}` })),
-    '2': ['07','06','08','04','05','01','02','03','09','10'].map((n,i) => ({ src: `assets/interior-2-${n}.webp`, caption: `2+kk · vizualizace možného zařízení · ${i+1}/10`, alt: `Návrh interiéru bytu 2+kk, pohled ${i+1}` })),
-    '3': ['01','02','03','09','10','07','08','04','05','06'].map((n,i) => ({ src: `assets/interior-3-${n}.webp`, caption: `3+kk · vizualizace možného zařízení · ${i+1}/10`, alt: `Návrh interiéru bytu 3+kk, pohled ${i+1}` }))
+    '1': ['01','03','04','02','05','06','07'].map((n,i) => ({ src: `assets/interior-1-${n}.webp`, caption: `1+kk · původní vizualizace z podkladů · ${i+1}/7`, alt: `Návrh interiéru bytu 1+kk, pohled ${i+1}` })),
+    '2': ['07','06','08','04','05','01','02','03','09','10'].map((n,i) => ({ src: `assets/interior-2-${n}.webp`, caption: `2+kk · původní vizualizace z podkladů · ${i+1}/10`, alt: `Návrh interiéru bytu 2+kk, pohled ${i+1}` })),
+    '3': ['01','02','03','09','10','07','08','04','05','06'].map((n,i) => ({ src: `assets/interior-3-${n}.webp`, caption: `3+kk · původní vizualizace z podkladů · ${i+1}/10`, alt: `Návrh interiéru bytu 3+kk, pohled ${i+1}` }))
   };
   let activeInterior = '3';
   function updateInteriorFeature() {
     const item = interiorSequences[activeInterior][0];
     $('#interior-feature-image').src = item.src;
     $('#interior-feature-image').alt = item.alt;
+    $('#interior-feature-image').width = item.width || 1620;
+    $('#interior-feature-image').height = item.height || 911;
     $('#interior-feature-caption').textContent = item.featureCaption || `Obývací prostor · ${activeInterior}+kk`;
   }
-  fetch('assets/interiors-v3/manifest.json?v=catalog20261020', {cache:'no-cache'}).then(response => {
+  fetch('assets/agency-interiors-20261026/manifest.json?v=agency20261026', {cache:'no-cache'}).then(response => {
     if (!response.ok) throw new Error('Collection unavailable');
     return response.json();
   }).then(data => {
     ['1', '2', '3'].forEach(type => {
-      const selected = (data.items || []).filter(item => item.typology === `${type}+kk` && typeof item.src === 'string' && /^assets\/[a-zA-Z0-9_./-]+\.(webp|jpe?g|png)$/i.test(item.src) && !item.src.includes('..'));
+      const selected = (data.items || []).filter(item => item.sourceKind === 'agency_original' && item.typology === `${type}+kk` && typeof item.src === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+\.(webp|jpe?g|png)$/i.test(item.src));
       selected.sort((a, b) => Number(b.room === 'Obývací pokoj') - Number(a.room === 'Obývací pokoj'));
-      if (selected.length) interiorSequences[type] = selected.map((item, index) => ({src:item.src, fullResolution:typeof item.fullResolution === 'string' && /^assets\/interiors-v3\/[a-z0-9-]+-4k\.webp$/.test(item.fullResolution) && item.fullResolution === item.src.replace(/\.webp$/, '-4k.webp') ? item.fullResolution : null, alt:`${item.room} · ${item.typology}. ${item.title}. Návrhová vizualizace.`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length} · návrh interiéru`, featureCaption:`${item.title} · ${item.typology}`}));
+      if (selected.length) interiorSequences[type] = selected.map((item, index) => ({src:item.src, fullResolution:typeof item.fullResolution === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+-original\.(png|jpe?g)$/.test(item.fullResolution) ? item.fullResolution : null, width:item.width, height:item.height, alt:`${item.room} · ${item.typology}. ${item.title}. Původní vizualizace z podkladů realitní kanceláře.`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length} · původní vizualizace${item.scopeNote ? ` · ${item.scopeNote}` : (item.room === 'Koupelna' || item.room === 'Samostatné WC' ? ' · aktuální vybavení určuje katalog koupelny' : '')}`, featureCaption:`${item.title} · ${item.typology}`}));
     });
     updateInteriorFeature();
   }).catch(() => { /* The original project visualizations remain available. */ });
@@ -131,7 +133,7 @@
   const renderGallery = () => {
     const item = galleryItems[galleryIndex];
     $('#gallery-image').src = item.src; $('#gallery-image').alt = item.alt;
-    $('#gallery-caption').innerHTML = `${escape(item.caption)}${item.fullResolution ? `<br><a class="text-link" href="${escape(item.fullResolution)}" download>Stáhnout render ve 4K ${icon('download')}</a>` : ''}`;
+    $('#gallery-caption').innerHTML = `${escape(item.caption)}${item.fullResolution ? `<br><a class="text-link" href="${escape(item.fullResolution)}" download>Stáhnout původní obrázek ${icon('download')}</a>` : ''}`;
   };
   $$('[data-gallery]').forEach(button => button.addEventListener('click', () => { galleryItems = button.dataset.gallery === 'architecture' ? architecture : interiorSequences[activeInterior]; galleryIndex = Number(button.dataset.index || 0); renderGallery(); openDialog($('#gallery-dialog')); }));
   const stepGallery = step => { galleryIndex = (galleryIndex + step + galleryItems.length) % galleryItems.length; renderGallery(); };

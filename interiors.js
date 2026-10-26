@@ -5,15 +5,15 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char]);
   const params = new URLSearchParams(location.search);
   const typologies = ['1+kk', '2+kk', '3+kk'];
-  const rooms = ['Obývací pokoj', 'Kuchyně', 'Ložnice', 'Koupelna', 'Odpočinkový kout'];
+  const rooms = ['Obývací pokoj', 'Kuchyně', 'Ložnice', 'Koupelna', 'Odpočinkový kout', 'Předsíň', 'Komora', 'Samostatné WC'];
   const state = {typology:typologies.includes(params.get('typology')) ? params.get('typology') : 'all', room:rooms.includes(params.get('room')) ? params.get('room') : 'all'};
   let items = [], filtered = [], dialogItems = [], dialogIndex = 0, lastFocus = null, heroItem = null;
   const dialog = $('#interior-dialog');
-  const imageAlt = item => `${item.room} · ${item.typology}. ${item.title}. Render návrhu zařízení z 3D modelu.`;
+  const imageAlt = item => `${item.room} · ${item.typology}. ${item.title}. Původní vizualizace z podkladů realitní kanceláře.`;
   const countText = n => `${n} ${n === 1 ? 'vizualizace' : n > 1 && n < 5 ? 'vizualizace' : 'vizualizací'}`;
-  const isLocalAsset = path => typeof path === 'string' && /^assets\/interiors-v3\/[a-zA-Z0-9_-]+\.(?:webp|jpe?g|png)$/i.test(path);
-  const imageSet = item => item.thumb ? `${item.thumb} 720w, ${item.src} 2200w` : `${item.src} 2200w`;
-  const dimensions = item => Number.isInteger(item.width) && Number.isInteger(item.height) && item.width > 0 && item.height > 0 ? [item.width, item.height] : [4096, 2304];
+  const isLocalAsset = path => typeof path === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+\.(?:webp|jpe?g|png)$/i.test(path);
+  const imageSet = item => item.thumb ? `${item.thumb} ${item.thumbWidth || 720}w, ${item.src} ${item.width}w` : `${item.src} ${item.width}w`;
+  const dimensions = item => Number.isInteger(item.width) && Number.isInteger(item.height) && item.width > 0 && item.height > 0 ? [item.width, item.height] : [1620, 911];
   const cardSizes = '(max-width: 600px) calc(100vw - 40px), (min-width: 1800px) 816px, 44vw';
   function setImage(element, item, sizes) {
     const [width, height] = dimensions(item);
@@ -32,7 +32,7 @@
     syncFilters();
     $('#gallery-status').textContent = `${countText(filtered.length)}${state.typology !== 'all' ? ` · ${state.typology}` : ''}${state.room !== 'all' ? ` · ${state.room}` : ''}`;
     $('#empty-state').hidden = filtered.length !== 0;
-    $('#interior-grid').innerHTML = filtered.map((item, index) => `<article class="interior-card"><button class="card-image" type="button" data-image-index="${index}" aria-label="Zvětšit: ${escape(item.title)}, ${escape(item.typology)}"><img src="${escape(item.thumb || item.src)}" srcset="${escape(imageSet(item))}" sizes="${cardSizes}" alt="${escape(imageAlt(item))}" loading="lazy" decoding="async" width="${dimensions(item)[0]}" height="${dimensions(item)[1]}"><span class="image-arrow" aria-hidden="true">${window.AlexandraArrows.svg('arrow-up-right')}</span></button><div class="card-text"><div class="card-meta"><span>${escape(item.typology)}</span><span>${escape(item.room)}</span></div><h3>${escape(item.title)}</h3><p>${escape(item.description)}</p><p class="visual-disclosure--compact">Návrh zařízení · <a href="index.html#vybaveni">Vybavení v ceně</a></p></div></article>`).join('');
+    $('#interior-grid').innerHTML = filtered.map((item, index) => `<article class="interior-card"><button class="card-image" type="button" data-image-index="${index}" aria-label="Zvětšit: ${escape(item.title)}, ${escape(item.typology)}"><img src="${escape(item.thumb || item.src)}" srcset="${escape(imageSet(item))}" sizes="${cardSizes}" alt="${escape(imageAlt(item))}" loading="lazy" decoding="async" width="${dimensions(item)[0]}" height="${dimensions(item)[1]}"><span class="image-arrow" aria-hidden="true">${window.AlexandraArrows.svg('arrow-up-right')}</span></button><div class="card-text"><div class="card-meta"><span>${escape(item.typology)}</span><span>${escape(item.room)}</span></div><h3>${escape(item.title)}</h3><p>${escape(item.description)}</p><p class="visual-disclosure--compact">Původní vizualizace · <a href="index.html#vybaveni">Vybavení v ceně</a></p></div></article>`).join('');
   }
   function updateQuery() {
     const url = new URL(location.href);
@@ -62,17 +62,18 @@
     $('#detail-image-status').hidden = false;
     setImage($('#detail-image'), item, '(min-width: 1548px) 1500px, calc(100vw - 20px)');
     $('#detail-title').textContent = item.title;
-    $('#detail-meta').textContent = `${item.typology} / ${item.room} / ${item.fullResolution ? '4K NÁVRH INTERIÉRU' : 'NÁVRH INTERIÉRU'}`;
+    $('#detail-meta').textContent = `${item.typology} / ${item.room} / PŮVODNÍ VIZUALIZACE`;
     $('#detail-description').textContent = item.description;
-    $('#detail-source').textContent = item.source ? `Podklad: ${item.source}` : 'Zpracováno podle dodaných interiérových podkladů Rezidence Alexandra.';
+    $('#detail-source').textContent = `Zdroj: ${item.source || 'PDF dodané realitní kanceláří'}.`;
     $('#detail-position').textContent = `${String(dialogIndex + 1).padStart(2,'0')} / ${String(dialogItems.length).padStart(2,'0')}`;
     const full = item.fullResolution || item.src;
     $('#detail-download').href = full;
     $('#detail-download').setAttribute('download', full.split('/').pop());
-    $('#detail-download-label').textContent = item.fullResolution ? 'Stáhnout render ve 4K' : 'Stáhnout render';
-    $('#detail-resolution').textContent = item.fullResolution ? '4096 × 2304 px · WebP' : '';
-    const tourRoom = {'Obývací pokoj':'living','Kuchyně':'kitchen','Ložnice':'bedroom','Koupelna':'bathroom','Odpočinkový kout':'living'}[item.room];
+    $('#detail-download-label').textContent = 'Stáhnout původní obrázek';
+    $('#detail-resolution').textContent = `${item.fullWidth || item.width} × ${item.fullHeight || item.height} px · ${item.downloadFormat || 'původní rozlišení'}`;
+    const tourRoom = item.tourRoom || {'Obývací pokoj':'living','Kuchyně':'kitchen','Ložnice':'bedroom','Koupelna':'bathroom','Odpočinkový kout':'living','Předsíň':'hall','Samostatné WC':'wc'}[item.room];
     $('#detail-tour').href = `tour.html?byt=${item.typology.replace('+','')}&mistnost=${tourRoom}#walkthrough`;
+    $('#detail-tour').innerHTML = `Typová 360° rekonstrukce dispozice ${window.AlexandraArrows.svg('arrow-up-right')}`;
     $('#detail-prev').hidden = $('#detail-next').hidden = dialogItems.length < 2;
     const next = dialogItems[(dialogIndex + 1) % dialogItems.length];
     if (next) { const preload = new Image(); preload.src = next.src; }
@@ -104,10 +105,10 @@
     $('#interior-grid').setAttribute('aria-busy', 'true');
     $('#gallery-status').textContent = 'Načítání kolekce interiérů…';
     try {
-      const response = await fetch('assets/interiors-v3/manifest.json?v=catalog20261020', {cache:'no-cache'});
+      const response = await fetch('assets/agency-interiors-20261026/manifest.json?v=agency20261026', {cache:'no-cache'});
       if (!response.ok) throw new Error('Collection unavailable');
       const data = await response.json();
-      items = (Array.isArray(data.items) ? data.items : []).filter(item => item && isLocalAsset(item.src) && (!item.thumb || isLocalAsset(item.thumb)) && typologies.includes(item.typology) && rooms.includes(item.room)).map(item => ({...item, fullResolution:isLocalAsset(item.fullResolution) ? item.fullResolution : null, renderer:(item.renderer || data.renderer) === 'Blender Cycles' ? 'Blender Cycles' : null}));
+      items = (Array.isArray(data.items) ? data.items : []).filter(item => item && item.sourceKind === 'agency_original' && isLocalAsset(item.src) && (!item.thumb || isLocalAsset(item.thumb)) && typologies.includes(item.typology) && rooms.includes(item.room)).map(item => ({...item, fullResolution:isLocalAsset(item.fullResolution) ? item.fullResolution : null}));
       if (!items.length) throw new Error('Empty collection');
       heroItem = items.find(item => item.typology === '3+kk' && item.room === 'Obývací pokoj') || items[0];
       setImage($('#hero-image'), heroItem, '(min-width: 1800px) 1608px, (max-width: 500px) 100vw, 89.2vw');

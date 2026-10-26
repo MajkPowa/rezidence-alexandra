@@ -1,0 +1,123 @@
+{
+  "title": "Rezidence Alexandra — navazující ilustrační kamerový průlet",
+  "created": "2026-10-26",
+  "service": "Higgsfield",
+  "model": {
+    "id": "kling_o3_flf",
+    "name": "Kling 3.0 Omni (Frames)",
+    "mode": "pro",
+    "sound": false,
+    "multiShots": false,
+    "aspectRatio": "16:9"
+  },
+  "references": [
+    {
+      "path": "assets/exterior-no-balconies.webp",
+      "role": "building exterior",
+      "sha256": "bd8dd85f8c252bfb36aae62ef01bdc3ac31d08c782f6ec4cbe58883d94f94e7c",
+      "attribution": "Podkladová vizualizace dodaná pro projekt Rezidence Alexandra."
+    },
+    {
+      "path": "assets/interior-3-01.webp",
+      "role": "living endpoint shared by both clips",
+      "sha256": "5e3dde2df02e544c8b74c44630f0a3b0afc6242de304585258ef45ce3c6abd5d",
+      "attribution": "Podkladová vizualizace dodaná pro projekt Rezidence Alexandra."
+    },
+    {
+      "path": "assets/interior-3-03.webp",
+      "role": "kitchen endpoint",
+      "sha256": "5b49b7df95ca5da33031b8d39197207dac75e8fd4faff18ff034876a1f8f6dc6",
+      "attribution": "Podkladová vizualizace dodaná pro projekt Rezidence Alexandra."
+    }
+  ],
+  "cost": {
+    "quotedCredits": {
+      "buildingToLiving": 12.5,
+      "livingToKitchen": 6.25,
+      "total": 18.75
+    },
+    "actualChargedCreditsVerified": false
+  },
+  "timeline": [
+    {
+      "from": 0,
+      "to": 10,
+      "source": "buildingToLiving",
+      "direction": "forward"
+    },
+    {
+      "from": 10,
+      "to": 15,
+      "source": "livingToKitchen",
+      "direction": "forward"
+    },
+    {
+      "from": 15,
+      "to": 20,
+      "source": "livingToKitchen",
+      "direction": "reverse"
+    },
+    {
+      "from": 20,
+      "to": 30,
+      "source": "buildingToLiving",
+      "direction": "reverse"
+    }
+  ],
+  "assembly": {
+    "durationSeconds": 30,
+    "fps": 24,
+    "frameCount": 720,
+    "desktop": [
+      1600,
+      900
+    ],
+    "mobile": [
+      720,
+      1280
+    ],
+    "mobileReframe": "Fixed centre crop from the identical completed desktop timeline.",
+    "codec": "H.264",
+    "crf": 23,
+    "gop": 6,
+    "faststart": true,
+    "audio": false,
+    "addedFades": false,
+    "addedSceneTransitions": false,
+    "reverseSegments": true,
+    "endpointHandling": "Both original endpoints retained; 241 frames redistributed to 240, 121 to 120."
+  },
+  "files": {
+    "journey.mp4": {
+      "width": 1600,
+      "height": 900,
+      "fps": "24/1",
+      "frames": 720,
+      "duration": 30.0,
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "audioStreams": 0,
+      "bytes": 23269572,
+      "sha256": "fc371b5acce8bc6e4ea33df724cb7f81a370b8fddaa4469b39cc9314d76976e6",
+      "keyframeCount": 120,
+      "maxKeyframeGapSeconds": 0.25,
+      "faststart": true
+    },
+    "journey-mobile.mp4": {
+      "width": 720,
+      "height": 1280,
+      "fps": "24/1",
+      "frames": 720,
+      "duration": 30.0,
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "audioStreams": 0,
+      "bytes": 11333406,
+      "sha256": "7b93a64a827712b6332f335e2164f79a589c3357fd2356ff2b84cbfaf184ac3b",
+      "keyframeCount": 120,
+      "maxKeyframeGapSeconds": 0.25,
+      "faststart": true
+    }
+  },
+  "notice": "Ilustrativní AI animace navazuje na dodané exteriérové a interiérové vizualizace. Mezilehlý pohyb kamery nepředstavuje ověřený BIM ani přesné určení konkrétního bytu či podlaží. Rozhodující jsou původní půdorysy a potvrzené podklady projektu."
+}

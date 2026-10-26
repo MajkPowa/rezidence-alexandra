@@ -41,10 +41,25 @@
     videos.forEach(video => visibility.observe(video));
   }
   document.querySelector('[data-print-storyboard]')?.addEventListener('click', () => window.print());
+  const printDetails = [...root.querySelectorAll('.sheet > details')];
+  let printDetailStates;
+  window.addEventListener('beforeprint', () => {
+    printDetailStates = printDetails.map(details => details.open);
+    printDetails.forEach(details => { details.open = true; });
+  });
+  window.addEventListener('afterprint', () => {
+    if (!printDetailStates) return;
+    printDetails.forEach((details,index) => { details.open = printDetailStates[index]; });
+    printDetailStates = null;
+  });
 
   const chapterLinks = [...root.querySelectorAll('.chapter-navigation a, .companion-section-nav a')]
     .filter(link => link.getAttribute('href')?.startsWith('#'));
   function syncCurrentSection() {
+    if (['#facts','#production'].includes(location.hash)) {
+      const details = root.querySelector(location.hash + ' > details');
+      if (details) details.open = true;
+    }
     chapterLinks.forEach(link => {
       if (link.hash === location.hash) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
@@ -93,7 +108,7 @@
     setRotation(false);
     setBusy(true);
     error.hidden = true;
-    status.textContent = `Načítání modelu — ${modelDescription}.`;
+    status.textContent = 'Načítání modelu…';
     model.alt = `Prostorový model domu Rezidence Alexandra. ${modelDescription}.`;
     loadTimer = setTimeout(showLoadError, 45000);
   }
@@ -110,7 +125,7 @@
     clearTimeout(loadTimer);
     setBusy(false);
     error.hidden = true;
-    status.textContent = `Připraveno k prohlížení — ${modelDescription}.`;
+    status.textContent = 'Model načten';
   });
   model.addEventListener('error', showLoadError);
   model.addEventListener('camera-change', event => {
@@ -167,7 +182,7 @@
     if (model.loaded) {
       clearTimeout(loadTimer);
       setBusy(false);
-      status.textContent = `Připraveno k prohlížení — ${modelDescription}.`;
+      status.textContent = 'Model načten';
     }
   });
 })();

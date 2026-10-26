@@ -60,7 +60,7 @@
     const unit = findUnit(value), variant = variantFor(unit);
     if (!variant) return '';
     const detail = scope === 'detail';
-    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Návrh zařízení dispoziční rodiny bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Návrh zařízení bytu</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
+    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Typový návrh zařízení bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Návrh zařízení bytu</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
   }
 
   function watchImage(image, source = false) {
@@ -96,7 +96,8 @@
     dialog.querySelectorAll('[data-furnished-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.furnishedView === view)));
     $('#furnished-plan-workbench').dataset.view = view;
     $('#furnished-room-legend').hidden = view !== '3d';
-    $('#furnished-view-note').textContent = view === '3d' ? variant.note : `${sourceLabel(unit)}. Otevřete PDF pro podrobné kóty a původní legendu.`;
+    $('#furnished-view-note').textContent = view === '3d' ? '' : `${sourceLabel(unit)} · rozměry v PDF.`;
+    $('#furnished-view-note').hidden = view === '3d';
     if (view === 'source') {
       $('#furnished-plan-canvas').innerHTML = `<a class="furnished-source-sheet" href="${pdfFor(unit)}" target="_blank" rel="noopener"><img src="${sourceFor(unit)}" alt="${escape(sourceLabel(unit))}" decoding="async"><span>Otevřít původní PDF ${icon('arrow-up-right')}</span></a>`;
       watchImage($('.furnished-source-sheet>img'), true);
@@ -116,13 +117,13 @@
     $('#furnished-plan-meta').innerHTML = `<span class="icon-label">${icon('plan', 'art')} <span>${escape(unit.layout)}</span></span> · ${escape(floorLabel(unit.floor))} · <span class="icon-label">${icon('area', 'art')} <span>${escape(number.format(unit.area))} m²</span></span>`;
     $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(unit).label || 'Dostupnost na dotaz';
     $('#furnished-plan-price').textContent = `${number.format(unit.price)} Kč`;
-    $('#furnished-room-legend').innerHTML = `<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Kuchyňská linka, domácí spotřebiče, volný nábytek a předokenní žaluzie nejsou součástí prodejní ceny. <a href="#vybaveni" data-furnished-equipment>Vybavení v ceně bytu</a>.</p>`;
+    $('#furnished-room-legend').innerHTML = `<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Kuchyňská linka, spotřebiče, volný nábytek a žaluzie nejsou v ceně. <a href="#vybaveni" data-furnished-equipment>Vybavení v ceně bytu</a>.</p>`;
     $('#furnished-plan-pdf').href = pdfFor(unit);
     $('#furnished-plan-pdf').innerHTML = `${unit.id <= 10 ? 'Půdorys bytu PDF' : `Půdorys ${escape(floorLabel(unit.floor))} PDF`} ${icon('arrow-up-right')}`;
     const tour = unit.id === 51 ? null : { '1+kk': '1kk', '2+kk': '2kk', '3+kk': '3kk' }[unit.layout];
     $('#furnished-plan-tour').href = `tour.html?byt=${tour}#walkthrough`;
     $('#furnished-plan-tour').hidden = !tour;
-    $('#furnished-plan-caveat').textContent = globalNote || 'Návrh možného zařízení podle dispoziční rodiny. Balkony nejsou součástí 3D náhledu a liší se podle podlaží. Přesné rozměry a závazné provedení ověřte ve zdrojovém výkresu a u prodejce.';
+    $('#furnished-plan-caveat').textContent = 'Návrh zařízení. Přesné rozměry a balkon najdete v původním půdorysu.';
     renderView();
     if (!dialog.open) dialog.showModal();
     dialog.setAttribute('aria-describedby', 'furnished-plan-meta furnished-plan-caveat');

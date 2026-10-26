@@ -72,7 +72,7 @@ body.reference-redesign .floor-explorer { margin-top:16px; box-shadow:none; }
 body.reference-redesign .explorer-toolbar { padding:16px 24px; }
 body.reference-redesign .building-picker {
   background:var(--surface); padding:24px; gap:20px 24px;
-  grid-template-areas:'title variants' 'image controls' 'units units' 'selection selection' 'caption caption';
+  grid-template-areas:'title variants' 'image controls' 'units units' 'selection selection';
 }
 body.reference-redesign .building-selection-mode { flex-wrap:wrap; gap:8px; }
 body.reference-redesign .building-selection-mode button { border:1px solid var(--line); border-radius:8px; font-size:14px; }
@@ -129,6 +129,12 @@ body.reference-redesign .unit-overview .unit-price-note { display:block; margin-
 body.reference-redesign .unit-overview .unit-data { margin-top:24px; }
 body.reference-redesign .unit-overview .unit-actions>.button { padding-inline:16px; gap:12px; white-space:nowrap; }
 body.reference-redesign .unit-detail-notes .unit-included { max-width:85ch; }
+/* Production material is available on request, outside the main buying story. */
+body.reference-companion #downloads>details { grid-column:1/-1; }
+body.reference-companion .sheet:has(>details:not([open])) { min-height:0; padding-block:24px; }
+body.reference-companion :is(#production-storyboards,#downloads>details,.sheet>details)>summary {
+  min-height:48px; padding:16px; font:600 17px/1.5 var(--sans); cursor:pointer;
+}
 @media(max-width:900px) {
   body.reference-redesign #byty[data-purchase-mode=model] .unit-filters { grid-template-columns:1fr; }
   body.reference-redesign #byty[data-purchase-mode=model] .unit-filters .layout-filter { grid-column:auto; }
@@ -144,7 +150,7 @@ body.reference-redesign .unit-detail-notes .unit-included { max-width:85ch; }
   body.reference-redesign .purchase-view-switch button { flex:1; padding-inline:10px; font-size:14px; }
   body.reference-redesign .unit-filters { padding:16px; }
   body.reference-redesign .explorer-toolbar { padding:16px; }
-  body.reference-redesign .building-picker { display:grid; grid-template-columns:minmax(0,1fr); grid-template-areas:'title' 'variants' 'image' 'controls' 'units' 'selection' 'caption'; gap:16px; padding:16px; }
+  body.reference-redesign .building-picker { display:grid; grid-template-columns:minmax(0,1fr); grid-template-areas:'title' 'variants' 'image' 'controls' 'units' 'selection'; gap:16px; padding:16px; }
   body.reference-redesign .building-selection-view { grid-area:image; }
   body.reference-redesign .building-picker .floor-buttons { margin:0; width:100%; grid-template-columns:repeat(3,minmax(0,1fr)); }
   body.reference-redesign .building-selection-mode button { font-size:13px; padding-inline:10px; }

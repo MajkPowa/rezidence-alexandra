@@ -250,7 +250,7 @@
       });
       buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === chapter)));
       stepStatus.textContent = names[chapter] + ' · ' + (chapter + 1) + ' / 5';
-      credit.textContent = 'Ilustrační průlet podle původních podkladů';
+      credit.textContent = 'Vizualizace projektu';
       journey.dataset.chapter = String(chapter);
     }
     if (progress) progress.style.transform = 'scaleX(' + position.toFixed(5) + ')';

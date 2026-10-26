@@ -4,8 +4,18 @@
   const $$ = s => [...document.querySelectorAll(s)];
   const tabs = $$('[data-tab]');
   const ids = tabs.map(tab => tab.dataset.tab);
+  function revealRequestedExtras() {
+    const id = location.hash.slice(1);
+    if (!['storyboards','downloads'].includes(id)) return;
+    const details = document.getElementById(id)?.querySelector('details');
+    if (details) details.open = true;
+  }
+  revealRequestedExtras();
+  window.addEventListener('hashchange', revealRequestedExtras);
+  window.addEventListener('popstate', revealRequestedExtras);
   function activate(id, {scroll = false, focus = false} = {}) {
     if (!ids.includes(id)) id = ids[0];
+    if (scroll || focus) { const production = $('#production-storyboards'); if (production) production.open = true; }
     tabs.forEach(tab => {
       const active = tab.dataset.tab === id;
       tab.setAttribute('aria-selected', String(active));
@@ -46,7 +56,7 @@
   window.addEventListener('hashchange', () => { const id = hashBoard(); if (id) activate(id, {scroll:true}); });
   window.addEventListener('popstate', () => { const id = hashBoard(); if (id) activate(id, {scroll:true}); });
   activate(hashBoard() || 'hero');
-  if (hashBoard()) requestAnimationFrame(() => $('#storyboard-' + hashBoard()).scrollIntoView({block:'start'}));
+  if (hashBoard()) { const production = $('#production-storyboards'); if (production) production.open = true; requestAnimationFrame(() => $('#storyboard-' + hashBoard()).scrollIntoView({block:'start'})); }
 
   const videos = $$('video');
   videos.forEach(video => {

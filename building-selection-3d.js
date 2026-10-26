@@ -71,11 +71,11 @@
       selection.hidden = content !== 'availability';
       panel.querySelector('[data-building-floor-name]').textContent = floorLabel(activeFloor());
       panel.querySelector('.building-selection-3d-help').textContent = content === 'availability'
-        ? 'Tažením otočíte model, klepnutím na barevný byt otevřete jeho půdorys a kartu níže. Volba „Jen vybrané podlaží“ odkryje všechny byty v patře.'
-        : 'Tažením otočíte dům, dvěma prsty nebo kolečkem přiblížíte. Klepnutím na číslo vyberete podlaží. Barvy bytů najdete v režimu „Dostupnost bytů“.';
+        ? 'Otočte model tažením a vyberte byt.'
+        : 'Tažením otočíte dům. Podlaží vyberete klepnutím.';
       panel.querySelector('.building-selection-3d-note').innerHTML = content === 'availability'
-        ? '<strong>Prostorové rozložení podle půdorysů.</strong> Barevné objemy vycházejí z hranic bytů ve zdrojových výkresech; šedé společné prostory nejsou byty. Barvy se aktualizují ze stejného seznamu dostupnosti jako ceník. U nepotvrzených stavů uvádíme „Na dotaz“. Jde o orientační schéma bez balkonů, nikoli dokončenou architekturu či právní hranice jednotek.'
-        : '<strong>Orientační prostorová rekonstrukce.</strong> Zobrazujeme dům bez bočních balkonů. Model vychází z dostupných výkresů a vizualizací, nejde o závazné provedení stavby.';
+        ? 'Prostorové schéma bytů.'
+        : 'Orientační model domu.';
     }
 
     function syncAvailability() {

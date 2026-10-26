@@ -43,14 +43,14 @@
  function roomCategory(id){return id.includes('kitchen')?'Kuchyně':id.includes('bedroom')?'Ložnice':id.includes('bath')?'Koupelna':id.includes('living')?'Obývací pokoj':null;}
  function syncUI(historyMode){
   const visited=seen.get(apartment.id)||new Set();visited.add(current.id);seen.set(apartment.id,visited);
-  $('#room-meta').textContent=`${apartment.label} / 360° NÁVRH INTERIÉRU`;
+  $('#room-meta').textContent=`${apartment.label} / TYPOVÁ 360° PROHLÍDKA`;
   $('#room-title').textContent=current.label;
   canvas.setAttribute('aria-label',`${current.label}, ${apartment.label}, 360° interiér. Šipky mění směr, plus a minus přibližují. Místnosti vyberete tlačítky pod prohlídkou.`);
   $('#fallback-image').alt=`Náhled místnosti ${current.label}, ${apartment.label}`;
   $('#tour-summary').textContent=`${apartment.nodes.length} propojených stanovišť`;
   $('#source-plan').href=`plans/unit-${apartment.sourceUnit}.pdf`;
-  $('#apartment-note').textContent=apartment.note||'';
-  $('#room-description').textContent=current.description||`Návrh zařízení ${current.label.toLocaleLowerCase('cs')} podle půdorysu a interiérových podkladů. Pomocí značek přejdete do navazujících místností.`;
+  $('#apartment-note').textContent='';
+  $('#room-description').textContent='';
   const gallery=new URL('interiors.html',location.href);gallery.searchParams.set('typology',apartment.label);const category=roomCategory(current.id);if(category)gallery.searchParams.set('room',category);$('#room-gallery').href=gallery.pathname+gallery.search;
   $$('[data-apartment]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.apartment===apartment.id)));
   $('#room-list').innerHTML=apartment.nodes.map((n,i)=>`<button type="button" class="room-card ${visited.has(n.id)?'visited':''}" data-node="${escape(n.id)}" aria-current="${n.id===current.id}" aria-label="Přejít do místnosti: ${escape(n.label)}"><img src="${escape(n.thumb)}" alt="" loading="lazy" width="480" height="290"><small aria-hidden="true">${visited.has(n.id)?'✓':String(i+1).padStart(2,'0')}</small><span>${escape(n.label)}</span></button>`).join('');

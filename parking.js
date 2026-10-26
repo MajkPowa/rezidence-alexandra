@@ -18,7 +18,7 @@
     const space=data.spaces.find(item=>item.id===selectedId);
     if (!space) { $('#parking-detail').innerHTML='<h3>Vyberte místo</h3><p>Klikněte na číslo ve výkresu nebo v přehledu pod ním.</p>';return; }
     const s=status(space);
-    $('#parking-detail').innerHTML=`<span class="eyebrow">${esc(types[space.type])}</span><h3>${esc(space.label)}</h3><span class="status-badge status-${s.key}"><span class="availability-dot" aria-hidden="true"></span>${esc(s.label)}</span><strong class="parking-price">${fmt.format(space.price)} Kč</strong><p>Samostatná cena parkování podle ceníku. Parkovací místo není zahrnuto v ceně bytu.</p><a class="button button-dark" href="#kontakt" data-parking-inquiry="${esc(space.id)}">Ověřit místo ${icon()}</a><p class="visual-scope">${esc(data.purchaseRule)}</p>`;
+    $('#parking-detail').innerHTML=`<span class="eyebrow">${esc(types[space.type])}</span><h3>${esc(space.label)}</h3><span class="status-badge status-${s.key}"><span class="availability-dot" aria-hidden="true"></span>${esc(s.label)}</span><strong class="parking-price">${fmt.format(space.price)} Kč</strong><p>Cena parkování není součástí ceny bytu.</p><a class="button button-dark" href="#kontakt" data-parking-inquiry="${esc(space.id)}">Ověřit místo ${icon()}</a><details class="ux-disclosure parking-conditions"><summary>Podmínky parkování</summary><p>${esc(data.purchaseRule)}</p></details>`;
   }
   function render() {
     const focus=root.contains(document.activeElement) ? {id:document.activeElement.dataset.parkingId,view:document.activeElement.dataset.parkingView,map:!!document.activeElement.closest('#parking-map')} : null;
@@ -35,7 +35,7 @@
     $('#parking-quick-select').innerHTML=list.length ? list.map(space=>`<option value="${esc(space.id)}">${esc(space.label)} · ${esc(types[space.type])}</option>`).join('') : '<option value="">Žádné místo pro tento filtr</option>';
     $('#parking-quick-select').value=selectedId || '';
     $('#parking-list-count').textContent=`(${list.length})`;
-    $('#parking-map-note').innerHTML=`${esc(view.description)} Číslované značky slouží pro výběr místa, nejsou jeho vlastnickou hranicí. Na malém displeji lze výkres posunout; všechna místa jsou i v seznamu. ${view.pdf?`<a href="${esc(view.pdf)}" target="_blank" rel="noopener">Otevřít původní výkres PDF ${icon()}</a>`:''}`;
+    $('#parking-map-note').innerHTML=`${view.pdf?`<a href="${esc(view.pdf)}" target="_blank" rel="noopener">Výkres parkování (PDF) ${icon()}</a>`:''}`;
     $('#parking-empty').hidden=list.length>0;
     detail();
     if (focus?.view) root.querySelector(`[data-parking-view="${focus.view}"]`)?.focus({preventScroll:true});

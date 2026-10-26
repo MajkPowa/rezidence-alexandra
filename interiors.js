@@ -9,7 +9,7 @@
   const state = {typology:typologies.includes(params.get('typology')) ? params.get('typology') : 'all', room:rooms.includes(params.get('room')) ? params.get('room') : 'all'};
   let items = [], filtered = [], dialogItems = [], dialogIndex = 0, lastFocus = null, heroItem = null;
   const dialog = $('#interior-dialog');
-  const imageAlt = item => `${item.room} · ${item.typology}. ${item.title}. Původní vizualizace z podkladů realitní kanceláře.`;
+  const imageAlt = item => `${item.typology} · ${item.title}`;
   const countText = n => `${n} ${n === 1 ? 'vizualizace' : n > 1 && n < 5 ? 'vizualizace' : 'vizualizací'}`;
   const isLocalAsset = path => typeof path === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+\.(?:webp|jpe?g|png)$/i.test(path);
   const imageSet = item => item.thumb ? `${item.thumb} ${item.thumbWidth || 720}w, ${item.src} ${item.width}w` : `${item.src} ${item.width}w`;
@@ -32,7 +32,7 @@
     syncFilters();
     $('#gallery-status').textContent = `${countText(filtered.length)}${state.typology !== 'all' ? ` · ${state.typology}` : ''}${state.room !== 'all' ? ` · ${state.room}` : ''}`;
     $('#empty-state').hidden = filtered.length !== 0;
-    $('#interior-grid').innerHTML = filtered.map((item, index) => `<article class="interior-card"><button class="card-image" type="button" data-image-index="${index}" aria-label="Zvětšit: ${escape(item.title)}, ${escape(item.typology)}"><img src="${escape(item.thumb || item.src)}" srcset="${escape(imageSet(item))}" sizes="${cardSizes}" alt="${escape(imageAlt(item))}" loading="lazy" decoding="async" width="${dimensions(item)[0]}" height="${dimensions(item)[1]}"><span class="image-arrow" aria-hidden="true">${window.AlexandraArrows.svg('arrow-up-right')}</span></button><div class="card-text"><div class="card-meta"><span>${escape(item.typology)}</span><span>${escape(item.room)}</span></div><h3>${escape(item.title)}</h3><p>${escape(item.description)}</p><p class="visual-disclosure--compact">Původní vizualizace · <a href="index.html#vybaveni">Vybavení v ceně</a></p></div></article>`).join('');
+    $('#interior-grid').innerHTML = filtered.map((item, index) => `<article class="interior-card"><button class="card-image" type="button" data-image-index="${index}" aria-label="Zvětšit: ${escape(item.title)}, ${escape(item.typology)}"><img src="${escape(item.thumb || item.src)}" srcset="${escape(imageSet(item))}" sizes="${cardSizes}" alt="${escape(imageAlt(item))}" loading="lazy" decoding="async" width="${dimensions(item)[0]}" height="${dimensions(item)[1]}"><span class="image-arrow" aria-hidden="true">${window.AlexandraArrows.svg('arrow-up-right')}</span></button><div class="card-text"><div class="card-meta"><span>${escape(item.typology)}</span></div><h3>${escape(item.title)}</h3></div></article>`).join('');
   }
   function updateQuery() {
     const url = new URL(location.href);
@@ -62,8 +62,9 @@
     $('#detail-image-status').hidden = false;
     setImage($('#detail-image'), item, '(min-width: 1548px) 1500px, calc(100vw - 20px)');
     $('#detail-title').textContent = item.title;
-    $('#detail-meta').textContent = `${item.typology} / ${item.room} / PŮVODNÍ VIZUALIZACE`;
-    $('#detail-description').textContent = item.description;
+    $('#detail-meta').textContent = `${item.typology} / ${item.room} / INTERIÉR`;
+    $('#detail-description').textContent = '';
+    $('#detail-description').hidden = true;
     $('#detail-source').textContent = `Zdroj: ${item.source || 'PDF dodané realitní kanceláří'}.`;
     $('#detail-position').textContent = `${String(dialogIndex + 1).padStart(2,'0')} / ${String(dialogItems.length).padStart(2,'0')}`;
     const full = item.fullResolution || item.src;
@@ -73,7 +74,7 @@
     $('#detail-resolution').textContent = `${item.fullWidth || item.width} × ${item.fullHeight || item.height} px · ${item.downloadFormat || 'původní rozlišení'}`;
     const tourRoom = item.tourRoom || {'Obývací pokoj':'living','Kuchyně':'kitchen','Ložnice':'bedroom','Koupelna':'bathroom','Odpočinkový kout':'living','Předsíň':'hall','Samostatné WC':'wc'}[item.room];
     $('#detail-tour').href = `tour.html?byt=${item.typology.replace('+','')}&mistnost=${tourRoom}#walkthrough`;
-    $('#detail-tour').innerHTML = `Typová 360° rekonstrukce dispozice ${window.AlexandraArrows.svg('arrow-up-right')}`;
+    $('#detail-tour').innerHTML = `Typová 360° prohlídka ${window.AlexandraArrows.svg('arrow-up-right')}`;
     $('#detail-prev').hidden = $('#detail-next').hidden = dialogItems.length < 2;
     const next = dialogItems[(dialogIndex + 1) % dialogItems.length];
     if (next) { const preload = new Image(); preload.src = next.src; }

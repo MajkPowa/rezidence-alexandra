@@ -239,7 +239,7 @@
     const key = posterFor(chapter);
     setPoster(key);
     const aligned = Math.abs(shownTime - timeAt(position)) < .12;
-    picture.classList.toggle('is-visible', !video.classList.contains('is-ready') || stillMode || resting && aligned && posterReady && !userPaused);
+    picture.classList.toggle('is-visible', !video.classList.contains('is-ready') || stillMode || resting && aligned && posterReady);
     if (chapter !== currentChapter) {
       currentChapter = chapter;
       panels.forEach((panel, i) => {

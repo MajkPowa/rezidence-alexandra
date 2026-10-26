@@ -516,7 +516,8 @@ body.reference-redesign .toast { border-radius:0; }
 }
 @media(max-width:900px) {
   body.reference-redesign .desktop-nav,
-  body.reference-redesign .header-contact { display:none; }
+  body.reference-redesign .header-contact,
+  body.reference-redesign .site-header.scrolled .header-contact { display:none; }
   body.reference-redesign .menu-toggle { display:flex; }
   body.reference-redesign .section-heading { grid-template-columns:1fr 1fr; gap:28px; }
   body.reference-redesign .section-heading>div+div { max-width:none; }

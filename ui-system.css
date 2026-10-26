@@ -95,10 +95,12 @@ body.reference-redesign .selection-summary .map-mobile-jump {
   display:flex; min-height:48px; width:auto; margin:0; padding:12px 16px; flex-shrink:0;
   background:var(--ink); color:var(--surface); border:1px solid var(--ink); border-radius:8px; font-size:15px; gap:12px;
 }
-body.reference-redesign .floor-stage { background:var(--paper); padding:24px; }
+body.reference-redesign .floor-stage { background:var(--paper); padding:24px; align-self:start; }
+body.reference-redesign .floor-canvas { height:auto; max-width:none; overflow:hidden; margin:16px auto; }
+body.reference-redesign .floor-projection { transform-box:fill-box; transform-origin:0 0; transition:none; }
 body.reference-redesign .floor-heading h3 { font-size:30px; margin-top:8px; }
 body.reference-redesign .floor-heading>span { font-size:14px; }
-body.reference-redesign .map-unit-card { padding:24px; gap:0; background:var(--surface); }
+body.reference-redesign .map-unit-card { padding:24px; gap:0; background:var(--surface); align-self:start; }
 body.reference-redesign .map-unit-card h3 { font-size:34px; margin:4px 0 8px; }
 body.reference-redesign .map-unit-meta { margin:8px 0 0; font-size:15px; }
 body.reference-redesign .map-card-price { font-size:28px; font-weight:600; margin:16px 0 0; line-height:1.25; }
@@ -112,7 +114,8 @@ body.reference-redesign .map-card-actions { display:flex; gap:12px; margin:0 0 2
 body.reference-redesign .map-card-actions>.button { justify-content:space-between; min-height:48px; background:var(--ink); color:var(--surface); border:1px solid var(--ink); }
 body.reference-redesign .map-card-links { display:flex; flex-wrap:wrap; gap:8px 20px; }
 body.reference-redesign .map-card-links .text-link { display:inline-flex; width:auto; min-height:44px; padding:8px 0; border:0; border-radius:0; font-size:14px; }
-body.reference-redesign .map-unit-card>.furnished-preview,body.reference-redesign .map-unit-card>.map-card-plan { width:100%; margin:0 0 16px; }
+body.reference-redesign :is(.map-card-overview,.map-card-visuals) { min-width:0; }
+body.reference-redesign .map-card-visuals>:is(.furnished-preview,.map-card-plan) { width:100%; margin:0 0 16px; }
 body.reference-redesign .map-unit-card .unit-location-note { margin:12px 0 0; font-size:14px; }
 body.reference-redesign .map-standard-disclosure { margin-top:0; }
 body.reference-redesign .map-standard-disclosure>summary { font-size:15px; }
@@ -140,9 +143,25 @@ body.reference-companion :is(#production-storyboards,#downloads>details,.sheet>d
   body.reference-redesign #byty[data-purchase-mode=model] .unit-filters .layout-filter { grid-column:auto; }
   body.reference-redesign .building-picker { padding:20px; }
   body.reference-redesign .map-unit-card { padding:24px; }
-  body.reference-redesign .map-unit-card>.furnished-preview { max-width:520px; align-self:center; }
+  body.reference-redesign .map-card-visuals>.furnished-preview { max-width:520px; margin-inline:auto; }
   body.reference-redesign .unit-dialog-grid { grid-template-columns:minmax(0,1fr); }
   body.reference-redesign :is(.unit-overview,.unit-preview,.unit-detail-notes) { grid-column:1; grid-row:auto; }
+}
+/* Keep a readable plan beside the details on wide screens; give it the full
+   width before the card would squeeze it into a narrow, mostly empty column. */
+@media(min-width:1101px) and (min-height:680px) {
+  body.reference-redesign .floor-stage { position:sticky; top:calc(var(--header-height) + 16px); }
+  body.reference-redesign .floor-canvas { max-height:calc(100svh - 340px); }
+}
+@media(max-width:1100px) {
+  body.reference-redesign .explorer-workbench { display:block; }
+  body.reference-redesign .floor-stage { position:relative; }
+  body.reference-redesign .map-unit-card { border-left:0; border-top:1px solid var(--line); }
+}
+@media(min-width:701px) and (max-width:1100px) {
+  body.reference-redesign .map-unit-card { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; align-items:start; }
+  body.reference-redesign .map-card-empty { grid-column:1/-1; }
+  body.reference-redesign .floor-stage>.map-mobile-jump { display:none; }
 }
 @media(max-width:700px) {
   body.reference-redesign #byty { padding-block:40px; }
@@ -157,6 +176,7 @@ body.reference-companion :is(#production-storyboards,#downloads>details,.sheet>d
   body.reference-redesign .selection-summary { display:block; padding:16px; }
   body.reference-redesign .selection-summary .map-mobile-jump { width:100%; margin-top:12px; }
   body.reference-redesign .floor-stage,body.reference-redesign .map-unit-card { padding:20px 16px; }
+  body.reference-redesign .map-card-visuals { margin-top:20px; }
   body.reference-redesign .map-card-price { font-size:28px; }
   body.reference-redesign .map-card-data { gap:12px; }
   body.reference-redesign .map-unit-card .map-card-links { flex-direction:row; }

@@ -104,6 +104,33 @@
     return `translate(20px, ${Math.max(175,(760-height*.60)/2+45)}px) matrix(.76,-.14,.26,.60,0,0)`;
   }
 
+  function fitFloorViewport() {
+    const f = floorData();
+    if (!f) return;
+    const height = f.height * 1000 / f.width;
+    // Match floorTransform without changing the survey/image coordinates.
+    const flat = projection === 'plan';
+    const matrix = flat
+      ? [.956, 0, 0, .956, 22, Math.max(22,(760-height*.956)/2)]
+      : [.76, -.14, .26, .60, 20, Math.max(175,(760-height*.60)/2+45)];
+    const points = [[0,0],[1000,0],[1000,height],[0,height], ...normalized(f,f.outline)];
+    if (!flat) normalized(f,f.outline).forEach(([x,y]) => points.push([x,y+15]));
+    f.units.forEach(unit => {
+      points.push(...normalized(f,unit.polygon));
+      const [x,y] = normalized(f,[unit.labelPoint])[0];
+      // Cover both desktop labels (118 × 66) and larger mobile labels (124 × 80).
+      points.push([x-62,y-39],[x+62,y-39],[x+62,y+41],[x-62,y+41]);
+    });
+    const [a,b,c,d,e,g] = matrix;
+    const transformed = points.map(([x,y]) => [a*x+c*y+e,b*x+d*y+g]);
+    const xs = transformed.map(point => point[0]), ys = transformed.map(point => point[1]);
+    const left = Math.floor(Math.min(...xs)-24), top = Math.floor(Math.min(...ys)-24);
+    const width = Math.ceil(Math.max(...xs)+24)-left, fittedHeight = Math.ceil(Math.max(...ys)+24)-top;
+    const canvas = $('#floor-canvas');
+    canvas.setAttribute('viewBox', `${left} ${top} ${width} ${fittedHeight}`);
+    canvas.style.aspectRatio = `${width} / ${fittedHeight}`;
+  }
+
   function drawFloor() {
     const f = floorData();
     $('#map-floor-title').textContent = `${floorLabel(activeFloor)}`;
@@ -121,6 +148,7 @@
       const s=status(u), center=normalized(f,[p.labelPoint])[0];
       return `<g class="map-apartment" role="button" tabindex="0" data-map-unit="${u.id}" data-status="${s.key}" aria-label="Byt ${u.id}, ${esc(u.layout)}, ${area(u.area)}, ${esc(s.label)}" aria-pressed="false"><path class="unit-shape" d="${path(normalized(f,p.polygon))}"/><g transform="translate(${center[0]},${center[1]})" pointer-events="none"><rect class="unit-tag-bg" x="-59" y="-32" width="118" height="66" rx="8"/><text class="unit-tag-number" y="-7">${String(u.id).padStart(2,'0')}</text><text class="unit-tag-layout" y="19">${esc(u.layout)}</text></g></g>`;
     }).join('')}</g>`;
+    fitFloorViewport();
     $('#map-floor-description').textContent = activeFloor === 1 ? 'Byt 51 · přízemí' : 'Vyberte byt přímo v půdorysu.';
     $('#map-floor-special').hidden = true;
     const picker = unitPicker;
@@ -192,7 +220,7 @@
       return;
     }
     const details=window.AlexandraDetails?.get(unit) || {};
-    card.innerHTML=`<div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}</p>${details.locationNote?`<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>`:''}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl><div class="map-card-actions"><button class="button" data-unit="${unit.id}">Detail a poptávka ${icon('arrow-up-right')}</button><div class="map-card-links"><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div></div>${selectedPlan(unit)}<details class="ux-disclosure map-standard-disclosure"><summary>Standard a koupelna</summary><p>Vinylové podlahy, dveře, plastová okna, koupelnová sanita a technické přípravy.</p><p>${esc(details.bathroom?.referenceType || 'Konkrétní podobu koupelny upřesníme.')}</p></details><p class="map-excluded-note">Kuchyň, spotřebiče, volný nábytek a žaluzie nejsou v ceně.</p>${unit.id !== 51 ? `<div class="map-card-links"><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>` : ''}`;
+    card.innerHTML=`<div class="map-card-overview"><div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}</p>${details.locationNote?`<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>`:''}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl><div class="map-card-actions"><button class="button" data-unit="${unit.id}">Detail a poptávka ${icon('arrow-up-right')}</button><div class="map-card-links"><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div></div></div><div class="map-card-visuals">${selectedPlan(unit)}<details class="ux-disclosure map-standard-disclosure"><summary>Standard a koupelna</summary><p>Vinylové podlahy, dveře, plastová okna, koupelnová sanita a technické přípravy.</p><p>${esc(details.bathroom?.referenceType || 'Konkrétní podobu koupelny upřesníme.')}</p></details><p class="map-excluded-note">Kuchyň, spotřebiče, volný nábytek a žaluzie nejsou v ceně.</p>${unit.id !== 51 ? `<div class="map-card-links"><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>` : ''}</div>`;
     restoreCardFocus();
   }
 
@@ -268,7 +296,7 @@
     if(unit){chooseUnit(Number(unit.dataset.mapUnit));return;}
     if(event.target.closest('[data-map-reset]')){catalog.setFilters({layout:'all',floor:String(activeFloor),status:'all',area:'all',favorites:false,sort:'floor'});return;}
     const view=event.target.closest('[data-map-view]');
-    if(view&&['space','plan'].includes(view.dataset.mapView)){projection=view.dataset.mapView;root.querySelectorAll('[data-map-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===view)));const group=$('.floor-projection');if(group)group.style.transform=floorTransform();const depth=$('.floor-depth');if(depth)depth.setAttribute('visibility',projection==='space'?'visible':'hidden');return;}
+    if(view&&['space','plan'].includes(view.dataset.mapView)){projection=view.dataset.mapView;root.querySelectorAll('[data-map-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===view)));const group=$('.floor-projection');if(group)group.style.transform=floorTransform();const depth=$('.floor-depth');if(depth)depth.setAttribute('visibility',projection==='space'?'visible':'hidden');fitFloorViewport();return;}
   });
   root.addEventListener('change', event => { if (event.target.id === 'map-unit-select' && event.target.value) chooseUnit(Number(event.target.value)); });
   root.addEventListener('keydown',event=>{

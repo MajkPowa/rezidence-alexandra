@@ -16,13 +16,27 @@
   const credit = journey.querySelector('.journey-credit');
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
   const saveData = Boolean(navigator.connection && navigator.connection.saveData);
-  const names = ['Dům', 'Vstup', 'Obývací pokoj', 'Kuchyně', 'Výběr bytu'];
-  const destinations = [0, .30, .56, .79, .95];
-  const stops = [0, .08, .50, .65, .89];
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
   let config;
   try { config = JSON.parse(document.querySelector('#journey-config').textContent); } catch (_) { config = { variants:[], posters:{}, fps:24, duration:15 }; }
   const fps = config.fps || 24;
+  const validProgress = value => Number.isFinite(value) && value >= 0 && value <= 1;
+  const validMediaTime = value => Number.isFinite(value) && value >= 0 && value <= config.duration;
+  const customSchedule = Array.isArray(config.timeline) && config.timeline.length >= 2 &&
+    config.timeline[0]?.progress === 0 && config.timeline[0]?.time === 0 &&
+    config.timeline.at(-1)?.progress === 1 &&
+    config.timeline.every((point, i, points) => point && validProgress(point.progress) && validMediaTime(point.time) &&
+      (!i || point.progress > points[i - 1].progress && point.time >= points[i - 1].time)) &&
+    Array.isArray(config.chapters) && config.chapters.length === panels.length && config.chapters.length > 0 &&
+    config.chapters[0]?.start === 0 && config.chapters[0]?.mediaStart === 0 &&
+    config.chapters.every((chapter, i, chapters) => chapter && typeof chapter.name === 'string' && chapter.name.trim() &&
+      typeof chapter.poster === 'string' && config.posters && config.posters[chapter.poster] &&
+      validProgress(chapter.start) && validProgress(chapter.destination) && validMediaTime(chapter.mediaStart) &&
+      (chapter.minProgress === undefined || validProgress(chapter.minProgress)) &&
+      (!i || chapter.start >= chapters[i - 1].start && chapter.mediaStart >= chapters[i - 1].mediaStart));
+  const names = customSchedule ? config.chapters.map(chapter => chapter.name) : ['Dům', 'Vstup', 'Obývací pokoj', 'Kuchyně', 'Výběr bytu'];
+  const destinations = customSchedule ? config.chapters.map(chapter => chapter.destination) : [0, .30, .56, .79, .95];
+  const stops = customSchedule ? config.chapters.map(chapter => chapter.start) : [0, .08, .50, .65, .89];
   let target = 0, position = 0, manual = 0, frame = 0, lastTime = 0, currentChapter = -1;
   let top = 0, range = 1, totalHeight = 1, visible = true;
   let started = false, loading = false, failed = false, userPaused = false, pauseOrigin = 0, pauseStill = false;
@@ -34,6 +48,14 @@
   const paused = () => baseStatic() || userPaused;
   const portrait = () => innerWidth <= 700 && innerHeight > innerWidth;
   function timeAt(p) {
+    if (customSchedule) {
+      const progress = clamp(p, 0, 1);
+      for (let i = 1; i < config.timeline.length; i++) {
+        const from = config.timeline[i - 1], to = config.timeline[i];
+        if (progress <= to.progress) return from.time + (to.time - from.time) * (progress - from.progress) / (to.progress - from.progress);
+      }
+      return config.timeline.at(-1).time;
+    }
     if (p <= .06) return 0;
     if (p < .50) return (p - .06) / .44 * 10;
     if (p <= .64) return 10;
@@ -41,10 +63,18 @@
     return 15;
   }
   function desiredTime() {
-    const end = Math.max(0, (Number.isFinite(video.duration) ? video.duration : config.duration) - 1 / fps);
+    const duration = Number.isFinite(video.duration) ? video.duration : config.duration;
+    const end = Math.max(0, Math.round(duration * fps) - 1) / fps;
     return clamp(Math.round(timeAt(position) * fps) / fps, 0, end);
   }
   function chapterAt(p, time, useStills) {
+    if (customSchedule && !useStills) {
+      let i = 0;
+      config.chapters.forEach((chapter, index) => {
+        if (time >= chapter.mediaStart && p >= (chapter.minProgress || 0)) i = index;
+      });
+      return i;
+    }
     if (useStills) {
       let i = 0;
       stops.forEach((stop, index) => { if (p >= stop) i = index; });
@@ -57,7 +87,14 @@
     if (time < 14.70) return 3;
     return p >= .89 ? 4 : 3;
   }
-  function posterFor(chapter) { return chapter < 2 ? 'house' : chapter === 2 ? 'living' : 'kitchen'; }
+  function posterFor(chapter) { return customSchedule ? config.chapters[chapter].poster : chapter < 2 ? 'house' : chapter === 2 ? 'living' : 'kitchen'; }
+  function isResting(p) {
+    if (!customSchedule) return p <= .06 || p >= .50 && p <= .64 || p >= .88;
+    return config.timeline.some((from, i, points) => {
+      const to = points[i + 1];
+      return to && from.time === to.time && p >= from.progress && p <= to.progress;
+    });
+  }
   function setPoster(key) {
     const data = config.posters[key];
     if (!data || key === posterKey && poster.dataset.key === key) return;
@@ -235,7 +272,7 @@
     const stillMode = baseStatic() || failed || pauseStill || !loaded || !video.classList.contains('is-ready');
     const shownTime = userPaused && !pauseStill ? presentedTime : stillMode ? timeAt(position) : presentedTime;
     const chapter = chapterAt(position, shownTime, stillMode);
-    const resting = position <= .06 || position >= .50 && position <= .64 || position >= .88;
+    const resting = isResting(position);
     const key = posterFor(chapter);
     setPoster(key);
     const aligned = Math.abs(shownTime - timeAt(position)) < .12;
@@ -249,7 +286,7 @@
         panel.inert = !active;
       });
       buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === chapter)));
-      stepStatus.textContent = names[chapter] + ' · ' + (chapter + 1) + ' / 5';
+      stepStatus.textContent = names[chapter] + ' · ' + (chapter + 1) + ' / ' + names.length;
       credit.textContent = 'Vizualizace projektu';
       journey.dataset.chapter = String(chapter);
     }
@@ -274,6 +311,7 @@
     navigationFrame = 0;
   }
   function goTo(index) {
+    if (!Number.isInteger(index) || index < 0 || index >= destinations.length) return;
     cancelNavigation();
     started = true;
     if (baseStatic()) {

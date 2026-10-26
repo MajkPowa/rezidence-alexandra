@@ -80,7 +80,7 @@ body.reference-redesign .bathroom-catalog-ground>div { padding-inline:24px; }
 
 /* A quieter title leaves more of the original architectural imagery visible. */
 body.reference-redesign .journey-copy :is(h1,h2),
-body.reference-redesign .journey-copy[data-chapter="5"] h2 {
+body.reference-redesign .journey-copy--final h2 {
   font-family:var(--sans);
   font-size:clamp(54px,5.8vw,90px);
   font-weight:600;
@@ -88,7 +88,7 @@ body.reference-redesign .journey-copy[data-chapter="5"] h2 {
   letter-spacing:-.035em;
   text-transform:none;
 }
-body.reference-redesign .journey-copy:not([data-chapter="0"]):not([data-chapter="5"]) h2 { font-size:clamp(42px,4.6vw,68px); }
+body.reference-redesign .journey-copy:not([data-chapter="0"]):not(.journey-copy--final) h2 { font-size:clamp(42px,4.6vw,68px); }
 body.reference-redesign .journey-copy .eyebrow { font-size:12px; letter-spacing:.08em; }
 body.reference-redesign .journey-copy p.journey-description { font-size:17px; line-height:1.65; max-width:390px; }
 body.reference-redesign .journey-copy .journey-cta { font-size:15px; line-height:1.5; letter-spacing:0; }
@@ -122,8 +122,8 @@ body.reference-companion dialog { border-radius:16px; }
   body.reference-redesign :is(.intro-copy,.section-heading>p,.section-heading>div+div,.interior-title p,.equipment-boundaries p,.equipment-boundaries li,.standard-grid li,.unit-included p,.unit-included li,.parking-detail p,.faq-list details>p) { font-size:16px; }
   body.reference-redesign h2, body.reference-redesign #byty>.section-heading h2, body.reference-redesign .interior-title h2 { font-size:clamp(32px,8.4vw,42px); }
   body.reference-redesign .journey-copy :is(h1,h2),
-  body.reference-redesign .journey-copy[data-chapter="5"] h2,
-  body.reference-redesign .journey-copy:not([data-chapter="0"]):not([data-chapter="5"]) h2 { font-size:clamp(40px,11.4vw,58px); line-height:1.12; }
+  body.reference-redesign .journey-copy--final h2,
+  body.reference-redesign .journey-copy:not([data-chapter="0"]):not(.journey-copy--final) h2 { font-size:clamp(40px,11.4vw,58px); line-height:1.12; }
   body.reference-redesign .journey-copy .eyebrow { font-size:11px; margin-bottom:18px; }
   body.reference-redesign .journey-copy p.journey-description { font-size:15px; line-height:1.6; max-width:300px; margin-top:18px; }
   body.reference-redesign .journey-copy .journey-cta { font-size:14px; margin-top:20px; }
@@ -144,10 +144,10 @@ body.reference-companion dialog { border-radius:16px; }
 }
 @media(max-width:700px) and (max-height:720px) {
   body.reference-redesign .journey-copy { top:24%; }
-  body.reference-redesign .journey-copy[data-chapter="5"] { top:24%; }
+  body.reference-redesign .journey-copy--final { top:24%; }
   body.reference-redesign .journey-copy :is(h1,h2),
-  body.reference-redesign .journey-copy[data-chapter="5"] h2,
-  body.reference-redesign .journey-copy:not([data-chapter="0"]):not([data-chapter="5"]) h2 { font-size:36px; }
+  body.reference-redesign .journey-copy--final h2,
+  body.reference-redesign .journey-copy:not([data-chapter="0"]):not(.journey-copy--final) h2 { font-size:36px; }
   body.reference-redesign .journey-copy .eyebrow { margin-bottom:12px; }
   body.reference-redesign .journey-copy p.journey-description { font-size:14px; line-height:1.55; margin-top:14px; }
   body.reference-redesign .journey-copy .journey-cta { margin-top:16px; min-height:44px; }

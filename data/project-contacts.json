@@ -1,0 +1,8 @@
+{
+  "updatedAt": "2026-11-03",
+  "developer": {"name": "MAXI holding", "portrait": null, "portraitAlt": "Pan Dvořák"},
+  "mortgageSpecialist": null,
+  "legalAdvisors": [],
+  "contractDocuments": [],
+  "pendingConfirmedByClient": ["developer.portrait", "mortgageSpecialist", "legalAdvisors", "contractDocuments"]
+}

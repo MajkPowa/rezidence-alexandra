@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'MaxiMontserrat';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(assets/developer-20261103/montserrat-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'MaxiMontserrat';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(assets/developer-20261103/montserrat-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Shared appointment action and source-backed MAXI holding identity. */
+:root{--maxi-gold:#e0ad5f;--maxi-grey:#939494;--contact-widget-width:260px;--contact-widget-height:80px}
+body:is(.reference-redesign,.reference-companion) :is(a,button).viewing-cta{background:var(--maxi-gold)!important;color:#17242a!important;border-color:var(--maxi-gold)!important;border-radius:8px;min-height:48px;font:600 15px/1.45 var(--sans);display:inline-flex;align-items:center;justify-content:space-between;gap:16px;text-decoration:none}
+body:is(.reference-redesign,.reference-companion) :is(a,button).viewing-cta:hover{background:#edc88f!important;border-color:#edc88f!important}
+body:is(.reference-redesign,.reference-companion) :is(a,button).viewing-cta:focus-visible{outline:3px solid #17242a;outline-offset:3px;box-shadow:0 0 0 6px #fffdf7}
+.project-contact-widget{position:fixed;right:max(24px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));width:var(--contact-widget-width);height:var(--contact-widget-height);z-index:48;isolation:isolate}
+body .project-contact-widget[hidden]{display:none!important}
+body .project-contact-widget .project-contact-trigger{width:100%;height:100%;min-height:80px;display:grid;grid-template-columns:56px minmax(0,1fr) 18px;gap:10px;padding:10px 12px;text-align:left;border:1px solid #bb8a40;border-radius:10px;box-shadow:0 4px 24px #14232b26;transform:none}
+.project-contact-trigger>img{width:54px;height:48px;object-fit:contain;padding:3px;background:#fff;border-radius:5px}
+.project-contact-trigger-label{display:grid;gap:3px;min-width:0}
+.project-contact-trigger .project-contact-brand-name{font:500 11px/1.3 MaxiMontserrat,var(--sans);letter-spacing:.02em;text-transform:none;color:#24343b}
+.project-contact-trigger-label>strong{font:600 14px/1.3 var(--sans);color:#17242a;letter-spacing:0}
+.project-contact-trigger>svg{width:18px;height:18px}
+.project-contact-widget.has-developer-portrait .project-contact-trigger{grid-template-columns:62px minmax(0,1fr) 18px;gap:8px}
+.project-contact-media{display:flex;align-items:center;gap:4px;width:62px;height:52px}
+.project-contact-portrait-compact{display:block;width:34px;height:52px;object-fit:cover;border-radius:5px;background:#fff}
+.project-contact-media .project-contact-brand-badge{display:block;width:24px;height:24px;object-fit:contain;background:white;padding:1px;border-radius:3px}
+.project-contact-identity{display:flex;align-items:center;gap:24px}
+.project-contact-portrait{display:block;width:96px;height:112px;object-fit:cover;border-radius:8px;background:#fff}
+body #project-contact-dialog{position:fixed;width:min(520px,calc(100% - 32px));max-height:calc(100svh - 32px);padding:32px;border:1px solid #d0cfc6;border-radius:16px;background:#fbfaf6;color:#17242a;box-shadow:0 24px 100px #081b2540;overflow:auto;overscroll-behavior:contain;font-family:var(--sans)}
+body #project-contact-dialog:not([open]){display:none}
+body #project-contact-dialog::backdrop{background:#10232bb8;backdrop-filter:blur(3px)}
+body #project-contact-dialog .project-contact-close{position:absolute;top:12px;right:12px;display:grid;place-items:center;min-width:44px;min-height:44px;width:44px;height:44px;border:1px solid #c8cbc5;border-radius:8px;background:#fff;color:#17242a;padding:0}
+.project-contact-logo{display:block;width:112px;height:98px;object-fit:contain;background:white;border-radius:8px}
+body #project-contact-dialog .project-contact-project{font:500 13px/1.5 MaxiMontserrat,var(--sans);margin:20px 0 10px;color:#59676c;letter-spacing:0;text-transform:none}
+body #project-contact-dialog h2{font:600 clamp(28px,3vw,34px)/1.15 var(--sans);letter-spacing:-.025em;color:#17242a;margin:0}
+body #project-contact-dialog .project-contact-intro{font:400 16px/1.6 var(--sans);margin:16px 0 0;color:#43565e}
+.project-contact-person{display:grid;gap:6px;padding:22px 0;margin:20px 0;border-block:1px solid #d0d2ca}
+.project-contact-person strong{font-size:19px;font-weight:600}
+.project-contact-person>span{font-size:14px;color:#59676c}
+.project-contact-person>a{display:inline-flex;align-items:center;min-height:44px;width:fit-content;font-size:16px;font-weight:500;text-decoration:underline;text-underline-offset:4px}
+body #project-contact-dialog .project-contact-mail{width:100%;padding:14px 18px}
+.project-contact-details{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:10px;font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:4px}
+.project-contact-details svg,.project-contact-mail svg{width:20px;height:20px;flex:none}
+body #project-contact-dialog :focus-visible{outline:3px solid #17242a;outline-offset:3px}
+body.has-project-contact>.site-footer,body.has-project-contact>footer:not(.sheetfoot){padding-bottom:max(112px,calc(env(safe-area-inset-bottom) + 100px))}
+body.has-project-contact #residence-journey .journey-bottom-right{margin-right:280px}
+@media(min-width:701px) and (max-width:1100px){
+:root{--contact-widget-width:160px;--contact-widget-height:56px}
+.project-contact-widget{right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom))}
+body .project-contact-widget .project-contact-trigger{min-height:56px;grid-template-columns:36px minmax(0,1fr);gap:8px;padding:7px 8px}
+.project-contact-trigger>img{width:36px;height:34px;padding:2px}
+.project-contact-trigger .project-contact-brand-name,.project-contact-trigger>svg{display:none}
+.project-contact-trigger-label>strong{font-size:12px;line-height:1.3}
+body.has-project-contact #residence-journey .journey-bottom-right{margin-right:180px}
+}
+@media(max-width:700px){
+:root{--contact-widget-width:136px;--contact-widget-height:56px}
+.project-contact-widget{right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom))}
+body .project-contact-widget .project-contact-trigger{min-height:56px;grid-template-columns:36px minmax(0,1fr);gap:8px;padding:7px 8px;border-radius:8px}
+.project-contact-trigger>img{width:36px;height:34px;padding:2px}
+.project-contact-widget.has-developer-portrait .project-contact-trigger{grid-template-columns:46px minmax(0,1fr);gap:6px}
+.project-contact-media{width:46px;height:36px;gap:2px}
+.project-contact-portrait-compact{width:24px;height:36px;border-radius:3px}
+.project-contact-media .project-contact-brand-badge{width:20px;height:20px}
+.project-contact-identity{gap:20px}
+.project-contact-portrait{width:80px;height:96px}
+.project-contact-trigger .project-contact-brand-name,.project-contact-trigger>svg{display:none}
+.project-contact-trigger-label>strong{font-size:12px;line-height:1.3}
+body #project-contact-dialog{padding:26px 22px;width:calc(100% - 24px);max-height:calc(100svh - 24px)}
+.project-contact-logo{width:96px;height:84px}
+body #project-contact-dialog .project-contact-project{margin-top:16px}
+.project-contact-person{padding:16px 0;margin:16px 0;gap:4px}
+body.has-project-contact>.site-footer,body.has-project-contact>footer:not(.sheetfoot){padding-bottom:max(86px,calc(env(safe-area-inset-bottom) + 76px))}
+body.has-project-contact #residence-journey .journey-bottom-right{position:absolute;left:0;right:auto;bottom:24px;max-width:calc(100% - 140px);margin-right:0;gap:3px}
+body.has-project-contact #residence-journey :is(.journey-credit,.journey-load-status){text-align:left;max-width:none}
+body.has-project-contact #residence-journey .journey-bottom-right:has(.journey-load-status:not([hidden])) .journey-credit{display:none}
+}
+@media(prefers-reduced-motion:reduce){.project-contact-widget,.project-contact-dialog{transition:none!important}}
+@media print{.project-contact-widget,#project-contact-dialog{display:none!important}}

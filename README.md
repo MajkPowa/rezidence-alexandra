@@ -1,6 +1,6 @@
 # Rezidence Alexandra — Otrokovice
 
-Prezentační web rezidenčního projektu s katalogem 51 jednotek, interaktivním výběrem podlaží, parkováním a přehledem vybavení. Hlavní navigace vede přímo na Nabídku bytů, Parkování, Vybavení, Ceník a Financování; kontakt je dostupný samostatně. Nabídka se standardně otevírá výběrem přímo v domě. Ceník a tlačítko Přehled a ceny otevírají společný přehled všech 51 jednotek bez dalšího rozbalování. Galerie, filmy a 3D prohlídky zůstávají doplňující prezentací.
+Prezentační web rezidenčního projektu s katalogem 51 jednotek, interaktivním výběrem podlaží, parkováním a přehledem vybavení. Hlavní navigace vede přímo na Nabídku bytů, Parkování, Vybavení, Ceník a Pro kupující; kontakt je dostupný samostatně. Nabídka se standardně otevírá výběrem přímo v domě. Ceník a tlačítko Přehled a ceny otevírají společný přehled všech 51 jednotek bez dalšího rozbalování. Galerie, filmy a 3D prohlídky zůstávají doplňující prezentací.
 
 Statická publikace pro GitHub Pages. Výchozí stránka je `index.html`; další části jsou `interiors.html`, `creative.html`, `storyboard.html`, `tour.html` a `building.html`. Soubor `.nojekyll` zachovává statické soubory beze změn. Všechny odkazy na lokální média používají relativní cesty.
 
@@ -59,3 +59,12 @@ Pro místní testování přetáčení je nutný server s byte ranges (HTTP 206,
 Výchozí režim nabídky je stále Vybrat v domě. V tomto režimu se podlaží nevybírá duplicitním filtrem a řazení skryté tabulky se nenabízí. Režim Přehled a ceny oba nástroje zpřístupňuje. Výběr bytu potvrzuje souhrn u čísel bytů; karta i mobilní detail upřednostňují cenu a další krok před vizuálním náhledem. Byt 51 zachovává vlastní výkres a upozornění na polohu pod terénem.
 
 Poptávka uchovává vlastní rozepsaný text. Automatickou šablonu aktualizuje pouze, pokud je prázdná nebo nebyla upravena. Přechod z karty bytu na parkování nese viditelný a zrušitelný kontext bytu; poptávka pak zahrnuje byt i zvolené stání. Zpráva se stále pouze připravuje v e-mailovém programu návštěvníka.
+
+
+## Připomínky klienta – 3. 11. 2026
+
+Výběr jednotek vede nejprve přes podlaží a potom dispozici. Karta bytu je širší, půdorys kompaktnější; jednotka má ověřené umístění v podlaží a jednotnou akci Domluvit prohlídku. Nové prezentační listy plans/floor-sheet-1-20261103.pdf až floor-sheet-6-20261103.pdf používají Přízemí / 1.–5. NP a zachovávají přímý odkaz na neměněné projektové originály. 360° prohlídky začínají v nejširším pohledu a vracejí se ke skutečně vybranému bytu.
+
+Vybavení obsahuje konkrétní modely z pěti nově dodaných katalogů; koupelnové skříňky a zrcadla jsou součástí ceny. Každý byt odkazuje přímo na svůj typ koupelny. Parkovací typy jsou klikací a G1/G2 mají vlastní skutečné půdorysy z projektové dokumentace. Nová sekce Pro kupující sdružuje dodaný platební postup, dokumenty, upravitelnou orientační anuitní kalkulačku a kontaktní cesty. Nejde o aktuální nabídku banky ani výpočet RPSN; finanční vstupy se neodesílají.
+
+Značka MAXI holding používá původní logo vyříznuté z dodaného manuálu, potvrzené barvy a lokální Montserrat s přiloženou licencí. Kontaktní dialog je dostupný napříč webem. Dle výslovného potvrzení zadavatele jsou připravena místa pro pozdější doplnění severu (data/orientation.json), výměr parkování (data/parking.json), portrétu, přímých kontaktů poradců a smluvních PDF (data/project-contacts.json). Prázdné hodnoty nevyvolávají nepravdivé údaje ani nefunkční odkazy. Fotografie se přijímají pouze z místních obrazových souborů; smlouvy pouze z místních PDF. Ceny, plochy, skutečné dispozice, původní galerie a filmové zdroje zůstaly zachované.

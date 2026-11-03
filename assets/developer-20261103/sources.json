@@ -1,0 +1,23 @@
+{
+  "logo": {
+    "source": "MAXI_HOLDING_barevnost+fonty.pdf",
+    "sha256": "bf716293237d26cb49d2d0b2d49246ae0a0a11ec6022ff06c2b1d872ce6a037b",
+    "cropPdfPoints": [
+      58,
+      330,
+      328,
+      566
+    ],
+    "method": "Original PDF crop; no reconstruction"
+  },
+  "colors": {
+    "gold": "#E0AD5F",
+    "grey": "#939494"
+  },
+  "font": {
+    "family": "Montserrat",
+    "css": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap",
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/montserrat/OFL.txt"
+  },
+  "portrait": null
+}

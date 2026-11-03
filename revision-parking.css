@@ -1,0 +1,35 @@
+/* Parking categories and individual source-backed space cards. */
+body.reference-redesign #parkovani .parking-type-card{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px 18px;min-height:176px;padding:24px;margin:0;border:0;border-radius:0;background:transparent;color:var(--ink);font:inherit;text-align:left;cursor:pointer;position:relative;box-shadow:none;transition:background-color .16s}
+body.reference-redesign #parkovani .parking-type-card:after{display:none}
+body.reference-redesign #parkovani .parking-type-card+ .parking-type-card{border-left:1px solid var(--line)}
+body.reference-redesign #parkovani .parking-type-card>svg{grid-row:1/4;width:48px;height:48px;align-self:start}
+body.reference-redesign #parkovani .parking-type-card>span{font-size:13px;line-height:1.5;font-weight:600;letter-spacing:.02em}
+body.reference-redesign #parkovani .parking-type-card>div{display:block;min-width:0}
+body.reference-redesign #parkovani .parking-type-card strong{font:600 clamp(24px,2.6vw,32px)/1.2 var(--sans);font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+body.reference-redesign #parkovani .parking-type-card strong small{font-size:16px;font-weight:500}
+body.reference-redesign #parkovani .parking-type-card>div>span{display:block;margin-top:8px;font-size:14px;line-height:1.5}
+body.reference-redesign #parkovani .parking-type-card .parking-type-action{grid-column:2;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:4px;letter-spacing:0}
+body.reference-redesign #parkovani .parking-type-action svg{width:18px;height:18px;flex:none}
+body.reference-redesign #parkovani .parking-type-card:hover{background:#e0ad5f1a}
+body.reference-redesign #parkovani .parking-type-card[aria-pressed=true]{background:#e0ad5f24;box-shadow:inset 0 -3px 0 var(--accent,#e0ad5f)}
+body.reference-redesign #parkovani .parking-type-card:focus-visible{outline:3px solid var(--ink);outline-offset:-5px;z-index:1}
+body.reference-redesign .parking-explorer{scroll-margin-top:calc(var(--header-height,88px) + 20px)}
+body.reference-redesign .parking-detail .parking-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:22px 0 0;gap:0 20px}
+body.reference-redesign .parking-facts>div{padding:12px 0;border-top:1px solid var(--line);min-width:0}
+body.reference-redesign .parking-facts>div:last-child{grid-column:1/-1}
+body.reference-redesign .parking-facts dt{font-size:13px;line-height:1.5;color:var(--muted,#586970)}
+body.reference-redesign .parking-facts dd{margin:5px 0 0;font-size:17px;line-height:1.5;font-weight:600;overflow-wrap:anywhere}
+body.reference-redesign .parking-detail .parking-separate-price{font-size:14px;margin:14px 0 20px}
+body.reference-redesign .parking-detail .viewing-cta{display:flex;width:100%;justify-content:space-between;min-height:48px}
+body.reference-redesign .parking-detail .parking-purchase-rule{font-size:14px;line-height:1.65;margin:20px 0 0;padding-top:18px;border-top:1px solid var(--line)}
+body.reference-redesign .parking-garage-plan{margin:24px 0 0;padding-top:20px;border-top:1px solid var(--line)}
+body.reference-redesign .parking-garage-plan>a:first-child{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+body.reference-redesign .parking-garage-plan img{display:block;width:100%;height:auto;max-height:600px;object-fit:contain;background:#fff}
+body.reference-redesign .parking-garage-plan figcaption{margin:10px 0 4px;color:var(--muted,#586970);font-size:13px;line-height:1.5}
+body.reference-redesign .parking-document-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--ink);font-size:14px;line-height:1.5;font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+body.reference-redesign .parking-document-link svg{width:20px;height:20px;flex:none}
+body.reference-redesign .parking-document-link:focus-visible{outline:3px solid var(--accent,#e0ad5f);outline-offset:3px}
+body.reference-redesign #parking-map-note>span{display:inline-block;margin-right:12px}
+@media(max-width:1100px){body.reference-redesign #parkovani .parking-type-card{grid-template-columns:40px minmax(0,1fr);gap:10px 12px;padding:20px 16px}body.reference-redesign #parkovani .parking-type-card>svg{width:36px;height:36px}}
+@media(max-width:700px){body.reference-redesign #parkovani .parking-type-card{min-height:152px;padding:22px 20px;grid-template-columns:48px minmax(0,1fr);gap:8px 16px}body.reference-redesign #parkovani .parking-type-card+ .parking-type-card{border-left:0;border-top:1px solid var(--line)}body.reference-redesign #parkovani .parking-type-card strong{font-size:28px}body.reference-redesign .parking-garage-plan img{max-height:720px}}
+@media(prefers-reduced-motion:reduce){body.reference-redesign #parkovani .parking-type-card{transition:none}}

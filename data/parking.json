@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-03",
   "source": "Situační výkres a půdorys 1. NP; ceny podle aktualizovaného ceníku ze dne 19. 10. 2026.",
   "availabilityNote": "Dostupnost konkrétních parkovacích míst potvrdíme na dotaz.",
   "purchaseRule": "K bytu lze přikoupit jedno parkovací místo. Další místo je možné řešit až po dokončení prodeje bytů, pokud zbude volná kapacita.",
@@ -1721,7 +1721,22 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "1. NP (6.10.2026).pdf, Garáž č. 1",
-      "sourceLabel": "Garáž č. 1"
+      "sourceLabel": "Garáž č. 1",
+      "plan": {
+        "image": "assets/parking/garage-g1-plan.webp",
+        "width": 675,
+        "height": 1740,
+        "pdf": "plans/floor-1.pdf",
+        "source": "1. NP (6.10.2026).pdf",
+        "sourceRoom": 129,
+        "page": 1,
+        "cropPdfPoints": [
+          1430,
+          250,
+          1655,
+          830
+        ]
+      }
     },
     {
       "id": "G2",
@@ -1755,7 +1770,23 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "1. NP (6.10.2026).pdf, Garáž č. 2",
-      "sourceLabel": "Garáž č. 2"
+      "sourceLabel": "Garáž č. 2",
+      "plan": {
+        "image": "assets/parking/garage-g2-plan.webp",
+        "width": 630,
+        "height": 1740,
+        "pdf": "plans/floor-1.pdf",
+        "source": "1. NP (6.10.2026).pdf",
+        "sourceRoom": 132,
+        "page": 1,
+        "cropPdfPoints": [
+          1630,
+          250,
+          1840,
+          830
+        ]
+      }
     }
-  ]
+  ],
+  "areaNote": "Výměry parkovacích míst budou doplněny po potvrzení prodávajícím."
 }

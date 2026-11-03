@@ -1,0 +1,68 @@
+/* November review: floor first, compact plan, readable apartment details. */
+body.reference-redesign .model-layout-choice{grid-area:types;min-width:0;align-self:start}
+body.reference-redesign .model-layout-choice fieldset{margin:0;padding:0;border:0;min-width:0}
+body.reference-redesign .model-layout-choice legend{font:600 13px/1.5 var(--sans);letter-spacing:0;margin:0 0 10px;color:var(--ink)}
+body.reference-redesign .model-layout-choice .segmented{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+body.reference-redesign .model-layout-choice .segmented button{min-height:44px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:14px}
+body.reference-redesign .model-layout-choice .segmented button[aria-pressed=true]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+body.reference-redesign .building-picker{grid-template-areas:'title variants' 'image controls' 'image types' 'units units' 'selection selection' 'caption caption'}
+body.reference-redesign #cenik{scroll-margin-top:calc(var(--header-height) + 20px)}
+body.reference-redesign .floor-stage{position:relative;max-width:none;align-self:start}
+body.reference-redesign .floor-canvas{width:100%;max-width:610px;margin:16px auto;max-height:none}
+body.reference-redesign .floor-caption{flex-wrap:wrap;gap:10px 16px}
+body.reference-redesign .floor-caption .floor-source-original{font-size:12px;color:var(--muted);text-decoration:underline;text-underline-offset:4px}
+body.reference-redesign .map-unit-card .map-card-links{gap:10px 18px;flex-wrap:wrap}
+body.reference-redesign .map-card-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+body.reference-redesign .map-card-actions>.viewing-cta{width:100%;justify-content:space-between;min-height:48px}
+body.reference-redesign .map-card-actions>.unit-detail-button{justify-self:start;min-height:44px;padding:7px 0;text-decoration:underline;text-underline-offset:4px;font-size:15px}
+body.reference-redesign .map-standard-disclosure{padding-top:4px;margin-top:0}
+body.reference-redesign #unit-dialog-title,body.reference-redesign #furnished-plan-title{font-family:var(--sans);font-size:clamp(44px,5.5vw,68px);font-weight:650;line-height:1.05;letter-spacing:-.035em;margin:8px 0 14px}
+body.reference-redesign .compare-table .compare-unit-heading{font-size:clamp(24px,2.3vw,34px);font-weight:650;line-height:1.2;white-space:nowrap}
+.unit-location{display:block;margin:20px 0;padding:14px 16px;border:1px solid var(--line,#cdd2d0);border-radius:10px;background:var(--paper,#f0eee7);color:var(--ink,#17272e)}
+.unit-location figcaption{font:600 14px/1.5 var(--sans);margin-bottom:10px}
+.unit-location-views{display:grid;grid-template-columns:85px minmax(0,1fr);gap:12px;align-items:center;min-width:0}
+.unit-location-building{display:block;width:85px;height:116px;overflow:visible}
+.unit-location-building rect{fill:#e5e7e2;stroke:#97a39e;stroke-width:1}
+.unit-location-building text{fill:#52625c;font:500 10px var(--sans);text-anchor:middle}
+.unit-location-building .is-active rect{fill:var(--accent,#d1b786);stroke:var(--ink,#17272e);stroke-width:1.6}
+.unit-location-building .is-active text{fill:var(--ink,#17272e);font-weight:700}
+.unit-location-plan{display:block;width:100%;max-height:155px;min-height:100px;overflow:visible}
+.unit-location-plan image{opacity:.6}
+.unit-location-plan path{fill:#e8ece6;fill-opacity:.35;stroke:#82908a;stroke-width:2;vector-effect:non-scaling-stroke}
+.unit-location-plan path.is-active{fill:var(--accent,#d1b786);fill-opacity:.8;stroke:var(--ink,#17272e);stroke-width:2.5}
+.unit-location>p{font:400 12px/1.5 var(--sans);margin:8px 0 0;color:var(--muted,#52625c)}
+.floor-orientation{display:flex;align-items:center;gap:8px;font:400 12px/1.5 var(--sans);color:var(--muted,#52625c);margin:8px 0 0}
+.floor-orientation svg{width:34px;height:34px;flex:none;fill:var(--accent,#d1b786);stroke:var(--ink,#17272e);stroke-width:1.5}
+.unit-overview .unit-location{margin-top:0}
+.furnished-room-legend>.unit-location{margin:0 0 20px}
+.furnished-plan-links>.viewing-cta{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px}
+@media(min-width:901px){
+body.reference-redesign .explorer-workbench{display:grid;grid-template-columns:minmax(300px,.85fr) minmax(390px,1.15fr);align-items:start}
+body.reference-redesign .building-picker{grid-column:1/-1}
+body.reference-redesign .map-unit-card{display:block;grid-template-columns:none;border-left:1px solid var(--line);border-top:0}
+body.reference-redesign .map-card-visuals{margin-top:24px}
+body.reference-redesign .floor-stage>.map-mobile-jump{display:inline-flex}
+}
+@media(min-width:1350px){
+body.reference-redesign .map-unit-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:24px}
+body.reference-redesign .map-card-visuals{margin-top:0}
+body.reference-redesign .map-card-empty{grid-column:1/-1}
+}
+@media(min-width:701px) and (max-width:900px){
+body.reference-redesign .explorer-workbench{display:block}
+body.reference-redesign .map-unit-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;border-left:0;border-top:1px solid var(--line)}
+body.reference-redesign .building-picker{grid-template-areas:'title variants' 'image controls' 'image types' 'units units' 'selection selection' 'caption caption'}
+}
+@media(max-width:700px){
+body.reference-redesign .building-picker{grid-template-areas:'title' 'variants' 'image' 'controls' 'types' 'units' 'selection' 'caption'}
+body.reference-redesign .model-layout-choice .segmented{grid-template-columns:repeat(4,minmax(0,1fr))}
+body.reference-redesign .model-layout-choice .segmented button{padding-inline:5px}
+body.reference-redesign .explorer-workbench{display:block}
+body.reference-redesign .map-unit-card{display:block;border-left:0;border-top:1px solid var(--line)}
+body.reference-redesign .floor-canvas{max-width:520px}
+body.reference-redesign #unit-dialog-title,body.reference-redesign #furnished-plan-title{font-size:44px}
+.unit-location{padding:12px;margin-block:16px}
+.unit-location-views{grid-template-columns:76px minmax(0,1fr);gap:10px}
+.unit-location-building{width:76px;height:104px}
+.furnished-plan-links>.viewing-cta{width:100%}
+}

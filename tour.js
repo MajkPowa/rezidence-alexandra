@@ -1,11 +1,12 @@
 (() => {
  'use strict';
  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
- const stage=$('#stage'), canvas=$('#panorama'), TAU=Math.PI*2;
+ const stage=$('#stage'), canvas=$('#panorama'), TAU=Math.PI*2, MAX_FOV=1.5;
  const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
  const safePath=p=>typeof p==='string' && /^assets\/walkthrough-v3\/[a-zA-Z0-9_./-]+\.(jpg|webp|png)$/.test(p) && !p.includes('..');
  const query=new URLSearchParams(location.search), seen=new Map(), cache=new Map();
- let manifest, apartment, current, requested, requestSerial=0, view={yaw:0,pitch:0,fov:1.15}, hotspots=[], ready=false, gl, program, texture, uniforms, renderPending=false;
+ const contextUnit=(window.ALEXANDRA_UNITS||[]).find(unit=>unit.id===Number(query.get('jednotka'))&&unit.id!==51);
+ let manifest, apartment, current, requested, requestSerial=0, view={yaw:0,pitch:0,fov:MAX_FOV}, hotspots=[], ready=false, gl, program, texture, uniforms, renderPending=false;
  let controlsEnabled=true;
  function effectiveFov(){const aspect=canvas.clientWidth/Math.max(1,canvas.clientHeight);return 2*Math.atan(Math.tan(view.fov/2)*Math.min(1,(16/9)/aspect));}
  function initGL(){
@@ -26,7 +27,7 @@
   gl.uniform1f(uniforms.yaw,view.yaw);gl.uniform1f(uniforms.pitch,view.pitch);gl.uniform1f(uniforms.fov,effectiveFov());gl.uniform1f(uniforms.aspect,w/h);gl.drawArrays(gl.TRIANGLES,0,6);projectHotspots();
  }
  function schedule(){if(!renderPending){renderPending=true;requestAnimationFrame(draw);}}
- function move(dx,dy,dz=0){if(!controlsEnabled)return;view.yaw=(view.yaw+dx)%TAU;view.pitch=Math.max(-1.35,Math.min(1.35,view.pitch+dy));view.fov=Math.max(.5,Math.min(1.5,view.fov+dz));schedule();}
+ function move(dx,dy,dz=0){if(!controlsEnabled)return;view.yaw=(view.yaw+dx)%TAU;view.pitch=Math.max(-1.35,Math.min(1.35,view.pitch+dy));view.fov=Math.max(.5,Math.min(MAX_FOV,view.fov+dz));schedule();}
  function upload(im){
   let source=im;const max=gl.getParameter(gl.MAX_TEXTURE_SIZE);
   if(im.width>max||im.height>max){const c=document.createElement('canvas');const scale=Math.min(max/im.width,max/im.height);c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext('2d').drawImage(im,0,0,c.width,c.height);source=c;}
@@ -38,8 +39,10 @@
   // Keep only a few full panoramas in memory on phones.
   const cacheLimit=matchMedia('(max-width:768px)').matches?3:6;if(cache.size>cacheLimit)cache.delete(cache.keys().next().value);return promise;
  }
- function defaultView(node){const t=node.target||[node.position[0],node.position[1]+1,node.position[2]],p=node.position;const dx=t[0]-p[0],dy=t[1]-p[1],dz=t[2]-p[2];return {yaw:Math.atan2(dx,dy),pitch:Math.atan2(dz,Math.hypot(dx,dy)),fov:1.15};}
- function updateURL(mode='replace'){if(mode==='none')return;const url=new URL(location.href);url.searchParams.set('byt',apartment.id);url.searchParams.set('mistnost',current.id);if(url.href!==location.href)history[mode==='push'?'pushState':'replaceState'](null,'',url);}
+ function defaultView(node){const t=node.target||[node.position[0],node.position[1]+1,node.position[2]],p=node.position;const dx=t[0]-p[0],dy=t[1]-p[1],dz=t[2]-p[2];return {yaw:Math.atan2(dx,dy),pitch:Math.atan2(dz,Math.hypot(dx,dy)),fov:MAX_FOV};}
+ function matchingContext(){return contextUnit&&contextUnit.layout.replace('+','')===apartment.id?contextUnit:null;}
+ function updateURL(mode='replace'){if(mode==='none')return;const url=new URL(location.href);url.searchParams.set('byt',apartment.id);url.searchParams.set('mistnost',current.id);const unit=matchingContext();if(unit){url.searchParams.set('jednotka',unit.id);url.searchParams.set('podlazi',unit.floor);}else{url.searchParams.delete('jednotka');url.searchParams.delete('podlazi');}if(url.href!==location.href)history[mode==='push'?'pushState':'replaceState'](null,'',url);}
+ function returnToSelection(){const unit=matchingContext();const href=unit?`index.html?podlazi=${unit.floor}&byt=${unit.id}#byty`:'index.html#byty';$$('[data-tour-return]').forEach(link=>{link.href=href;link.setAttribute('aria-label',unit?`Zpět na výběr bytů, byt ${String(unit.id).padStart(2,'0')}`:'Zpět na výběr bytů');});const context=$('#tour-unit-context');if(context){context.hidden=!unit;context.textContent=unit?`Návrh zařízení pro byt ${String(unit.id).padStart(2,'0')} · ${unit.layout}`:'';}const catalog=$('#tour-bathroom-link');if(catalog){catalog.href=`index.html#bathroom-${apartment.id}`;catalog.textContent=`Vybavení koupelny ${apartment.label}`;}}
  function roomCategory(id){return id.includes('kitchen')?'Kuchyně':id.includes('bedroom')?'Ložnice':id.includes('bath')?'Koupelna':id.includes('living')?'Obývací pokoj':null;}
  function syncUI(historyMode){
   const visited=seen.get(apartment.id)||new Set();visited.add(current.id);seen.set(apartment.id,visited);
@@ -56,7 +59,7 @@
   $('#room-list').innerHTML=apartment.nodes.map((n,i)=>`<button type="button" class="room-card ${visited.has(n.id)?'visited':''}" data-node="${escape(n.id)}" aria-current="${n.id===current.id}" aria-label="Přejít do místnosti: ${escape(n.label)}"><img src="${escape(n.thumb)}" alt="" loading="lazy" width="480" height="290"><small aria-hidden="true">${visited.has(n.id)?'✓':String(i+1).padStart(2,'0')}</small><span>${escape(n.label)}</span></button>`).join('');
   $('#visited-count').textContent=`Prohlédnuto ${visited.size} z ${apartment.nodes.length} stanovišť`;
   $('#adjacent-rooms').innerHTML=(current.links||[]).map(link=>{const n=apartment.nodes.find(n=>n.id===link.to);return n?`<button type="button" data-adjacent="${escape(n.id)}">${escape(n.label)} <span aria-hidden="true">${window.AlexandraArrows.svg('arrow-right')}</span></button>`:'';}).join('');
-  renderMap();buildHotspots();updateURL(historyMode);
+  renderMap();buildHotspots();returnToSelection();updateURL(historyMode);
  }
  function renderMap(){
   const [w,d]=apartment.bounds;

@@ -6,24 +6,42 @@
   const area = value => typeof value === 'number' && Number.isFinite(value) ? `${format.format(value)} m²` : 'Výměru upřesníme';
   const featureArea = (value, kind) => value === 0 ? (kind === 'cellar' ? 'Bez sklepa' : 'Bez balkonu') : area(value);
   const get = unit => data.units[String(unit?.id)] || {};
+  const pdfPath = value => typeof value === 'string' && /^plans\/[a-z0-9-]+\.pdf$/.test(value) ? value : null;
+  const bathroomKey = unit => get(unit).bathroom?.id || (Number(unit?.id) === 51 ? '51' : String(unit?.layout || '').replace('+',''));
+  const bathroomTarget = unit => `#bathroom-${bathroomKey(unit)}`;
+  function bathroomLinkHTML(unit, { pdf = false } = {}) {
+    const bathroom = get(unit).bathroom;
+    if (!bathroom) return '';
+    const target = pdf ? pdfPath(bathroom.catalogUrl) : bathroomTarget(unit);
+    if (!target) return '';
+    return `<a class="bathroom-direct-link" href="${esc(target)}" ${pdf ? 'target="_blank" rel="noopener"' : `data-section-link="${esc(target.slice(1))}" data-unit-id="${esc(unit.id)}"`}>${pdf ? 'Prohlédnout katalog koupelny' : 'Vybavení vaší koupelny'} <span>${esc(bathroom.label)}</span><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19 19 5M8 5h11v11"/></svg></a>`;
+  }
+  function tourHref(unit) {
+    if (!unit || Number(unit.id) === 51 || !['1+kk','2+kk','3+kk'].includes(unit.layout)) return null;
+    return `tour.html?byt=${unit.layout.replace('+','')}&jednotka=${Number(unit.id)}&podlazi=${Number(unit.floor)}#walkthrough`;
+  }
+  function productsHTML(bathroom) {
+    if (!bathroom) return '';
+    return `<dl class="bathroom-product-list">${(bathroom.products || []).map(product=>`<div><dt>${esc(product.code)}</dt><dd>${esc(product.title)}${product.specification ? `<small>${esc(product.specification)}</small>` : ''}</dd></div>`).join('')}${bathroom.tiles ? `<div><dt>${esc(bathroom.tiles.code)}</dt><dd>${esc(bathroom.tiles.title)}</dd></div>` : ''}</dl>`;
+  }
   function areasHTML(unit) {
     const details = get(unit);
     return `<div><dt>Balkon</dt><dd>${featureArea(details.balconyArea, 'balcony')}</dd></div><div><dt>Sklep</dt><dd>${featureArea(details.cellarArea, 'cellar')}</dd></div>`;
   }
   function cardHTML(unit) {
     const details = get(unit);
-    return `<div class="unit-standard-preview">${details.locationNote ? `<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>` : ''}<strong>Standard v ceně bytu</strong><p>Vinylové podlahy, dveře, plastová okna, koupelnová sanita a technické přípravy.</p><p class="small">${esc(details.bathroom?.referenceType || 'Konkrétní podobu koupelny upřesníme.')}</p><p class="excluded-line">Bez kuchyňské linky, spotřebičů, volného nábytku a žaluzií. Koupelnové skříňky dle soupisu.</p></div>`;
+    return `<div class="unit-standard-preview">${details.locationNote ? `<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>` : ''}<h4>Standard v ceně bytu</h4><p>Vinylová podlaha Ultimo, dveře, elektroinstalace, koupelnová sanita a technické přípravy.</p><p class="included-confirmation"><strong>Koupelnové skříňky a zrcadla jsou v ceně.</strong></p><p>${esc(details.bathroom?.referenceType || 'Koupelna podle katalogu bytu.')}</p>${bathroomLinkHTML(unit)}<p class="excluded-line">Kuchyň, spotřebiče, volný nábytek a žaluzie nejsou v ceně.</p></div>`;
   }
   function detailHTML(unit) {
     const details = get(unit);
     const bathroom = details.bathroom;
-    const pdf = bathroom?.catalogUrl && /^plans\/[a-z0-9-]+\.pdf$/.test(bathroom.catalogUrl) ? bathroom.catalogUrl : null;
-    return `<section class="unit-included" aria-label="Vybavení bytu ${esc(unit.id)}">${details.locationNote ? `<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>` : ''}<h3>Co je v ceně tohoto bytu</h3><details class="ux-disclosure"><summary>Úplný standard v ceně bytu</summary><ul class="equipment-list">${(details.equipment || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul></details><div class="unit-bathroom"><strong>Koupelna</strong>${bathroom?.referenceType ? `<p>${esc(bathroom.referenceType)}</p><details class="ux-disclosure"><summary>Konkrétní sanita a materiály</summary><ul>${(bathroom.items || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul></details>` : ''}<p class="small">Konkrétní vybavení ověřte pro vybraný byt.</p>${pdf ? `<a class="text-link" href="${esc(pdf)}" target="_blank" rel="noopener">Prohlédnout katalog koupelny (PDF)</a>` : ''}</div><div class="excluded-box"><strong>Není součástí ceny bytu</strong><p>${esc(data.excluded.join(', '))}.</p><p class="small">Skříňky a zrcadla podle katalogu koupelny.</p></div></section>`;
+    const standardPdf = pdfPath(data.technicalCatalog?.url);
+    return `<section class="unit-included" aria-label="Vybavení bytu ${esc(unit.id)}">${details.locationNote ? `<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>` : ''}<h3>Co je v ceně tohoto bytu</h3><ul class="equipment-list">${(details.equipment || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul>${standardPdf ? `<a class="equipment-document-link" href="${esc(standardPdf)}" target="_blank" rel="noopener">Technické listy standardního vybavení (PDF)</a>` : ''}<section class="unit-bathroom" aria-label="Koupelna pro byt ${esc(unit.id)}"><h4>Vaše koupelna · ${esc(bathroom?.label || unit.layout)}</h4><p class="included-confirmation"><strong>Skříňky, umyvadla, zrcadla i sanita podle tohoto katalogu jsou součástí ceny bytu.</strong></p>${bathroom?.referenceType ? `<p>${esc(bathroom.referenceType)}</p>${productsHTML(bathroom)}` : ''}${bathroomLinkHTML(unit,{pdf:true})}</section><div class="excluded-box"><h4>Není součástí ceny bytu</h4><p>${esc(data.excluded.join(', '))}.</p></div></section>`;
   }
-  window.AlexandraDetails = Object.freeze({ get, area, featureArea, areasHTML, cardHTML, detailHTML });
+  window.AlexandraDetails = Object.freeze({ get, area, featureArea, areasHTML, cardHTML, detailHTML, bathroomKey, bathroomTarget, bathroomLinkHTML, tourHref });
 
   const guide = document.querySelector('#standard-items');
-  if (guide) guide.innerHTML = data.standard.map((group, index) => `<article id="standard-${esc(group.id)}"><span class="standard-number">${String(index+1).padStart(2,'0')}</span><div><h3>${esc(group.title)}</h3><ul>${group.items.map(item=>`<li>${esc(item)}</li>`).join('')}</ul></div></article>`).join('');
+  if (guide) guide.innerHTML = data.standard.map((group, index) => `<article id="standard-${esc(group.id)}"><span class="standard-number">${String(index+1).padStart(2,'0')}</span><div><h3>${esc(group.title)}</h3><ul>${group.items.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>${pdfPath(group.sourceUrl) ? `<a class="equipment-document-link" href="${esc(group.sourceUrl)}${group.sourcePage ? '#page='+Number(group.sourcePage) : ''}" target="_blank" rel="noopener">Technický list ${esc(group.title.toLocaleLowerCase('cs'))} (PDF)</a>` : ''}</div></article>`).join('');
   const catalogs = document.querySelector('#bathroom-catalogs');
   if (catalogs) {
     const variants = [
@@ -35,9 +53,9 @@
     catalogs.innerHTML = variants.map(variant => {
       const bathroom = data.units[String(variant.unit)]?.bathroom;
       if (!bathroom) return '';
-      const pdf = bathroom.catalogUrl && /^plans\/[a-z0-9-]+\.pdf$/.test(bathroom.catalogUrl) ? bathroom.catalogUrl : null;
+      const pdf = pdfPath(bathroom.catalogUrl);
       const preview = variant.image ? `<a href="interiors.html?typology=${encodeURIComponent(variant.title)}&amp;room=Koupelna#gallery" aria-label="Prohlédnout koupelnu ${esc(variant.title)}"><img src="assets/agency-interiors-20261026/${variant.image}-thumb.webp" alt="Původní vizualizace koupelny ${esc(variant.title)} z podkladů projektu" width="720" height="405" loading="lazy"></a>` : '';
-      return `<article class="bathroom-catalog${variant.image ? '' : ' bathroom-catalog-ground'}">${preview}<div><p class="eyebrow">${esc(variant.title)}</p><h4>${esc(bathroom.referenceType)}</h4><details class="ux-disclosure"><summary>Sanita a materiály</summary><ul>${(bathroom.items || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul><p class="small">Konkrétní vybavení ověřte pro vybraný byt.</p></details>${pdf ? `<a class="text-link" href="${esc(pdf)}" target="_blank" rel="noopener">Katalog koupelny (PDF)</a>` : ''}</div></article>`;
+      return `<article id="bathroom-${esc(bathroom.id)}" class="bathroom-catalog${variant.image ? '' : ' bathroom-catalog-ground'}" tabindex="-1">${preview}<div><p class="eyebrow">${esc(variant.title)}</p><h4>${esc(bathroom.referenceType)}</h4><p class="included-confirmation"><strong>Koupelnové skříňky a zrcadla jsou v ceně.</strong></p>${productsHTML(bathroom)}${pdf ? `<a class="bathroom-direct-link" href="${esc(pdf)}" target="_blank" rel="noopener">Prohlédnout katalog koupelny <span>${esc(bathroom.label)}</span><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19 19 5M8 5h11v11"/></svg></a>` : ''}</div></article>`;
     }).join('');
   }
   const points = [
@@ -68,7 +86,7 @@
     const section = document.getElementById(sectionId);
     if (!section) return;
     const selection = document.querySelector('#equipment-unit-context');
-    if (section.id === 'vybaveni' && selection) {
+    if ((section.id === 'vybaveni' || section.closest('#vybaveni')) && selection) {
       const unit = (window.ALEXANDRA_UNITS || []).find(item=>item.id===Number(link.dataset.unitId));
       selection.hidden = !unit;
       selection.innerHTML = unit ? `Prohlížíte standard pro <strong>byt ${unit.id} · ${esc(unit.layout)}</strong>. <button type="button" class="text-link" data-unit="${unit.id}">Zpět do karty bytu</button>` : '';

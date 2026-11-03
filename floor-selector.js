@@ -14,6 +14,7 @@
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   const status = unit => inventory.status(unit);
   let floors = [], activeFloor = 2, selectedId = null, projection = window.matchMedia('(max-width:900px)').matches ? 'plan' : 'space', snapshot, unitPicker;
+  let orientation = { confirmed:false, northDegrees:null };
   const safeImage = path => typeof path === 'string' && /^assets\/floors\/[a-z0-9-]+\.webp$/.test(path);
   const validPoint = p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite);
   const path = points => points.map((p,i) => `${i ? 'L' : 'M'}${p[0].toFixed(2)} ${p[1].toFixed(2)}`).join(' ') + 'Z';
@@ -22,6 +23,23 @@
   const matching = unit => snapshot.filteredIds.includes(unit.id);
   const polygonData = id => floorData()?.units.find(u => u.id === id);
   const badge = unit => `<span class="status-badge status-${status(unit).key}"><span class="availability-dot" aria-hidden="true"></span>${esc(status(unit).label)}</span>`;
+  function orientationHTML() {
+    if (orientation.confirmed !== true || !Number.isFinite(orientation.northDegrees)) return '<p class="floor-orientation is-pending">Orientaci ke světovým stranám doplníme.</p>';
+    return `<div class="floor-orientation is-confirmed"><svg viewBox="0 0 44 44" role="img" aria-label="Sever ve zdrojovém půdorysu"><path d="M22 6 30 30 22 26 14 30Z" transform="rotate(${orientation.northDegrees} 22 22)"/></svg><span>Sever v původním půdorysu</span></div>`;
+  }
+  function locationHTML(unit) {
+    const f = floors.find(floor => floor.floor === unit?.floor);
+    const selected = f?.units.find(item => item.id === unit?.id);
+    if (!f || !selected) return '';
+    const title = `Umístění bytu ${unit.id} · ${floorLabel(unit.floor)}`;
+    const levels = [...floors].reverse().map((floor, index) => {
+      const y = 14 + index * 22, active = floor.floor === unit.floor;
+      return `<g class="${active ? 'is-active' : ''}" data-location-floor="${floor.floor}"><rect x="6" y="${y}" width="104" height="19" rx="2"/><text x="58" y="${y+13}">${esc(floorLabel(floor.floor))}</text></g>`;
+    }).join('');
+    const plan = f.units.map(item => `<path class="${item.id === unit.id ? 'is-active' : ''}" data-location-unit="${item.id}" d="${path(item.polygon)}"/>`).join('');
+    return `<figure class="unit-location" data-unit-location="${unit.id}" data-orientation-state="${orientation.confirmed ? 'confirmed' : 'pending'}"><figcaption>${esc(title)}</figcaption><div class="unit-location-views"><svg class="unit-location-building" viewBox="0 0 116 158" role="img" aria-label="Zvýrazněné podlaží: ${esc(floorLabel(unit.floor))}"><title>${esc(floorLabel(f.floor))}</title>${levels}</svg><svg class="unit-location-plan" viewBox="0 0 ${f.width} ${f.height}" role="img" aria-label="Byt ${unit.id} zvýrazněný v půdorysu ${esc(floorLabel(f.floor))}"><title>Poloha bytu ${unit.id} v podlaží</title><image href="${esc(f.mapImage || f.image)}" width="${f.width}" height="${f.height}"/>${plan}</svg></div>${orientationHTML()}</figure>`;
+  }
+  window.AlexandraUnitLocation = Object.freeze({ html: locationHTML });
   const signature = () => `${activeFloor}:${selectedId}:${projection}`;
   let lastURLSignature = '', selectionInteracted = false, restoringURL = false;
 
@@ -134,10 +152,12 @@
   function drawFloor() {
     const f = floorData();
     $('#map-floor-title').textContent = `${floorLabel(activeFloor)}`;
-    $('#map-floor-pdf').href = `plans/floor-${activeFloor}.pdf`;
-    $('#map-floor-pdf').setAttribute('aria-label', `Původní výkres: ${window.AlexandraFloorLabels.source(activeFloor)}`);
-    $('#map-floor-pdf').title = window.AlexandraFloorLabels.source(activeFloor);
-    $('#map-floor-pdf').innerHTML = `Původní výkres ${icon('arrow-up-right')}`;
+    $('#map-floor-pdf').href = `plans/floor-sheet-${activeFloor}-20261103.pdf`;
+    $('#map-floor-pdf').setAttribute('aria-label', `Půdorys podlaží: ${floorLabel(activeFloor)}`);
+    $('#map-floor-pdf').title = `Půdorys ${floorLabel(activeFloor)}`;
+    $('#map-floor-pdf').innerHTML = `Půdorys podlaží ${icon('arrow-up-right')}`;
+    const originalLink = $('#map-floor-original');
+    if (originalLink) { originalLink.href = `plans/floor-${activeFloor}.pdf`; originalLink.title = window.AlexandraFloorLabels.source(activeFloor); originalLink.setAttribute('aria-label', `Původní projektový výkres: ${window.AlexandraFloorLabels.source(activeFloor)}`); }
     const normalizedOutline = normalized(f,f.outline);
     const edges = normalizedOutline.map((p,i)=>{
       const q = normalizedOutline[(i+1)%normalizedOutline.length];
@@ -189,11 +209,11 @@
     const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'map');
     if (furnished) return furnished;
     const f=floorData(), shape=polygonData(unit.id);
-    if(!shape) return `<a class="map-card-plan" href="plans/floor-${unit.floor}.pdf" target="_blank" rel="noopener"><img src="${esc(f.image)}" alt="Původní půdorys · ${floorLabel(unit.floor)}"><span>Celé podlaží · otevřít PDF ${icon('arrow-up-right')}</span></a>`;
+    if(!shape) return `<a class="map-card-plan" href="plans/floor-sheet-${unit.floor}-20261103.pdf" target="_blank" rel="noopener"><img src="${esc(f.image)}" alt="Původní půdorys · ${floorLabel(unit.floor)}"><span>Celé podlaží · otevřít PDF ${icon('arrow-up-right')}</span></a>`;
     const points=shape.polygon, xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
     const x=Math.min(...xs),y=Math.min(...ys),w=Math.max(...xs)-x,h=Math.max(...ys)-y,pad=Math.min(w,h)*.045;
-    const pdf=unit.plan || `plans/floor-${unit.floor}.pdf`;
-    return `<a class="map-card-plan" href="${esc(pdf)}" target="_blank" rel="noopener" aria-label="Otevřít ${unit.plan?'půdorys bytu':'zdrojový půdorys podlaží'} v PDF"><svg viewBox="${x-pad} ${y-pad} ${w+pad*2} ${h+pad*2}" role="img" aria-label="Výřez rozložení bytu ${unit.id} ze zdrojového půdorysu · ${floorLabel(unit.floor)}"><defs><clipPath id="selected-unit-clip"><path d="${path(points)}"/></clipPath></defs><image href="${esc(f.image)}" width="${f.width}" height="${f.height}" clip-path="url(#selected-unit-clip)"/></svg><span>Rozložení bytu · zdrojový výkres ${icon('arrow-up-right')}</span></a>`;
+    const pdf=unit.plan || `plans/floor-sheet-${unit.floor}-20261103.pdf`;
+    return `<a class="map-card-plan" href="${esc(pdf)}" target="_blank" rel="noopener" aria-label="Otevřít ${unit.plan?'půdorys bytu':'zdrojový půdorys podlaží'} v PDF"><svg viewBox="${x-pad} ${y-pad} ${w+pad*2} ${h+pad*2}" role="img" aria-label="Výřez rozložení bytu ${unit.id} ze zdrojového půdorysu · ${floorLabel(unit.floor)}"><defs><clipPath id="selected-unit-clip"><path d="${path(points)}"/></clipPath></defs><image href="${esc(f.image)}" width="${f.width}" height="${f.height}" clip-path="url(#selected-unit-clip)"/></svg><span>Rozložení bytu · půdorys podlaží ${icon('arrow-up-right')}</span></a>`;
   }
 
   function drawCard() {
@@ -220,7 +240,7 @@
       return;
     }
     const details=window.AlexandraDetails?.get(unit) || {};
-    card.innerHTML=`<div class="map-card-overview"><div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}</p>${details.locationNote?`<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>`:''}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl><div class="map-card-actions"><button class="button" data-unit="${unit.id}">Detail a poptávka ${icon('arrow-up-right')}</button><div class="map-card-links"><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div></div></div><div class="map-card-visuals">${selectedPlan(unit)}<details class="ux-disclosure map-standard-disclosure"><summary>Standard a koupelna</summary><p>Vinylové podlahy, dveře, plastová okna, koupelnová sanita a technické přípravy.</p><p>${esc(details.bathroom?.referenceType || 'Konkrétní podobu koupelny upřesníme.')}</p></details><p class="map-excluded-note">Kuchyň, spotřebiče, volný nábytek a žaluzie nejsou v ceně.</p>${unit.id !== 51 ? `<div class="map-card-links"><a class="text-link" href="tour.html?byt=${unit.layout.replace('+','')}#walkthrough">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>` : ''}</div>`;
+    card.innerHTML=`<div class="map-card-overview"><div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}</p>${details.locationNote?`<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>`:''}${locationHTML(unit)}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a><button class="unit-detail-button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button><div class="map-card-links"><a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div></div><dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl></div><div class="map-card-visuals">${selectedPlan(unit)}<section class="map-standard-disclosure">${window.AlexandraDetails?.cardHTML(unit) || ''}</section>${unit.id !== 51 ? `<div class="map-card-links"><a class="text-link" href="${window.AlexandraDetails?.tourHref?.(unit) || `tour.html?byt=${unit.layout.replace('+','')}&jednotka=${unit.id}&podlazi=${unit.floor}#walkthrough`}">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>` : ''}</div>`;
     restoreCardFocus();
   }
 
@@ -348,6 +368,14 @@
       for(const u of f.units) if(!units.some(unit=>unit.id===u.id&&unit.floor===f.floor)||!Array.isArray(u.polygon)||u.polygon.length<3||!u.polygon.every(validPoint)||!validPoint(u.labelPoint))throw new Error('Neplatná geometrie bytu.');
     }
     floors=data.floors.sort((a,b)=>a.floor-b.floor);
+    try {
+      const directionResponse = await fetch('data/orientation.json');
+      const direction = directionResponse.ok ? await directionResponse.json() : null;
+      if (direction?.confirmed === true && Number.isFinite(direction.northDegrees) && direction.northDegrees >= 0 && direction.northDegrees < 360 && typeof direction.source === 'string' && direction.source.trim()) orientation = {confirmed:true,northDegrees:direction.northDegrees};
+    } catch (_) { /* Pending orientation never blocks the apartment selection. */ }
+    if (!$('#map-floor-original')) {
+      const originalLink = document.createElement('a'); originalLink.id = 'map-floor-original'; originalLink.className = 'floor-source-original'; originalLink.target = '_blank'; originalLink.rel = 'noopener'; originalLink.innerHTML = `Původní projektový výkres ${icon('arrow-up-right')}`; $('#map-floor-pdf').insertAdjacentElement('afterend', originalLink);
+    }
     const picker = document.createElement('label');
     picker.className='map-unit-picker';
     picker.htmlFor='map-unit-select';

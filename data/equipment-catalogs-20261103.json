@@ -1,0 +1,42 @@
+[
+  {
+    "sourceFilename": "Zarizovaci_prvky_rezidence_Alexandra_komplet.pdf",
+    "url": "plans/equipment-standard-20261103.pdf",
+    "bytes": 2319171,
+    "sha256": "2c93ce20a059ab082253b83c81b080954e5c865bbe085de6dba1b5ba3eabf183",
+    "pages": 14,
+    "date": "2026-11-03"
+  },
+  {
+    "sourceFilename": "Koupelna 1KK.pdf",
+    "url": "plans/bathroom-1kk-20261103.pdf",
+    "bytes": 2326846,
+    "sha256": "d3891997e33975ea93bb217e68a72d0aef0d32b88c37f296879c73c8c2e5b14c",
+    "pages": 14,
+    "date": "2026-11-03"
+  },
+  {
+    "sourceFilename": "Koupelna 2KK.pdf",
+    "url": "plans/bathroom-2kk-20261103.pdf",
+    "bytes": 3705271,
+    "sha256": "09848ddb07a5beda9192a085d192ad92369afe797f112a011482568c4285fe1a",
+    "pages": 14,
+    "date": "2026-11-03"
+  },
+  {
+    "sourceFilename": "Koupelna 3kk.pdf",
+    "url": "plans/bathroom-3kk-20261103.pdf",
+    "bytes": 2523858,
+    "sha256": "d863c5dd04929e5f5b4e7d060d237a1cbf80ddb8dc6a584527693859b9cfabe7",
+    "pages": 13,
+    "date": "2026-11-03"
+  },
+  {
+    "sourceFilename": "Koupelna Byt suterén.pdf",
+    "url": "plans/bathroom-51-20261103.pdf",
+    "bytes": 2098550,
+    "sha256": "2bb89e59c7e19357433ed42b3837d232f1ef7f5494fcc4f491a457eed92f04c5",
+    "pages": 9,
+    "date": "2026-11-03"
+  }
+]

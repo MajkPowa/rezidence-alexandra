@@ -84,3 +84,7 @@ body.has-project-contact #residence-journey .journey-bottom-right:has(.journey-l
 }
 @media(prefers-reduced-motion:reduce){.project-contact-widget,.project-contact-dialog{transition:none!important}}
 @media print{.project-contact-widget,#project-contact-dialog{display:none!important}}
+/* Keep the compact header's menu visible; the persistent contact widget remains available. */
+@media(max-width:1100px){
+body:is(.reference-redesign,.reference-companion) .site-header .header-contact.viewing-cta{display:none}
+}

@@ -17,9 +17,21 @@
   const [price,equity,rate,years] = fields;
   const money = new Intl.NumberFormat('cs-CZ',{style:'currency',currency:'CZK',maximumFractionDigits:0});
   const percent = new Intl.NumberFormat('cs-CZ',{maximumFractionDigits:1});
+  const precisePercent = new Intl.NumberFormat('cs-CZ',{maximumFractionDigits:2});
   const output = form.querySelector('#mortgage-result');
   const error = form.querySelector('#mortgage-error');
   const title = form.querySelector('#mortgage-selection');
+  const sliders = {
+    equity: form.querySelector('#mortgage-equity-range'),
+    years: form.querySelector('#mortgage-years-range'),
+    rate: form.querySelector('#mortgage-rate-range')
+  };
+  const ownBar = form.querySelector('#mortgage-funding-own');
+  const ownPercent = form.querySelector('#mortgage-equity-percent');
+  const rateSummary = form.querySelector('#mortgage-rate-summary');
+  const announcement = form.querySelector('#mortgage-announcement');
+  const equityPresets = Array.from(form.querySelectorAll?.('[data-equity-preset]') || []);
+  const yearsPresets = Array.from(form.querySelectorAll?.('[data-years-preset]') || []);
   const label = value => window.AlexandraFloorLabels?.label(value) || (Number(value) === 1 ? 'Přízemí' : `${Number(value)-1}. NP`);
   const validUnit = id => /^\d+$/.test(String(id)) ? byId(id) : null;
   function addOption(value,text) { const o=document.createElement('option');o.value=value;o.textContent=text;select.append(o); }
@@ -35,17 +47,55 @@
       a.href='mailto:'+address+'?subject='+encodeURIComponent(subject);
     });
   }
+  const readValues = () => fields.map(input=>input.value.trim()==='' ? NaN : input.valueAsNumber);
+  function syncSlider(slider, value, min, max, spokenValue, valid = Number.isFinite(value)) {
+    if (!slider) return;
+    if (valid) {
+      // The slider is a visual companion. Never round or rewrite the precise number input.
+      slider.value=String(Math.max(min,Math.min(max,value)));
+      slider.style?.setProperty('--range-progress',`${(Math.max(min,Math.min(max,value))-min)/(max-min)*100}%`);
+    }
+    slider.setAttribute?.('aria-valuetext',valid ? spokenValue : 'Upravte hodnotu posuvníkem nebo zadejte platné číslo');
+  }
+  function syncControls(values) {
+    const [cost,own,annualRate,duration]=values;
+    const validPrice=Number.isFinite(cost)&&cost>0&&cost<=200000000;
+    const validOwn=Number.isFinite(own)&&own>=0&&validPrice&&own<=cost;
+    const validRate=Number.isFinite(annualRate)&&annualRate>=0&&annualRate<=30;
+    const validYears=Number.isInteger(duration)&&duration>=1&&duration<=40;
+    const share=validOwn ? own/cost*100 : NaN;
+    [validPrice,validOwn,validRate,validYears].forEach((valid,i)=>fields[i].setAttribute?.('aria-invalid',String(!valid)));
+    if(sliders.equity)sliders.equity.disabled=!validPrice;
+    syncSlider(sliders.equity,share,0,100,`${percent.format(share)} procent, ${money.format(own)} vlastních prostředků`,validOwn);
+    syncSlider(sliders.years,duration,1,40,`${duration} ${duration===1?'rok':duration<5?'roky':'let'}`,validYears);
+    syncSlider(sliders.rate,annualRate,0,30,`${precisePercent.format(annualRate)} procent ročně`,validRate);
+    if(ownPercent)ownPercent.textContent=validOwn ? percent.format(share)+' %' : '—';
+    if(rateSummary)rateSummary.textContent=validRate ? precisePercent.format(annualRate)+' % p. a.' : 'Upravit sazbu';
+    equityPresets.forEach(button=>{
+      button.disabled=!validPrice;
+      button.setAttribute('aria-pressed',String(validOwn&&Math.abs(share-Number(button.dataset.equityPreset))<.00001));
+    });
+    yearsPresets.forEach(button=>button.setAttribute('aria-pressed',String(validYears&&duration===Number(button.dataset.yearsPreset))));
+    if(ownBar?.style)ownBar.style.transform=`scaleX(${validOwn ? share/100 : 0})`;
+  }
+  function announceResult() {
+    if(!announcement)return;
+    const result=calculate(...readValues());
+    announcement.textContent=result ? `Orientační měsíční splátka ${money.format(result.monthly)}. Výše úvěru ${money.format(result.principal)}.` : error.textContent;
+  }
   function render() {
     const unit=selectedUnit();
     title.textContent=unit ? `Byt ${String(unit.id).padStart(2,'0')} · ${unit.layout} · ${label(unit.floor)}` : 'Vlastní model financování';
     syncLinks();
-    const values=fields.map(input=>input.value.trim()==='' ? NaN : input.valueAsNumber);
+    const values=readValues();
+    syncControls(values);
     const result=calculate(...values);
     error.hidden=!!result; output.hidden=!result;
     if (!result) { error.textContent='Zkontrolujte cenu, vlastní prostředky, sazbu a splatnost. Vlastní prostředky mohou být nejvýše ve výši ceny bytu.'; return; }
-    for(const [key,value] of Object.entries(result)) {
-      const node=form.querySelector('[data-mortgage="'+key+'"]');
-      if(node) node.textContent=key==='ownShare'?percent.format(value)+' %':key==='months'?String(value):money.format(value);
+    for(const [key,value] of Object.entries({...result,equity:values[1]})) {
+      const selector='[data-mortgage="'+key+'"]';
+      const nodes=form.querySelectorAll ? Array.from(form.querySelectorAll(selector)) : [form.querySelector(selector)].filter(Boolean);
+      nodes.forEach(node=>{node.textContent=key==='ownShare'?percent.format(value)+' %':key==='months'?String(value):money.format(value);});
     }
   }
   function choose(id,writeQuery=false) {
@@ -59,14 +109,34 @@
     if(writeQuery){const url=new URL(location.href);url.searchParams.set('financovani-byt',String(unit.id));history.replaceState(null,'',url);}
     render();
   }
-  select.addEventListener('change',()=>choose(select.value,true));
-  fields.forEach(input=>input.addEventListener('input',render));
-  form.addEventListener('submit',event=>{event.preventDefault();render();});
+  select.addEventListener('change',()=>{choose(select.value,true);announceResult();});
+  fields.forEach(input=>{
+    input.addEventListener('input',render);
+    input.addEventListener('change',announceResult);
+  });
+  function setOwnShare(share) {
+    const cost=readValues()[0];
+    if(!Number.isFinite(cost)||cost<=0||cost>200000000||!Number.isFinite(share)||share<0||share>100)return;
+    equity.value=String(Math.round(cost*share)/100);
+    render();
+  }
+  sliders.equity?.addEventListener('input',()=>setOwnShare(sliders.equity.valueAsNumber));
+  sliders.years?.addEventListener('input',()=>{years.value=sliders.years.value;render();});
+  sliders.rate?.addEventListener('input',()=>{rate.value=sliders.rate.value;render();});
+  Object.values(sliders).forEach(slider=>slider?.addEventListener('change',announceResult));
+  equityPresets.forEach(button=>button.addEventListener('click',()=>{setOwnShare(Number(button.dataset.equityPreset));announceResult();}));
+  yearsPresets.forEach(button=>button.addEventListener('click',()=>{
+    const duration=Number(button.dataset.yearsPreset);
+    if(!Number.isInteger(duration)||duration<1||duration>40)return;
+    years.value=String(duration);render();announceResult();
+  }));
+  form.addEventListener('submit',event=>{event.preventDefault();render();announceResult();});
   document.addEventListener('click',event=>{
     const link=event.target.closest('[data-mortgage-unit]');
     if(!link)return;
     const unit=validUnit(link.dataset.mortgageUnit);if(!unit)return;
     choose(unit.id,true);
+    announceResult();
     document.querySelectorAll('dialog[open]').forEach(d=>d.close());
   });
   const query=new URLSearchParams(location.search);

@@ -25,24 +25,6 @@
 .buyer-contracts h3{font:600 20px/1.3 var(--sans);margin:0 0 8px}
 .buyer-contracts p{margin:0;color:var(--muted);max-width:60ch;line-height:1.65}
 .buyer-contracts a{flex-shrink:0}
-.mortgage-section{padding-top:48px;margin-top:48px;border-top:1px solid var(--line)}
-.mortgage-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.65fr);gap:32px;align-items:start;margin-top:28px}
-.mortgage-calculator{padding:28px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
-.mortgage-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
-.mortgage-fields label{display:grid;gap:8px;font:600 14px/1.5 var(--sans);color:var(--ink)}
-.mortgage-fields .mortgage-unit-field{grid-column:1/-1}
-.mortgage-fields :is(input,select){width:100%;min-width:0;min-height:48px;border:1px solid #858b8b;border-radius:8px;padding:12px;background:var(--surface);font:400 16px/1.5 var(--sans);color:var(--ink);box-sizing:border-box}
-.mortgage-fields input[readonly]{background:var(--cream)}
-.mortgage-result{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
-.mortgage-result>p:first-child{font-size:14px;color:var(--muted);margin:0 0 8px}
-.mortgage-monthly{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 20px;font-size:16px}
-.mortgage-monthly strong{font:600 clamp(28px,3.7vw,44px)/1.2 var(--sans);letter-spacing:-.025em}
-.mortgage-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0}
-.mortgage-summary dt{font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:5px}
-.mortgage-summary dd{font:600 16px/1.5 var(--sans);margin:0}
-.mortgage-disclaimer{font-size:13px;line-height:1.7;color:var(--muted);margin:20px 0 0}
-.mortgage-disclaimer a{text-decoration:underline;text-underline-offset:3px;color:inherit}
-#mortgage-error{font-size:14px;color:#8e453c;line-height:1.6;margin-top:16px}
 .buyer-service-card{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:24px}
 .buyer-service-card h4,.buyer-service-card h3{font:600 22px/1.3 var(--sans);margin:0 0 16px}
 .buyer-service-card p{font-size:15px;line-height:1.65;color:var(--muted);margin:0 0 20px}
@@ -52,3 +34,88 @@
 .buyer-legal p{font-size:16px;line-height:1.7;color:var(--muted);margin:0;max-width:55ch}
 @media(max-width:1100px){.payment-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.payment-steps li:nth-child(2){border-right:0}.payment-steps li:nth-child(-n+2){border-bottom:1px solid var(--line)}.mortgage-layout{grid-template-columns:1fr}.buyer-contracts{align-items:start}.buyer-contracts a{flex-shrink:1}}
 @media(max-width:700px){.buyer-section-nav{margin-bottom:32px;gap:6px}.buyer-section-nav a{padding:9px 11px;font-size:13px}.payment-steps{grid-template-columns:1fr}.payment-steps li{border-right:0;border-bottom:1px solid var(--line);padding:22px}.payment-steps li:last-child{border-bottom:0}.payment-step-no{margin-bottom:14px}.buyer-contracts,.buyer-legal{display:grid;grid-template-columns:1fr;gap:20px}.mortgage-calculator{padding:20px}.mortgage-fields{grid-template-columns:1fr;gap:16px}.mortgage-summary{grid-template-columns:1fr 1fr}.mortgage-summary>div:last-child{grid-column:1/-1}.buyer-documents{margin-top:36px;padding-top:36px!important}.mortgage-section{margin-top:36px;padding-top:36px}}
+
+/* Alexandra mortgage playground: live controls, one prominent result. */
+.mortgage-mobile-payment{display:none}
+.mortgage-result{--color-focus:#e0ad5f}
+.mortgage-section{padding-top:48px;margin-top:48px;border-top:1px solid var(--line)}
+.mortgage-section .mortgage-layout{display:block;margin-top:28px}
+.mortgage-calculator{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);padding:0;border:1px solid var(--line);border-radius:16px;background:var(--paper);overflow:hidden;font-variant-numeric:tabular-nums}
+.mortgage-controls{padding:32px;min-width:0}
+.mortgage-property{padding-bottom:20px;border-bottom:1px solid var(--line)}
+.mortgage-unit-field{display:grid;gap:8px;font-size:14px;font-weight:600}
+.mortgage-unit-field select{width:100%;min-width:0;min-height:48px;padding:12px 36px 12px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:400 16px/1.4 var(--sans);text-overflow:ellipsis}
+.mortgage-price-row,.mortgage-control-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mortgage-price-row{margin-top:12px;font-size:14px;color:var(--muted)}
+.mortgage-control{padding-top:24px}
+.mortgage-control-heading label{font-size:16px;font-weight:600;color:var(--ink)}
+#mortgage-equity-percent{display:inline-block;margin-left:8px;font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap}
+.mortgage-number{display:flex;align-items:center;justify-content:flex-end;gap:4px;flex:0 1 auto;min-width:0;color:var(--ink);font-size:16px}
+.mortgage-number input{width:124px;max-width:100%;min-width:0;min-height:44px;padding:8px 4px;border:0;border-bottom:1px solid #9ba5a6;border-radius:0;background:transparent;color:var(--ink);text-align:right;font:600 18px/1.4 var(--sans);font-variant-numeric:tabular-nums;appearance:textfield;-moz-appearance:textfield}
+.mortgage-number input::-webkit-inner-spin-button,.mortgage-number input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.mortgage-number input:hover{border-bottom-color:var(--ink)}
+.mortgage-number input:focus-visible{outline:2px solid #997034;outline-offset:2px;border-radius:4px;background:var(--surface)}
+.mortgage-number input[readonly]{border-bottom-color:transparent;cursor:default}
+.mortgage-number--price input{font-size:16px;font-weight:500}
+.mortgage-number--short input{width:60px}
+.mortgage-number span{color:var(--muted);font-size:14px;white-space:nowrap}
+.mortgage-range{display:block;appearance:none;-webkit-appearance:none;width:100%;max-width:none;height:44px;margin:4px 0 0;padding:0;border:0;border-radius:0;background:transparent;cursor:pointer;touch-action:pan-y;accent-color:#9b6b29}
+.mortgage-range::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(to right,#a77833 var(--range-progress,0%),#d5d6ce var(--range-progress,0%))}
+.mortgage-range::-moz-range-track{height:6px;border-radius:3px;background:#d5d6ce}
+.mortgage-range::-moz-range-progress{height:6px;border-radius:3px;background:#a77833}
+.mortgage-range::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:28px;height:28px;margin-top:-11px;border:3px solid var(--paper);border-radius:50%;background:#a77833;box-shadow:0 0 0 1px #916326;transition:transform 140ms ease-out}
+.mortgage-range::-moz-range-thumb{width:22px;height:22px;border:3px solid var(--paper);border-radius:50%;background:#a77833;box-shadow:0 0 0 1px #916326;transition:transform 140ms ease-out}
+.mortgage-range:active::-webkit-slider-thumb{transform:scale(1.12)}
+.mortgage-range:active::-moz-range-thumb{transform:scale(1.12)}
+.mortgage-range:focus-visible{outline:2px solid #997034;outline-offset:2px;border-radius:6px}
+.mortgage-range:disabled{opacity:.45;cursor:not-allowed}
+.mortgage-range-ends{display:flex;justify-content:space-between;margin-top:-4px;font-size:12px;line-height:1.5;color:var(--muted)}
+.mortgage-presets{display:flex;gap:8px;margin-top:12px}
+.mortgage-presets button{flex:1;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);font:500 14px/1.4 var(--sans);transition:background-color 160ms ease-out,border-color 160ms ease-out,transform 120ms ease-out}
+.mortgage-presets button:hover{background:var(--cream);border-color:#a77833}
+.mortgage-presets button[aria-pressed="true"]{background:#ead8b7;border-color:#ad7e37;color:#17242a}
+.mortgage-presets button:active{transform:scale(.97)}
+.mortgage-rate-settings{margin-top:24px;border-top:1px solid var(--line)}
+.mortgage-rate-settings summary{display:flex;align-items:center;gap:12px;min-height:52px;list-style:none;font-size:14px;color:var(--muted)}
+.mortgage-rate-settings summary strong{margin-left:auto;font-size:15px;font-weight:600;color:var(--ink)}
+.mortgage-rate-settings summary::-webkit-details-marker,.mortgage-calculation-details summary::-webkit-details-marker{display:none}
+.mortgage-rate-settings summary svg,.mortgage-calculation-details summary svg{flex:none;transition:transform 160ms ease-out}
+.mortgage-rate-settings[open] summary svg,.mortgage-calculation-details[open] summary svg{transform:rotate(180deg)}
+.mortgage-rate-content{padding-top:4px}
+.mortgage-calculator .mortgage-result{display:flex;flex-direction:column;min-width:0;margin:0;padding:32px;border:0;background:#1c3036;color:#fbf8ef}
+.mortgage-calculator .mortgage-result[hidden]{display:none}
+.mortgage-result #mortgage-selection{margin:0;color:#d2dbd8;font-size:14px;line-height:1.6}
+.mortgage-payment{margin:48px 0 32px}
+.mortgage-payment>span{font-size:14px;color:#d2dbd8}
+.mortgage-calculator .mortgage-monthly{display:block;margin:8px 0 0}
+.mortgage-monthly strong{display:block;font:500 clamp(32px,4.2vw,56px)/1.15 var(--sans);letter-spacing:-.035em;overflow-wrap:anywhere;color:#fbf8ef}
+.mortgage-monthly>span{display:block;margin-top:8px;color:#d2dbd8;font-size:14px}
+.mortgage-funding-bar{height:8px;margin-bottom:20px;border-radius:4px;background:#64797c;overflow:hidden}
+#mortgage-funding-own{display:block;width:100%;height:100%;transform-origin:left;background:#e0ad5f;transition:transform 160ms ease-out}
+.mortgage-calculator .mortgage-summary{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0}
+.mortgage-calculator .mortgage-summary>div:last-child{grid-column:auto}
+.mortgage-summary dt{display:flex;align-items:center;gap:8px;font-size:13px;color:#d2dbd8;line-height:1.5;margin-bottom:8px}
+.mortgage-summary dd{margin:0;color:#fbf8ef;font:500 clamp(16px,1.8vw,20px)/1.5 var(--sans);overflow-wrap:anywhere}
+.mortgage-dot{display:inline-block;flex:none;width:8px;height:8px;border-radius:2px;background:#a7b6b6}
+.mortgage-dot--own{background:#e0ad5f}
+.mortgage-calculation-details{margin-top:32px;border-top:1px solid #536569}
+.mortgage-calculation-details summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;list-style:none;font-size:14px;color:#e3e8e4}
+.mortgage-calculation-details dl{display:grid;gap:12px;margin:12px 0 20px}
+.mortgage-calculation-details dl>div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:13px}
+.mortgage-calculation-details dt{color:#d2dbd8}
+.mortgage-calculation-details dd{margin:0;white-space:nowrap;color:#fbf8ef;font-weight:500}
+.mortgage-disclaimer{font-size:12px;line-height:1.7;color:#d2dbd8;margin:0}
+.mortgage-disclaimer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.mortgage-model-note{max-width:40ch;margin:auto 0 0;padding-top:24px;color:#d2dbd8;font-size:12px;line-height:1.65}
+#mortgage-error{font-size:14px;color:#8e453c;line-height:1.6;margin:16px 0 0}
+.mortgage-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.mortgage-section .mortgage-consultation{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0 0;border:0;border-radius:0;background:transparent}
+.mortgage-consultation h4{font-size:18px;margin:0 0 4px}
+.mortgage-consultation p{font-size:14px;margin:0;max-width:58ch}
+.mortgage-consultation .button{flex:none}
+@media(max-width:800px){.mortgage-controls,.mortgage-calculator .mortgage-result{padding:24px}.mortgage-calculator{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}.mortgage-control-heading{gap:8px;flex-wrap:wrap}.mortgage-payment{margin:40px 0 28px}.mortgage-number input{width:112px}.mortgage-number--short input{width:52px}.mortgage-presets{gap:4px}.mortgage-presets button{padding:8px}.mortgage-summary dd{font-size:16px}}
+@media(max-width:640px){.mortgage-section{margin-top:36px;padding-top:36px}.mortgage-calculator{grid-template-columns:1fr}.mortgage-controls,.mortgage-calculator .mortgage-result{padding:24px}.mortgage-calculator .mortgage-result{grid-row:1}.mortgage-result #mortgage-selection{font-size:13px}.mortgage-payment{margin:16px 0 20px}.mortgage-monthly strong{font-size:40px}.mortgage-monthly>span{display:none}.mortgage-funding-bar{margin-bottom:12px}.mortgage-calculation-details{margin-top:20px}.mortgage-model-note{padding-top:12px}.mortgage-control-heading{flex-wrap:nowrap}.mortgage-control-heading label{font-size:15px}#mortgage-equity-percent{margin-left:4px;font-size:12px}.mortgage-number input{width:108px;font-size:17px}.mortgage-number--short input{width:52px}.mortgage-section .mortgage-consultation{display:grid;gap:16px}.mortgage-consultation .button{justify-self:start}.mortgage-presets{gap:8px}}
+@media(max-width:360px){.mortgage-controls,.mortgage-calculator .mortgage-result{padding:20px}.mortgage-control-heading{flex-wrap:wrap}.mortgage-monthly strong{font-size:36px}.mortgage-presets{gap:4px}.mortgage-number input{width:104px}.mortgage-number--short input{width:52px}}
+@media(prefers-reduced-motion:reduce){.mortgage-calculator *{transition:none!important}.mortgage-range:active::-webkit-slider-thumb,.mortgage-range:active::-moz-range-thumb{transform:none}}
+@media(forced-colors:active){.mortgage-range{appearance:auto;-webkit-appearance:auto}.mortgage-funding-bar{border:1px solid CanvasText}.mortgage-presets button[aria-pressed="true"]{outline:2px solid Highlight}}
+@media(max-width:640px){.mortgage-calculator{display:block;overflow:clip}.mortgage-mobile-payment{display:flex;position:sticky;top:var(--header-height,72px);z-index:3;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;background:#1c3036;color:#fbf8ef;border-bottom:1px solid #536569}.mortgage-mobile-payment>span{max-width:12ch;font-size:13px;line-height:1.4;color:#d2dbd8}.mortgage-mobile-payment strong{font:500 clamp(24px,7vw,30px)/1.3 var(--sans);letter-spacing:-.025em;white-space:nowrap}.mortgage-calculator:has(#mortgage-result[hidden]) .mortgage-mobile-payment{display:none}.mortgage-calculator .mortgage-result{border-radius:0}.mortgage-result .mortgage-payment{display:none}.mortgage-result #mortgage-selection{margin-bottom:20px}.mortgage-result .mortgage-model-note{padding-top:12px}}

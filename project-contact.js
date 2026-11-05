@@ -37,7 +37,7 @@
     for (const x of [left+2,left+width/2,left+width-2]) {
       for (const y of [top+2,top+height/2,top+height-2]) {
         for (const element of document.elementsFromPoint(x,y)) {
-          const control = element.closest('a[href],button,input,select,textarea,summary,[role="button"]');
+          const control = element.closest('a[href],button,input,select,textarea,summary,[role="button"],#mortgage-calculator');
           if (!control || widget.contains(control) || dialog.contains(control) || control.closest('[hidden],[inert],[aria-hidden="true"]')) continue;
           return true;
         }

@@ -51,10 +51,8 @@ body.has-journey-motion #residence-journey .journey-stage{position:relative;top:
 #residence-journey .journey-load-status{font:400 12px/1.5 var(--sans);color:#f1dbaf;text-align:right}
 #residence-journey .journey-progress{position:absolute;left:0;bottom:0;width:100%;height:3px;background:#d1b786;transform:scaleX(0);transform-origin:0 50%}
 #residence-journey :focus-visible{outline:3px solid #f2dfba;outline-offset:5px}
-body.has-journey-motion #residence-journey[data-mode="static"]{height:100svh}
-body.has-journey-motion #residence-journey.journey-expanded[data-mode="static"]{height:100svh}
-body.has-journey-motion #residence-journey[data-mode="static"] .journey-stage{position:relative}
-#residence-journey[data-mode="static"] .journey-scroll-hint{display:none}
+#residence-journey[data-mode="slideshow"] .journey-film{display:none}
+#residence-journey[data-mode="slideshow"] .journey-picture{opacity:1}
 @media(max-width:1100px){
 #residence-journey .journey-copy{width:calc(100% - 245px)}
 #residence-journey .journey-rail button{min-width:115px;padding-inline:10px;gap:9px}

@@ -7,7 +7,7 @@
   const panels = Array.from(journey.querySelectorAll('[data-chapter]')), buttons = Array.from(journey.querySelectorAll('[data-journey-step]'));
   const motionButton = journey.querySelector('.journey-motion-toggle'), status = journey.querySelector('.journey-step-status'), progress = journey.querySelector('.journey-progress'), loadingStatus = journey.querySelector('.journey-load-status');
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
-  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+  const saveData = () => Boolean(navigator.connection && navigator.connection.saveData);
   let config;
   try { config = JSON.parse(document.querySelector('#journey-config').textContent); } catch (_) { return; }
   if (!Array.isArray(config.chapters) || config.chapters.length !== panels.length || !config.variants || !config.posters) return;
@@ -15,20 +15,24 @@
   const timeFor = key => Math.min(end, config.posters[key]?.time || 0);
   const living = timeFor('living'), kitchen = timeFor('kitchen'), bedroom = timeFor('bedroom'), bathroom = timeFor('bathroom');
   // Readable pauses use the original sharp stills; travel runs at native video speed.
-  const sequence = [
-    {chapter:0,time:0,hold:3500}, {chapter:1,from:0,to:living},
+  const filmSequence = [
+    {chapter:0,time:0,hold:1200}, {chapter:1,from:0,to:living},
     {chapter:2,time:living,hold:3500}, {chapter:3,from:living,to:kitchen},
     {chapter:3,time:kitchen,hold:3500}, {chapter:4,from:kitchen,to:bedroom},
     {chapter:4,time:bedroom,hold:3500}, {chapter:5,from:bedroom,to:bathroom},
     {chapter:5,time:bathroom,hold:4500}, {chapter:6,time:bathroom,hold:5500}
   ];
-  const chapterSegments = [0,1,2,4,6,8,9];
+  // No camera motion or video download is needed for the automatic still sequence.
+  const stillSequence = chapters.map((chapter,index) => ({chapter:index,time:timeFor(chapter.poster),hold:index === 0 ? 1200 : index === chapters.length-1 ? 5500 : 4500}));
+  let sequence = preference.matches || saveData() ? stillSequence : filmSequence;
   let segment = 0, currentChapter = -1, visible = false, userPaused = false, focusPaused = false;
   let selected = null, choosing = false, loaded = false, failed = false, fallbackUsed = false;
   let holdTimer = 0, holdStarted = 0, holdRemaining = sequence[0].hold;
-  let posterKey = '', posterSerial = 0, playPending = false, resizeTimer = 0;
-  const staticMode = () => preference.matches || saveData || failed;
-  const active = () => visible && !document.hidden && !staticMode() && !userPaused && !focusPaused;
+  let posterKey = '', posterSerial = 0, playPending = false, resizeTimer = 0, loadTimer = 0, lastMediaTime = 0;
+  const slideshow = () => preference.matches || saveData() || failed;
+  // Let a direct deep link settle below the hero before starting any download.
+  const waitingForAnchor = () => document.readyState !== 'complete' && window.location?.hash && !['#','#top','#residence-journey'].includes(window.location.hash);
+  const active = () => visible && !document.hidden && !waitingForAnchor() && !userPaused && !focusPaused;
   const portrait = () => innerWidth <= 700 && innerHeight > innerWidth;
   const current = () => sequence[segment];
   function setLoading(on) { video.setAttribute('aria-busy',String(on)); loadingStatus.hidden = !on; }
@@ -53,7 +57,8 @@
     journey.dataset.chapter = String(index);
   }
   function updateMode() {
-    journey.dataset.mode = staticMode() ? 'static' : 'autoplay'; motionButton.hidden = staticMode();
+    journey.dataset.mode = slideshow() ? 'slideshow' : 'autoplay'; motionButton.hidden = false;
+    journey.dataset.motionReason = preference.matches ? 'reduced-motion' : saveData() ? 'save-data' : failed ? 'video-unavailable' : 'video';
     motionButton.setAttribute('aria-pressed',String(!userPaused));
     motionButton.setAttribute('aria-label',userPaused ? 'Spustit automatickou prohlídku' : 'Pozastavit automatickou prohlídku');
     motionButton.querySelector('span').textContent = userPaused ? 'Spustit' : 'Pozastavit';
@@ -65,11 +70,21 @@
     clearTimeout(holdTimer); holdTimer = 0;
     holdRemaining = Math.max(0,holdRemaining-(performance.now()-holdStarted));
   }
-  function stop() { stopHold(); video.pause(); }
+  function clearLoadTimer() { clearTimeout(loadTimer); loadTimer = 0; }
+  function stop() { stopHold(); clearLoadTimer(); video.pause(); }
+  function useStills() {
+    if (failed) return;
+    failed = true; stop(); playPending = false; loaded = false;
+    video.classList.remove('is-ready'); video.classList.remove('is-decoded');
+    video.removeAttribute('src'); video.load(); selected = null;
+    setLoading(false); updateMode(); sequence = stillSequence;
+    enter(Math.max(0,currentChapter));
+  }
   function enter(index, announce = false) {
     stop(); segment = index; holdRemaining = current().hold || 0;
     showChapter(current().chapter,announce); picture.classList.add('is-visible');
-    if (loaded) { const target = current().hold ? current().time : current().from; if (Math.abs(video.currentTime-target) > .035) video.currentTime = target; }
+    if (loaded && !slideshow()) { const target = current().hold ? current().time : current().from; if (Math.abs(video.currentTime-target) > .035) video.currentTime = target; }
+    lastMediaTime = video.currentTime;
     if (progress) progress.style.transform = 'scaleX(' + (segment/(sequence.length-1)).toFixed(4) + ')';
     resume();
   }
@@ -98,28 +113,39 @@
   function assignSource(candidate) {
     selected = candidate; loaded = false;
     video.classList.remove('is-ready'); video.classList.remove('is-decoded'); picture.classList.add('is-visible');
-    video.muted = true; video.loop = false; video.preload = 'auto'; video.src = candidate.src;
+    video.muted = true; video.defaultMuted = true; video.playsInline = true; video.autoplay = true;
+    ['muted','playsinline','webkit-playsinline','autoplay'].forEach(name => video.setAttribute(name,''));
+    video.loop = false; video.preload = 'auto'; video.src = candidate.src;
     journey.dataset.quality = candidate.id; setLoading(true); video.load();
+    watchVideo();
+  }
+  function watchVideo() {
+    // A stalled decoder, unresolved play promise or buffering stream must not freeze the tour.
+    if (!loadTimer && active() && !slideshow() && (choosing || selected) && (!loaded || !current().hold)) {
+      loadTimer = setTimeout(() => { loadTimer = 0; if (active() && !slideshow()) useStills(); },8000);
+    }
   }
   async function ensureVideo(force = false) {
-    if (!active() || choosing || document.readyState !== 'complete' || selected && !force) return;
-    choosing = true; const candidate = await chooseVariant(); choosing = false;
-    if (!active()) return;
-    if (!candidate) { failed = true; stop(); setLoading(false); updateMode(); return; }
+    if (!active() || slideshow() || choosing || selected && !force) return;
+    choosing = true; watchVideo(); const candidate = await chooseVariant(); choosing = false;
+    if (!active() || slideshow()) return;
+    if (!candidate) { useStills(); return; }
     if (selected?.id === candidate.id) return;
     fallbackUsed = false; assignSource(candidate);
   }
-  function play() {
-    if (playPending || !video.paused || !active() || current().hold || !loaded || video.seeking) return;
+  async function play() {
+    if (playPending || !video.paused || !active() || slideshow() || current().hold || !loaded || video.seeking) return;
     playPending = true;
-    Promise.resolve(video.play()).then(() => { playPending = false; if (!active() || current().hold) video.pause(); }).catch(error => {
-      playPending = false; if (error?.name === 'AbortError') return;
-      userPaused = true; stop(); setLoading(false); updateMode(); picture.classList.add('is-visible');
-    });
+    try {
+      await video.play(); playPending = false; if (!active() || slideshow() || current().hold) video.pause();
+    } catch (error) {
+      playPending = false; if (error?.name === 'AbortError' || slideshow()) return;
+      useStills();
+    }
   }
   function resume() {
     if (!active()) { stop(); return; }
-    ensureVideo();
+    ensureVideo(); watchVideo();
     if (current().hold) {
       video.pause();
       if (!holdTimer) { holdStarted = performance.now(); holdTimer = setTimeout(() => { holdTimer = 0; holdRemaining = 0; next(); },holdRemaining); }
@@ -133,7 +159,8 @@
     resume();
   }
   function frameChanged() {
-    if (current().hold || !loaded) return;
+    if (slideshow() || current().hold || !loaded) return;
+    if (Math.abs(video.currentTime-lastMediaTime) > .01) { lastMediaTime = video.currentTime; clearLoadTimer(); watchVideo(); }
     if (video.currentTime >= current().to-.04) { next(); return; }
     let chapter = 0;
     chapters.slice(0,-1).forEach((entry,i) => { if (video.currentTime >= entry.mediaStart) chapter = i; });
@@ -145,23 +172,26 @@
     }
   }
   video.addEventListener('loadeddata',() => {
-    loaded = true; setLoading(false);
+    if (slideshow()) { video.pause(); return; }
+    loaded = true; clearLoadTimer(); setLoading(false);
     const target = current().hold ? current().time : current().from;
     if (Math.abs(video.currentTime-target) > .035) video.currentTime = target;
     resume();
   });
   video.addEventListener('seeked',() => { frameChanged(); resume(); });
   video.addEventListener('timeupdate',frameChanged); video.addEventListener('playing',frameChanged); video.addEventListener('canplay',resume);
-  video.addEventListener('ended',() => { if (!current().hold) next(); });
-  video.addEventListener('waiting',() => { if (active() && !current().hold) setLoading(true); });
+  video.addEventListener('ended',() => { if (!slideshow() && !current().hold) next(); });
+  ['waiting','stalled'].forEach(name => video.addEventListener(name,() => { if (active() && !slideshow() && !current().hold) { setLoading(true); watchVideo(); } }));
   video.addEventListener('error',() => {
+    if (slideshow()) return;
     const fallback = config.variants.find(v => v.id === (portrait() ? 'mobile-1080-h264' : 'desktop-1080-h264'));
     if (!fallbackUsed && fallback && selected?.id !== fallback.id) { fallbackUsed = true; assignSource(fallback); return; }
-    failed = true; stop(); setLoading(false); picture.classList.add('is-visible'); updateMode();
+    useStills();
   });
-  function goTo(index) {
-    if (!Number.isInteger(index) || index < 0 || index >= chapterSegments.length) return;
-    enter(chapterSegments[index],true);
+  function goTo(index, announce = true) {
+    if (!Number.isInteger(index) || index < 0 || index >= chapters.length) return;
+    const target = slideshow() ? index : [0,1,2,4,6,8,9][index];
+    enter(target,announce);
   }
   buttons.forEach(button => button.addEventListener('click',() => goTo(Number(button.dataset.journeyStep))));
   journey.querySelectorAll('[data-journey-next]').forEach(link => link.addEventListener('click',event => {
@@ -182,5 +212,14 @@
   },{passive:true});
   window.addEventListener('load',visibility,{once:true}); window.addEventListener('pageshow',visibility);
   document.addEventListener('visibilitychange',visibility);
-  preference.addEventListener('change',() => { if (staticMode()) { stop(); picture.classList.add('is-visible'); } updateMode(); visibility(); });
+  function preferenceChanged() {
+    stop(); sequence = slideshow() ? stillSequence : filmSequence; updateMode();
+    if (slideshow()) {
+      video.removeAttribute('src'); video.load(); selected = null; loaded = false;
+      video.classList.remove('is-ready'); setLoading(false);
+    }
+    goTo(Math.max(0,currentChapter),false);
+  }
+  preference.addEventListener('change',preferenceChanged);
+  navigator.connection?.addEventListener?.('change',preferenceChanged);
 })();

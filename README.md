@@ -75,7 +75,7 @@ Značka MAXI holding používá původní logo vyříznuté z dodaného manuálu
 
 Kontaktní osobou všech veřejných cest je Pavel Dvořák, 734 358 581, dvorakfin@seznam.cz. Telefon a e-mail jsou přímo dostupné v hlavním kontaktu i společném dialogu. Fotografie dosud nebyla dodána.
 
-Úvod zabírá jednu obrazovku. Film se sedmi kapitolami se přehrává automaticky nezávisle na kurzoru a scrollu; přirozené posouvání stránky přechází do nabídky bytů. Uživatel může film pozastavit nebo vybrat kapitolu. Při omezeném pohybu či úspoře dat zůstávají dostupné ostré statické podklady; mimo obrazovku se film pozastaví.
+Úvod zabírá jednu obrazovku. Film se sedmi kapitolami se přehrává automaticky nezávisle na kurzoru a scrollu; přirozené posouvání stránky přechází do nabídky bytů. Uživatel může film pozastavit nebo vybrat kapitolu. Při omezeném pohybu či úspoře dat automaticky postupuje sedm ostrých pohledů bez prostorového pohybu. Stejná záložní sekvence se použije při zablokovaném nebo nedostupném videu. Tlačítko Pozastavit je dostupné v obou režimech; mimo obrazovku se prezentace pozastaví.
 
 Všech šest podlaží používá rovný půdorys bez perspektivního náklonu. Kompas v hlavní mapě i umístění každého bytu vychází z podkladu doručeného 4. 11. 2026; S označuje sever. Grafické natočení 105° je odečtené z rastrového podkladu, nikoli geodeticky zaměřený azimut. Zdroj a návaznost podlaží eviduje data/orientation.json.
 

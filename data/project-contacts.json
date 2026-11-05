@@ -1,8 +1,24 @@
 {
-  "updatedAt": "2026-11-03",
-  "developer": {"name": "MAXI holding", "portrait": null, "portraitAlt": "Pan Dvořák"},
+  "updatedAt": "2026-11-05",
+  "developer": {
+    "name": "MAXI holding",
+    "portrait": null,
+    "portraitAlt": "Pavel Dvořák",
+    "portraitStatus": "Fotografie dosud není k dispozici; potvrzeno zadavatelem 5. 11. 2026."
+  },
   "mortgageSpecialist": null,
   "legalAdvisors": [],
   "contractDocuments": [],
-  "pendingConfirmedByClient": ["developer.portrait", "mortgageSpecialist", "legalAdvisors", "contractDocuments"]
+  "pendingConfirmedByClient": [
+    "developer.portrait",
+    "mortgageSpecialist",
+    "legalAdvisors",
+    "contractDocuments"
+  ],
+  "salesContact": {
+    "name": "Pavel Dvořák",
+    "email": "dvorakfin@seznam.cz",
+    "phone": "+420734358581",
+    "phoneDisplay": "734 358 581"
+  }
 }

@@ -5,6 +5,9 @@
   const $ = selector => root.querySelector(selector);
   const esc = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt = new Intl.NumberFormat('cs-CZ');
+  const dimensionFormat = new Intl.NumberFormat('cs-CZ',{minimumFractionDigits:2,maximumFractionDigits:3});
+  const validDimensions = value => value && [value.width,value.length].every(n=>Number.isFinite(n)&&n>0);
+  const dimensionLabel = space => validDimensions(space.dimensions) ? `${dimensionFormat.format(space.dimensions.width)} × ${dimensionFormat.format(space.dimensions.length)} m` : '';
   const types = { outdoor:'Venkovní stání', covered:'Kryté stání', garage:'Garáž' };
   const validType = value => typeof value==='string' && Object.prototype.hasOwnProperty.call(types,value);
   const icon = () => window.AlexandraIcons?.svg('arrow-up-right') || '';
@@ -21,9 +24,12 @@
     if (!space) { $('#parking-detail').innerHTML='<h3>Vyberte místo</h3><p>Klikněte na číslo ve výkresu nebo v přehledu pod ním.</p>';return; }
     const s=status(space);
     const area=Number.isFinite(space.area) && space.area > 0 ? `${fmt.format(space.area)} m²` : 'Doplníme';
+    const dimensions=dimensionLabel(space);
+    const dimensionsHTML=dimensions ? `<div class="parking-dimensions"><dt>Rozměry (šířka × délka)</dt><dd>${dimensions}</dd></div>` : '';
+    const areaLabel=space.areaBasis==='width-times-length' ? 'Plocha z rozměrů' : 'Výměra';
     const plan=space.plan;
     const planHTML=plan ? `<figure class="parking-garage-plan"><a href="${esc(plan.image)}" target="_blank" rel="noopener" aria-label="Zvětšit půdorys: ${esc(space.label)}"><img src="${esc(plan.image)}" alt="Původní projektový půdorys: ${esc(space.label)}, včetně skutečných kót" width="${plan.width}" height="${plan.height}" loading="lazy"/></a><figcaption>${esc(space.label)} · původní projektový výřez</figcaption><a class="parking-document-link" href="${esc(plan.pdf)}" target="_blank" rel="noopener">Otevřít celý projektový výkres (PDF) ${icon()}</a></figure>` : '';
-    $('#parking-detail').innerHTML=`<span class="eyebrow">${esc(types[space.type])}</span><h3>${esc(space.label)}</h3><span class="status-badge status-${s.key}"><span class="availability-dot" aria-hidden="true"></span>${esc(s.label)}</span><strong class="parking-price">${fmt.format(space.price)} Kč</strong><dl class="parking-facts"><div><dt>Označení</dt><dd>${esc(space.id)}</dd></div><div><dt>Výměra</dt><dd>${area}</dd></div><div><dt>Umístění</dt><dd>${esc(space.type==='garage'?'Přízemí':types[space.type])}</dd></div></dl><p class="parking-separate-price">Parkování se kupuje samostatně.</p><a class="button button-dark viewing-cta" href="#kontakt" data-parking-inquiry="${esc(space.id)}">Domluvit prohlídku ${icon()}</a>${planHTML}<p class="parking-purchase-rule">${esc(data.purchaseRule)}</p>`;
+    $('#parking-detail').innerHTML=`<span class="eyebrow">${esc(types[space.type])}</span><h3>${esc(space.label)}</h3><span class="status-badge status-${s.key}"><span class="availability-dot" aria-hidden="true"></span>${esc(s.label)}</span><strong class="parking-price">${fmt.format(space.price)} Kč</strong><dl class="parking-facts"><div><dt>Označení</dt><dd>${esc(space.id)}</dd></div>${dimensionsHTML}<div><dt>${areaLabel}</dt><dd>${area}</dd></div><div><dt>Umístění</dt><dd>${esc(space.type==='garage'?'Přízemí':types[space.type])}</dd></div></dl><p class="parking-separate-price">Parkování se kupuje samostatně.</p><a class="button button-dark viewing-cta" href="#kontakt" data-parking-inquiry="${esc(space.id)}">Domluvit prohlídku ${icon()}</a>${planHTML}<p class="parking-purchase-rule">${esc(data.purchaseRule)}</p>`;
   }
   function render() {
     const focus=root.contains(document.activeElement) ? {id:document.activeElement.dataset.parkingId,view:document.activeElement.dataset.parkingView,map:!!document.activeElement.closest('#parking-map')} : null;
@@ -55,7 +61,7 @@
     root.querySelectorAll('[data-parking-id]').forEach(node=>node.setAttribute('aria-pressed',String(node.dataset.parkingId===id)));
     detail();updateUrl();
     $('#parking-quick-select').value=selectedId;
-    $('#parking-live').textContent=`${space.label}, ${types[space.type]}, ${status(space).label}, ${fmt.format(space.price)} Kč.`;
+    $('#parking-live').textContent=`${space.label}, ${types[space.type]}, ${status(space).label}, ${fmt.format(space.price)} Kč.${dimensionLabel(space)?` Rozměry ${dimensionLabel(space)}.`:''}`;
   }
   root.addEventListener('click',event=>{
     if (!data) return;
@@ -87,11 +93,12 @@
     activeView=space?.view || (activeType==='garage'?'ground':'site');selectedId=space?.id || null;filter='all';$('#parking-status-filter').value='all';
   }
   window.addEventListener('popstate',()=>{if(data){fromUrl();render();}});
-  fetch('data/parking.json?v=revision20261103', {cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Parking unavailable');return r.json();}).then(result=>{
+  fetch('data/parking.json?v=revision20261105', {cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Parking unavailable');return r.json();}).then(result=>{
     if(!Array.isArray(result.views)||!Array.isArray(result.spaces)||!result.views.length)throw new Error('Invalid parking');
     if(!result.views.every(v=>/^[a-z-]+$/.test(v.id)&&/^assets\/parking\/[a-z-]+\.(svg|webp)$/.test(v.image)&&Number.isFinite(v.width)&&Number.isFinite(v.height)))throw new Error('Invalid view');
     if(!result.spaces.every(p=>/^[PG]\d+$/.test(p.id)&&validType(p.type)&&result.views.some(v=>v.id===p.view)&&Number.isFinite(p.price)&&Array.isArray(p.anchor)&&p.anchor.length===2&&p.anchor.every(Number.isFinite)))throw new Error('Invalid space');
     if(!result.spaces.every(p=>!p.plan || p.type==='garage' && /^assets\/parking\/garage-g[12]-plan\.webp$/.test(p.plan.image) && p.plan.pdf==='plans/floor-1.pdf' && Number.isFinite(p.plan.width) && Number.isFinite(p.plan.height)))throw new Error('Invalid garage plan');
+    if(!result.spaces.every(p=>(p.area==null || Number.isFinite(p.area)&&p.area>0) && (!p.dimensions || validDimensions(p.dimensions))))throw new Error('Invalid dimensions');
     data=result;fromUrl();render();$('#parking-loading').hidden=true;$('#parking-workbench').hidden=false;
   }).catch(()=>{$('#parking-loading').innerHTML='Výkres se nepodařilo načíst. <a href="plans/floor-1.pdf" target="_blank" rel="noopener">Otevřít původní půdorys parkování</a> nebo <a href="#kontakt">kontaktovat prodejce</a>.';});
 })();

@@ -41,7 +41,9 @@ Označení podlaží na přání klienta: Přízemí, nad ním 1.–5. NP. Inter
 Koupelnová revize 20. 10. 2026 (`catalog-20261020`) upravuje 5 galerijních pohledů, všech 10 rodin zařízených půdorysů a 10 dotčených panoramat. Vybavení vychází z dodaných katalogů: posuvná sprcha 120 cm pro 1+kk, Walk-In 100 cm pro 2+kk a čtvrtkruhový kout 90 × 90 cm pro 3+kk. Modely používají upravené umyvadlové sestavy, zrcadlové skříňky, baterie a samostatná WC. Nové soubory mají datované názvy proti záměně se starší verzí v mezipaměti. Byt 51 má vlastní katalog a původní půdorys; nenabízí se mu neodpovídající typová prohlídka jiného bytu.
 
 
-## Filmová prezentace a původní interiéry — 27. 10. 2026
+## Filmová prezentace a původní interiéry — historie 27. 10. 2026
+
+Chování scrollu popsané v této historické části nahrazuje aktuální automatický režim z 5. 11. 2026 níže.
 
 Úvod vede sedmi kroky: Dům → Vstup → Obývák → Kuchyně → Ložnice → Koupelna → Výběr bytu. Používá jednu dopřednou 31sekundovou časovou osu s pěti klidovými zastávkami. Nové navazující osmivteřinové záběry ložnice a koupelny vznikly v režimu Kling 3.0 4K podle původních vizualizací stejného 3+kk. Nativní scroll zůstává zachovaný. Tlačítka Pokračovat přesouvají pohled jemně během 900–1700 ms; kolečko, dotyk, klávesnice i nová volba přesun okamžitě přeruší. Text následuje skutečně dekódovaný snímek. Změna orientace zachovává postup i odpovídající formát videa.
 
@@ -50,7 +52,7 @@ Galerie obsahuje všech 41 původních pohledů ze šesti PDF dodaných realitn�
 Nativní scroll, přímý přístup k nabídce i vypnutí pohybu jsou zachované. Režim omezeného pohybu a úspory dat používá statické originály. Přímý vstup pod úvod nestahuje film. Datové soubory, ceny, dostupnosti a půdorysy jsou shodné s potvrzenou revizí z 20. 10. 2026.
 Prvních 15 sekund vzniklo v Higgsfieldu (Kling 3.0 Omni Frames) a prošlo konzervativním ByteDance Video Upscale z 1080p do 2160p; tato část zůstává zachovaná bez další komprese. Dalších 16 sekund tvoří nové vstupy Kling 3.0 v režimu 4K (3840 × 2160). Celek má smíšené zdroje a není označovaný jako nativně vyrenderované 4K ani metrický BIM. Na zastávkách se zobrazuje přesně registrovaný AVIF/WebP snímek, v pohybu automaticky zvolená varianta 1080p/1440p/2160p. První obraz domu má v AVIF přibližně 87 KB na mobilu, 253 KB v 1920 px a 452 KB ve 4K. Video se načítá až po zahájení prohlídky; první statický obraz tak nečeká na film. Formáty a kontrolní součty celého filmu obsahuje assets/journey-rooms-20261027/manifest.json; původní zastávky zůstávají v assets/journey-sharp-20261026/. Původní galerie 41 pohledů zůstává bez generativních úprav.
 
-Pro místní testování přetáčení je nutný server s byte ranges (HTTP 206, Accept-Ranges: bytes). U staršího náhledu na portu 8765 používá přehrávač pomocný server stejného projektu na portu 8766; při jeho nedostupnosti zkusí zveřejněnou kompatibilní variantu. GitHub Pages podporu ranges poskytuje. Výběr VP9 pro MediaCapabilities používá úplný profil vp09.00.50.08, protože obecné vp9 může vracet nepřesnou odpověď o podpoře.
+Pro místní testování videa je nutný server s byte ranges (HTTP 206, Accept-Ranges: bytes). Aktuální přehrávač používá relativní zdroje stejného webu a nespoléhá na pomocný port. GitHub Pages podporu ranges poskytuje. Výběr VP9 pro MediaCapabilities používá úplný profil vp09.00.50.08, protože obecné vp9 může vracet nepřesnou odpověď o podpoře.
 
 ### Vizuální a nákupní systém · 26. 10. 2026
 
@@ -68,3 +70,13 @@ Výběr jednotek vede nejprve přes podlaží a potom dispozici. Karta bytu je �
 Vybavení obsahuje konkrétní modely z pěti nově dodaných katalogů; koupelnové skříňky a zrcadla jsou součástí ceny. Každý byt odkazuje přímo na svůj typ koupelny. Parkovací typy jsou klikací a G1/G2 mají vlastní skutečné půdorysy z projektové dokumentace. Nová sekce Pro kupující sdružuje dodaný platební postup, dokumenty, upravitelnou orientační anuitní kalkulačku a kontaktní cesty. Nejde o aktuální nabídku banky ani výpočet RPSN; finanční vstupy se neodesílají.
 
 Značka MAXI holding používá původní logo vyříznuté z dodaného manuálu, potvrzené barvy a lokální Montserrat s přiloženou licencí. Kontaktní dialog je dostupný napříč webem. Dle výslovného potvrzení zadavatele jsou připravena místa pro pozdější doplnění severu (data/orientation.json), výměr parkování (data/parking.json), portrétu, přímých kontaktů poradců a smluvních PDF (data/project-contacts.json). Prázdné hodnoty nevyvolávají nepravdivé údaje ani nefunkční odkazy. Fotografie se přijímají pouze z místních obrazových souborů; smlouvy pouze z místních PDF. Ceny, plochy, skutečné dispozice, původní galerie a filmové zdroje zůstaly zachované.
+
+## Připomínky klienta — 5. 11. 2026
+
+Kontaktní osobou všech veřejných cest je Pavel Dvořák, 734 358 581, dvorakfin@seznam.cz. Telefon a e-mail jsou přímo dostupné v hlavním kontaktu i společném dialogu. Fotografie dosud nebyla dodána.
+
+Úvod zabírá jednu obrazovku. Film se sedmi kapitolami se přehrává automaticky nezávisle na kurzoru a scrollu; přirozené posouvání stránky přechází do nabídky bytů. Uživatel může film pozastavit nebo vybrat kapitolu. Při omezeném pohybu či úspoře dat zůstávají dostupné ostré statické podklady; mimo obrazovku se film pozastaví.
+
+Všech šest podlaží používá rovný půdorys bez perspektivního náklonu. Kompas v hlavní mapě i umístění každého bytu vychází z podkladu doručeného 4. 11. 2026; S označuje sever. Grafické natočení 105° je odečtené z rastrového podkladu, nikoli geodeticky zaměřený azimut. Zdroj a návaznost podlaží eviduje data/orientation.json.
+
+Všech 49 parkovacích stání má doloženou šířku a délku. P19 zachovává šířku 2,915 m a P45 3,159 m; plochy vypočtené z rozměrů jsou takto pojmenované. Garáže G1 a G2 uvádějí dodané výměry 22,936 m² a 22,727 m². Ceny, dostupnosti, geometrie a původní výkresy zůstaly zachované.

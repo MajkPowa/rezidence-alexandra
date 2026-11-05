@@ -66,3 +66,13 @@ body.reference-redesign #unit-dialog-title,body.reference-redesign #furnished-pl
 .unit-location-building{width:76px;height:104px}
 .furnished-plan-links>.viewing-cta{width:100%}
 }
+
+/* The drawing stays horizontal; the compass uses the same original image axes. */
+body.reference-redesign #map-floor-orientation{display:flex;justify-content:flex-end;margin:8px 0 -8px}
+body.reference-redesign .floor-orientation.is-confirmed{display:flex;gap:10px;align-items:center;color:var(--ink);font-size:12px}
+body.reference-redesign .floor-orientation.is-confirmed svg{display:block;width:72px;height:72px;flex:none;fill:none;stroke:var(--ink);stroke-width:1}
+body.reference-redesign .floor-orientation .compass-axis{stroke:#8a9692}
+body.reference-redesign .floor-orientation .compass-north{fill:var(--ink);stroke:var(--ink)}
+body.reference-redesign .floor-orientation text{fill:var(--ink);stroke:none;text-anchor:middle;dominant-baseline:central;font:600 12px var(--sans)}
+body.reference-redesign .unit-location .floor-orientation{margin-top:8px;margin-bottom:0}
+body.reference-redesign .unit-location .floor-orientation svg{width:58px;height:58px}

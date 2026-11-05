@@ -33,3 +33,7 @@ body.reference-redesign #parking-map-note>span{display:inline-block;margin-right
 @media(max-width:1100px){body.reference-redesign #parkovani .parking-type-card{grid-template-columns:40px minmax(0,1fr);gap:10px 12px;padding:20px 16px}body.reference-redesign #parkovani .parking-type-card>svg{width:36px;height:36px}}
 @media(max-width:700px){body.reference-redesign #parkovani .parking-type-card{min-height:152px;padding:22px 20px;grid-template-columns:48px minmax(0,1fr);gap:8px 16px}body.reference-redesign #parkovani .parking-type-card+ .parking-type-card{border-left:0;border-top:1px solid var(--line)}body.reference-redesign #parkovani .parking-type-card strong{font-size:28px}body.reference-redesign .parking-garage-plan img{max-height:720px}}
 @media(prefers-reduced-motion:reduce){body.reference-redesign #parkovani .parking-type-card{transition:none}}
+
+/* Supplied linear dimensions retain up to millimetre precision. */
+body.reference-redesign .parking-facts .parking-dimensions{grid-column:1/-1}
+body.reference-redesign .parking-dimensions dd{font-size:22px;font-variant-numeric:tabular-nums}

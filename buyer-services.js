@@ -31,7 +31,7 @@
     const unit = selectedUnit();
     document.querySelectorAll('[data-buyer-mail]').forEach(a=>{
       const subject = `Rezidence Alexandra – ${a.dataset.buyerMail}${unit ? ` – byt ${unit.id}` : ''}`;
-      const address=/^[A-Z0-9.!#$%&'*+\-/=?^_`{|}~]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(a.dataset.buyerRecipient || '') ? a.dataset.buyerRecipient : 'hebelka@dumrealit.cz';
+      const address=/^[A-Z0-9.!#$%&'*+\-/=?^_`{|}~]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(a.dataset.buyerRecipient || '') ? a.dataset.buyerRecipient : 'dvorakfin@seznam.cz';
       a.href='mailto:'+address+'?subject='+encodeURIComponent(subject);
     });
   }
@@ -73,7 +73,7 @@
   const initial=query.get('financovani-byt') || query.get('byt');
   if(validUnit(initial))choose(initial);else{select.value='custom';render();}
   // Empty confirmed slots remain truthful contact requests until the client supplies details.
-  if (typeof fetch === 'function') fetch('data/project-contacts.json?v=20261103',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(data=>{
+  if (typeof fetch === 'function') fetch('data/project-contacts.json?v=20261105',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(data=>{
     if(!data || typeof data!=='object')return;
     const validContact=c=>c&&typeof c.name==='string'&&c.name.trim()&&typeof c.email==='string'&&/^[A-Z0-9.!#$%&'*+\-/=?^_`{|}~]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(c.email);
     function contactCard(target,contact,subject) {

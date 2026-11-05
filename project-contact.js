@@ -14,8 +14,8 @@
   dialog.className = 'project-contact-dialog';
   dialog.setAttribute('aria-labelledby', 'project-contact-title');
   const contactHref = document.querySelector('#kontakt') ? '#kontakt' : 'index.html#kontakt';
-  const mail = 'mailto:hebelka@dumrealit.cz?subject=' + encodeURIComponent('Prohlídka bytu — Rezidence Alexandra');
-  dialog.innerHTML = `<button type="button" class="project-contact-close" aria-label="Zavřít kontakt" autofocus><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 6 12 12M18 6 6 18"/></svg></button><img class="project-contact-logo" src="assets/developer-20261103/maxi-holding-original.webp" alt="MAXI holding" width="112" height="98"/><p class="project-contact-project">Rezidence Alexandra</p><h2 id="project-contact-title">Domluvit prohlídku</h2><p class="project-contact-intro">Napište nám a domluvte si termín prohlídky.</p><div class="project-contact-person"><strong>Martin Hebelka</strong><span>Informace k bytům a prohlídky</span><a href="mailto:hebelka@dumrealit.cz">hebelka@dumrealit.cz</a></div><a class="button viewing-cta project-contact-mail" href="${mail}">Napsat ohledně prohlídky ${arrow}</a><a class="project-contact-details" href="${contactHref}">Kontaktní formulář ${arrow}</a>`;
+  const mail = 'mailto:dvorakfin@seznam.cz?subject=' + encodeURIComponent('Prohlídka bytu — Rezidence Alexandra');
+  dialog.innerHTML = `<button type="button" class="project-contact-close" aria-label="Zavřít kontakt" autofocus><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 6 12 12M18 6 6 18"/></svg></button><img class="project-contact-logo" src="assets/developer-20261103/maxi-holding-original.webp" alt="MAXI holding" width="112" height="98"/><p class="project-contact-project">Rezidence Alexandra</p><h2 id="project-contact-title">Domluvit prohlídku</h2><p class="project-contact-intro">Zavolejte nebo napište a domluvte si termín prohlídky.</p><div class="project-contact-person"><strong>Pavel Dvořák</strong><span>Informace k bytům a prohlídky</span><a href="tel:+420734358581">734 358 581</a><a href="mailto:dvorakfin@seznam.cz">dvorakfin@seznam.cz</a></div><a class="button viewing-cta project-contact-mail" href="${mail}">Napsat ohledně prohlídky ${arrow}</a><a class="project-contact-details" href="${contactHref}">Kontaktní formulář ${arrow}</a>`;
   document.body.append(widget, dialog);
   document.body.classList.add('has-project-contact');
   let frame = 0;
@@ -122,7 +122,7 @@
     portrait.src = developer.portrait;
   }
   if (typeof fetch === 'function') {
-    fetch('data/project-contacts.json?v=20261103', {cache:'no-cache'})
+    fetch('data/project-contacts.json?v=20261105', {cache:'no-cache'})
       .then(response => response.ok ? response.json() : null)
       .then(applyDeveloperContact)
       .catch(() => { /* The verified logo and current sales contact remain usable. */ });

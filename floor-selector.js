@@ -13,7 +13,7 @@
   const area = value => `${number.format(value)} m²`;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   const status = unit => inventory.status(unit);
-  let floors = [], activeFloor = 2, selectedId = null, projection = window.matchMedia('(max-width:900px)').matches ? 'plan' : 'space', snapshot, unitPicker;
+  let floors = [], activeFloor = 2, selectedId = null, projection = 'plan', snapshot, unitPicker;
   let orientation = { confirmed:false, northDegrees:null };
   const safeImage = path => typeof path === 'string' && /^assets\/floors\/[a-z0-9-]+\.webp$/.test(path);
   const validPoint = p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite);
@@ -25,7 +25,11 @@
   const badge = unit => `<span class="status-badge status-${status(unit).key}"><span class="availability-dot" aria-hidden="true"></span>${esc(status(unit).label)}</span>`;
   function orientationHTML() {
     if (orientation.confirmed !== true || !Number.isFinite(orientation.northDegrees)) return '<p class="floor-orientation is-pending">Orientaci ke světovým stranám doplníme.</p>';
-    return `<div class="floor-orientation is-confirmed"><svg viewBox="0 0 44 44" role="img" aria-label="Sever ve zdrojovém půdorysu"><path d="M22 6 30 30 22 26 14 30Z" transform="rotate(${orientation.northDegrees} 22 22)"/></svg><span>Sever v původním půdorysu</span></div>`;
+    const labels = [['S',0],['V',90],['J',180],['Z',270]].map(([label,offset]) => {
+      const angle=(orientation.northDegrees+offset-90)*Math.PI/180;
+      return `<text x="${(44+34*Math.cos(angle)).toFixed(2)}" y="${(44+34*Math.sin(angle)).toFixed(2)}">${label}</text>`;
+    }).join('');
+    return `<div class="floor-orientation is-confirmed" data-north-degrees="${orientation.northDegrees}"><svg viewBox="0 0 88 88" role="img" aria-label="Světové strany ve zobrazeném půdorysu; S označuje sever"><circle cx="44" cy="44" r="24"/><g transform="rotate(${orientation.northDegrees} 44 44)"><path class="compass-axis" d="M44 16V72M16 44H72"/><path class="compass-north" d="M44 16 51 47 44 43 37 47Z"/></g>${labels}</svg><span>S = sever</span></div>`;
   }
   function locationHTML(unit) {
     const f = floors.find(floor => floor.floor === unit?.floor);
@@ -118,8 +122,7 @@
 
   function floorTransform() {
     const f = floorData(), height = f.height * 1000 / f.width;
-    if (projection === 'plan') return `translate(22px, ${Math.max(22,(760-height*.956)/2)}px) scale(.956)`;
-    return `translate(20px, ${Math.max(175,(760-height*.60)/2+45)}px) matrix(.76,-.14,.26,.60,0,0)`;
+    return `translate(22px, ${Math.max(22,(760-height*.956)/2)}px) scale(.956)`;
   }
 
   function fitFloorViewport() {
@@ -127,12 +130,8 @@
     if (!f) return;
     const height = f.height * 1000 / f.width;
     // Match floorTransform without changing the survey/image coordinates.
-    const flat = projection === 'plan';
-    const matrix = flat
-      ? [.956, 0, 0, .956, 22, Math.max(22,(760-height*.956)/2)]
-      : [.76, -.14, .26, .60, 20, Math.max(175,(760-height*.60)/2+45)];
+    const matrix = [.956, 0, 0, .956, 22, Math.max(22,(760-height*.956)/2)];
     const points = [[0,0],[1000,0],[1000,height],[0,height], ...normalized(f,f.outline)];
-    if (!flat) normalized(f,f.outline).forEach(([x,y]) => points.push([x,y+15]));
     f.units.forEach(unit => {
       points.push(...normalized(f,unit.polygon));
       const [x,y] = normalized(f,[unit.labelPoint])[0];
@@ -159,16 +158,14 @@
     const originalLink = $('#map-floor-original');
     if (originalLink) { originalLink.href = `plans/floor-${activeFloor}.pdf`; originalLink.title = window.AlexandraFloorLabels.source(activeFloor); originalLink.setAttribute('aria-label', `Původní projektový výkres: ${window.AlexandraFloorLabels.source(activeFloor)}`); }
     const normalizedOutline = normalized(f,f.outline);
-    const edges = normalizedOutline.map((p,i)=>{
-      const q = normalizedOutline[(i+1)%normalizedOutline.length];
-      return `<path class="floor-slab" d="${path([p,q,[q[0],q[1]+15],[p[0],p[1]+15]])}"/>`;
-    }).join('');
-    $('#floor-canvas').innerHTML = `<title>Půdorys · ${floorLabel(activeFloor)} · výběr bytů</title><g class="floor-projection" style="transform:${floorTransform()}"><g class="floor-depth"${projection==='plan'?' visibility="hidden"':''}>${edges}</g><path class="floor-sheet" d="${path(normalizedOutline)}"/><image class="floor-linework" href="${esc(f.mapImage || f.image)}" width="1000" height="${f.height*1000/f.width}"/>${f.units.map(p => {
+    $('#floor-canvas').innerHTML = `<title>Půdorys · ${floorLabel(activeFloor)} · výběr bytů</title><g class="floor-projection" style="transform:${floorTransform()}"><path class="floor-sheet" d="${path(normalizedOutline)}"/><image class="floor-linework" href="${esc(f.mapImage || f.image)}" width="1000" height="${f.height*1000/f.width}"/>${f.units.map(p => {
       const u=units.find(unit=>unit.id===p.id);
       const s=status(u), center=normalized(f,[p.labelPoint])[0];
       return `<g class="map-apartment" role="button" tabindex="0" data-map-unit="${u.id}" data-status="${s.key}" aria-label="Byt ${u.id}, ${esc(u.layout)}, ${area(u.area)}, ${esc(s.label)}" aria-pressed="false"><path class="unit-shape" d="${path(normalized(f,p.polygon))}"/><g transform="translate(${center[0]},${center[1]})" pointer-events="none"><rect class="unit-tag-bg" x="-59" y="-32" width="118" height="66" rx="8"/><text class="unit-tag-number" y="-7">${String(u.id).padStart(2,'0')}</text><text class="unit-tag-layout" y="19">${esc(u.layout)}</text></g></g>`;
     }).join('')}</g>`;
     fitFloorViewport();
+    const compass = $('#map-floor-orientation');
+    if (compass) compass.innerHTML=orientationHTML();
     $('#map-floor-description').textContent = activeFloor === 1 ? 'Byt 51 · přízemí' : 'Vyberte byt přímo v půdorysu.';
     $('#map-floor-special').hidden = true;
     const picker = unitPicker;
@@ -315,8 +312,6 @@
     const unit=event.target.closest('[data-map-unit]');
     if(unit){chooseUnit(Number(unit.dataset.mapUnit));return;}
     if(event.target.closest('[data-map-reset]')){catalog.setFilters({layout:'all',floor:String(activeFloor),status:'all',area:'all',favorites:false,sort:'floor'});return;}
-    const view=event.target.closest('[data-map-view]');
-    if(view&&['space','plan'].includes(view.dataset.mapView)){projection=view.dataset.mapView;root.querySelectorAll('[data-map-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===view)));const group=$('.floor-projection');if(group)group.style.transform=floorTransform();const depth=$('.floor-depth');if(depth)depth.setAttribute('visibility',projection==='space'?'visible':'hidden');fitFloorViewport();return;}
   });
   root.addEventListener('change', event => { if (event.target.id === 'map-unit-select' && event.target.value) chooseUnit(Number(event.target.value)); });
   root.addEventListener('keydown',event=>{
@@ -369,12 +364,16 @@
     }
     floors=data.floors.sort((a,b)=>a.floor-b.floor);
     try {
-      const directionResponse = await fetch('data/orientation.json');
+      const directionResponse = await fetch('data/orientation.json?v=20261105',{cache:'no-cache'});
       const direction = directionResponse.ok ? await directionResponse.json() : null;
       if (direction?.confirmed === true && Number.isFinite(direction.northDegrees) && direction.northDegrees >= 0 && direction.northDegrees < 360 && typeof direction.source === 'string' && direction.source.trim()) orientation = {confirmed:true,northDegrees:direction.northDegrees};
     } catch (_) { /* Pending orientation never blocks the apartment selection. */ }
     if (!$('#map-floor-original')) {
       const originalLink = document.createElement('a'); originalLink.id = 'map-floor-original'; originalLink.className = 'floor-source-original'; originalLink.target = '_blank'; originalLink.rel = 'noopener'; originalLink.innerHTML = `Původní projektový výkres ${icon('arrow-up-right')}`; $('#map-floor-pdf').insertAdjacentElement('afterend', originalLink);
+    }
+    if (!$('#map-floor-orientation')) {
+      const compass=document.createElement('div');compass.id='map-floor-orientation';
+      $('#floor-canvas').insertAdjacentElement('beforebegin',compass);
     }
     const picker = document.createElement('label');
     picker.className='map-unit-picker';
@@ -387,7 +386,6 @@
     activeFloor=requestedUnit?.floor||(Number.isInteger(requestedFloor)&&floors.some(f=>f.floor===requestedFloor)?requestedFloor:2);selectedId=requestedUnit?.id??null;
     selectionInteracted=Boolean(requestedUnit || (Number.isInteger(requestedFloor)&&floors.some(f=>f.floor===requestedFloor)));
     $('#explorer-loading').hidden=true;$('#explorer-workbench').hidden=false;$('#map-legend').hidden=false;
-    root.querySelectorAll('[data-map-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mapView===projection)));
     drawStack();
     document.addEventListener('alexandra:catalog-change',event=>sync(event.detail));
     window.addEventListener('popstate', restoreSelectionFromURL);

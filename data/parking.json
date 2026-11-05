@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03",
+  "updatedAt": "2026-11-05",
   "source": "Situační výkres a půdorys 1. NP; ceny podle aktualizovaného ceníku ze dne 19. 10. 2026.",
   "availabilityNote": "Dostupnost konkrétních parkovacích míst potvrdíme na dotaz.",
   "purchaseRule": "K bytu lze přikoupit jedno parkovací místo. Další místo je možné řešit až po dokončení prodeje bytů, pokud zbude volná kapacita.",
@@ -55,7 +55,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "1"
+      "sourceLabel": "1",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P2",
@@ -89,7 +96,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "2"
+      "sourceLabel": "2",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P3",
@@ -123,7 +137,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "3"
+      "sourceLabel": "3",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P4",
@@ -157,7 +178,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "4"
+      "sourceLabel": "4",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P5",
@@ -191,7 +219,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "5"
+      "sourceLabel": "5",
+      "area": 11.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.3,
+        "length": 5.0
+      }
     },
     {
       "id": "P6",
@@ -225,7 +260,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "6"
+      "sourceLabel": "6",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P7",
@@ -259,7 +301,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "7"
+      "sourceLabel": "7",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P8",
@@ -293,7 +342,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "8"
+      "sourceLabel": "8",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P9",
@@ -327,7 +383,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "9"
+      "sourceLabel": "9",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P10",
@@ -361,7 +424,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "10"
+      "sourceLabel": "10",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P11",
@@ -395,7 +465,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "11"
+      "sourceLabel": "11",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P12",
@@ -429,7 +506,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "12"
+      "sourceLabel": "12",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P13",
@@ -463,7 +547,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "13"
+      "sourceLabel": "13",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P14",
@@ -497,7 +588,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "14"
+      "sourceLabel": "14",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P15",
@@ -531,7 +629,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "15"
+      "sourceLabel": "15",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P16",
@@ -565,7 +670,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "16"
+      "sourceLabel": "16",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P17",
@@ -599,7 +711,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "17"
+      "sourceLabel": "17",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P18",
@@ -633,7 +752,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "18"
+      "sourceLabel": "18",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P19",
@@ -667,7 +793,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "19"
+      "sourceLabel": "19",
+      "area": 14.575,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.915,
+        "length": 5.0
+      }
     },
     {
       "id": "P20",
@@ -701,7 +834,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "20"
+      "sourceLabel": "20",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P21",
@@ -735,7 +875,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "21"
+      "sourceLabel": "21",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P22",
@@ -769,7 +916,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "22"
+      "sourceLabel": "22",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P23",
@@ -803,7 +957,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "23"
+      "sourceLabel": "23",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P24",
@@ -837,7 +998,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "24"
+      "sourceLabel": "24",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P25",
@@ -871,7 +1039,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "25"
+      "sourceLabel": "25",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P26",
@@ -905,7 +1080,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "26"
+      "sourceLabel": "26",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P27",
@@ -939,7 +1121,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "27"
+      "sourceLabel": "27",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P28",
@@ -973,7 +1162,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "28"
+      "sourceLabel": "28",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P29",
@@ -1007,7 +1203,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "29"
+      "sourceLabel": "29",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P30",
@@ -1041,7 +1244,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "30"
+      "sourceLabel": "30",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P31",
@@ -1075,7 +1285,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "31"
+      "sourceLabel": "31",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P32",
@@ -1109,7 +1326,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "32"
+      "sourceLabel": "32",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P33",
@@ -1143,7 +1367,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "33"
+      "sourceLabel": "33",
+      "area": 14.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.9,
+        "length": 5.0
+      }
     },
     {
       "id": "P34",
@@ -1177,7 +1408,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "34"
+      "sourceLabel": "34",
+      "area": 14.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.9,
+        "length": 5.0
+      }
     },
     {
       "id": "P35",
@@ -1211,7 +1449,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "35"
+      "sourceLabel": "35",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P36",
@@ -1245,7 +1490,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "36"
+      "sourceLabel": "36",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P37",
@@ -1279,7 +1531,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "37"
+      "sourceLabel": "37",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P38",
@@ -1313,7 +1572,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "38"
+      "sourceLabel": "38",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P39",
@@ -1347,7 +1613,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "39"
+      "sourceLabel": "39",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P40",
@@ -1381,7 +1654,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "40"
+      "sourceLabel": "40",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P41",
@@ -1415,7 +1695,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "41"
+      "sourceLabel": "41",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P42",
@@ -1449,7 +1736,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "42"
+      "sourceLabel": "42",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P43",
@@ -1483,7 +1777,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "43"
+      "sourceLabel": "43",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P44",
@@ -1517,7 +1818,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "44"
+      "sourceLabel": "44",
+      "area": 12.5,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.5,
+        "length": 5.0
+      }
     },
     {
       "id": "P45",
@@ -1551,7 +1859,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "45"
+      "sourceLabel": "45",
+      "area": 15.795,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 3.159,
+        "length": 5.0
+      }
     },
     {
       "id": "P46",
@@ -1585,7 +1900,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "46"
+      "sourceLabel": "46",
+      "area": 19.0,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 3.8,
+        "length": 5.0
+      }
     },
     {
       "id": "P47",
@@ -1619,7 +1941,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "47"
+      "sourceLabel": "47",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P48",
@@ -1653,7 +1982,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "48"
+      "sourceLabel": "48",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "P49",
@@ -1687,7 +2023,14 @@
       "geometryRole": "marker",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
-      "sourceLabel": "49"
+      "sourceLabel": "49",
+      "area": 13.75,
+      "areaBasis": "width-times-length",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "dimensions": {
+        "width": 2.75,
+        "length": 5.0
+      }
     },
     {
       "id": "G1",
@@ -1736,7 +2079,10 @@
           1655,
           830
         ]
-      }
+      },
+      "area": 22.936,
+      "areaBasis": "supplied",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026"
     },
     {
       "id": "G2",
@@ -1785,8 +2131,12 @@
           1840,
           830
         ]
-      }
+      },
+      "area": 22.727,
+      "areaBasis": "supplied",
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026"
     }
   ],
-  "areaNote": "Výměry parkovacích míst budou doplněny po potvrzení prodávajícím."
+  "areaNote": "Výměry parkovacích míst budou doplněny po potvrzení prodávajícím.",
+  "dimensionsSource": "Rozměry stání a výměry garáží dodané zadavatelem 4. 11. 2026."
 }

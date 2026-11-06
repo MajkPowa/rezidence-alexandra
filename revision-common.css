@@ -32,7 +32,7 @@ body .project-contact-widget .project-contact-trigger{width:100%;height:100%;min
 .project-contact-portrait-compact{display:block;width:34px;height:52px;object-fit:cover;border-radius:5px;background:#fff}
 .project-contact-media .project-contact-brand-badge{display:block;width:24px;height:24px;object-fit:contain;background:white;padding:1px;border-radius:3px}
 .project-contact-identity{display:flex;align-items:center;gap:24px}
-.project-contact-portrait{display:block;width:96px;height:112px;object-fit:cover;border-radius:8px;background:#fff}
+.project-contact-portrait{display:block;width:96px;height:112px;object-fit:cover;object-position:50% 20%;border-radius:8px;background:#fff}
 body #project-contact-dialog{position:fixed;width:min(520px,calc(100% - 32px));max-height:calc(100svh - 32px);padding:32px;border:1px solid #d0cfc6;border-radius:16px;background:#fbfaf6;color:#17242a;box-shadow:0 24px 100px #081b2540;overflow:auto;overscroll-behavior:contain;font-family:var(--sans)}
 body #project-contact-dialog:not([open]){display:none}
 body #project-contact-dialog::backdrop{background:#10232bb8;backdrop-filter:blur(3px)}
@@ -56,6 +56,10 @@ body.has-project-contact #residence-journey .journey-bottom-right{margin-right:2
 .project-contact-widget{right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom))}
 body .project-contact-widget .project-contact-trigger{min-height:56px;grid-template-columns:36px minmax(0,1fr);gap:8px;padding:7px 8px}
 .project-contact-trigger>img{width:36px;height:34px;padding:2px}
+.project-contact-widget.has-developer-portrait .project-contact-trigger{grid-template-columns:46px minmax(0,1fr);gap:6px}
+.project-contact-media{width:46px;height:36px;gap:2px}
+.project-contact-portrait-compact{width:24px;height:36px;border-radius:3px}
+.project-contact-media .project-contact-brand-badge{width:20px;height:20px}
 .project-contact-trigger .project-contact-brand-name,.project-contact-trigger>svg{display:none}
 .project-contact-trigger-label>strong{font-size:12px;line-height:1.3}
 body.has-project-contact #residence-journey .journey-bottom-right{margin-right:180px}

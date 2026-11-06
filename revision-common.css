@@ -92,3 +92,17 @@ body.has-project-contact #residence-journey .journey-bottom-right:has(.journey-l
 @media(max-width:1100px){
 body:is(.reference-redesign,.reference-companion) .site-header .header-contact.viewing-cta{display:none}
 }
+
+/* Supplied sales portrait beside the main inquiry form. */
+#kontakt .contact-person{gap:24px}
+#kontakt .contact-portrait{display:block;flex:none;width:112px;height:auto;aspect-ratio:384/548;object-fit:cover;border-radius:12px}
+#kontakt .contact-person>div{min-width:0}
+#kontakt .contact-person a{overflow-wrap:anywhere}
+@media(max-width:480px){
+  #kontakt .contact-person{gap:18px;align-items:flex-start}
+  #kontakt .contact-portrait{width:88px;border-radius:10px}
+  #kontakt .contact-person strong{font-size:24px}
+}
+@media(max-width:360px){
+  #kontakt .contact-person{flex-direction:column}
+}

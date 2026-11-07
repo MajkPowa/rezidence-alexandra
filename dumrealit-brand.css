@@ -1,0 +1,248 @@
+/* Dům realit web system. Official RGB palette; licensed Montserrat web alternative to Gotham.
+   Product layouts, project drawings, media and availability semantics remain independent. */
+@font-face{font-family:DumRealitSans;src:url(assets/developer-20261103/montserrat-latin-ext.woff2) format('woff2');font-style:normal;font-weight:100 900;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020-2027,U+2030-203A,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:DumRealitSans;src:url(assets/developer-20261103/montserrat-latin.woff2) format('woff2');font-style:normal;font-weight:100 900;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root,body.dr-brand{
+ --dr-red:#bc0b3b;--dr-red-hover:#9f0932;--dr-red-wash:#fcf1f4;--dr-grey:#878787;
+ --dr-ink:#222;--dr-muted:#606060;--dr-line:#dedede;--dr-paper:#fff;--dr-wash:#f5f5f5;
+ --paper:#fff;--surface:#fff;--cream:#f5f5f5;--ink:#222;--muted:#606060;--line:#dedede;
+ --olive:#bc0b3b;--accent:#bc0b3b;--gold:#bc0b3b;--reference-gold:#bc0b3b;--maxi-gold:#bc0b3b;
+ --forest:#222;--deep:#171717;--ivory:#fff;--wash:#f5f5f5;--bg:#fff;--text:#222;
+ --sans:DumRealitSans,Arial,Helvetica,sans-serif;--serif:var(--sans);
+ --alex-ivory-50:#fff;--alex-ivory-100:#fff;--alex-ivory-200:#f5f5f5;--alex-navy-900:#222;
+ --alex-slate-600:#606060;--alex-stone-300:#dedede;--alex-gold-400:#bc0b3b;--alex-gold-700:#bc0b3b;
+ --color-text:#222;--color-text-secondary:#606060;--color-action:#bc0b3b;--color-action-text:#fff;--color-focus:#bc0b3b;
+ --color-status-available:#326c45;--color-status-reserved:#805a21;--color-status-sold:#8e453c;--color-status-unknown:#666;
+ --shadow-soft:0 8px 32px #00000008;--shadow-dialog:0 24px 80px #00000024;
+}
+body.dr-brand{background:var(--dr-paper);color:var(--dr-ink);font-family:var(--sans);font-size:16px;line-height:1.65}
+body.dr-brand :is(h1,h2,h3,h4,h5,button,input,select,textarea){font-family:var(--sans)}
+body.dr-brand :is(h1,h2,h3){font-weight:600;letter-spacing:-.025em}
+body.dr-brand :is(h1,h2,h3) em{font-family:inherit;font-weight:inherit;font-style:normal;color:var(--dr-red)}
+body.dr-brand :is(p,li,dt,dd,small,label){letter-spacing:normal}
+body.dr-brand :is(button,a,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid var(--dr-red);outline-offset:4px}
+body.dr-brand :is(.eyebrow,.section-index,.map-card-eyebrow){font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.035em;color:var(--dr-muted)}
+body.dr-brand :is(.alex-icon,.alex-arrow){color:inherit}
+body.dr-brand :is(.site-header,.interior-header,.companion-header){background:#fff!important;color:#222!important;border-bottom:1px solid var(--dr-line);box-shadow:none;backdrop-filter:none;gap:24px}
+body.dr-brand .site-header{height:auto;min-height:88px;padding-block:16px}
+body.dr-brand .dr-lockup{display:inline-flex;align-items:center;gap:16px;min-width:0;flex:none;min-height:48px;color:#222!important;text-decoration:none!important}
+body.dr-brand .dr-lockup img{display:block;width:164px;height:auto;max-width:none;flex:none;filter:none}
+body.dr-brand .dr-project-name{display:block;border-left:1px solid #dedede;padding-left:16px;font:600 17px/1.2 var(--sans);letter-spacing:-.025em;text-transform:none}
+body.dr-brand .dr-project-name small{display:block;margin-top:5px;color:#606060;font:400 10px/1.4 var(--sans);letter-spacing:0;text-transform:none}
+body.dr-brand :is(.desktop-nav,.buyer-nav,.companion-header nav){font:500 13px/1.5 var(--sans);gap:20px}
+body.dr-brand :is(.desktop-nav,.buyer-nav,.companion-header nav) a{color:#333;letter-spacing:0}
+body.dr-brand :is(.desktop-nav,.buyer-nav,.companion-header nav) a:hover{color:var(--dr-red)}
+body.dr-brand :is(.site-header .header-contact,.header-cta){font-size:13px;min-height:48px;padding:12px 20px}
+body.dr-brand :is(.menu-toggle,.buyer-menu-toggle){border-color:#d1d1d1;color:#222;background:#fff;border-radius:8px}
+body.dr-brand .mobile-nav{background:#fff;color:#222;border-top:1px solid var(--dr-line)}
+body.dr-brand .mobile-nav a{color:#222;font-family:var(--sans);font-weight:500}
+body.dr-brand :is(.button,.header-cta,.buyer-standard-link,.companion-offer){border-radius:8px;font:600 14px/1.5 var(--sans);min-height:48px;letter-spacing:0}
+body.dr-brand :is(a,button).viewing-cta,body.dr-brand :is(.button,.header-cta){background:var(--dr-red)!important;border-color:var(--dr-red)!important;color:#fff!important}
+body.dr-brand :is(a,button).viewing-cta:hover,body.dr-brand :is(.button,.header-cta):hover{background:var(--dr-red-hover)!important;border-color:var(--dr-red-hover)!important}
+body.dr-brand :is(.button-outline,.button-ghost){background:#fff!important;color:var(--dr-red)!important;border:1px solid var(--dr-red)!important}
+body.dr-brand :is(.text-link,.document-link,.document-kind){font-family:var(--sans)}
+body.dr-brand :is(input,select,textarea){accent-color:var(--dr-red)}
+body.dr-brand input[type=range]{accent-color:var(--dr-red)}
+body.dr-brand :is(dialog,.lightbox-content,.furnished-plan-dialog){background:#fff;color:#222;border-color:var(--dr-line);border-radius:16px}
+body.dr-brand dialog::backdrop{background:#111111b3;backdrop-filter:blur(3px)}
+body.dr-brand :is(.dialog-close,.lightbox-close,.project-contact-close){background:#fff!important;color:#222!important;border:1px solid #ccc!important;border-radius:8px}
+/* The film remains automatic; chrome is white/red and imagery keeps its original colors. */
+body.dr-brand #residence-journey{background:#222;color:#fff}
+body.dr-brand #residence-journey .journey-stage{background:#222}
+body.dr-brand #residence-journey .journey-scrim{background:linear-gradient(90deg,#111111d9 0%,#111111a6 28%,#11111120 68%,#11111110),linear-gradient(0deg,#11111180,transparent 30%)}
+body.dr-brand #residence-journey .journey-copy{color:#fff;top:30%;width:min(720px,65%)}
+body.dr-brand #residence-journey .journey-copy :is(h1,h2){font-family:var(--sans);font-weight:600;font-size:clamp(44px,4.5vw,72px);line-height:1.06;color:#fff;letter-spacing:-.04em}
+body.dr-brand #residence-journey .journey-copy .eyebrow{color:#fff;font-size:12px;letter-spacing:.025em;border-left:3px solid var(--dr-red);padding-left:12px}
+body.dr-brand #residence-journey :is(.journey-description,.journey-note,.journey-step-status,.journey-scroll-hint,.journey-credit,.journey-static-link){color:#fff}
+body.dr-brand #residence-journey .journey-copy .journey-cta{background:var(--dr-red);border-color:var(--dr-red);color:#fff;font-weight:600}
+body.dr-brand #residence-journey .journey-copy .journey-cta:hover{background:var(--dr-red-hover)}
+body.dr-brand #residence-journey :is(.journey-rail,.journey-motion-toggle){background:#222222d9;border-color:#ffffff4d;color:#fff}
+body.dr-brand #residence-journey .journey-rail button[aria-pressed=true]{background:var(--dr-red);border-color:var(--dr-red);color:#fff}
+body.dr-brand #residence-journey .journey-rail button[aria-pressed=true] .journey-step-no{color:#fff}
+body.dr-brand #residence-journey .journey-rail button:hover{border-color:#fff}
+/* Sections and the customer journey. */
+body.dr-brand :is(.section-pad,.section-heading,.intro-body){color:var(--dr-ink)}
+body.dr-brand :is(.quick-links,.project-quick-links,.intro,.architecture,.interiors,.tour,.parking,.documents,.faq,.locality){background:var(--dr-paper)}
+body.dr-brand :is(.intro-body h2,.section-heading h2,.interior-title h2,.tour-heading h2,.locality h2,.faq h2){font-family:var(--sans);font-weight:600}
+body.dr-brand :is(.intro-body,.project-facts,.architecture-controls,.interior-picker,.interior-caption,.tour-stage,.documents-grid,.faq-list details){border-color:var(--dr-line)}
+body.dr-brand .project-facts strong{font-family:var(--sans);font-weight:600;color:#222}
+body.dr-brand .interior-picker button.active{background:var(--dr-red-wash);color:var(--dr-red);border-color:var(--dr-red)}
+body.dr-brand :is(.image-expand,.tour-stage,.architecture-view){border-radius:12px;overflow:hidden}
+body.dr-brand .faq-list summary{font-family:var(--sans);font-weight:500}
+/* Apartment explorer: selection is red, availability keeps its own semantics. */
+body.dr-brand #byty{background:var(--dr-wash);padding-block:64px}
+body.dr-brand #byty .section-heading h2{font-weight:600}
+body.dr-brand :is(.unit-filters,.floor-explorer,.building-picker,.floor-stage,.map-unit-card){background:#fff;border-color:var(--dr-line)}
+body.dr-brand .floor-explorer{border-radius:12px;box-shadow:none;overflow:hidden}
+body.dr-brand :is(.explorer-toolbar,.availability-legend){background:#fafafa;border-color:var(--dr-line)}
+body.dr-brand :is(.purchase-view-switch,.segmented,.building-selection-mode){border-color:var(--dr-line)}
+body.dr-brand .purchase-view-switch{background:#eaeaea;padding:4px;gap:4px;border:0;border-radius:10px}
+body.dr-brand .purchase-view-switch button{border-radius:7px;color:#444;background:transparent}
+body.dr-brand .purchase-view-switch button[aria-pressed=true]{background:#fff;color:var(--dr-red);box-shadow:0 1px 4px #00000012}
+body.dr-brand :is(.building-selection-mode,.segmented,.layout-filter) button{background:#fff;color:#333;border-color:#d0d0d0}
+body.dr-brand :is(.building-selection-mode,.segmented,.layout-filter) button[aria-pressed=true]{background:var(--dr-red);border-color:var(--dr-red);color:#fff}
+body.dr-brand :is(.floor-buttons button,.building-unit-chip){background:#fff;color:#333;border-color:#d0d0d0;border-radius:8px}
+body.dr-brand :is(.floor-buttons button,.building-unit-chip):hover{background:#faf4f6;border-color:var(--dr-red)}
+body.dr-brand :is(.floor-buttons button,.building-unit-chip)[aria-pressed=true]{background:var(--dr-red-wash);border-color:var(--dr-red);color:var(--dr-red);box-shadow:inset 0 0 0 1px var(--dr-red)}
+body.dr-brand .selection-summary{background:#fff;border-color:var(--dr-line);border-left:3px solid var(--dr-red)}
+body.dr-brand .selection-summary .map-mobile-jump{background:var(--dr-red);color:#fff;border-color:var(--dr-red)}
+body.dr-brand .floor-heading h3{font-weight:600}
+body.dr-brand .floor-sheet{fill:#fff;stroke:#aaa}
+body.dr-brand .floor-slab{fill:#e6e6e6;stroke:#aaa}
+body.dr-brand .map-apartment[data-status=unknown]{--map-fill:#9a9a9a;--map-stroke:#777}
+body.dr-brand .map-apartment[aria-pressed=true] .unit-shape{stroke:var(--dr-red);stroke-width:3;fill-opacity:.42}
+body.dr-brand .unit-tag-bg{fill:#fff;stroke:#999}
+body.dr-brand .unit-tag-layout{fill:#555}
+body.dr-brand .map-apartment[aria-pressed=true] .unit-tag-bg{fill:var(--dr-red);stroke:var(--dr-red)}
+body.dr-brand .map-apartment[aria-pressed=true] :is(.unit-tag-number,.unit-tag-layout){fill:#fff}
+body.dr-brand :is(.stack-top,.unit-location-building rect){fill:#e8e8e8;stroke:#999}
+body.dr-brand .stack-side{fill:#d4d4d4;stroke:#999}
+body.dr-brand .stack-floor[aria-pressed=true] .stack-top{fill:#f8dfe6;stroke:var(--dr-red)}
+body.dr-brand .stack-floor[aria-pressed=true] .stack-side{fill:#e5acbc}
+body.dr-brand .unit-location-building .is-active rect{fill:var(--dr-red);stroke:var(--dr-red)}
+body.dr-brand .unit-location-building .is-active text{fill:#fff}
+body.dr-brand .unit-location-plan path.is-active{fill:var(--dr-red);stroke:var(--dr-red);fill-opacity:.55}
+body.dr-brand .floor-orientation .compass-north{fill:var(--dr-red);stroke:var(--dr-red)}
+body.dr-brand .building-facade-floor[aria-pressed=true]{color:var(--dr-red)}
+body.dr-brand .map-unit-card h3{font-family:var(--sans);font-weight:600}
+body.dr-brand :is(.furnished-preview,.map-card-plan,.map-standard-disclosure,.unit-location){border-color:var(--dr-line);background:#fafafa;border-radius:8px}
+body.dr-brand .unit-table thead{background:#f5f5f5}
+body.dr-brand .unit-table tbody tr:hover{background:#fcf1f4}
+body.dr-brand :is(.unit-table td,.unit-table th,.table-footer,.map-card-data>div){border-color:var(--dr-line)}
+body.dr-brand .save-unit.is-saved{color:var(--dr-red);background:var(--dr-red-wash)}
+/* Parking, equipment, buyer services and calculator. */
+body.dr-brand :is(.parking-explorer,.parking-detail,.equipment-card,.equipment-hotspot-detail,.bathroom-standard-card,.buyer-service-card,.buyer-contracts){background:#fff;border-color:var(--dr-line);border-radius:12px}
+body.dr-brand #parkovani .parking-type-card{background:#fff;border-color:var(--dr-line)}
+body.dr-brand #parkovani .parking-type-card:hover{background:#fcf1f4}
+body.dr-brand #parkovani .parking-type-card[aria-pressed=true]{background:var(--dr-red-wash);box-shadow:inset 0 -3px 0 var(--dr-red)}
+body.dr-brand .parking-space[aria-pressed=true] circle,body.dr-brand .parking-space:focus circle{fill:#f8dfe6;stroke:var(--dr-red)}
+body.dr-brand .parking-space[aria-pressed=true] polygon,body.dr-brand .parking-space:focus polygon{stroke:var(--dr-red)}
+body.dr-brand #parking-views button[aria-pressed=true],body.dr-brand #standard-hotspot-tabs button[aria-pressed=true],body.dr-brand .standard-hotspot[aria-pressed=true]{background:var(--dr-red);color:#fff;border-color:var(--dr-red)}
+body.dr-brand #standard-hotspot-detail{background:#f5f5f5;border-color:var(--dr-line)}
+body.dr-brand .standard-number{color:var(--dr-red)}
+body.dr-brand .standard-hotspot{background:#333;color:#fff;border-color:#fff}
+body.dr-brand .standard-hotspot:hover{background:var(--dr-red-wash);color:var(--dr-red);border-color:var(--dr-red)}
+body.dr-brand .standard-tag{background:#ededed;color:#444}
+body.dr-brand .standard-tag.is-extra{background:var(--dr-red-wash);color:var(--dr-red)}
+body.dr-brand .favorite-button.saved{color:var(--dr-red);background:var(--dr-red-wash)}
+body.dr-brand .alex-icon--art{--icon-accent:var(--dr-red)}
+body.dr-brand .circle-arrow{background:var(--dr-red);color:#fff}
+body.dr-brand #prohlidka h2{color:var(--dr-ink)}
+body.dr-brand #prohlidka h2 em{color:var(--dr-red)}
+body.dr-brand #prohlidka :is(.eyebrow,.section-marker){color:var(--dr-muted)}
+body.dr-brand #prohlidka .text-link{color:var(--dr-ink);border-color:#999}
+body.dr-brand #prohlidka .tour-cta{background:#222222e8;color:#fff;border-color:#999;border-radius:8px}
+body.dr-brand #prohlidka .circle-arrow{background:var(--dr-red);color:#fff;border-color:var(--dr-red)}
+body.dr-brand #prohlidka :focus-visible{outline-color:var(--dr-red)}
+body.dr-brand #prohlidka :is(.tour-heading>p:not(.eyebrow),.tour-note){color:var(--dr-muted)}
+body.dr-brand :is(.equipment-card .eyebrow,.bathroom-standard-card .eyebrow){color:var(--dr-red)}
+body.dr-brand .buyer-section{background:#f5f5f5}
+body.dr-brand :is(.buyer-section-nav a,.buyer-contracts,.buyer-service-card,.payment-steps li,.mortgage-controls){background:#fff;border-color:var(--dr-line)}
+body.dr-brand .payment-step-no{background:var(--dr-red);color:#fff;border-radius:8px}
+body.dr-brand .payment-note{background:#ededed;color:#333!important}
+body.dr-brand .mortgage-calculator{background:#fff;border-color:var(--dr-line)}
+body.dr-brand .mortgage-result{background:#252525;color:#fff;--color-focus:#fff}
+body.dr-brand :is(.mortgage-result,.mortgage-mobile-payment) :is(p,strong,dt,dd,span){color:inherit}
+body.dr-brand .mortgage-mobile-payment{background:#252525;color:#fff;border-color:#444}
+body.dr-brand .mortgage-presets button[aria-pressed=true]{background:var(--dr-red);border-color:var(--dr-red);color:#fff}
+body.dr-brand .mortgage-range{background:transparent;accent-color:var(--dr-red)}
+body.dr-brand .mortgage-range::-webkit-slider-runnable-track{background:linear-gradient(to right,var(--dr-red) var(--range-progress,0%),#ddd var(--range-progress,0%))}
+body.dr-brand .mortgage-range::-moz-range-track{background:#ddd}
+body.dr-brand .mortgage-range::-moz-range-progress{background:var(--dr-red)}
+body.dr-brand .mortgage-range::-webkit-slider-thumb{background:var(--dr-red);border-color:#fff;box-shadow:0 0 0 1px var(--dr-red)}
+body.dr-brand .mortgage-range::-moz-range-thumb{background:var(--dr-red);border-color:#fff;box-shadow:0 0 0 1px var(--dr-red)}
+body.dr-brand :is(.mortgage-number input,.mortgage-rate-panel input):focus-visible{outline-color:var(--dr-red)}
+body.dr-brand .mortgage-funding-equity{background:var(--dr-red)}
+body.dr-brand .mortgage-funding-loan{background:#e0e0e0}
+body.dr-brand .mortgage-funding-bar{background:#bdbdbd}
+body.dr-brand #mortgage-funding-own,body.dr-brand .mortgage-dot--own{background:#f96a91}
+body.dr-brand .mortgage-presets button:hover{border-color:var(--dr-red)}
+body.dr-brand .mortgage-range:focus-visible{outline-color:var(--dr-red)}
+body.dr-brand :is(.image-expand,.gallery-card,.render-card):hover img{transform:none}
+/* A clear, branded contact area with the supplied portrait and direct details. */
+body.dr-brand #kontakt{background:var(--dr-red);color:#fff;gap:64px}
+body.dr-brand #kontakt :is(.contact-copy,.contact-copy h2,.contact-copy h2 em,.contact-copy>p,.contact-person,.contact-person strong,.contact-person a,.contact-person div>span,.eyebrow){color:#fff}
+body.dr-brand #kontakt .contact-copy h2{font-family:var(--sans);font-weight:600}
+body.dr-brand #kontakt .alex-icon--art{--icon-accent:#fff}
+body.dr-brand #kontakt .contact-person{margin-top:32px}
+body.dr-brand #kontakt .contact-portrait{border:1px solid #ffffff50}
+body.dr-brand #kontakt .contact-form{padding:32px;background:#fff;border:0;border-radius:12px;color:#222}
+body.dr-brand #kontakt .contact-form h3{font:600 28px/1.2 var(--sans);margin-bottom:24px;color:#222}
+body.dr-brand #kontakt .contact-form label{color:#555;font-size:12px;font-weight:500;letter-spacing:0}
+body.dr-brand #kontakt .contact-form label>span{color:#666;font-size:11px}
+body.dr-brand #kontakt .contact-form :is(input,select,textarea){background:#fafafa;color:#222;border:1px solid #c9c9c9;border-radius:8px;padding:12px;min-height:48px;font-size:15px}
+body.dr-brand #kontakt .contact-form textarea{min-height:112px}
+body.dr-brand #kontakt :is(.form-note,.form-status){color:#606060;font-size:12px}
+body.dr-brand #kontakt .contact-form :is(input,select,textarea,button):focus-visible{outline-color:var(--dr-red);box-shadow:none}
+body.dr-brand #kontakt .contact-copy :focus-visible{outline-color:#fff}
+body.dr-brand .site-footer{background:#fff;color:#222;border-color:var(--dr-line)}
+body.dr-brand .dr-partners{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--dr-line);margin-top:24px;width:100%;color:#606060;font:400 12px/1.5 var(--sans)}
+body.dr-brand .dr-partners img{display:block;max-height:36px;width:auto;max-width:150px;object-fit:contain}
+body.dr-brand .dr-partners .dr-partner-maxi{max-height:40px}
+body.dr-brand :is(.site-footer,.interior-footer,.companion-footer,.page-footer){color:#606060;background:#fff;border-color:var(--dr-line)}
+/* Contact dialog and floating action share the original agency logo. */
+body.dr-brand .project-contact-widget{--contact-widget-width:268px}
+body.dr-brand .project-contact-trigger{box-shadow:0 4px 20px #0000001a;border-radius:10px!important}
+body.dr-brand .project-contact-trigger-label>strong,body.dr-brand .project-contact-trigger .project-contact-brand-name{color:#fff}
+body.dr-brand .project-contact-trigger .project-contact-brand-name{font-family:var(--sans)}
+body.dr-brand .project-contact-media{width:62px;gap:4px;flex-shrink:0}
+body.dr-brand .project-contact-media .project-contact-brand-badge{width:24px;height:24px;padding:4px;background:#fff}
+body.dr-brand #project-contact-dialog{background:#fff;border-color:var(--dr-line);color:#222}
+body.dr-brand #project-contact-dialog :is(h2,.project-contact-person a,.project-contact-person strong,.project-contact-details){color:#222}
+body.dr-brand .project-contact-logo{width:180px;height:auto;aspect-ratio:5.758;background:#fff;border-radius:0}
+body.dr-brand .project-contact-identity{gap:32px;padding-right:32px;justify-content:space-between}
+body.dr-brand .project-contact-portrait{width:80px;height:112px;object-fit:cover}
+body.dr-brand #project-contact-dialog :is(.project-contact-project,.project-contact-intro,.project-contact-person>span){font-family:var(--sans);color:#606060}
+body.dr-brand #project-contact-dialog::backdrop{background:#111111b3}
+/* Final legacy-surface pass: selectors follow the rendered controls and source DOM. */
+body.dr-brand #residence-journey .journey-rail button{color:#fff}
+body.dr-brand #residence-journey .journey-rail .journey-step-no{color:#ddd}
+body.dr-brand #residence-journey .journey-rail button[aria-pressed=true] .journey-step-no{color:#fff}
+body.dr-brand #residence-journey .journey-load-status{color:#fff}
+body.dr-brand #residence-journey .journey-progress{background:var(--dr-red)}
+body.dr-brand .explore-links>a>svg{color:var(--dr-red)}
+body.dr-brand .unit-filters :is(label,legend){color:var(--dr-muted)}
+body.dr-brand :is(.segmented,.map-view-switch,.furnished-view-switch){background:var(--dr-wash);border-color:var(--dr-line)}
+body.dr-brand :is(.unit-filters select,.parking-toolbar select){border-color:var(--dr-grey)}
+body.dr-brand .unit-table-wrap{border-color:var(--dr-line)}
+body.dr-brand .unit-table th{background:var(--dr-wash);color:var(--dr-muted)}
+body.dr-brand .building-stack{background:#eee}
+body.dr-brand .building-selection-zone{fill:var(--dr-red);stroke:#fff}
+body.dr-brand .building-selection-label{fill:#fff;stroke:var(--dr-grey)}
+body.dr-brand .building-selection-number{fill:var(--dr-ink)}
+body.dr-brand .building-selection-floor[aria-pressed=true] .building-selection-zone{fill:var(--dr-red);fill-opacity:.12;stroke:var(--dr-red);stroke-opacity:1}
+body.dr-brand .building-selection-floor[aria-pressed=true] :is(.building-selection-label,.building-selection-leader){fill:var(--dr-red);stroke:var(--dr-red)}
+body.dr-brand .building-selection-floor[aria-pressed=true] .building-selection-number{fill:#fff}
+body.dr-brand .building-selection-floor:focus-visible .building-selection-label{stroke:var(--dr-ink);stroke-width:4}
+body.dr-brand :is(.building-caption,.visual-scope,.interior-caption,.interior-note,.faq-list details>p){color:var(--dr-muted)}
+body.dr-brand .map-empty-note{background:var(--dr-wash);color:var(--dr-muted)}
+body.dr-brand .map-legend{background:var(--dr-wash)}
+body.dr-brand .compare-bar{background:var(--dr-ink);color:#fff}
+body.dr-brand .compare-bar div span{color:#e6e6e6}
+body.dr-brand .compare-bar .icon-button{border-color:#999;color:#fff}
+body.dr-brand .parking-map-wrap{border-color:var(--dr-line)}
+body.dr-brand .equipment-unit-context{background:var(--dr-wash);color:var(--dr-ink)}
+body.dr-brand :is(.floor-plan-links a,.document-link,.interior-picker button,.interior-room-links a){border-color:var(--dr-line)}
+body.dr-brand #mortgage-error{color:var(--dr-red)}
+body.dr-brand .mortgage-result #mortgage-selection{color:#e6e6e6}
+body.dr-brand .mortgage-dot:not(.mortgage-dot--own){background:#bdbdbd}
+body.dr-brand .expand-label{background:#fffffff2;color:var(--dr-ink)}
+body.dr-brand .tour-stage{background:var(--dr-ink)}
+body.dr-brand .tour-cta small{color:#e6e6e6}
+body.dr-brand .locality-name{color:var(--dr-ink);border-color:var(--dr-line)}
+body.dr-brand .locality-copy>p:not(.eyebrow){color:var(--dr-muted)}
+body.dr-brand .locality:before{border-color:#ccc;box-shadow:0 0 0 60px #fff,0 0 0 61px #ddd,0 0 0 150px #fff,0 0 0 151px #e6e6e6}
+body.dr-brand #kontakt .contact-form select option{background:#fff;color:var(--dr-ink)}
+body.dr-brand .footer-bottom{color:var(--dr-muted);border-color:var(--dr-line)}
+body.dr-brand .furnished-view-switch button[aria-pressed=true]{border-color:var(--dr-red);background:var(--dr-red);color:#fff}
+body.dr-brand :is(.button-outline,.button-ghost):hover{background:var(--dr-red)!important;color:#fff!important;border-color:var(--dr-red)!important}
+@media(max-width:1200px){body.dr-brand :is(.desktop-nav,.buyer-nav){gap:14px}body.dr-brand .dr-lockup{gap:12px}body.dr-brand .dr-lockup img{width:144px}body.dr-brand .dr-project-name{padding-left:12px;font-size:15px}}
+@media(max-width:1100px){body.dr-brand .project-contact-widget{--contact-widget-width:160px}body.dr-brand .project-contact-media{width:46px}body.dr-brand #residence-journey .journey-copy{width:70%}}
+@media(max-width:900px){body.dr-brand #kontakt{gap:40px}body.dr-brand .site-header{min-height:76px;padding-block:12px}body.dr-brand #kontakt .contact-form{padding:28px}body.dr-brand .dr-lockup img{width:156px}body.dr-brand .dr-project-name{font-size:16px}}
+@media(max-width:700px){body.dr-brand{font-size:15px}body.dr-brand #byty{padding-block:40px}body.dr-brand #kontakt{gap:32px}body.dr-brand .project-contact-widget{--contact-widget-width:144px}body.dr-brand #residence-journey .journey-copy{width:calc(100% - 2 * var(--gutter));top:29%}body.dr-brand #residence-journey .journey-copy :is(h1,h2){font-size:clamp(36px,8.8vw,58px)}body.dr-brand #residence-journey .journey-copy:not([data-chapter="0"]) h2{font-size:clamp(32px,8vw,50px)}body.dr-brand .dr-partners{gap:12px}body.dr-brand #kontakt .contact-form{padding:24px}body.dr-brand .project-contact-identity{gap:20px;padding-right:16px}body.dr-brand .project-contact-logo{width:152px}body.dr-brand .project-contact-portrait{width:64px;height:92px}}
+@media(max-width:480px){body.dr-brand .dr-lockup{gap:10px}body.dr-brand .dr-lockup img{width:112px}body.dr-brand .dr-project-name{padding-left:10px;font-size:14px}body.dr-brand .dr-project-name small{font-size:9px}body.dr-brand .site-header{gap:12px}body.dr-brand #kontakt .contact-form h3{font-size:25px}body.dr-brand #kontakt .contact-form{padding:20px}body.dr-brand .project-contact-logo{width:132px}}
+@media(max-width:360px){body.dr-brand .dr-lockup img{width:100px}body.dr-brand .dr-project-name{font-size:13px}body.dr-brand .dr-project-name small{font-size:8px}body.dr-brand .dr-lockup{gap:8px}body.dr-brand .dr-project-name{padding-left:8px}body.dr-brand #project-contact-dialog .project-contact-identity{gap:12px;padding-right:10px}body.dr-brand .project-contact-logo{width:120px}body.dr-brand .project-contact-portrait{width:56px;height:80px}}
+@media(max-width:1100px){body.dr-brand .project-contact-media .project-contact-brand-badge{width:18px;height:18px;padding:3px}}
+@media(max-width:700px){body.dr-brand .project-contact-media{width:28px;flex:0 0 28px}body.dr-brand .project-contact-media .project-contact-brand-badge{display:none}body.dr-brand .project-contact-portrait-compact{width:28px;height:36px;flex:0 0 28px}}
+@media(max-width:480px){body.dr-brand .unit-actions{flex-wrap:wrap}body.dr-brand .unit-overview .unit-actions>.button{flex:1 1 100%;width:100%;min-width:0;white-space:normal;justify-content:center}}
+@media(prefers-reduced-motion:reduce){body.dr-brand{scroll-behavior:auto}body.dr-brand :is(a,button,input,select,textarea){transition:none!important}}

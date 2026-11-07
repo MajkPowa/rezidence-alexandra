@@ -45,7 +45,7 @@
     const isolate = panel.querySelector('[data-building-isolate]');
     const availabilityTools = panel.querySelector('.building-selection-availability-tools');
     const selection = panel.querySelector('.building-selection-3d-selection');
-    const colors = { available:'#4b805a', reserved:'#b17c2f', sold:'#aa5552', unknown:'#8d968c' };
+    const colors = { available:'#4b805a', reserved:'#b17c2f', sold:'#aa5552', unknown:'#8b8b8b' };
     const labels = { available:'Volný', reserved:'Rezervovaný', sold:'Prodaný', unknown:'Dostupnost na dotaz' };
     let model, ready = false, loadTimer, mode = 'render', content = 'architecture', requestedSrc = '', loadingSource = '', geometry, geometryPromise, requestNumber = 0, lastFloor = 2;
     const srcForVariant = () => content === 'availability' ? (isolate.checked ? `assets/3d/availability-floor-${activeFloor()}.glb` : 'assets/3d/availability-building.glb') : 'assets/3d/exterior-no-balconies.glb';
@@ -88,7 +88,7 @@
         if (!unit) continue;
         material.pbrMetallicRoughness.setBaseColorFactor([...linear(colors[unitStatus(unit)]), 1]);
         material.setAlphaMode('OPAQUE');
-        material.setEmissiveFactor(unit.id === chosen ? [.13,.11,.045] : [0,0,0]);
+        material.setEmissiveFactor(unit.id === chosen ? [.16,.005,.035] : [0,0,0]);
       }
       model.querySelectorAll('[data-volume-unit]').forEach(button => {
         const unit = units.find(unit=>unit.id===Number(button.dataset.volumeUnit));

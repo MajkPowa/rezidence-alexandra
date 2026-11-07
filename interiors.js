@@ -60,7 +60,7 @@
     $('.detail-image-wrap').setAttribute('aria-busy', 'true');
     $('#detail-image-status').textContent = 'Načítání interiéru…';
     $('#detail-image-status').hidden = false;
-    setImage($('#detail-image'), item, '(min-width: 1548px) 1500px, calc(100vw - 20px)');
+    setImage($('#detail-image'), {...item, src:item.fullResolution || item.src, thumb:null}, '(min-width: 1548px) 1500px, calc(100vw - 20px)');
     $('#detail-title').textContent = item.title;
     $('#detail-meta').textContent = `${item.typology} / ${item.room} / INTERIÉR`;
     $('#detail-description').textContent = '';

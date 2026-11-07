@@ -1,0 +1,245 @@
+/* Dům realit: gallery, tours, films and presentation pages.
+   Loaded after dumrealit-brand.css. Original media and model materials stay intact. */
+body.dr-brand.reference-companion {
+  --forest:var(--dr-ink); --deep:#181818; --ivory:var(--dr-paper);
+  --gold:var(--dr-red); --wash:var(--dr-wash); --bg:var(--dr-paper);
+  --text:var(--dr-ink); --accent:var(--dr-red); --oak:var(--dr-red);
+  --sage:var(--dr-grey); --white:var(--dr-paper);
+  background:var(--dr-paper); color:var(--dr-ink); font-family:var(--sans);
+}
+body.dr-brand.reference-companion :is(h1,h2,h3,h4,blockquote,.serif,.idea,.script-text) {
+  font-family:var(--sans); font-style:normal; letter-spacing:-.025em;
+}
+body.dr-brand.reference-companion :is(h1,h2,h3,h4) { font-weight:600; }
+body.dr-brand.reference-companion em { font-family:inherit; font-style:normal; font-weight:inherit; color:var(--dr-red); }
+body.dr-brand.reference-companion :is(.eyebrow,.micro-label,.kicker,.chapter,.scene-kicker,.board-meta,.time,.caption,.card-meta,.specs,.film-index) {
+  letter-spacing:.015em; font-family:var(--sans); font-style:normal;
+}
+body.dr-brand.reference-companion :is(.eyebrow,.micro-label,.kicker,.chapter) { color:var(--dr-muted); }
+body.dr-brand.reference-companion :is(button,input,select,textarea,summary) { font-family:var(--sans); }
+body.dr-brand.reference-companion :is(a,button,summary,canvas,[tabindex]):focus-visible {
+  outline:3px solid var(--dr-red); outline-offset:4px;
+}
+body.dr-brand.reference-companion :is(.text-link,.hero-link,.film-actions a,.source-links>a):hover { color:var(--dr-red-hover); }
+body.dr-brand.reference-companion :is(.button,.detail-export .text-link,.board-footer>a) {
+  background:var(--dr-red); border-color:var(--dr-red); color:#fff; border-radius:8px;
+}
+body.dr-brand.reference-companion :is(.button,.detail-export .text-link,.board-footer>a):hover {
+  background:var(--dr-red-hover); border-color:var(--dr-red-hover); color:#fff;
+}
+body.dr-brand.reference-companion :is(.intro-copy>p,.companion-intro>p,.intro>p,.gallery-heading>p,.tour-foot,.about>div:last-child) { color:var(--dr-muted); }
+body.dr-brand.reference-companion :is(.hero-open,.card-image,.detail-image-wrap,.detail-note,.concept-band,.scene-image) { background:var(--dr-wash); }
+
+/* Gallery: image-led cards, clear filters and readable full-size views. */
+body.dr-brand.reference-companion :is(.filter-panel,.hero-caption,.results-line,.about) { border-color:var(--dr-line); }
+body.dr-brand.reference-companion :is(.filter-group button,.clear-filters,.icon-button,.image-step,.retry-film,.copy-script) {
+  min-height:44px; border:1px solid var(--dr-line); border-radius:8px;
+  background:var(--dr-paper); color:var(--dr-ink); font-weight:500;
+}
+body.dr-brand.reference-companion :is(.filter-group button,.clear-filters,.icon-button,.image-step,.retry-film,.copy-script):hover {
+  border-color:var(--dr-red); background:var(--dr-wash); color:var(--dr-red);
+}
+body.dr-brand.reference-companion .filter-group button[aria-pressed=true] {
+  border-color:var(--dr-red); background:var(--dr-red); color:#fff;
+}
+body.dr-brand.reference-companion :is(.hero-open,.card-image,.empty-state,.load-error,.detail-note) { border-radius:12px; }
+body.dr-brand.reference-companion :is(.hero-expand,.card-image .image-arrow) {
+  background:var(--dr-paper); color:var(--dr-ink); border-radius:8px; box-shadow:0 2px 10px #00000014;
+}
+body.dr-brand.reference-companion .card-image:hover .image-arrow { background:var(--dr-red); color:#fff; }
+body.dr-brand.reference-companion :is(.card-meta,.card-text>p,.hero-caption>span:last-child,.filter-panel legend,.results-line>span,.detail-note-copy,.detail-source,.detail-caption p:not(.eyebrow)) { color:var(--dr-muted); }
+body.dr-brand.reference-companion .note-number { color:var(--dr-red); font-family:var(--sans); font-weight:300; }
+body.dr-brand.reference-companion :is(#interior-dialog,#frame-dialog) {
+  color:var(--dr-ink); background:var(--dr-paper); border:1px solid var(--dr-line); border-radius:12px;
+}
+body.dr-brand.reference-companion :is(#interior-dialog,#frame-dialog)::backdrop { background:#161616d9; }
+body.dr-brand.reference-companion :is(.detail-top,.detail-image-status,.dialog-head) {
+  background:var(--dr-paper); color:var(--dr-ink); border-color:var(--dr-line);
+}
+body.dr-brand.reference-companion :is(.dialog-head button,.panel-close) {
+  background:var(--dr-paper); color:var(--dr-ink); border:1px solid var(--dr-line); border-radius:8px;
+}
+body.dr-brand.reference-companion :is(.dialog-head button,.panel-close):hover { background:var(--dr-wash); border-color:var(--dr-red); color:var(--dr-red); }
+body.dr-brand.reference-companion #frame-image { background:var(--dr-wash); }
+body.dr-brand.reference-companion .next-step {
+  background:var(--dr-ink); color:#fff; border-radius:12px;
+}
+body.dr-brand.reference-companion .next-step :is(h2,em,.eyebrow,p:not(.eyebrow)) { color:#fff; }
+body.dr-brand.reference-companion .next-step .button { background:var(--dr-red); color:#fff; }
+body.dr-brand.reference-companion .next-step .button:hover { background:var(--dr-red-hover); }
+body.dr-brand.reference-companion .next-step :focus-visible { outline-color:#fff; }
+
+/* Tour: the red marks navigation; the photographed interior is unchanged. */
+body.dr-brand.reference-companion .apartment-tabs { padding:4px; gap:4px; background:var(--dr-wash); border-color:var(--dr-line); border-radius:12px; }
+body.dr-brand.reference-companion .apartment-tabs button { border-radius:8px; font-weight:600; color:var(--dr-ink); }
+body.dr-brand.reference-companion .apartment-tabs button:hover { background:#eaeaea; }
+body.dr-brand.reference-companion .apartment-tabs button[aria-pressed=true] { background:var(--dr-red); color:#fff; }
+body.dr-brand.reference-companion #stage { background:#222; color:#fff; border-radius:12px; }
+body.dr-brand.reference-companion .stage-shade { background:linear-gradient(180deg,#111111a8,transparent 28%,transparent 65%,#111111a3); }
+body.dr-brand.reference-companion .room-heading :is(h2,.eyebrow) { color:#fff; }
+body.dr-brand.reference-companion .room-heading h2 { font-weight:500; }
+body.dr-brand.reference-companion :is(.stage-actions,.view-controls) button {
+  color:#fff; background:#222222e8; border:1px solid #ffffff88; border-radius:8px;
+}
+body.dr-brand.reference-companion :is(.stage-actions,.view-controls) button:hover,
+body.dr-brand.reference-companion .stage-actions button[aria-expanded=true] { background:var(--dr-red); border-color:#fff; color:#fff; }
+body.dr-brand.reference-companion #stage :is(button,canvas):focus-visible { outline-color:#fff; }
+body.dr-brand.reference-companion :is(.floating-panel,.error-panel) {
+  color:var(--dr-ink); background:var(--dr-paper); border-color:var(--dr-line); border-radius:12px; box-shadow:0 12px 32px #0000001a;
+}
+body.dr-brand.reference-companion .floating-panel :is(button,[tabindex]):focus-visible { outline-color:var(--dr-red); }
+body.dr-brand.reference-companion .error-panel button { background:var(--dr-red); color:#fff; border-radius:8px; }
+body.dr-brand.reference-companion .map-room { fill:var(--dr-wash); stroke:var(--dr-grey); }
+body.dr-brand.reference-companion .map-room.active { fill:#f8e7ed; stroke:var(--dr-red); }
+body.dr-brand.reference-companion .map-node { fill:var(--dr-paper); stroke:var(--dr-grey); }
+body.dr-brand.reference-companion .map-node.active { fill:var(--dr-red); stroke:#fff; }
+body.dr-brand.reference-companion .map-node:hover { fill:#f8e7ed; }
+body.dr-brand.reference-companion .map-node.active:hover { fill:var(--dr-red); }
+body.dr-brand.reference-companion .map-text { fill:var(--dr-ink); font-family:var(--sans); }
+body.dr-brand.reference-companion .map-bearing { fill:var(--dr-red); }
+body.dr-brand.reference-companion #floor-map [data-map-node]:focus-visible .map-node { stroke:var(--dr-red); fill:#f8e7ed; }
+body.dr-brand.reference-companion #floor-map [data-map-node]:focus-visible .map-node.active { stroke:var(--dr-ink); fill:var(--dr-red); }
+body.dr-brand.reference-companion :is(.map-room-list button,.next-rooms button,.direction-controls button) {
+  background:var(--dr-paper); border:1px solid var(--dr-line); border-radius:8px; color:var(--dr-ink);
+}
+body.dr-brand.reference-companion :is(.map-room-list button,.next-rooms button,.direction-controls button):hover {
+  background:var(--dr-wash); border-color:var(--dr-red); color:var(--dr-red);
+}
+body.dr-brand.reference-companion .map-room-list button[aria-current=true] { background:var(--dr-red); border-color:var(--dr-red); color:#fff; }
+body.dr-brand.reference-companion .room-card { background:var(--dr-paper); border-color:var(--dr-line); border-radius:12px; }
+body.dr-brand.reference-companion .room-card:hover { border-color:var(--dr-red); }
+body.dr-brand.reference-companion .room-card[aria-current=true] { border-color:var(--dr-red); box-shadow:0 0 0 2px var(--dr-red); }
+body.dr-brand.reference-companion .room-card small { background:#fff; color:var(--dr-ink); }
+body.dr-brand.reference-companion .room-card.visited small { background:var(--dr-ink); color:#fff; }
+body.dr-brand.reference-companion .room-card[aria-current=true] small { background:var(--dr-red); color:#fff; }
+body.dr-brand.reference-companion .hotspot .dot { background:var(--dr-red); color:#fff; border-color:#fff; box-shadow:0 3px 14px #00000026; }
+body.dr-brand.reference-companion .hotspot .hotspot-label { background:#222222f0; color:#fff; border-radius:8px; }
+body.dr-brand.reference-companion .hotspot:hover .dot { background:#fff; color:var(--dr-red); }
+body.dr-brand.reference-companion #stage:is(:fullscreen,.is-expanded) { border-radius:0; }
+
+/* Exterior 3D controls keep their geometry and source model. */
+body.dr-brand.reference-companion .building-stage { background:var(--dr-wash); border-color:var(--dr-line); border-radius:12px; }
+body.dr-brand.reference-companion model-viewer { background:var(--dr-wash); --poster-color:var(--dr-wash); --progress-bar-color:var(--dr-red); }
+body.dr-brand.reference-companion :is(.building-loading,.building-error) { color:var(--dr-ink); background:#fff; border-color:var(--dr-line); border-radius:12px; }
+body.dr-brand.reference-companion :is(.building-controls button,.building-error button,.companion-section-nav a,.chapter-navigation a) {
+  color:var(--dr-ink); background:var(--dr-paper); border:1px solid var(--dr-line); border-radius:8px; min-height:44px;
+}
+body.dr-brand.reference-companion .building-controls button:hover:not(:disabled),
+body.dr-brand.reference-companion :is(.building-error button,.companion-section-nav a,.chapter-navigation a):hover { color:var(--dr-red); border-color:var(--dr-red); background:var(--dr-wash); }
+body.dr-brand.reference-companion .building-controls button[aria-pressed=true],
+body.dr-brand.reference-companion .building-controls button[aria-pressed=true]:is(:hover,:focus-visible,:active) { color:#fff; background:var(--dr-red); border-color:var(--dr-red); }
+body.dr-brand.reference-companion :is(.companion-section-nav a,.chapter-navigation a)[aria-current=location] { background:#f8e7ed; color:var(--dr-red); border-color:var(--dr-red); }
+body.dr-brand.reference-companion :is(.building-hint,.building-note,#building-status,.building-more-controls summary) { color:var(--dr-muted); }
+body.dr-brand.reference-companion :is(.building-note,.building-more-controls) { border-color:var(--dr-line); }
+
+/* Films and creative: quiet white page, red actions, original rich imagery. */
+body.dr-brand.reference-companion :is(.hero,.context-section,.creative-page .story) { background:var(--dr-wash); color:var(--dr-ink); }
+body.dr-brand.reference-companion .hero .eyebrow { color:var(--dr-red); }
+body.dr-brand.reference-companion .hero h1 em { color:var(--dr-red); }
+body.dr-brand.reference-companion .gold-line { background:var(--dr-red); height:4px; }
+body.dr-brand.reference-companion .hero-copy .hero-description { color:var(--dr-muted); }
+body.dr-brand.reference-companion .hero-link { color:var(--dr-red); border-color:var(--dr-red); }
+body.dr-brand.reference-companion :is(.hero,.context-section) :focus-visible { outline-color:var(--dr-red); }
+body.dr-brand.reference-companion .player-shell { background-color:#181818; border-radius:12px; box-shadow:none; }
+body.dr-brand.reference-companion :is(.film-grid video,.creative-page .ads img,.creative-page .gallery figure>a) { border-radius:12px; }
+body.dr-brand.reference-companion .film-status.is-pending { color:var(--dr-muted); }
+body.dr-brand.reference-companion .film-actions a:hover { color:var(--dr-red); }
+body.dr-brand.reference-companion .concept-points>div>span { color:var(--dr-red); font-style:normal; font-weight:300; }
+body.dr-brand.reference-companion .story-tabs { border-color:var(--dr-line); gap:8px; }
+body.dr-brand.reference-companion .story-tabs button { border:1px solid var(--dr-line); border-radius:8px; color:var(--dr-ink); background:var(--dr-paper); font-weight:600; }
+body.dr-brand.reference-companion .story-tabs button:hover:not([aria-selected=true]) { border-color:var(--dr-red); background:var(--dr-wash); }
+body.dr-brand.reference-companion .story-tabs button[aria-selected=true] { background:var(--dr-red); color:#fff; border-color:var(--dr-red); }
+body.dr-brand.reference-companion .story-tabs button[aria-selected=true]>span { color:#fff; }
+body.dr-brand.reference-companion :is(.full-script,.scene-card) { border-color:var(--dr-line); border-radius:12px; background:var(--dr-paper); color:var(--dr-ink); }
+body.dr-brand.reference-companion .board-meta span+span:before { color:var(--dr-grey); }
+body.dr-brand.reference-companion .frame-expand { color:var(--dr-ink); background:#fff; box-shadow:0 2px 8px #00000014; }
+body.dr-brand.reference-companion .frame-button:hover .frame-expand { color:#fff; background:var(--dr-red); }
+body.dr-brand.reference-companion .frame-button:focus-visible { outline-color:var(--dr-red); }
+body.dr-brand.reference-companion .scene-duration { background:#222; color:#fff; border-radius:4px; }
+body.dr-brand.reference-companion .scene-kicker span:last-child { color:var(--dr-muted); }
+body.dr-brand.reference-companion .is-variant .variant-label { color:var(--dr-muted); background:var(--dr-wash); border-color:var(--dr-line); }
+body.dr-brand.reference-companion :is(.scene-direction,.scene-cta,.board-footer) { border-color:var(--dr-line); }
+body.dr-brand.reference-companion .scene-direction h5 { color:var(--dr-muted); font-size:12px; text-transform:none; letter-spacing:0; }
+body.dr-brand.reference-companion .voice-block blockquote { color:var(--dr-ink); font-weight:400; }
+body.dr-brand.reference-companion :is(.context-copy,.context-section .eyebrow,.context-section p,.context-copy strong) { color:var(--dr-muted); }
+body.dr-brand.reference-companion :is(.context-section h2,.context-section h3) { color:var(--dr-ink); }
+body.dr-brand.reference-companion .context-section em { color:var(--dr-red); }
+body.dr-brand.reference-companion .source-links>a { color:var(--dr-red); border-color:var(--dr-line); min-height:44px; }
+body.dr-brand.reference-companion #downloads .context-copy>div { border-color:var(--dr-line); }
+body.dr-brand.reference-companion.creative-page .story { background:var(--dr-wash); color:var(--dr-ink); border:1px solid var(--dr-line); border-radius:12px; }
+body.dr-brand.reference-companion.creative-page .story :is(.eyebrow,p) { color:var(--dr-muted); }
+body.dr-brand.reference-companion.creative-page .story>a { background:var(--dr-red); color:#fff; border-color:var(--dr-red); border-radius:8px; }
+body.dr-brand.reference-companion.creative-page .story>a:hover { background:var(--dr-red-hover); color:#fff; }
+body.dr-brand.reference-companion.creative-page .story :focus-visible { outline-color:var(--dr-red); }
+body.dr-brand.reference-companion .media-error { background:var(--dr-wash); border-color:var(--dr-line); color:var(--dr-ink); border-radius:8px; }
+
+/* The editable HTML storyboard remains a presentation, not a new project brief. */
+body.dr-brand.reference-companion.storyboard-page { background:var(--dr-wash); }
+body.dr-brand.reference-companion.storyboard-page .sheet { background:var(--dr-paper); border-color:var(--dr-line); border-radius:12px; box-shadow:none; }
+body.dr-brand.reference-companion.storyboard-page :is(.sheethead,.sheetfoot,.notes div,.factrow,.openlist li,.details,.shot .quote) { border-color:var(--dr-line); }
+body.dr-brand.reference-companion.storyboard-page :is(.sheethead .wordmark,.wordmark span,.covercopy .promise,.chapter b,.shothead .number,.idea,.phonecopy,.poster .adcopy p,.numbers .value,.step .index) { font-family:var(--sans); font-style:normal; }
+body.dr-brand.reference-companion.storyboard-page :is(.sheethead .wordmark,.covercopy .promise,.idea,.numbers .value) { font-weight:600; }
+body.dr-brand.reference-companion.storyboard-page :is(.chapter b,.shothead .number,.step .index,.openlist li:before) { color:var(--dr-red); }
+body.dr-brand.reference-companion.storyboard-page :is(.covercopy .line,.status:before) { background:var(--dr-red); }
+body.dr-brand.reference-companion.storyboard-page :is(.shot,.ad,.factpanel) { background:var(--dr-paper); border-color:var(--dr-line); border-radius:12px; }
+body.dr-brand.reference-companion.storyboard-page :is(.coverimage .imagecaption,.identityphoto .label,.frame .chip,.phone .timetag) { background:#222222eb; color:#fff; }
+body.dr-brand.reference-companion.storyboard-page .frame .overlay { color:#fff; font-family:var(--sans); font-weight:500; letter-spacing:-.02em; }
+body.dr-brand.reference-companion.storyboard-page .phone { background:var(--dr-ink); color:#fff; }
+body.dr-brand.reference-companion.storyboard-page .phone.end { background:var(--dr-red); }
+body.dr-brand.reference-companion.storyboard-page .phone.end .phonecopy { color:#fff; }
+body.dr-brand.reference-companion.storyboard-page .phone.end .phonecopy .pill { color:#fff; border-color:#fff; border-radius:8px; }
+body.dr-brand.reference-companion.storyboard-page .poster { background:var(--dr-ink); color:#fff; }
+body.dr-brand.reference-companion.storyboard-page .poster.b { background:var(--dr-paper); color:var(--dr-ink); }
+body.dr-brand.reference-companion.storyboard-page .poster.c { background:var(--dr-grey); }
+body.dr-brand.reference-companion.storyboard-page .types span { border-color:var(--dr-line); border-radius:4px; }
+body.dr-brand.reference-companion.storyboard-page .flag { color:var(--dr-muted); background:var(--dr-wash); border-left-color:var(--dr-red); }
+body.dr-brand.reference-companion.storyboard-page .step { border-color:var(--dr-red); }
+body.dr-brand.reference-companion.storyboard-page .productionbox { background:var(--dr-ink); color:#fff; }
+body.dr-brand.reference-companion.storyboard-page .productionbox p { color:#e1e1e1; }
+body.dr-brand.reference-companion.storyboard-page :is(.kicker,.descriptor,.chapter,.tag,.time,.adbody .cta,.numbers .label,.status) { letter-spacing:.02em; }
+body.dr-brand.reference-companion.storyboard-page .toolbar { color:#fff; background:var(--dr-ink); }
+body.dr-brand.reference-companion.storyboard-page .toolbar strong { font-family:var(--sans); font-weight:600; }
+
+@media screen {
+  body.dr-brand.reference-companion :is(.intro,.companion-intro,.hero) h1 { font-size:clamp(40px,5.8vw,76px); line-height:1.1; letter-spacing:-.035em; }
+  body.dr-brand.reference-companion :is(.section-heading,.gallery-heading,.next-step,.about,.story) h2 { font-size:clamp(30px,3.4vw,48px); line-height:1.15; }
+  body.dr-brand.reference-companion :is(.card-text h3,.film-copy h3,.concept-points h3,.panel-title h3) { font-size:clamp(23px,2vw,28px); line-height:1.25; }
+  body.dr-brand.reference-companion :is(.intro,.companion-intro,.hero) { padding-top:64px; padding-bottom:48px; }
+  body.dr-brand.reference-companion .card-text { padding-top:16px; }
+  body.dr-brand.reference-companion .scene-body h4 { font-size:26px; line-height:1.2; }
+  body.dr-brand.reference-companion .voice-block blockquote { font-size:21px; line-height:1.5; }
+  body.dr-brand.reference-companion .script-text { font-size:22px; line-height:1.6; }
+  body.dr-brand.reference-companion.storyboard-page .covercopy h1 { font-size:clamp(48px,6vw,80px); line-height:1.05; font-weight:600; }
+  body.dr-brand.reference-companion.storyboard-page :is(.idea,.covercopy .promise) { font-size:28px; line-height:1.35; }
+  body.dr-brand.reference-companion.storyboard-page :is(.sourcehint,.sheetfoot,.shot .source,.caption,.small) { font-size:13px; line-height:1.6; }
+}
+@media screen and (max-width:700px) {
+  body.dr-brand.reference-companion :is(.companion-header,.interior-header){gap:8px;padding-top:12px;padding-bottom:8px}
+  body.dr-brand.reference-companion :is(.companion-header,.interior-header) nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:0 16px}
+  body.dr-brand.reference-companion :is(.companion-header,.interior-header) nav a{display:flex;align-items:center;min-height:40px;padding:6px 0;font-size:13px}
+  body.dr-brand.reference-companion :is(.intro,.companion-intro,.hero) { padding-top:36px; padding-bottom:32px; }
+  body.dr-brand.reference-companion :is(.intro,.companion-intro,.hero) h1 { font-size:clamp(36px,9vw,48px); letter-spacing:-.025em; }
+  body.dr-brand.reference-companion :is(.section-heading,.gallery-heading,.next-step,.about,.story) h2 { font-size:32px; }
+  body.dr-brand.reference-companion :is(.filter-group,.story-tabs,.apartment-tabs) { gap:8px; }
+  body.dr-brand.reference-companion .filter-group button { padding:10px 14px; }
+  body.dr-brand.reference-companion .story-tabs button { font-size:14px; }
+  body.dr-brand.reference-companion .scene-body h4 { font-size:24px; }
+  body.dr-brand.reference-companion .voice-block blockquote { font-size:20px; }
+  body.dr-brand.reference-companion .room-heading h2 { font-size:26px; }
+  body.dr-brand.reference-companion :is(.scene-kicker,.scene-direction h5,.scene-cta>span,.voice-block .micro-label,.micro-label) { font-size:12px; letter-spacing:0; }
+  body.dr-brand.reference-companion .scene-kicker { gap:8px; flex-wrap:wrap; }
+  body.dr-brand.reference-companion .hero-copy>p { font-size:18px; }
+  body.dr-brand.reference-companion .next-step { border-radius:0; }
+  body.dr-brand.reference-companion :is(#interior-dialog,#frame-dialog) { border-radius:0; border:0; }
+  body.dr-brand.reference-companion.storyboard-page .sheet { border-radius:8px; }
+  body.dr-brand.reference-companion.storyboard-page .shot .frame .overlay { background:var(--dr-ink); color:#fff; }
+}
+@media (prefers-reduced-motion:reduce) {
+  body.dr-brand.reference-companion :is(.filter-group button,.story-tabs button,.room-card,.image-step,.building-controls button) { transition:none; }
+}
+@media print {
+  body.dr-brand.reference-companion.storyboard-page .sheet { height:auto; min-height:193mm; overflow:visible; border:0; border-radius:0; }
+  body.dr-brand.reference-companion.storyboard-page .sheet :is(.shot,.ad,.factpanel) { break-inside:avoid; }
+  body.dr-brand.reference-companion :is(.hero,.context-section,.next-step) { background:#fff; color:#222; }
+  body.dr-brand.reference-companion :is(.hero,.context-section,.next-step) :is(h1,h2,h3,p,em,.eyebrow) { color:#222; }
+}

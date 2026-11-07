@@ -134,7 +134,7 @@
   }));
   const renderGallery = () => {
     const item = galleryItems[galleryIndex];
-    $('#gallery-image').src = item.src; $('#gallery-image').alt = item.alt;
+    $('#gallery-image').src = item.fullResolution || item.src; $('#gallery-image').alt = item.alt;
     $('#gallery-caption').innerHTML = `${escape(item.caption)}${item.fullResolution ? `<br><a class="text-link" href="${escape(item.fullResolution)}" download>Stáhnout původní obrázek ${icon('download')}</a>` : ''}`;
   };
   $$('[data-gallery]').forEach(button => button.addEventListener('click', () => { galleryItems = button.dataset.gallery === 'architecture' ? architecture : interiorSequences[activeInterior]; galleryIndex = Number(button.dataset.index || 0); renderGallery(); openDialog($('#gallery-dialog')); }));

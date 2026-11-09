@@ -33,9 +33,11 @@
   const portrait = () => innerWidth <= 700 && innerHeight > innerWidth;
   function setLoading(on) { video.setAttribute('aria-busy', String(on)); if (loadingStatus) loadingStatus.hidden = !on; }
   function setPoster(key) {
-    const data = config.posters[key];
-    if (!data || posterKey === key) return;
-    posterKey = key; const serial = ++posterSerial; poster.dataset.key = key;
+    const useSupplied = slideshow() && config.stillPosters;
+    const data = (useSupplied ? config.stillPosters[key] : config.posters[key]) || config.posters[key];
+    const cacheKey = key + (useSupplied ? ':supplied' : ':film');
+    if (!data || posterKey === cacheKey) return;
+    posterKey = cacheKey; const serial = ++posterSerial; poster.dataset.key = key;
     const width = data.width || 1920, width2x = data.width2x || width * 2;
     const source = (selector, value) => { const node = picture.querySelector(selector); if (node) { if (value) node.srcset = value; else node.removeAttribute('srcset'); } };
     source('.journey-poster-mobile-avif', data.avifMobileSrc);
@@ -64,6 +66,7 @@
     motionButton.setAttribute('aria-pressed', String(!paused));
     motionButton.setAttribute('aria-label', paused ? 'Spustit automatickou prohlídku' : 'Pozastavit automatickou prohlídku');
     motionButton.querySelector('span').textContent = paused ? 'Spustit' : 'Pozastavit';
+    if (currentChapter >= 0) setPoster(chapters[currentChapter].poster);
   }
   function stopStill() {
     if (!stillTimer) return;

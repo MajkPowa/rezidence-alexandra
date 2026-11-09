@@ -1,0 +1,586 @@
+{
+  "version": "supplier-original-motion-20261109",
+  "fps": 24,
+  "frames": 1039,
+  "duration": 43.291666666666664,
+  "native4K": false,
+  "exteriorSourceNativeResolution": [
+    1672,
+    941
+  ],
+  "interiorFramesUnchanged": 895,
+  "openingFrames": 144,
+  "variants": {
+    "1080": {
+      "src": "assets/hero-original-motion-20261109/tour-1080.mp4",
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "fps": 24,
+      "frames": 1039,
+      "duration": 43.291667,
+      "bytes": 33840932,
+      "sha256": "49d2a60c46248ba8a8009e0c06f2483a21f7639fa212a0fb52f4736118e662dd",
+      "maximumKeyframeGapSeconds": 1.0,
+      "keyframeCount": 49,
+      "keyframeAuditMethod": "container packet K flags",
+      "fullyDecoded": true,
+      "interiorDecodedFramesUnchanged": true,
+      "interiorFramesChecked": 895,
+      "originalInteriorStartFrame": 338,
+      "newInteriorStartFrame": 144
+    },
+    "mobile": {
+      "src": "assets/hero-original-motion-20261109/tour-mobile-1080.mp4",
+      "width": 1080,
+      "height": 1920,
+      "codec": "h264",
+      "fps": 24,
+      "frames": 1039,
+      "duration": 43.291667,
+      "bytes": 22370204,
+      "sha256": "b938b9f185675f5a1cc1e80d1b058e3f2cdb53c4ebddd36e21a13684e2bef250",
+      "maximumKeyframeGapSeconds": 1.0,
+      "keyframeCount": 49,
+      "keyframeAuditMethod": "container packet K flags",
+      "fullyDecoded": true,
+      "interiorDecodedFramesUnchanged": true,
+      "interiorFramesChecked": 895,
+      "originalInteriorStartFrame": 338,
+      "newInteriorStartFrame": 144
+    },
+    "1440": {
+      "src": "assets/hero-original-motion-20261109/tour-1440.webm",
+      "width": 2560,
+      "height": 1440,
+      "codec": "vp9",
+      "fps": 24,
+      "frames": 1039,
+      "duration": 43.291,
+      "bytes": 25098516,
+      "sha256": "c546ccc61c8a9b0787a54b6c058d0ffacf48db19ef094304d22f2109572fe08b",
+      "maximumKeyframeGapSeconds": 1.0,
+      "keyframeCount": 49,
+      "keyframeAuditMethod": "container packet K flags",
+      "fullyDecoded": true,
+      "interiorDecodedFramesUnchanged": true,
+      "interiorFramesChecked": 895,
+      "originalInteriorStartFrame": 338,
+      "newInteriorStartFrame": 144
+    },
+    "2160": {
+      "src": "assets/hero-original-motion-20261109/tour-2160.webm",
+      "width": 3840,
+      "height": 2160,
+      "codec": "vp9",
+      "fps": 24,
+      "frames": 1039,
+      "duration": 43.291,
+      "bytes": 39708907,
+      "sha256": "e7fae7a6b8817e65622087421bb0c9c5ab22c38190d86dcc8d05e10f5b0f2a61",
+      "maximumKeyframeGapSeconds": 1.0,
+      "keyframeCount": 49,
+      "keyframeAuditMethod": "container packet K flags",
+      "fullyDecoded": true,
+      "interiorDecodedFramesUnchanged": true,
+      "interiorFramesChecked": 895,
+      "originalInteriorStartFrame": 338,
+      "newInteriorStartFrame": 144
+    }
+  },
+  "posters": {
+    "exterior": {
+      "finalFrame": 0,
+      "time": 0.0,
+      "extractedFromFinalVideo": true,
+      "files": [
+        {
+          "src": "assets/hero-original-motion-20261109/poster-exterior-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 495366,
+          "sha256": "b263cd3219999fb865909cc28920005be85a30efd6834bf7619b196ecaecdcb8",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-exterior-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 417428,
+          "sha256": "e6c29822b9f59850f187ed227249471c60acc0bebb97102eeca1775fe467ed2c",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-exterior-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 1029316,
+          "sha256": "532fa8b0d58e4e7edd4f42ec044fe8afe32592a947b6de57ad2b9b35fdcaa823",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-exterior-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 719175,
+          "sha256": "61dda1c1ea8fbeb8ec65a501300a3bdb2dedb545e4eeec0a6f1d0a3d395c1046",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-exterior-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 229470,
+          "sha256": "82b3036c01525675aecef879f4e0425639e9442e62627bbfa1d6c88b123b7212",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-exterior-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 171579,
+          "sha256": "01af35c8d08cffbb5faaa7c0e86eac8d1a502e52653467f0a9206fe8d2b67f4b",
+          "type": "avif"
+        }
+      ]
+    },
+    "hall": {
+      "finalFrame": 145,
+      "time": 6.041666666666667,
+      "extractedFromFinalVideo": true,
+      "files": [
+        {
+          "src": "assets/hero-original-motion-20261109/poster-hall-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 70808,
+          "sha256": "6774464fa65d86aa568191e4ea00368cff75b25bfcd541ff28e1ee0e814a6d46",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-hall-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 47916,
+          "sha256": "e82b5fcbb5adea0c1b60c62636fe32c97f007a4c16e1dd0209e8c99b68cca34f",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-hall-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 163370,
+          "sha256": "de0ca08414322ab9b3c332398bf1e8e6c24b3436ba8f0d15b742aee2033406a7",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-hall-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 100827,
+          "sha256": "ff0e2a9aa7a3d31b11a1a373da374087030b8ffd4c375f86de48f979729999c1",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-hall-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 84380,
+          "sha256": "675ac97a29b8e995811ed33a558414c5443bc1a0b062a9262867550065612b86",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-hall-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 54828,
+          "sha256": "74860a2d0ef146db974850bb05d4c83a74083214c272d4acf670e28c463a9e95",
+          "type": "avif"
+        }
+      ]
+    },
+    "living": {
+      "finalFrame": 385,
+      "time": 16.041666666666668,
+      "extractedFromFinalVideo": true,
+      "files": [
+        {
+          "src": "assets/hero-original-motion-20261109/poster-living-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 212320,
+          "sha256": "85e5637f4f55578338acff9414b71dab611e74c71ad54fbadfdcec988dc176cf",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-living-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 166326,
+          "sha256": "7a4750a4a3be3234d0d90abf915e8676f21f9b4f55b31f7c78b01b30e5506ab4",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-living-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 469108,
+          "sha256": "e8f2c7e48b2b25d2d39da301d1f23ecdf0f07063ddb04d7849b87e6dca97c49b",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-living-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 332295,
+          "sha256": "852625c9f69fdc04ce350876b7541795546ad4364df57dd5b1f0fdcfdeb68ad3",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-living-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 158498,
+          "sha256": "0ae038997fd006aac81558142884d345fc419ae830cffdbdf858aa133cf74941",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-living-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 123964,
+          "sha256": "553901353240510a10612ed036c4b07b9f6e463646572cc702e0f03032f99361",
+          "type": "avif"
+        }
+      ]
+    },
+    "kitchen": {
+      "finalFrame": 506,
+      "time": 21.083333333333332,
+      "extractedFromFinalVideo": true,
+      "files": [
+        {
+          "src": "assets/hero-original-motion-20261109/poster-kitchen-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 141514,
+          "sha256": "8257b78d4bb785a899cf6f351fe9eba805deb6e731a4db49287cdbd8f2b6143f",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-kitchen-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 106761,
+          "sha256": "9f986c75f33a1d6e8e7e9c7c373300afa8a86ded62c40fa8fc7d4cacf35ea8ea",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-kitchen-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 302964,
+          "sha256": "c5cfb63e160777048484541ccafd7aa7d81cbfb01d00536fd27520ac7414da11",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-kitchen-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 215512,
+          "sha256": "f495ae863b53eee7cd591d23d1c6099a3530abea0ed3ddcdb3afb1fe23b9e05e",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-kitchen-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 108362,
+          "sha256": "01521a823664264bb8acb98e0d6f7845f2be7a34999a9b39d5b0d92ffbe71d39",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-kitchen-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 88156,
+          "sha256": "ef4e0dfc5da0ec76e815a96e8d9e04d634dd6d55d88fe0518f753b703684d26c",
+          "type": "avif"
+        }
+      ]
+    },
+    "bedroom": {
+      "finalFrame": 772,
+      "time": 32.166666666666664,
+      "extractedFromFinalVideo": true,
+      "files": [
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bedroom-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 184272,
+          "sha256": "3d544efc816772f279d9d22be2aef7d05f1c402e63db7c4028234daf53789ab9",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bedroom-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 140920,
+          "sha256": "af735abd596bd03f32463b745267d0cd8278b03fe4525dfde7dd03cd4756e648",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bedroom-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 397308,
+          "sha256": "055d9458a95e0362e5c34d093d7f6df520dd1945026b013093dfe7944bb70571",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bedroom-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 289048,
+          "sha256": "5ce5f64f1b81eb8c6e9402403eaa63f4f50b6909e82c5881599eddbd465200f9",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bedroom-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 140158,
+          "sha256": "c3cce1cd84943bc31c38f2502c3c34423bcc1251b8e92bea95f6e3027825b837",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bedroom-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 114197,
+          "sha256": "4d30d10ac7ff56e2819f102370bb2b9b98699ecb9fe732ca2153e0566059ecf9",
+          "type": "avif"
+        }
+      ]
+    },
+    "bathroom": {
+      "finalFrame": 1003,
+      "time": 41.791666666666664,
+      "extractedFromFinalVideo": true,
+      "files": [
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bathroom-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 186680,
+          "sha256": "caa2d7afec05e56d05096caa231f47699ea059ce6f90e5d7229896e975227804",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bathroom-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 136743,
+          "sha256": "5fa22fb2035de52767b34bdd6662ce1fbfa69e1126b8bc1b2c55ed268d206fcd",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bathroom-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 416686,
+          "sha256": "fcef0ec8f077fdd66c2cf2309bad00624f33dcd9f17c5989a99b05bb2187fad5",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bathroom-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 284230,
+          "sha256": "d9216733073bf3968fc521dfeaae19b33d698468da26af8aa70a7542c2e38e99",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bathroom-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 117496,
+          "sha256": "33d9f388e956e83b1e68d08b872bfc9fa65fb6067456d27fb94d3e1c9b94ff6d",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-bathroom-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 82914,
+          "sha256": "a5ef7b8d815e5b481957337966b4b38e5eb8cf1b5c0321027bf288eef53fe52c",
+          "type": "avif"
+        }
+      ]
+    },
+    "final": {
+      "finalFrame": 1029,
+      "time": 42.875,
+      "extractedFromFinalVideo": true,
+      "files": [
+        {
+          "src": "assets/hero-original-motion-20261109/poster-final-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 192464,
+          "sha256": "559fa2bf580a53ff0af65dd78e2fd6b7e9972fa2f2194142df2c27695c738b6d",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-final-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 140951,
+          "sha256": "173a3907609f83799cee3b25c58b70c0ff6f41040cde3c21faf221e5deb85561",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-final-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 474804,
+          "sha256": "c9d69be3c8b4daed7f0b9ef44858b24cf80a2a8ba82dbd4a3e3f7a298838ea4a",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-final-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "bytes": 334435,
+          "sha256": "6ae5c5510ed7e99fcf11ad836f817561582048462da5c5ff8309d758c0a1a283",
+          "type": "avif"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-final-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 117832,
+          "sha256": "69e9e23195648000af67b8e067da1cf0fa124ad012f8fcda34074dfec954dced",
+          "type": "webp"
+        },
+        {
+          "src": "assets/hero-original-motion-20261109/poster-final-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 82955,
+          "sha256": "5ab6b37ffe3c4b80c916a85a33b8b72cfe27782b7501ab2d661b21c8076103d1",
+          "type": "avif"
+        }
+      ]
+    }
+  },
+  "segments": [
+    {
+      "id": "original-exterior",
+      "startFrame": 0,
+      "endFrameExclusive": 144,
+      "frames": 144,
+      "sourceKind": "supplier-original raster",
+      "sourceSHA256": "bd8dd85f8c252bfb36aae62ef01bdc3ac31d08c782f6ec4cbe58883d94f94e7c",
+      "sourceResolution": [
+        1672,
+        941
+      ],
+      "maximumZoom": 1.055,
+      "ease": "cosine",
+      "duration": 6,
+      "description": "Deterministic photographic camera movement only. No generated geometry, no perspective synthesis, no facade replacement."
+    },
+    {
+      "id": "03-hall-living",
+      "startFrame": 144,
+      "endFrameExclusive": 386,
+      "frames": 242,
+      "sourceKind": "previously reviewed animated interior; encoded video packets copied without re-encoding",
+      "originalFilmStartFrame": 338,
+      "originalFilmEndFrameExclusive": 580,
+      "playbackDirection": "reverse",
+      "editorial": "Reverse the validated native living→kitchen→hall sequence to enter the living area via its actual doorway and kitchen aisle. No generated failed doorway transitions are used.",
+      "entryCut": null,
+      "sourceSha256": "73a5dd7fe5569f35857a50776a93574cb6011d6ccd09167d02127f9b8d66efbf"
+    },
+    {
+      "id": "04-living-kitchen",
+      "startFrame": 386,
+      "endFrameExclusive": 507,
+      "frames": 121,
+      "sourceKind": "previously reviewed animated interior; encoded video packets copied without re-encoding",
+      "originalFilmStartFrame": 580,
+      "originalFilmEndFrameExclusive": 701,
+      "playbackDirection": "forward",
+      "editorial": null,
+      "entryCut": null,
+      "sourceSha256": "712cd4b60294202eaf60e968892208d66e544d79f17683a1ab3f23261bac5df4"
+    },
+    {
+      "id": "05-kitchen-hall",
+      "startFrame": 507,
+      "endFrameExclusive": 628,
+      "frames": 121,
+      "sourceKind": "previously reviewed animated interior; encoded video packets copied without re-encoding",
+      "originalFilmStartFrame": 701,
+      "originalFilmEndFrameExclusive": 822,
+      "playbackDirection": "forward",
+      "editorial": null,
+      "entryCut": null,
+      "sourceSha256": "f4b8bc5cc9e4d97d85187579161eedaecf85f1868a84aeae5d57d7f70d7801f5"
+    },
+    {
+      "id": "06-hall-bedroom",
+      "startFrame": 628,
+      "endFrameExclusive": 773,
+      "frames": 145,
+      "sourceKind": "previously reviewed animated interior; encoded video packets copied without re-encoding",
+      "originalFilmStartFrame": 822,
+      "originalFilmEndFrameExclusive": 967,
+      "playbackDirection": "reverse",
+      "editorial": "Reverse the new verified bedroom-to-hall camera shot. Original generated clip06 rejected for using storage doorway. No original MP4 is overwritten.",
+      "entryCut": null,
+      "sourceSha256": "64df6e2cc74b6423bf72ddc36981f12afd2cdaba0aeef2279ca4a5e572e0858c"
+    },
+    {
+      "id": "07-bedroom-hall",
+      "startFrame": 773,
+      "endFrameExclusive": 918,
+      "frames": 145,
+      "sourceKind": "previously reviewed animated interior; encoded video packets copied without re-encoding",
+      "originalFilmStartFrame": 967,
+      "originalFilmEndFrameExclusive": 1112,
+      "playbackDirection": "forward",
+      "editorial": null,
+      "entryCut": null,
+      "sourceSha256": "64df6e2cc74b6423bf72ddc36981f12afd2cdaba0aeef2279ca4a5e572e0858c"
+    },
+    {
+      "id": "08-hall-bathroom",
+      "startFrame": 918,
+      "endFrameExclusive": 1039,
+      "frames": 121,
+      "sourceKind": "previously reviewed animated interior; encoded video packets copied without re-encoding",
+      "originalFilmStartFrame": 1112,
+      "originalFilmEndFrameExclusive": 1233,
+      "playbackDirection": "forward",
+      "editorial": "A clear editorial cut introduces the bathroom doorway, then actual newly generated camera movement enters the bathroom. Final48frames are a2second closing hold cloned from its last actual video frame, not additional generated camera footage.",
+      "entryCut": {
+        "from": "hall",
+        "to": "bathroom-door",
+        "type": "direct-editorial-cut",
+        "reason": "Deliberate change of camera shot from hall to the actual white bathroom doorway; no continuous hall-to-door camera path is claimed."
+      },
+      "sourceSha256": "b320aa156c86a690ff439f78cc73bad1c9231f5f2d6e13ee96ded0885c7c0d8e"
+    }
+  ],
+  "editorialDisclosure": "The six-second opening moves within the supplied original exterior image. A direct editorial cut enters the reviewed apartment hallway. The hall-to-bathroom-door cut and final two-second bathroom hold are preserved. This is an edited animated showcase, not one unbroken physical camera path.",
+  "excludedOldFilmFrames": [
+    0,
+    338
+  ],
+  "noNewGenerativeJobs": true,
+  "productionCopied": false
+}

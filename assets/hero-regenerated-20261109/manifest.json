@@ -1,0 +1,999 @@
+{
+  "version": "2026-11-09-new-frames",
+  "fps": 24,
+  "frames": 1233,
+  "duration": 51.375,
+  "allFootageNew": true,
+  "oldInteriorFootageUsed": false,
+  "roomCrossfades": false,
+  "uniqueNewSourceClips": 6,
+  "closingHoldSeconds": 2.0,
+  "variants": {
+    "1080": {
+      "src": "assets/hero-regenerated-20261109/tour-1080.mp4",
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "fps": 24,
+      "frames": 1233,
+      "duration": 51.375,
+      "bytes": 40773649,
+      "sha256": "5171b797a044f35bae637fd2b773dfc2cf61afdfe4a65ad24597ada6ce0d004a",
+      "maximumKeyframeGapSeconds": 1.0,
+      "fullyDecoded": true,
+      "keyframeCount": 59,
+      "keyframeAuditMethod": "container packet K flags"
+    },
+    "mobile": {
+      "src": "assets/hero-regenerated-20261109/tour-mobile-1080.mp4",
+      "width": 1080,
+      "height": 1920,
+      "codec": "h264",
+      "fps": 24,
+      "frames": 1233,
+      "duration": 51.375,
+      "bytes": 28009739,
+      "sha256": "fcfac1a668ca7310e1a1cb1459cabff80b22a2a2f08eafcd281a401a49c7a1f2",
+      "maximumKeyframeGapSeconds": 1.0,
+      "fullyDecoded": true,
+      "keyframeCount": 59,
+      "keyframeAuditMethod": "container packet K flags"
+    },
+    "1440": {
+      "src": "assets/hero-regenerated-20261109/tour-1440.webm",
+      "width": 2560,
+      "height": 1440,
+      "codec": "vp9",
+      "fps": 24,
+      "frames": 1233,
+      "duration": 51.374,
+      "bytes": 31529465,
+      "sha256": "64fedabcf45b89919ec14b4c4041bb99e65ed70d1b599f85603a63b6fe569153",
+      "maximumKeyframeGapSeconds": 1.0,
+      "fullyDecoded": true,
+      "keyframeCount": 59,
+      "keyframeAuditMethod": "container packet K flags"
+    },
+    "2160": {
+      "src": "assets/hero-regenerated-20261109/tour-2160.webm",
+      "width": 3840,
+      "height": 2160,
+      "codec": "vp9",
+      "fps": 24,
+      "frames": 1233,
+      "duration": 51.374,
+      "bytes": 51023066,
+      "sha256": "7eb09fe7ad50cfcb2f22fcfe0b270c6277981cf1ca0ba359785ecf0f5e8a60d2",
+      "maximumKeyframeGapSeconds": 1.0,
+      "fullyDecoded": true,
+      "keyframeCount": 59,
+      "keyframeAuditMethod": "container packet K flags"
+    }
+  },
+  "posters": {
+    "exterior": {
+      "fromNewClip": "01-exterior-entrance",
+      "sourceFrame": 0,
+      "playbackFrame": 0,
+      "playbackDirection": "forward",
+      "files": [
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-768.webp",
+          "width": 768,
+          "height": 432,
+          "type": "webp",
+          "bytes": 94094,
+          "sha256": "ca400c7e213c4c2f9667cfb058131a9d3989c97d94235c1918f63c3ead139f27"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-768.avif",
+          "width": 768,
+          "height": 432,
+          "type": "avif",
+          "bytes": 84319,
+          "sha256": "e5f2da32cf0c7f731f99ed0b281c16d36511abc54b475fa50c599acc25359d3b"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-1280.webp",
+          "width": 1280,
+          "height": 720,
+          "type": "webp",
+          "bytes": 215358,
+          "sha256": "bd2bc595c3b62fcdad5e38f83d3d10ea22f91efb071896cda759e062c17e170a"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-1280.avif",
+          "width": 1280,
+          "height": 720,
+          "type": "avif",
+          "bytes": 188944,
+          "sha256": "79f0839d101920091fb47656f2a5aba09a321f0fd23155ba1f8085f438c7af18"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "type": "webp",
+          "bytes": 364094,
+          "sha256": "0337e621e8419dd4da8a84e48ad8e3dd42c9b7994695decef15079a29f010177"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "type": "avif",
+          "bytes": 309438,
+          "sha256": "f1656d1e774ea60ff04d696d7b4215ab5a85b5719053bb74073023fecd24983b"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "type": "webp",
+          "bytes": 791548,
+          "sha256": "9cee7427da67fd5698a6bff15e0e52468167954cb0240f08529e58670d5c99bb"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "type": "avif",
+          "bytes": 605826,
+          "sha256": "912af90bfe12c9d894415b8215f2a10f80d12b61104fa0bf80a12b5e7e64f80b"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "type": "webp",
+          "bytes": 183526,
+          "sha256": "d9e289327ba1a005bc9b77f6f358d46d0eebf394da9c10782dae88019500245f"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-exterior-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "type": "avif",
+          "bytes": 136385,
+          "sha256": "ecd4eeadd5a6d7524479966e600b5f7c66d8e3b420a1126f91268e3c97223e29"
+        }
+      ]
+    },
+    "entrance": {
+      "fromNewClip": "01-exterior-entrance",
+      "sourceFrame": 192,
+      "playbackFrame": 192,
+      "playbackDirection": "forward",
+      "files": [
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-768.webp",
+          "width": 768,
+          "height": 432,
+          "type": "webp",
+          "bytes": 65302,
+          "sha256": "3f698cae327a8f8c7408f654c4676e00d28333462302ee01879ef20f72da034a"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-768.avif",
+          "width": 768,
+          "height": 432,
+          "type": "avif",
+          "bytes": 53625,
+          "sha256": "faecdd84e48cb72a90b1cd2a94d15aa1e81c87319995c96d4a1b0480248a5b71"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-1280.webp",
+          "width": 1280,
+          "height": 720,
+          "type": "webp",
+          "bytes": 144726,
+          "sha256": "d7f41c75a072e22f367c847f18164d1c789acadd2fc58402deba60694f1a2b7a"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-1280.avif",
+          "width": 1280,
+          "height": 720,
+          "type": "avif",
+          "bytes": 120767,
+          "sha256": "a0a16580983b2f153b7f3e7ad0533445eed92d912f5e8490c576f385f152ba7b"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "type": "webp",
+          "bytes": 262716,
+          "sha256": "be88fadaaed1bfb35993abf2f4c12128fcf97f689b18c21c7dfc7d70544a846b"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "type": "avif",
+          "bytes": 211708,
+          "sha256": "adf0a0e6e6c4d676bc9f3df2f6bf0214a969c4695c18e99884081e2bebaf356d"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "type": "webp",
+          "bytes": 722660,
+          "sha256": "5fb1a0d1f5b8585c2d37070587d76fbe69e57e2d15399757d897d6a7ebcfea07"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "type": "avif",
+          "bytes": 648645,
+          "sha256": "22dc5d1e32ea778fd290f3ba3b78043256e09f16119c7f9d70195b7586c4943b"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "type": "webp",
+          "bytes": 210000,
+          "sha256": "1e698dc899bc77d62b1c7e2565fff33ed549ae1915cc34ac36f5f6f7f5232390"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-entrance-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "type": "avif",
+          "bytes": 182223,
+          "sha256": "36ba9d1214d3328e80304a6635936d6afafcaf9feb0d2cc7a21abe3c5bbeeaa0"
+        }
+      ]
+    },
+    "hall": {
+      "fromNewClip": "02-entrance-hall",
+      "sourceFrame": 144,
+      "playbackFrame": 144,
+      "playbackDirection": "forward",
+      "files": [
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-768.webp",
+          "width": 768,
+          "height": 432,
+          "type": "webp",
+          "bytes": 18304,
+          "sha256": "a13912f79a7e36a3191bfef8438b95643c3eacbcffb56e28a5dde32f25baba40"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-768.avif",
+          "width": 768,
+          "height": 432,
+          "type": "avif",
+          "bytes": 13465,
+          "sha256": "105f2e6f05d2f74b521e48dcaee6b961626c3d41d36dd413b5a7c029bd4b773a"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-1280.webp",
+          "width": 1280,
+          "height": 720,
+          "type": "webp",
+          "bytes": 42534,
+          "sha256": "439a6b980ec29ad07c92f589a4cc61876e67344d6ed98124f2c2b56a9d6657df"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-1280.avif",
+          "width": 1280,
+          "height": 720,
+          "type": "avif",
+          "bytes": 29687,
+          "sha256": "870bf77fa43089c85b757fc564c8fc5f8cddf59c34490a97b757dce71e159d37"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "type": "webp",
+          "bytes": 78284,
+          "sha256": "7e6338f71323fba621a6e64a845b1b2352621a85b060a87af7405097c4f2f9e3"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "type": "avif",
+          "bytes": 51115,
+          "sha256": "1d0c4dc442437b83f157ee3d7f2623e8bee0cd896ca47b1b25fb20e89d55218a"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "type": "webp",
+          "bytes": 188266,
+          "sha256": "be88c4652d0d371156e1e1d43963235117d01e99402eab4ec89ea82a76064b5b"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "type": "avif",
+          "bytes": 114255,
+          "sha256": "cea488616fc84ee96f1a672584d81eda9ffd3adce10f29263f456a68e77aacf2"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "type": "webp",
+          "bytes": 88630,
+          "sha256": "58b2e8468f0467d6bc6023bc19301d55549f3709c503209364173056dfd949c1"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-hall-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "type": "avif",
+          "bytes": 58238,
+          "sha256": "c0908f65d81af1ad746580c34b0354710be32801b7d692f6ca9dbf37a56837a6"
+        }
+      ]
+    },
+    "living": {
+      "fromNewClip": "03-hall-living",
+      "sourceFrame": 0,
+      "playbackFrame": 241,
+      "playbackDirection": "reverse",
+      "files": [
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-768.webp",
+          "width": 768,
+          "height": 432,
+          "type": "webp",
+          "bytes": 50126,
+          "sha256": "83a504b62e3f0be02b80e954bac135570f660fdf86d08cc2a5d5c9d2557807b1"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-768.avif",
+          "width": 768,
+          "height": 432,
+          "type": "avif",
+          "bytes": 42208,
+          "sha256": "75312cc81b7933732a3751f5aaf90af4951f066073ba37592e4a84dc6d05970a"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-1280.webp",
+          "width": 1280,
+          "height": 720,
+          "type": "webp",
+          "bytes": 122612,
+          "sha256": "fc701326e39729d3c4e1f87d505560a0282859936b8fdad4608d878b7c47374d"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-1280.avif",
+          "width": 1280,
+          "height": 720,
+          "type": "avif",
+          "bytes": 99423,
+          "sha256": "4b5d36427e45dc6a7a74f47f78a1c2167f4e877cf0ad18e13f2ae9c32668f332"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "type": "webp",
+          "bytes": 230532,
+          "sha256": "e2ed72fbb51ff76c956472b691a9375fc4d0a1d74bb81970130a8a3552086d28"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "type": "avif",
+          "bytes": 180724,
+          "sha256": "c211864359ed4afae2373e7b457aa0a17f74197da0d69b15ff111e21038c58f7"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "type": "webp",
+          "bytes": 536778,
+          "sha256": "3b0d8d114693b38c41cfcec430f15708b75632b2208e7230bf7bbe05759da16d"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "type": "avif",
+          "bytes": 391391,
+          "sha256": "3bfe54a6e9dc7b5b2014b88a77cfc010c37abd60b4b67f20a8b5d767130e7aab"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "type": "webp",
+          "bytes": 167614,
+          "sha256": "febe5374f0318bc88d85ad2b640258c5fc431ed96851e7e74e077739a4db98fb"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-living-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "type": "avif",
+          "bytes": 124822,
+          "sha256": "fac0783737f2a2adc48265e726018f5484475b518888613ecbbc72e63ce58045"
+        }
+      ]
+    },
+    "kitchen": {
+      "fromNewClip": "04-living-kitchen",
+      "sourceFrame": 120,
+      "playbackFrame": 120,
+      "playbackDirection": "forward",
+      "files": [
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-768.webp",
+          "width": 768,
+          "height": 432,
+          "type": "webp",
+          "bytes": 37900,
+          "sha256": "d9ab408de92a3dfe1395a43e1798a77a9b4cfc692f73a0d2482d131b758e68aa"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-768.avif",
+          "width": 768,
+          "height": 432,
+          "type": "avif",
+          "bytes": 30268,
+          "sha256": "db2b646e7965465e74bf1c4b593306493a21059dd2e563bab4ebac994f04c12a"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-1280.webp",
+          "width": 1280,
+          "height": 720,
+          "type": "webp",
+          "bytes": 81386,
+          "sha256": "feb33ddf848d9cd4b1657bcd765174fbd6d34c7d055797f647f03e4379893218"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-1280.avif",
+          "width": 1280,
+          "height": 720,
+          "type": "avif",
+          "bytes": 64778,
+          "sha256": "c31f7bbc6f9a31758854680a97a8288fd3e1d7884bbe725b7db51eb15c618306"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "type": "webp",
+          "bytes": 148288,
+          "sha256": "b88874fcb3c3f9607a3a46267158cc81bc98a8c5829125d7a092480269ab83b9"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "type": "avif",
+          "bytes": 110751,
+          "sha256": "96b042be28e6046b687779a88c838c17bd6a5e13178ef919f2e14fd12e7aa9b2"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "type": "webp",
+          "bytes": 347360,
+          "sha256": "48f7f24114adfdb7f1ec2c208b058fe44bb46c13a601a2ead7e302ae605c91de"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "type": "avif",
+          "bytes": 256760,
+          "sha256": "3d160009429abe8b01edd98131045b701a91b207d5465d5fcf62ef51ab689d8c"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "type": "webp",
+          "bytes": 123296,
+          "sha256": "d90c8b01fc64d2583045e04cf02d642a92b7082cfff974b7d692d87c7cd2e151"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-kitchen-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "type": "avif",
+          "bytes": 95625,
+          "sha256": "094cf290022e9fb6835294f807b98f1e32b1e2dc29da673d0a7f5a1ea2912adc"
+        }
+      ]
+    },
+    "bedroom": {
+      "fromNewClip": "06-hall-bedroom",
+      "sourceFrame": 0,
+      "playbackFrame": 144,
+      "playbackDirection": "reverse",
+      "files": [
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-768.webp",
+          "width": 768,
+          "height": 432,
+          "type": "webp",
+          "bytes": 46176,
+          "sha256": "86645f9421978605fcd94ba5c6852c20db4c2adcd10d24e48dbe4763a089aca8"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-768.avif",
+          "width": 768,
+          "height": 432,
+          "type": "avif",
+          "bytes": 36961,
+          "sha256": "cdf1edfbb9d339403d92a29b305eb7daa96b38f836f6fa5a1b8ab285edc6dd6c"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-1280.webp",
+          "width": 1280,
+          "height": 720,
+          "type": "webp",
+          "bytes": 107406,
+          "sha256": "df96d058eddab0051ecce77484d72e26e45e445d37bc3ce078a25f89b2de80e1"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-1280.avif",
+          "width": 1280,
+          "height": 720,
+          "type": "avif",
+          "bytes": 84566,
+          "sha256": "e5b00322b95a1d7f295e2769c1874f2be9c6b4f378bbb57ae3908f8e8885eded"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "type": "webp",
+          "bytes": 195964,
+          "sha256": "97134a65dd2c73395745bc260293803edfa6f02367a62237c26cc91854f85ae5"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "type": "avif",
+          "bytes": 148284,
+          "sha256": "036bb92ddc0757f5a59e1a11dfe7a6f9cfb67a48ae9629268bffcf76eb43aa7f"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "type": "webp",
+          "bytes": 464602,
+          "sha256": "a23670dfaa5620f85d340aee599ea8ad2b65ad241a6e36573354d8e4ec128d7e"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "type": "avif",
+          "bytes": 329353,
+          "sha256": "fb439cc7fa81b253fc0e05f46c9ca3d13e0ef4e1768be7993a011378373702ce"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "type": "webp",
+          "bytes": 155268,
+          "sha256": "b03e9f409d45ac6205aad15f027e5f6b84ce5d7dcea37bf47a04ebd51e3c7818"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bedroom-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "type": "avif",
+          "bytes": 122483,
+          "sha256": "e5623d28225b177fc34331cfd37d1e10bdf97cd1f882a12abcd4daed0eccb0f5"
+        }
+      ]
+    },
+    "bathroom": {
+      "fromNewClip": "08-hall-bathroom",
+      "sourceFrame": 72,
+      "playbackFrame": 72,
+      "playbackDirection": "forward",
+      "files": [
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-768.webp",
+          "width": 768,
+          "height": 432,
+          "type": "webp",
+          "bytes": 48926,
+          "sha256": "79f95964b5e32692afe297ae48f51f6ad20564fc1c184238d937685faa3b6685"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-768.avif",
+          "width": 768,
+          "height": 432,
+          "type": "avif",
+          "bytes": 39345,
+          "sha256": "8b796927a343672bf544b4cd2bbe102d269392c8ce50c6c31866cd0d1b2d4937"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-1280.webp",
+          "width": 1280,
+          "height": 720,
+          "type": "webp",
+          "bytes": 109114,
+          "sha256": "cac0f42a59478f2aaf847ad543574aa260c74c801b3541ad49122f52b6700bf1"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-1280.avif",
+          "width": 1280,
+          "height": 720,
+          "type": "avif",
+          "bytes": 85876,
+          "sha256": "cd60ba03c3f9c11f8633e7e48ba18257219521c5bae8f34fb09c537c915de4c1"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-1920.webp",
+          "width": 1920,
+          "height": 1080,
+          "type": "webp",
+          "bytes": 196828,
+          "sha256": "d88ed77075e341f5809a901fa93eb6826d9e96bcb0d152601be789c4cb1f1e4d"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-1920.avif",
+          "width": 1920,
+          "height": 1080,
+          "type": "avif",
+          "bytes": 142390,
+          "sha256": "5081055733ad49c751216f676c7e30d773545c721772d602a8b096c9577efe56"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-3840.webp",
+          "width": 3840,
+          "height": 2160,
+          "type": "webp",
+          "bytes": 493128,
+          "sha256": "27445bbe40a6a16f4142556c199630a4097ee0029e0bfc88f55bddd64954b30c"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-3840.avif",
+          "width": 3840,
+          "height": 2160,
+          "type": "avif",
+          "bytes": 338466,
+          "sha256": "59ef8ce2829a28008ee74cb9149d09dd77e7795e7e6a2ee8f067e86fdd283bf0"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-mobile.webp",
+          "width": 1080,
+          "height": 1920,
+          "type": "webp",
+          "bytes": 114070,
+          "sha256": "8de846052b5aabf4b415901ee14e47107eb8aa0733b9a0442ab4f14884b29e6a"
+        },
+        {
+          "src": "assets/hero-regenerated-20261109/poster-bathroom-mobile.avif",
+          "width": 1080,
+          "height": 1920,
+          "type": "avif",
+          "bytes": 81095,
+          "sha256": "e6a40ebd7a1561d0bdb916aba541bec80dcec6d83006aec7aac221f41c4c95be"
+        }
+      ]
+    }
+  },
+  "chapters": [
+    {
+      "id": "home",
+      "label": "Dům",
+      "segment": 0,
+      "position": "start",
+      "poster": "exterior",
+      "seconds": 0.0
+    },
+    {
+      "id": "entry",
+      "label": "Vstup",
+      "segment": 1,
+      "position": "start",
+      "poster": "entrance",
+      "seconds": 8.041667
+    },
+    {
+      "id": "living",
+      "label": "Obývák",
+      "segment": 3,
+      "position": "start",
+      "poster": "living",
+      "seconds": 24.166667
+    },
+    {
+      "id": "kitchen",
+      "label": "Kuchyně",
+      "segment": 4,
+      "position": "start",
+      "poster": "kitchen",
+      "seconds": 29.208333
+    },
+    {
+      "id": "bedroom",
+      "label": "Ložnice",
+      "segment": 6,
+      "position": "start",
+      "poster": "bedroom",
+      "seconds": 40.291667
+    },
+    {
+      "id": "bathroom",
+      "label": "Koupelna",
+      "segment": 7,
+      "position": "last",
+      "poster": "bathroom",
+      "seconds": 51.333333
+    },
+    {
+      "id": "apartments",
+      "label": "Byty",
+      "position": "end",
+      "action": "#byty",
+      "seconds": 51.375
+    }
+  ],
+  "chaptersRequireFinalPlaybackReview": true,
+  "segments": [
+    {
+      "id": "01-exterior-entrance",
+      "from": "exterior",
+      "to": "entrance",
+      "outputFrames": 193,
+      "startFrame": 0,
+      "endFrameExclusive": 193,
+      "startSeconds": 0.0,
+      "endSeconds": 8.041666666666666,
+      "sourceSha256": "9a5f42dd19489d0b886264eab8b33b016214a5a2bc202f58a4d74c47089f4eb9",
+      "trimStartFrames": 0,
+      "trimEndFrames": 0,
+      "mobileCenterStart": 0.42,
+      "mobileCenterEnd": 0.5,
+      "playbackDirection": "forward",
+      "sourceComponents": [],
+      "nativeMotionFrames": 193,
+      "nativeMotionEndSeconds": 8.041666666666666,
+      "closingHoldFrames": 0
+    },
+    {
+      "id": "02-entrance-hall",
+      "from": "entrance",
+      "to": "hall",
+      "outputFrames": 145,
+      "startFrame": 193,
+      "endFrameExclusive": 338,
+      "startSeconds": 8.041666666666666,
+      "endSeconds": 14.083333333333334,
+      "sourceSha256": "cad289150d272913e5e8fdc2987243487e358698079736786ef2ee7ca03714c1",
+      "trimStartFrames": 0,
+      "trimEndFrames": 0,
+      "mobileCenterStart": 0.5,
+      "mobileCenterEnd": 0.5,
+      "editorial": "Concealed doorway match cut between main building entrance and upstairs apartment; not a literal direct connection.",
+      "playbackDirection": "forward",
+      "sourceComponents": [],
+      "nativeMotionFrames": 145,
+      "nativeMotionEndSeconds": 14.083333333333334,
+      "closingHoldFrames": 0
+    },
+    {
+      "id": "03-hall-living",
+      "from": "hall",
+      "to": "living",
+      "outputFrames": 242,
+      "startFrame": 338,
+      "endFrameExclusive": 580,
+      "startSeconds": 14.083333333333334,
+      "endSeconds": 24.166666666666668,
+      "sourceSha256": "73a5dd7fe5569f35857a50776a93574cb6011d6ccd09167d02127f9b8d66efbf",
+      "trimStartFrames": 0,
+      "trimEndFrames": 0,
+      "mobileCenterStart": 0.5,
+      "mobileCenterEnd": 0.5,
+      "editorial": "Reverse the validated native living→kitchen→hall sequence to enter the living area via its actual doorway and kitchen aisle. No generated failed doorway transitions are used.",
+      "playbackDirection": "reverse",
+      "reverseOf": "04-living-kitchen + 05-kitchen-hall",
+      "supersedes": "All directly generated03 doorway transitions rejected during spatial QA",
+      "sourceComponents": [
+        {
+          "sourceClip": "04-living-kitchen",
+          "from": "living",
+          "to": "kitchen",
+          "sourceSha256": "712cd4b60294202eaf60e968892208d66e544d79f17683a1ab3f23261bac5df4",
+          "frames": 121,
+          "seconds": 5.041666666666667,
+          "startFrame": 0,
+          "endFrameExclusive": 121
+        },
+        {
+          "sourceClip": "05-kitchen-hall",
+          "from": "kitchen",
+          "to": "hall",
+          "sourceSha256": "f4b8bc5cc9e4d97d85187579161eedaecf85f1868a84aeae5d57d7f70d7801f5",
+          "frames": 121,
+          "seconds": 5.041666666666667,
+          "startFrame": 121,
+          "endFrameExclusive": 242
+        }
+      ],
+      "nativeMotionFrames": 242,
+      "nativeMotionEndSeconds": 24.166666666666668,
+      "closingHoldFrames": 0
+    },
+    {
+      "id": "04-living-kitchen",
+      "from": "living",
+      "to": "kitchen",
+      "outputFrames": 121,
+      "startFrame": 580,
+      "endFrameExclusive": 701,
+      "startSeconds": 24.166666666666668,
+      "endSeconds": 29.208333333333332,
+      "sourceSha256": "712cd4b60294202eaf60e968892208d66e544d79f17683a1ab3f23261bac5df4",
+      "trimStartFrames": 0,
+      "trimEndFrames": 0,
+      "mobileCenterStart": 0.5,
+      "mobileCenterEnd": 0.5,
+      "playbackDirection": "forward",
+      "sourceComponents": [],
+      "nativeMotionFrames": 121,
+      "nativeMotionEndSeconds": 29.208333333333332,
+      "closingHoldFrames": 0
+    },
+    {
+      "id": "05-kitchen-hall",
+      "from": "kitchen",
+      "to": "hall",
+      "outputFrames": 121,
+      "startFrame": 701,
+      "endFrameExclusive": 822,
+      "startSeconds": 29.208333333333332,
+      "endSeconds": 34.25,
+      "sourceSha256": "f4b8bc5cc9e4d97d85187579161eedaecf85f1868a84aeae5d57d7f70d7801f5",
+      "trimStartFrames": 0,
+      "trimEndFrames": 0,
+      "mobileCenterStart": 0.5,
+      "mobileCenterEnd": 0.5,
+      "playbackDirection": "forward",
+      "sourceComponents": [],
+      "nativeMotionFrames": 121,
+      "nativeMotionEndSeconds": 34.25,
+      "closingHoldFrames": 0
+    },
+    {
+      "id": "06-hall-bedroom",
+      "from": "hall",
+      "to": "bedroom",
+      "outputFrames": 145,
+      "startFrame": 822,
+      "endFrameExclusive": 967,
+      "startSeconds": 34.25,
+      "endSeconds": 40.291666666666664,
+      "sourceSha256": "64df6e2cc74b6423bf72ddc36981f12afd2cdaba0aeef2279ca4a5e572e0858c",
+      "trimStartFrames": 0,
+      "trimEndFrames": 0,
+      "mobileCenterStart": 0.5,
+      "mobileCenterEnd": 0.5,
+      "mobileCenterKeyframes": [
+        [
+          0,
+          0.5
+        ],
+        [
+          0.25,
+          0.5
+        ],
+        [
+          0.38,
+          0.4
+        ],
+        [
+          0.5,
+          0.2
+        ],
+        [
+          0.58,
+          0.5
+        ],
+        [
+          1,
+          0.5
+        ]
+      ],
+      "editorial": "Reverse the new verified bedroom-to-hall camera shot. Original generated clip06 rejected for using storage doorway. No original MP4 is overwritten.",
+      "playbackDirection": "reverse",
+      "reverseOf": "07-bedroom-hall",
+      "sourceComponents": [],
+      "nativeMotionFrames": 145,
+      "nativeMotionEndSeconds": 40.291666666666664,
+      "closingHoldFrames": 0
+    },
+    {
+      "id": "07-bedroom-hall",
+      "from": "bedroom",
+      "to": "hall",
+      "outputFrames": 145,
+      "startFrame": 967,
+      "endFrameExclusive": 1112,
+      "startSeconds": 40.291666666666664,
+      "endSeconds": 46.333333333333336,
+      "sourceSha256": "64df6e2cc74b6423bf72ddc36981f12afd2cdaba0aeef2279ca4a5e572e0858c",
+      "trimStartFrames": 0,
+      "trimEndFrames": 0,
+      "mobileCenterStart": 0.5,
+      "mobileCenterEnd": 0.5,
+      "mobileCenterKeyframes": [
+        [
+          0,
+          0.5
+        ],
+        [
+          0.42,
+          0.5
+        ],
+        [
+          0.5,
+          0.2
+        ],
+        [
+          0.62,
+          0.4
+        ],
+        [
+          0.75,
+          0.5
+        ],
+        [
+          1,
+          0.5
+        ]
+      ],
+      "playbackDirection": "forward",
+      "sourceComponents": [],
+      "nativeMotionFrames": 145,
+      "nativeMotionEndSeconds": 46.333333333333336,
+      "closingHoldFrames": 0
+    },
+    {
+      "id": "08-hall-bathroom",
+      "from": "bathroom-door",
+      "to": "bathroom",
+      "outputFrames": 121,
+      "startFrame": 1112,
+      "endFrameExclusive": 1233,
+      "startSeconds": 46.333333333333336,
+      "endSeconds": 51.375,
+      "sourceSha256": "b320aa156c86a690ff439f78cc73bad1c9231f5f2d6e13ee96ded0885c7c0d8e",
+      "trimStartFrames": 0,
+      "trimEndFrames": 0,
+      "mobileCenterStart": 0.5,
+      "mobileCenterEnd": 0.5,
+      "editorial": "A clear editorial cut introduces the bathroom doorway, then actual newly generated camera movement enters the bathroom. Final48frames are a2second closing hold cloned from its last actual video frame, not additional generated camera footage.",
+      "entryCut": {
+        "from": "hall",
+        "to": "bathroom-door",
+        "type": "direct-editorial-cut",
+        "reason": "Deliberate change of camera shot from hall to the actual white bathroom doorway; no continuous hall-to-door camera path is claimed."
+      },
+      "playbackDirection": "forward",
+      "supersedes": "Original08,first corrected08 and08a rejected for wrong doorway or door morphing",
+      "sourceComponents": [],
+      "nativeMotionFrames": 73,
+      "nativeMotionEndSeconds": 49.375,
+      "closingHoldFrames": 48
+    }
+  ],
+  "editorialDisclosure": "This is an edited architectural showcase, not a physically unbroken camera take. The main entrance to the upstairs apartment uses a concealed doorway match cut. A direct editorial cut changes the hall view to a close-up of the separate white bathroom door before entering. New footage is reversed for selected return routes; the last actual bathroom frame is held for2seconds for the closingCTA."
+}

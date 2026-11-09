@@ -85,12 +85,11 @@
   });
   $('#privacy-open').addEventListener('click', () => openDialog($('#privacy-dialog')));
 
+  const exteriorBase = 'assets/exterior-20261109/';
   const architecture = [
-    { src: 'assets/exterior-no-balconies.webp', caption: 'Levá strana · bez bočních balkonů', alt: 'Architektonická vizualizace levé strany domu bez bočních balkonů' },
-    { src: 'assets/exterior-rear-no-balconies.webp', caption: 'Zadní pohled · bez bočních balkonů', alt: 'Zadní strana domu bez bočních balkonů' },
-    { src: 'assets/exterior-hero.webp', caption: 'Pravý přední pohled', alt: 'Rezidence Alexandra z pravé přední strany' },
-    { src: 'assets/balcony-detail.webp', caption: 'Balkon', alt: 'Detail návrhu balkonů' },
-    { src: 'assets/facade-detail.webp', caption: 'Stínolam', alt: 'Detail návrhu stínolamu a fasády' }
+    { src: exteriorBase+'alexandra-1920.webp', srcset: [768,1280,1920,2560,3840].map(w => `${exteriorBase}alexandra-${w}.webp ${w}w`).join(', '), displaySrc: exteriorBase+'alexandra-3840.webp', downloadSrc: exteriorBase+'alexandra-8k.jpg', downloadLabel: 'Stáhnout vizualizaci (8K)', caption: 'Alexandra · pohled z ulice', alt: 'Vizualizace Rezidence Alexandra bez bočních balkonů v městském prostředí' },
+    { src: exteriorBase+'balconies-1280.webp', srcset: [768,1280,2560].map(w => `${exteriorBase}balconies-${w}.webp ${w}w`).join(', '), displaySrc: exteriorBase+'balconies-2560.webp', caption: 'Balkony a fasáda · detail vizualizace', alt: 'Detail světlé fasády a tmavého zábradlí balkonů Rezidence Alexandra' },
+    { src: exteriorBase+'entrance-1280.webp', srcset: [768,1280,2560].map(w => `${exteriorBase}entrance-${w}.webp ${w}w`).join(', '), displaySrc: exteriorBase+'entrance-2560.webp', caption: 'Vstup do domu · detail vizualizace', alt: 'Detail proskleného vstupu do Rezidence Alexandra' }
   ];
   const interiorSequences = {
     '1': ['01','03','04','02','05','06','07'].map((n,i) => ({ src: `assets/interior-1-${n}.webp`, caption: `1+kk · ${i+1}/7`, alt: `Návrh interiéru bytu 1+kk, pohled ${i+1}` })),
@@ -119,9 +118,12 @@
   }).catch(() => { /* The original project visualizations remain available. */ });
   let galleryItems = architecture;
   let galleryIndex = 0;
+  const galleryScope = $('#gallery-dialog .visual-scope');
+  const interiorScope = galleryScope.innerHTML;
   $$('[data-variant]').forEach(button => button.addEventListener('click', () => {
     $$('[data-variant]').forEach(item => { item.classList.toggle('active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
-    const index = { 'no-balconies': 0, rear: 1 }[button.dataset.variant];
+    const index = { 'no-balconies': 0, balconies: 1, entrance: 2 }[button.dataset.variant];
+    $('#architecture-image').srcset = architecture[index].srcset;
     $('#architecture-image').src = architecture[index].src;
     $('#architecture-image').alt = architecture[index].alt;
     $('#architecture-caption').textContent = architecture[index].caption;
@@ -134,8 +136,13 @@
   }));
   const renderGallery = () => {
     const item = galleryItems[galleryIndex];
-    $('#gallery-image').src = item.fullResolution || item.src; $('#gallery-image').alt = item.alt;
-    $('#gallery-caption').innerHTML = `${escape(item.caption)}${item.fullResolution ? `<br><a class="text-link" href="${escape(item.fullResolution)}" download>Stáhnout původní obrázek ${icon('download')}</a>` : ''}`;
+    galleryScope.innerHTML = galleryItems === architecture
+      ? 'Vizualizace projektu. Rozhodující je projektová a smluvní dokumentace.'
+      : interiorScope;
+    $('#gallery-image').removeAttribute('srcset');
+    $('#gallery-image').src = item.displaySrc || item.fullResolution || item.src; $('#gallery-image').alt = item.alt;
+    const download = item.downloadSrc || item.fullResolution;
+    $('#gallery-caption').innerHTML = `${escape(item.caption)}${download ? `<br><a class="text-link" href="${escape(download)}" download>${escape(item.downloadLabel || 'Stáhnout původní obrázek')} ${icon('download')}</a>` : ''}`;
   };
   $$('[data-gallery]').forEach(button => button.addEventListener('click', () => { galleryItems = button.dataset.gallery === 'architecture' ? architecture : interiorSequences[activeInterior]; galleryIndex = Number(button.dataset.index || 0); renderGallery(); openDialog($('#gallery-dialog')); }));
   const stepGallery = step => { galleryIndex = (galleryIndex + step + galleryItems.length) % galleryItems.length; renderGallery(); };

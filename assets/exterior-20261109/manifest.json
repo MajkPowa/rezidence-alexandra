@@ -1,0 +1,270 @@
+{
+  "revision": "exterior-20261109",
+  "source": "Approved bigboard photorealistic exterior, 2026-11-08",
+  "sourceKind": "Blender-based visualization with AI photorealistic finishing and 8K super-resolution; not a photograph of a completed building or a native 8K render",
+  "sourceSha256": "7f14462f5856ae5f6a006251874bade0f518ef25145000b7fdc2e3475b449bc8",
+  "imageProcessing": "Deterministic resizing, color-profile preservation and detail crops; no generative changes",
+  "landscapeCrop": [
+    0,
+    1,
+    7680,
+    4321
+  ],
+  "mobileCropInLandscape": [
+    2011,
+    0,
+    4441,
+    4320
+  ],
+  "detailCropsNormalized": {
+    "balconies": [
+      0.3,
+      0.18,
+      0.65,
+      0.53
+    ],
+    "entrance": [
+      0.43,
+      0.62,
+      0.8,
+      0.99
+    ]
+  },
+  "images": [
+    {
+      "src": "assets/exterior-20261109/alexandra-768.webp",
+      "width": 768,
+      "height": 432,
+      "bytes": 92668,
+      "sha256": "2ca3307459e4fbc9c935bf90e622e96e328865eac28608f9c2db93025235fd81"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-768.avif",
+      "width": 768,
+      "height": 432,
+      "bytes": 87040,
+      "sha256": "9b8391046327b944224160121b8cff2c4459ad979dc34f4628056c77aebb4008"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-1280.webp",
+      "width": 1280,
+      "height": 720,
+      "bytes": 223680,
+      "sha256": "391c6137d7af8f2656b9141c03b3148e1390164b484bf9e22e9aada01a11d0b8"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-1280.avif",
+      "width": 1280,
+      "height": 720,
+      "bytes": 206680,
+      "sha256": "3c6658f86e37f376b625658fa6f6d6c6357d5ca465a7e588e7cfd04ed28e996b"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-1920.webp",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 414826,
+      "sha256": "17de0493463f0568ebea6841153b66ec461e2d22f40b3803f3c155ec874a6c47"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-1920.avif",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 364392,
+      "sha256": "fba03f42770e30ca504458d6eefa4843372809a2a62657e199f0f0f9aebb10a8"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-2560.webp",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 599348,
+      "sha256": "73b64c990c275b8cb3b83eec45a0c865bab8f13c39133b88994779d6359592e3"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-2560.avif",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 503165,
+      "sha256": "e0895c679163769c75fe1a137ec47037d9e639ce6e3dbd87510da4208abf8ebe"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-3840.webp",
+      "width": 3840,
+      "height": 2160,
+      "bytes": 973312,
+      "sha256": "fc6c01e996b090c4ff861352b0f513ee1908ac01a8fcdda52315b78679870b07"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-3840.avif",
+      "width": 3840,
+      "height": 2160,
+      "bytes": 756585,
+      "sha256": "bc4710ead881f47edd9f49061ea95c01c872e5801a326c3ffcd84b0681956cc1"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-mobile.webp",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 224036,
+      "sha256": "76c5276082836cd9297f26756b888b663f128d759bb54895362d096aa61b0605"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-mobile.avif",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 172350,
+      "sha256": "3d20a362370c9584851c40f711d9a2d01ed6aecf8cb6a681f66a0c490b867864"
+    },
+    {
+      "src": "assets/exterior-20261109/balconies-768.webp",
+      "width": 768,
+      "height": 432,
+      "bytes": 48370,
+      "sha256": "6725a2a0bb90b056f0137953f93005c17515e45e0f82fb40cdf30a0d580e5edd"
+    },
+    {
+      "src": "assets/exterior-20261109/balconies-1280.webp",
+      "width": 1280,
+      "height": 720,
+      "bytes": 87720,
+      "sha256": "fa07913328165a23d9ee35b6ea5220e0a56aaed69752df0391de9c59b00209eb"
+    },
+    {
+      "src": "assets/exterior-20261109/balconies-2560.webp",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 179674,
+      "sha256": "1e3f5ad3354e8ab14acb707d1ea285846b73df4c81c5d7083c728d9b4e72f190"
+    },
+    {
+      "src": "assets/exterior-20261109/entrance-768.webp",
+      "width": 768,
+      "height": 432,
+      "bytes": 68692,
+      "sha256": "3ee872113f6885f05362e67e8132baf7f6c22a4700405108e140da4b10abfb35"
+    },
+    {
+      "src": "assets/exterior-20261109/entrance-1280.webp",
+      "width": 1280,
+      "height": 720,
+      "bytes": 127246,
+      "sha256": "2474b0a1cef5f5f0d41792e555f1eae98210a6c0709523a5171cc5201c2e2641"
+    },
+    {
+      "src": "assets/exterior-20261109/entrance-2560.webp",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 266976,
+      "sha256": "51231c39875944b5948823c2215675a6b4567d3d12125edd310df5bf8eedd930"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-social.jpg",
+      "width": 1200,
+      "height": 630,
+      "bytes": 341918,
+      "sha256": "47bf7726955158ebb3de3a4540f5c8a2b75dc19b80b54963ddc7a03cee143b6a"
+    },
+    {
+      "src": "assets/exterior-20261109/alexandra-8k.jpg",
+      "width": 7680,
+      "height": 4322,
+      "bytes": 12157710,
+      "sha256": "0b1517fbfe0b6c2db45e8fa32b255bd112ff493341bcf43476fbd474407633f3"
+    }
+  ],
+  "variants": [
+    {
+      "id": "desktop-1440-vp9",
+      "src": "assets/exterior-20261109/tour-1440.webm",
+      "codec": "vp9",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 25265702,
+      "sha256": "660023296e5369a9fb0ab8f3413719a26b8a61789bd4523725e0668492a570e3",
+      "gop": 12,
+      "maxKeyframeGapSeconds": 0.04200000000000159,
+      "type": "video/webm; codecs=\"vp9\"",
+      "bitrate": 6520181,
+      "duration": 31,
+      "frames": 744,
+      "interiorDecodedFramesUnchanged": true,
+      "interiorFramesChecked": 504,
+      "elapsedSeconds": 35.6
+    },
+    {
+      "id": "desktop-2160-vp9",
+      "src": "assets/exterior-20261109/tour-2160.webm",
+      "codec": "vp9",
+      "width": 3840,
+      "height": 2160,
+      "bytes": 43002026,
+      "sha256": "3d4e697a143bdf33613f9337f6bd0cef3753891b9f0d5c802bf4bbf2b2ce96f3",
+      "gop": 12,
+      "maxKeyframeGapSeconds": 0.04200000000000159,
+      "type": "video/webm; codecs=\"vp9\"",
+      "bitrate": 11097297,
+      "duration": 31,
+      "frames": 744,
+      "interiorDecodedFramesUnchanged": true,
+      "interiorFramesChecked": 504,
+      "elapsedSeconds": 66.7
+    },
+    {
+      "id": "desktop-1080-h264",
+      "src": "assets/exterior-20261109/tour-1080.mp4",
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 17522738,
+      "sha256": "914eaefe45f88a754c5cb71d214642a0320a0d5c75d8e6a982ff896dfd6a62bc",
+      "gop": 12,
+      "maxKeyframeGapSeconds": 0.5,
+      "type": "video/mp4; codecs=\"avc1.640028\"",
+      "bitrate": 4521997,
+      "duration": 31,
+      "frames": 744,
+      "interiorDecodedFramesUnchanged": true,
+      "interiorFramesChecked": 504,
+      "elapsedSeconds": 17.6
+    },
+    {
+      "id": "mobile-1080-h264",
+      "src": "assets/exterior-20261109/tour-mobile-1080.mp4",
+      "codec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 12391152,
+      "sha256": "6b7f5c7d96fb4a3bd61e1eebc392f3598fae6f6f36ea7c7df8de6ee6aa84538b",
+      "gop": 12,
+      "maxKeyframeGapSeconds": 0.5,
+      "type": "video/mp4; codecs=\"avc1.640028\"",
+      "bitrate": 3197717,
+      "duration": 31,
+      "frames": 744,
+      "interiorDecodedFramesUnchanged": true,
+      "interiorFramesChecked": 504,
+      "elapsedSeconds": 16.5
+    }
+  ],
+  "videoProvenance": {
+    "revision": "exterior-20261109",
+    "duration": 31,
+    "fps": 24,
+    "frames": 744,
+    "native4K": false,
+    "sourceResolution": "8K upscaled photoreal exterior plus existing mixed-resolution interior sequence",
+    "sourceSHA256": "7f14462f5856ae5f6a006251874bade0f518ef25145000b7fdc2e3475b449bc8",
+    "exteriorTreatment": "Subtle 3.5% photographic pan/zoom, no new AI geometry; crossfade 9–10 seconds to the exact existing interior frame at t=10",
+    "mobileCrop": {
+      "sourceCanvas": [
+        7680,
+        4320
+      ],
+      "centerX": 0.42,
+      "cropWidth": 2430,
+      "cropHeight": 4320
+    },
+    "interiorFromSeconds": 10,
+    "interiorDecodedFramesUnchanged": true
+  }
+}

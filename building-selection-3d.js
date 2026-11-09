@@ -27,7 +27,7 @@
     const view = document.createElement('div');
     view.className = 'building-selection-view';
     facade.before(view);
-    view.innerHTML = `<div class="building-selection-mode" role="group" aria-label="Zobrazení domu"><button type="button" data-building-mode="render" aria-pressed="true" aria-controls="building-stack">Vizualizace</button><button type="button" data-building-mode="architecture" aria-pressed="false" aria-controls="building-selection-3d-panel">3D dům</button><button type="button" data-building-mode="availability" aria-pressed="false" aria-controls="building-selection-3d-panel">Dostupnost bytů</button></div>`;
+    view.innerHTML = `<div class="building-selection-mode" role="group" aria-label="Zobrazení domu"><button type="button" data-building-mode="render" aria-pressed="true" aria-controls="building-stack">Vizualizace</button><button type="button" data-building-mode="availability" aria-pressed="false" aria-controls="building-selection-3d-panel">Schéma dostupnosti</button></div>`;
     view.append(facade);
     const panel = document.createElement('div');
     panel.id = 'building-selection-3d-panel';
@@ -47,8 +47,9 @@
     const selection = panel.querySelector('.building-selection-3d-selection');
     const colors = { available:'#4b805a', reserved:'#b17c2f', sold:'#aa5552', unknown:'#8b8b8b' };
     const labels = { available:'Volný', reserved:'Rezervovaný', sold:'Prodaný', unknown:'Dostupnost na dotaz' };
-    let model, ready = false, loadTimer, mode = 'render', content = 'architecture', requestedSrc = '', loadingSource = '', geometry, geometryPromise, requestNumber = 0, lastFloor = 2;
-    const srcForVariant = () => content === 'availability' ? (isolate.checked ? `assets/3d/availability-floor-${activeFloor()}.glb` : 'assets/3d/availability-building.glb') : 'assets/3d/exterior-no-balconies.glb';
+    let model, ready = false, loadTimer, mode = 'render', content = 'availability', requestedSrc = '', loadingSource = '', geometry, geometryPromise, requestNumber = 0, lastFloor = 2;
+    // Only source-plan availability volumes are exposed; the inferred architectural GLB is not an approved depiction.
+    const srcForVariant = () => isolate.checked ? `assets/3d/availability-floor-${activeFloor()}.glb` : 'assets/3d/availability-building.glb';
     const activeFloor = () => Number(facade.querySelector('[data-map-floor][aria-pressed="true"]')?.dataset.mapFloor) || 2;
     const selectedUnit = () => Number(explorer.querySelector('#building-selection-units [aria-pressed="true"]')?.dataset.buildingUnit) || null;
     const unitStatus = unit => { const key = inventory?.status(unit)?.key; return Object.hasOwn(colors,key) ? key : 'unknown'; };
@@ -74,7 +75,7 @@
         ? 'Otočte model tažením a vyberte byt.'
         : 'Tažením otočíte dům. Podlaží vyberete klepnutím.';
       panel.querySelector('.building-selection-3d-note').innerHTML = content === 'availability'
-        ? 'Prostorové schéma bytů.'
+        ? 'Schéma dostupnosti podle půdorysů; nezobrazuje fasádu domu.'
         : 'Orientační model domu.';
     }
 
@@ -238,6 +239,7 @@
       } catch { if (currentRequest===requestNumber) {loadingSource='';showError();} }
     }
     function setMode(next) {
+      if (!['render', 'availability'].includes(next)) return;
       mode = next === 'render' ? 'render' : '3d';
       if (mode === '3d') content = next;
       // The facade is SVG: its .hidden property is not reflected consistently

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05",
+  "updatedAt": "2026-11-09",
   "source": "Situační výkres a půdorys 1. NP; ceny podle aktualizovaného ceníku ze dne 19. 10. 2026.",
   "availabilityNote": "Dostupnost konkrétních parkovacích míst potvrdíme na dotaz.",
   "purchaseRule": "K bytu lze přikoupit jedno parkovací místo. Další místo je možné řešit až po dokončení prodeje bytů, pokud zbude volná kapacita.",
@@ -7,7 +7,7 @@
     {
       "id": "site",
       "label": "Situační výkres",
-      "image": "assets/parking/site-plan.svg",
+      "image": "assets/parking/site-plan-centered.svg",
       "width": 2400,
       "height": 1760,
       "description": "Venkovní a krytá stání podle skutečného situačního výkresu."
@@ -31,28 +31,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        437.56,
-        752.16
+        370.0662,
+        728.4386
       ],
       "polygon": [
         [
-          407.56,
-          722.16
+          284.8476,
+          695.6968
         ],
         [
-          467.56,
-          722.16
+          443.3466,
+          673.994
         ],
         [
-          467.56,
-          782.16
+          455.2849,
+          761.1805
         ],
         [
-          407.56,
-          782.16
+          296.7859,
+          782.8833
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "1",
@@ -62,6 +62,16 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D1B",
+          "428D1C",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -72,28 +82,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        449.25,
-        833.97
+        381.4619,
+        811.6621
       ],
       "polygon": [
         [
-          419.25,
-          803.97
+          296.7859,
+          782.8833
         ],
         [
-          479.25,
-          803.97
+          455.2849,
+          761.1805
         ],
         [
-          479.25,
-          863.97
+          466.1378,
+          840.4409
         ],
         [
-          419.25,
-          863.97
+          307.6388,
+          862.1437
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "2",
@@ -103,6 +113,16 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D1C",
+          "428D1D",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -113,28 +133,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        459.82,
-        912.82
+        392.3147,
+        890.9225
       ],
       "polygon": [
         [
-          429.82,
-          882.82
+          307.6388,
+          862.1437
         ],
         [
-          489.82,
-          882.82
+          466.1378,
+          840.4409
         ],
         [
-          489.82,
-          942.82
+          476.9907,
+          919.7013
         ],
         [
-          429.82,
-          942.82
+          318.4917,
+          941.4042
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "3",
@@ -144,6 +164,16 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D1D",
+          "428D1E",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -154,28 +184,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        470.99,
-        992.93
+        403.1677,
+        970.183
       ],
       "polygon": [
         [
-          440.99,
-          962.93
+          318.4917,
+          941.4042
         ],
         [
-          500.99,
-          962.93
+          476.9907,
+          919.7013
         ],
         [
-          500.99,
-          1022.93
+          487.8437,
+          998.9617
         ],
         [
-          440.99,
-          1022.93
+          329.3447,
+          1020.6646
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "4",
@@ -185,6 +215,16 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D1E",
+          "428D1F",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -195,28 +235,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        481.32,
-        1069.97
+        414.0207,
+        1049.4434
       ],
       "polygon": [
         [
-          451.32,
-          1039.97
+          329.3447,
+          1020.6646
         ],
         [
-          511.32,
-          1039.97
+          487.8437,
+          998.9617
         ],
         [
-          511.32,
-          1099.97
+          498.6966,
+          1078.2221
         ],
         [
-          451.32,
-          1099.97
+          340.1976,
+          1099.925
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "5",
@@ -226,6 +266,16 @@
       "dimensions": {
         "width": 2.3,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D1F",
+          "428D20",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -236,28 +286,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        492.2,
-        1147.0
+        424.8736,
+        1128.7038
       ],
       "polygon": [
         [
-          462.2,
-          1117.0
+          340.1976,
+          1099.925
         ],
         [
-          522.2,
-          1117.0
+          498.6966,
+          1078.2221
         ],
         [
-          522.2,
-          1177.0
+          509.5495,
+          1157.4825
         ],
         [
-          462.2,
-          1177.0
+          351.0505,
+          1179.1854
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "6",
@@ -267,6 +317,16 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D20",
+          "428D21",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -277,28 +337,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        503.09,
-        1227.11
+        435.7265,
+        1207.9642
       ],
       "polygon": [
         [
-          473.09,
-          1197.11
+          351.0505,
+          1179.1854
         ],
         [
-          533.09,
-          1197.11
+          509.5495,
+          1157.4825
         ],
         [
-          533.09,
-          1257.11
+          520.4025,
+          1236.743
         ],
         [
-          473.09,
-          1257.11
+          361.9035,
+          1258.4458
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "7",
@@ -308,6 +368,16 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D21",
+          "428D22",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -318,28 +388,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        513.69,
-        1305.79
+        446.5794,
+        1287.2246
       ],
       "polygon": [
         [
-          483.69,
-          1275.79
+          361.9035,
+          1258.4458
         ],
         [
-          543.69,
-          1275.79
+          520.4025,
+          1236.743
         ],
         [
-          543.69,
-          1335.79
+          531.2554,
+          1316.0034
         ],
         [
-          483.69,
-          1335.79
+          372.7564,
+          1337.7063
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "8",
@@ -349,6 +419,16 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D22",
+          "428D23",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -359,28 +439,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        524.57,
-        1385.86
+        457.987,
+        1370.4628
       ],
       "polygon": [
         [
-          494.57,
-          1355.86
+          372.7564,
+          1337.7063
         ],
         [
-          554.57,
-          1355.86
+          531.2554,
+          1316.0034
         ],
         [
-          554.57,
-          1415.86
+          543.2025,
+          1403.2543
         ],
         [
-          494.57,
-          1415.86
+          384.6946,
+          1424.8927
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "9",
@@ -390,6 +470,16 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D23",
+          "428D24",
+          "428D1A",
+          "428EB1"
+        ],
+        "method": "Intersections of original separators and continuous bay front/rear boundaries"
       }
     },
     {
@@ -400,28 +490,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        635.76,
-        1406.59
+        610.3151,
+        1475.0904
       ],
       "polygon": [
         [
-          605.76,
-          1376.59
+          577.1194,
+          1560.1436
         ],
         [
-          665.76,
-          1376.59
+          664.3685,
+          1548.6718
         ],
         [
-          665.76,
-          1436.59
+          643.5107,
+          1390.0371
         ],
         [
-          605.76,
-          1436.59
+          556.2616,
+          1401.5089
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "10",
@@ -431,6 +521,14 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D89",
+          "428D88"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -441,28 +539,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        717.4,
-        1394.95
+        693.5982,
+        1464.14
       ],
       "polygon": [
         [
-          687.4,
-          1364.95
+          664.3685,
+          1548.6718
         ],
         [
-          747.4,
-          1364.95
+          743.6858,
+          1538.2429
         ],
         [
-          747.4,
-          1424.95
+          722.828,
+          1379.6082
         ],
         [
-          687.4,
-          1424.95
+          643.5107,
+          1390.0371
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "11",
@@ -472,6 +570,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D88",
+          "428D87"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -482,28 +588,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        796.06,
-        1385.2
+        772.9156,
+        1453.7111
       ],
       "polygon": [
         [
-          766.06,
-          1355.2
+          743.6858,
+          1538.2429
         ],
         [
-          826.06,
-          1355.2
+          823.0031,
+          1527.814
         ],
         [
-          826.06,
-          1415.2
+          802.1454,
+          1369.1794
         ],
         [
-          766.06,
-          1415.2
+          722.828,
+          1379.6082
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "12",
@@ -513,6 +619,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D87",
+          "428D86"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -523,28 +637,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        876.12,
-        1375.44
+        852.2329,
+        1443.2823
       ],
       "polygon": [
         [
-          846.12,
-          1345.44
+          823.0031,
+          1527.814
         ],
         [
-          906.12,
-          1345.44
+          902.3205,
+          1517.3851
         ],
         [
-          906.12,
-          1405.44
+          881.4627,
+          1358.7505
         ],
         [
-          846.12,
-          1405.44
+          802.1454,
+          1369.1794
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "13",
@@ -554,6 +668,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D86",
+          "428D85"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -564,28 +686,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        955.69,
-        1364.53
+        931.5503,
+        1432.8534
       ],
       "polygon": [
         [
-          925.69,
-          1334.53
+          902.3205,
+          1517.3851
         ],
         [
-          985.69,
-          1334.53
+          981.6378,
+          1506.9562
         ],
         [
-          985.69,
-          1394.53
+          960.78,
+          1348.3216
         ],
         [
-          925.69,
-          1394.53
+          881.4627,
+          1358.7505
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "14",
@@ -595,6 +717,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D85",
+          "428D84"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -605,28 +735,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1035.23,
-        1353.64
+        1010.8676,
+        1422.4245
       ],
       "polygon": [
         [
-          1005.23,
-          1323.64
+          981.6378,
+          1506.9562
         ],
         [
-          1065.23,
-          1323.64
+          1060.9551,
+          1496.5274
         ],
         [
-          1065.23,
-          1383.64
+          1040.0973,
+          1337.8927
         ],
         [
-          1005.23,
-          1383.64
+          960.78,
+          1348.3216
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "15",
@@ -636,6 +766,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D84",
+          "428D83"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -646,28 +784,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1113.96,
-        1342.73
+        1090.1849,
+        1411.9956
       ],
       "polygon": [
         [
-          1083.96,
-          1312.73
+          1060.9551,
+          1496.5274
         ],
         [
-          1143.96,
-          1312.73
+          1140.2724,
+          1486.0985
         ],
         [
-          1143.96,
-          1372.73
+          1119.4147,
+          1327.4638
         ],
         [
-          1083.96,
-          1372.73
+          1040.0973,
+          1337.8927
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "16",
@@ -677,6 +815,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D83",
+          "428D82"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -687,28 +833,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1192.34,
-        1332.98
+        1169.5022,
+        1401.5667
       ],
       "polygon": [
         [
-          1162.34,
-          1302.98
+          1140.2724,
+          1486.0985
         ],
         [
-          1222.34,
-          1302.98
+          1219.5898,
+          1475.6696
         ],
         [
-          1222.34,
-          1362.98
+          1198.732,
+          1317.0349
         ],
         [
-          1162.34,
-          1362.98
+          1119.4147,
+          1327.4638
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "17",
@@ -718,6 +864,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D82",
+          "428D81"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -728,28 +882,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1274.42,
-        1322.94
+        1248.8195,
+        1391.1378
       ],
       "polygon": [
         [
-          1244.42,
-          1292.94
+          1219.5898,
+          1475.6696
         ],
         [
-          1304.42,
-          1292.94
+          1298.9071,
+          1465.2407
         ],
         [
-          1304.42,
-          1352.94
+          1278.0493,
+          1306.606
         ],
         [
-          1244.42,
-          1352.94
+          1198.732,
+          1317.0349
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "18",
@@ -759,6 +913,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D81",
+          "428D80"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -769,28 +931,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1336.95,
-        1321.18
+        1328.1368,
+        1380.7089
       ],
       "polygon": [
         [
-          1306.95,
-          1291.18
+          1298.9071,
+          1465.2407
         ],
         [
-          1366.95,
-          1291.18
+          1378.2244,
+          1454.8118
         ],
         [
-          1366.95,
-          1351.18
+          1357.3666,
+          1296.1772
         ],
         [
-          1306.95,
-          1351.18
+          1278.0493,
+          1306.606
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "19",
@@ -800,6 +962,14 @@
       "dimensions": {
         "width": 2.915,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D80",
+          "428D7F"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -810,28 +980,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1404.64,
-        1313.53
+        1411.4201,
+        1369.7586
       ],
       "polygon": [
         [
-          1374.64,
-          1283.53
+          1378.2244,
+          1454.8118
         ],
         [
-          1434.64,
-          1283.53
+          1465.4735,
+          1443.34
         ],
         [
-          1434.64,
-          1343.53
+          1444.6157,
+          1284.7054
         ],
         [
-          1374.64,
-          1343.53
+          1357.3666,
+          1296.1772
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "20",
@@ -841,6 +1011,14 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E21",
+          "428E22"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -851,28 +1029,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1521.95,
-        1296.98
+        1494.7033,
+        1358.8083
       ],
       "polygon": [
         [
-          1491.95,
-          1266.98
+          1465.4735,
+          1443.34
         ],
         [
-          1551.95,
-          1266.98
+          1544.7908,
+          1432.9112
         ],
         [
-          1551.95,
-          1326.98
+          1523.933,
+          1274.2765
         ],
         [
-          1491.95,
-          1326.98
+          1444.6157,
+          1284.7054
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "21",
@@ -882,6 +1060,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E22",
+          "428E23"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -892,28 +1078,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1600.37,
-        1286.37
+        1577.9864,
+        1347.858
       ],
       "polygon": [
         [
-          1570.37,
-          1256.37
+          1544.7908,
+          1432.9112
         ],
         [
-          1630.37,
-          1256.37
+          1632.0399,
+          1421.4394
         ],
         [
-          1630.37,
-          1316.37
+          1611.1821,
+          1262.8047
         ],
         [
-          1570.37,
-          1316.37
+          1523.933,
+          1274.2765
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "22",
@@ -923,6 +1109,14 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E23",
+          "428E24"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -933,28 +1127,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1757.0,
-        1266.36
+        1729.9408,
+        1337.5611
       ],
       "polygon": [
         [
-          1727.0,
-          1236.36
+          1696.7452,
+          1422.6144
         ],
         [
-          1787.0,
-          1236.36
+          1783.9943,
+          1411.1426
         ],
         [
-          1787.0,
-          1296.36
+          1763.1365,
+          1252.5079
         ],
         [
-          1727.0,
-          1296.36
+          1675.8874,
+          1263.9797
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "23",
@@ -964,6 +1158,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E25",
+          "428E27"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -974,28 +1176,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1836.51,
-        1255.39
+        1813.224,
+        1326.6108
       ],
       "polygon": [
         [
-          1806.51,
-          1225.39
+          1783.9943,
+          1411.1426
         ],
         [
-          1866.51,
-          1225.39
+          1863.3116,
+          1400.7137
         ],
         [
-          1866.51,
-          1285.39
+          1842.4538,
+          1242.079
         ],
         [
-          1806.51,
-          1285.39
+          1763.1365,
+          1252.5079
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "24",
@@ -1005,6 +1207,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E27",
+          "428E26"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1015,28 +1225,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1916.06,
-        1245.61
+        1896.5072,
+        1315.6605
       ],
       "polygon": [
         [
-          1886.06,
-          1215.61
+          1863.3116,
+          1400.7137
         ],
         [
-          1946.06,
-          1215.61
+          1950.5606,
+          1389.2419
         ],
         [
-          1946.06,
-          1275.61
+          1929.7029,
+          1230.6073
         ],
         [
-          1886.06,
-          1275.61
+          1842.4538,
+          1242.079
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "25",
@@ -1046,6 +1256,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E26",
+          "428E28"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1056,28 +1274,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1889.81,
-        1009.05
+        1851.4133,
+        966.56
       ],
       "polygon": [
         [
-          1859.81,
-          979.05
+          1798.1531,
+          892.8742
         ],
         [
-          1919.81,
-          979.05
+          1883.8158,
+          881.611
         ],
         [
-          1919.81,
-          1039.05
+          1904.6735,
+          1040.2457
         ],
         [
-          1859.81,
-          1039.05
+          1819.0108,
+          1051.5089
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "26",
@@ -1087,6 +1305,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E2F",
+          "428E28"
+        ],
+        "method": "Left parking separator and shared eastern parking limit"
       }
     },
     {
@@ -1097,28 +1323,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1789.38,
-        1023.19
+        1768.9233,
+        977.406
       ],
       "polygon": [
         [
-          1759.38,
-          993.19
+          1739.6935,
+          1061.9378
         ],
         [
-          1819.38,
-          993.19
+          1819.0108,
+          1051.5089
         ],
         [
-          1819.38,
-          1053.19
+          1798.1531,
+          892.8742
         ],
         [
-          1759.38,
-          1053.19
+          1718.8357,
+          903.3031
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "27",
@@ -1128,6 +1354,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E2E",
+          "428E2F"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1138,28 +1372,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1710.08,
-        1034.39
+        1685.8589,
+        989.0299
       ],
       "polygon": [
         [
-          1680.08,
-          1004.39
+          1652.4444,
+          1073.4095
         ],
         [
-          1740.08,
-          1004.39
+          1739.6935,
+          1061.9378
         ],
         [
-          1740.08,
-          1064.39
+          1718.8357,
+          903.3031
         ],
         [
-          1680.08,
-          1064.39
+          1631.9508,
+          917.5446
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "28",
@@ -1169,6 +1403,14 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E2D",
+          "428E2E"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1179,28 +1421,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1559.63,
-        1050.61
+        1523.8327,
+        1009.6312
       ],
       "polygon": [
         [
-          1529.63,
-          1020.61
+          1490.6371,
+          1094.6845
         ],
         [
-          1589.63,
-          1020.61
+          1577.8862,
+          1083.2127
         ],
         [
-          1589.63,
-          1080.61
+          1557.0284,
+          924.578
         ],
         [
-          1529.63,
-          1080.61
+          1469.7793,
+          936.0498
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "29",
@@ -1210,6 +1452,14 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E2B",
+          "467C7A"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1220,28 +1470,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1474.27,
-        1065.44
+        1440.5496,
+        1020.5816
       ],
       "polygon": [
         [
-          1444.27,
-          1035.44
+          1411.3198,
+          1105.1134
         ],
         [
-          1504.27,
-          1035.44
+          1490.6371,
+          1094.6845
         ],
         [
-          1504.27,
-          1095.44
+          1469.7793,
+          936.0498
         ],
         [
-          1444.27,
-          1095.44
+          1390.462,
+          946.4787
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "30",
@@ -1251,6 +1501,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E2A",
+          "428E2B"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1261,28 +1519,28 @@
       "price": 710000,
       "view": "site",
       "anchor": [
-        1380.86,
-        1019.4
+        1360.6065,
+        1026.2514
       ],
       "polygon": [
         [
-          1350.86,
-          989.4
+          1330.751,
+          1106.0242
         ],
         [
-          1410.86,
-          989.4
+          1411.3198,
+          1105.1134
         ],
         [
-          1410.86,
-          1049.4
+          1390.462,
+          946.4787
         ],
         [
-          1350.86,
-          1049.4
+          1309.8932,
+          947.3895
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "31",
@@ -1292,6 +1550,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428E29",
+          "428E2A"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1302,28 +1568,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1304.18,
-        1083.56
+        1276.6966,
+        1032.4355
       ],
       "polygon": [
         [
-          1274.18,
-          1053.56
+          1243.5,
+          1117.4814
         ],
         [
-          1334.18,
-          1053.56
+          1330.751,
+          1106.0242
         ],
         [
-          1334.18,
-          1113.56
+          1309.8932,
+          947.3895
         ],
         [
-          1274.18,
-          1113.56
+          1222.6422,
+          958.8468
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "32",
@@ -1333,6 +1599,14 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "467D4E",
+          "428E29"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1343,28 +1617,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1223.1,
-        1097.67
+        1187.067,
+        1044.2128
       ],
       "polygon": [
         [
-          1193.1,
-          1067.67
+          1151.4919,
+          1129.5789
         ],
         [
-          1253.1,
-          1067.67
+          1243.5,
+          1117.4814
         ],
         [
-          1253.1,
-          1127.67
+          1222.6422,
+          958.8468
         ],
         [
-          1193.1,
-          1127.67
+          1130.6341,
+          970.9443
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "33",
@@ -1374,6 +1648,14 @@
       "dimensions": {
         "width": 2.9,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "467D4D",
+          "467D4E"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1384,28 +1666,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1134.88,
-        1110.31
+        1095.059,
+        1056.3104
       ],
       "polygon": [
         [
-          1104.88,
-          1080.31
+          1059.4838,
+          1141.6764
         ],
         [
-          1164.88,
-          1080.31
+          1151.4919,
+          1129.5789
         ],
         [
-          1164.88,
-          1140.31
+          1130.6341,
+          970.9443
         ],
         [
-          1104.88,
-          1140.31
+          1038.626,
+          983.0418
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "34",
@@ -1415,6 +1697,14 @@
       "dimensions": {
         "width": 2.9,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D2A",
+          "467D4D"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1425,28 +1715,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1045.88,
-        1124.27
+        1009.3962,
+        1067.5735
       ],
       "polygon": [
         [
-          1015.88,
-          1094.27
+          980.1665,
+          1152.1053
         ],
         [
-          1075.88,
-          1094.27
+          1059.4838,
+          1141.6764
         ],
         [
-          1075.88,
-          1154.27
+          1038.626,
+          983.0418
         ],
         [
-          1015.88,
-          1154.27
+          959.3087,
+          993.4707
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "35",
@@ -1456,6 +1746,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D2B",
+          "428D2A"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1466,28 +1764,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        962.11,
-        1134.07
+        930.0789,
+        1078.0024
       ],
       "polygon": [
         [
-          932.11,
-          1104.07
+          900.8492,
+          1162.5342
         ],
         [
-          992.11,
-          1104.07
+          980.1665,
+          1152.1053
         ],
         [
-          992.11,
-          1164.07
+          959.3087,
+          993.4707
         ],
         [
-          932.11,
-          1164.07
+          879.9914,
+          1003.8996
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "36",
@@ -1497,6 +1795,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D2C",
+          "428D2B"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1507,28 +1813,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        885.23,
-        1145.9
+        850.7616,
+        1088.4313
       ],
       "polygon": [
         [
-          855.23,
-          1115.9
+          821.5318,
+          1172.9631
         ],
         [
-          915.23,
-          1115.9
+          900.8492,
+          1162.5342
         ],
         [
-          915.23,
-          1175.9
+          879.9914,
+          1003.8996
         ],
         [
-          855.23,
-          1175.9
+          800.6741,
+          1014.3284
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "37",
@@ -1538,6 +1844,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D2D",
+          "428D2C"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1548,28 +1862,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        809.37,
-        1157.29
+        767.4927,
+        1098.7852
       ],
       "polygon": [
         [
-          779.37,
-          1127.29
+          733.9988,
+          1182.2754
         ],
         [
-          839.37,
-          1127.29
+          821.5318,
+          1172.9631
         ],
         [
-          839.37,
-          1187.29
+          800.6741,
+          1014.3284
         ],
         [
-          779.37,
-          1187.29
+          713.4009,
+          1025.6169
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "38",
@@ -1579,6 +1893,14 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D2E",
+          "428D2D"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1589,28 +1911,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        771.7,
-        864.94
+        746.417,
+        937.794
       ],
       "polygon": [
         [
-          741.7,
-          834.94
+          713.4269,
+          1025.8147
         ],
         [
-          801.7,
-          834.94
+          800.676,
+          1014.3429
         ],
         [
-          801.7,
-          894.94
+          778.7753,
+          847.7766
         ],
         [
-          741.7,
-          894.94
+          692.0661,
+          863.3541
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "39",
@@ -1620,6 +1942,14 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D30",
+          "428D31"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1630,28 +1960,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        850.99,
-        855.81
+        829.3843,
+        925.8453
       ],
       "polygon": [
         [
-          820.99,
-          825.81
+          800.676,
+          1014.3429
         ],
         [
-          880.99,
-          825.81
+          879.9933,
+          1003.9141
         ],
         [
-          880.99,
-          885.81
+          858.0926,
+          837.3477
         ],
         [
-          820.99,
-          885.81
+          778.7753,
+          847.7766
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "40",
@@ -1661,6 +1991,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D31",
+          "428D32"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1671,28 +2009,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        931.56,
-        841.86
+        908.7016,
+        915.4164
       ],
       "polygon": [
         [
-          901.56,
-          811.86
+          879.9933,
+          1003.9141
         ],
         [
-          961.56,
-          811.86
+          959.3106,
+          993.4852
         ],
         [
-          961.56,
-          871.86
+          937.41,
+          826.9188
         ],
         [
-          901.56,
-          871.86
+          858.0926,
+          837.3477
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "41",
@@ -1702,6 +2040,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D32",
+          "428D33"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1712,28 +2058,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1010.85,
-        832.3
+        988.019,
+        904.9876
       ],
       "polygon": [
         [
-          980.85,
-          802.3
+          959.3106,
+          993.4852
         ],
         [
-          1040.85,
-          802.3
+          1038.6279,
+          983.0563
         ],
         [
-          1040.85,
-          862.3
+          1016.7273,
+          816.4899
         ],
         [
-          980.85,
-          862.3
+          937.41,
+          826.9188
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "42",
@@ -1743,6 +2089,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D33",
+          "428D34"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1753,28 +2107,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1089.8,
-        822.54
+        1067.3363,
+        894.5587
       ],
       "polygon": [
         [
-          1059.8,
-          792.54
+          1038.6279,
+          983.0563
         ],
         [
-          1119.8,
-          792.54
+          1117.9453,
+          972.6274
         ],
         [
-          1119.8,
-          852.54
+          1096.0446,
+          806.061
         ],
         [
-          1059.8,
-          852.54
+          1016.7273,
+          816.4899
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "43",
@@ -1784,6 +2138,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D34",
+          "428D35"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1794,28 +2156,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1167.19,
-        811.08
+        1146.6536,
+        884.1298
       ],
       "polygon": [
         [
-          1137.19,
-          781.08
+          1117.9453,
+          972.6274
         ],
         [
-          1197.19,
-          781.08
+          1197.2626,
+          962.1985
         ],
         [
-          1197.19,
-          841.08
+          1175.3619,
+          795.6321
         ],
         [
-          1137.19,
-          841.08
+          1096.0446,
+          806.061
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "44",
@@ -1825,6 +2187,14 @@
       "dimensions": {
         "width": 2.5,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D35",
+          "428D2F"
+        ],
+        "method": "Between original bay-boundary lines"
       }
     },
     {
@@ -1835,28 +2205,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1247.61,
-        801.53
+        1236.4204,
+        872.327
       ],
       "polygon": [
         [
-          1217.61,
-          771.53
+          1175.3619,
+          795.6321
         ],
         [
-          1277.61,
-          771.53
+          1275.5782,
+          782.4554
         ],
         [
-          1277.61,
-          831.53
+          1297.4789,
+          949.0218
         ],
         [
-          1217.61,
-          831.53
+          1197.2626,
+          962.1985
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "45",
@@ -1866,6 +2236,14 @@
       "dimensions": {
         "width": 3.159,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "428D2F",
+          "42907A"
+        ],
+        "method": "Original left separator and eastern drainage/parking boundary; width 3158.72 mm matches supplied 3.159 m"
       }
     },
     {
@@ -1876,28 +2254,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1146.35,
-        590.63
+        1184.3215,
+        520.1131
       ],
       "polygon": [
         [
-          1116.35,
-          560.63
+          1134.4692,
+          607.3563
         ],
         [
-          1176.35,
-          560.63
+          1255.0315,
+          591.5044
         ],
         [
-          1176.35,
-          620.63
+          1234.1737,
+          432.8698
         ],
         [
-          1116.35,
-          620.63
+          1113.6114,
+          448.7217
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "46",
@@ -1907,6 +2285,14 @@
       "dimensions": {
         "width": 3.8,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "467CF8",
+          "467C71"
+        ],
+        "method": "Accessible-bay left separator and rear-line end; original width 3800 mm"
       }
     },
     {
@@ -1917,28 +2303,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        1059.44,
-        602.97
+        1080.4157,
+        533.7749
       ],
       "polygon": [
         [
-          1029.44,
-          572.97
+          1047.2201,
+          618.8281
         ],
         [
-          1089.44,
-          572.97
+          1134.4692,
+          607.3563
         ],
         [
-          1089.44,
-          632.97
+          1113.6114,
+          448.7217
         ],
         [
-          1029.44,
-          632.97
+          1026.3623,
+          460.1934
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "47",
@@ -1948,6 +2334,15 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "467C54",
+          "467CF8",
+          "467CF8"
+        ],
+        "method": "Bay edges extended to the front/rear established by their full-length shared separator"
       }
     },
     {
@@ -1958,28 +2353,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        910.29,
-        623.35
+        929.7128,
+        553.5898
       ],
       "polygon": [
         [
-          880.29,
-          593.35
+          896.5172,
+          638.643
         ],
         [
-          940.29,
-          593.35
+          983.7662,
+          627.1712
         ],
         [
-          940.29,
-          653.35
+          962.9085,
+          468.5366
         ],
         [
-          880.29,
-          653.35
+          875.6594,
+          480.0083
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "48",
@@ -1989,6 +2384,15 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "467C5F",
+          "467C5E",
+          "467C5F"
+        ],
+        "method": "Bay edges extended to the front/rear established by their full-length shared separator"
       }
     },
     {
@@ -1999,28 +2403,28 @@
       "price": 460000,
       "view": "site",
       "anchor": [
-        827.14,
-        634.08
+        842.4638,
+        565.0615
       ],
       "polygon": [
         [
-          797.14,
-          604.08
+          809.2681,
+          650.1148
         ],
         [
-          857.14,
-          604.08
+          896.5172,
+          638.643
         ],
         [
-          857.14,
-          664.08
+          875.6594,
+          480.0083
         ],
         [
-          797.14,
-          664.08
+          788.4103,
+          491.4801
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "49",
@@ -2030,6 +2434,15 @@
       "dimensions": {
         "width": 2.75,
         "length": 5.0
+      },
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "sourceHandles": [
+          "467C60",
+          "467C5F",
+          "467C5F"
+        ],
+        "method": "Bay edges extended to the front/rear established by their full-length shared separator"
       }
     },
     {
@@ -2040,28 +2453,28 @@
       "price": 960000,
       "view": "ground",
       "anchor": [
-        1044,
-        350
+        1042.4412,
+        348.6002
       ],
       "polygon": [
         [
-          1002,
-          308
+          986.3382,
+          200.4479
         ],
         [
-          1086,
-          308
+          1098.5442,
+          200.4479
         ],
         [
-          1086,
-          392
+          1098.5442,
+          496.7525
         ],
         [
-          1002,
-          392
+          986.3382,
+          496.7525
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "1. NP (6.10.2026).pdf, Garáž č. 1",
       "sourceLabel": "Garáž č. 1",
@@ -2082,7 +2495,35 @@
       },
       "area": 22.936,
       "areaBasis": "supplied",
-      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026"
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "source": "1. NP (6.10.2026).pdf",
+        "method": "Centroid of inner garage-wall outline in original supplied plan; raster-read crop coordinates",
+        "cropOriginPdfPoints": [
+          1430,
+          250
+        ],
+        "cropPixelsPerPdfPoint": 3,
+        "innerOutlineInCropPixels": [
+          [
+            114,
+            145
+          ],
+          [
+            615,
+            145
+          ],
+          [
+            615,
+            1468
+          ],
+          [
+            114,
+            1468
+          ]
+        ]
+      }
     },
     {
       "id": "G2",
@@ -2092,28 +2533,36 @@
       "price": 960000,
       "view": "ground",
       "anchor": [
-        1166,
-        350
+        1161.2085,
+        342.5163
       ],
       "polygon": [
         [
-          1124,
-          308
+          1104.8152,
+          200.4479
         ],
         [
-          1208,
-          308
+          1223.5162,
+          200.4479
         ],
         [
-          1208,
-          392
+          1223.5162,
+          401.3438
         ],
         [
-          1124,
-          392
+          1202.4636,
+          401.3438
+        ],
+        [
+          1202.4636,
+          496.7525
+        ],
+        [
+          1104.8152,
+          496.7525
         ]
       ],
-      "geometryRole": "marker",
+      "geometryRole": "bay-boundary",
       "status": "inquiry",
       "source": "1. NP (6.10.2026).pdf, Garáž č. 2",
       "sourceLabel": "Garáž č. 2",
@@ -2134,9 +2583,46 @@
       },
       "area": 22.727,
       "areaBasis": "supplied",
-      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026"
+      "dimensionsSource": "Rezidence_Alexandra_parkovani_garaze_NOVE.docx, 4. 11. 2026",
+      "labelPlacement": "polygon-centroid",
+      "geometryEvidence": {
+        "source": "1. NP (6.10.2026).pdf",
+        "method": "Centroid of inner garage-wall outline in original supplied plan; raster-read crop coordinates",
+        "cropOriginPdfPoints": [
+          1630,
+          250
+        ],
+        "cropPixelsPerPdfPoint": 3,
+        "innerOutlineInCropPixels": [
+          [
+            43,
+            145
+          ],
+          [
+            573,
+            145
+          ],
+          [
+            573,
+            1042
+          ],
+          [
+            479,
+            1042
+          ],
+          [
+            479,
+            1468
+          ],
+          [
+            43,
+            1468
+          ]
+        ]
+      }
     }
   ],
   "areaNote": "Výměry parkovacích míst budou doplněny po potvrzení prodávajícím.",
-  "dimensionsSource": "Rozměry stání a výměry garáží dodané zadavatelem 4. 11. 2026."
+  "dimensionsSource": "Rozměry stání a výměry garáží dodané zadavatelem 4. 11. 2026.",
+  "geometryNote": "Čísla jsou ve středech parkovacích stání podle hran v dodaném situačním výkresu; garáže podle vnitřních stěn půdorysu přízemí. Rozměry zůstávají podle dodaného soupisu."
 }

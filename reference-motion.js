@@ -25,7 +25,8 @@
   let selected = null, choosing = false, loaded = false, failed = false, fallbackUsed = false;
   let stillTimer = 0, stillStarted = 0, stillRemaining = stillDuration(0);
   let posterKey = '', posterSerial = 0, playPending = false, resizeTimer = 0, loadTimer = 0, lastMediaTime = 0, desiredTime = 0, pendingSeek = null;
-  const slideshow = () => preference.matches || saveData() || failed;
+  const suppliedStills = config.presentation === 'supplied-stills';
+  const slideshow = () => suppliedStills || preference.matches || saveData() || failed;
   const pausedByVisitor = () => userPaused || focusPaused;
   const waitingForAnchor = () => document.readyState !== 'complete' && window.location.hash && !['#','#top','#residence-journey'].includes(window.location.hash);
   const active = () => visible && !document.hidden && !waitingForAnchor() && !pausedByVisitor();
@@ -57,7 +58,7 @@
   function updateMode() {
     const paused = pausedByVisitor();
     journey.dataset.mode = slideshow() ? 'slideshow' : 'autoplay';
-    journey.dataset.motionReason = preference.matches ? 'reduced-motion' : saveData() ? 'save-data' : failed ? 'video-unavailable' : 'video';
+    journey.dataset.motionReason = suppliedStills ? 'supplied-visuals' : preference.matches ? 'reduced-motion' : saveData() ? 'save-data' : failed ? 'video-unavailable' : 'video';
     journey.dataset.pauseReason = userPaused ? 'user' : focusPaused ? 'keyboard-focus' : '';
     motionButton.hidden = false;
     motionButton.setAttribute('aria-pressed', String(!paused));

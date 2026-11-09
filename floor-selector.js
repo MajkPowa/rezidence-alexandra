@@ -58,29 +58,27 @@
   }
 
   function drawStack() {
-    // Whole-floor regions registered to the November 2026 exterior (1920 × 1080).
-    // The two front wings have different perspective slopes; the intermediate
-    // vertices follow the recessed central facade instead of cutting across it.
+    // These regions select whole floors on the supplied perspective render.
     // Apartment boundaries are shown only in the surveyed floor-plan polygons below.
     const levels = [
-      [[320,373],[615,198],[1058,297],[1177,343],[1407,385]],
-      [[320,471],[615,346],[1058,415],[1177,448],[1407,484]],
-      [[320,568],[615,470],[1058,521],[1177,546],[1407,576]],
-      [[320,664],[615,594],[1058,626],[1177,642],[1407,664]],
-      [[320,757],[615,716],[1058,731],[1177,737],[1407,751]],
-      [[320,833],[615,831],[1058,836],[1177,836],[1407,837]],
-      [[320,934],[615,950],[1058,947],[1177,942],[1407,930]]
+      [[548,245],[812,92],[1304,282]],
+      [[548,329],[812,236],[1304,357]],
+      [[548,406],[812,333],[1304,429]],
+      [[548,482],[812,431],[1304,500]],
+      [[548,556],[812,529],[1304,570]],
+      [[548,629],[812,626],[1304,639]],
+      [[548,674],[812,682],[1304,683]]
     ];
     const stack = $('#building-stack');
-    stack.setAttribute('viewBox', '280 170 1370 904.2');
+    stack.setAttribute('viewBox', '465 65 1000 660');
     stack.setAttribute('aria-label', 'Vyberte jedno ze šesti podlaží na vizualizaci domu');
     stack.setAttribute('aria-describedby', 'building-selection-caption');
-    stack.innerHTML = `<title>Rezidence Alexandra · výběr podlaží</title><image id="building-selection-image" href="assets/exterior-20261109/alexandra-1920.webp" width="1920" height="1080"/>` + [...floors].reverse().map(f => {
+    stack.innerHTML = `<title>Rezidence Alexandra · výběr podlaží</title><image id="building-selection-image" href="assets/exterior-no-balconies.webp" width="1672" height="941"/>` + [...floors].reverse().map(f => {
       const index = 6 - f.floor, upper = levels[index], lower = levels[index + 1];
       const count = units.filter(u => u.floor === f.floor).length;
-      const y = (upper[upper.length - 1][1] + lower[lower.length - 1][1]) / 2;
+      const y = (upper[2][1] + lower[2][1]) / 2;
       const polygon = [...upper, ...[...lower].reverse()];
-      return `<g class="stack-floor building-selection-floor" role="button" tabindex="0" data-map-floor="${f.floor}" aria-label="Zobrazit ${floorLabel(f.floor)}, ${count === 1 ? '1 jednotka' : `${count} jednotek`}" aria-pressed="${f.floor === activeFloor}"><path class="building-selection-zone" d="${path(polygon)}"/><path class="building-selection-leader" d="M1407 ${y}H1450"/><rect class="building-selection-label" x="1440" y="${y-28}" width="180" height="56" rx="8"/><text class="building-selection-number" x="1530" y="${y+1}" style="font-size:${f.floor === 1 ? 29 : 33}px">${floorLabel(f.floor)}</text></g>`;
+      return `<g class="stack-floor building-selection-floor" role="button" tabindex="0" data-map-floor="${f.floor}" aria-label="Zobrazit ${floorLabel(f.floor)}, ${count === 1 ? '1 jednotka' : `${count} jednotek`}" aria-pressed="${f.floor === activeFloor}"><path class="building-selection-zone" d="${path(polygon)}"/><path class="building-selection-leader" d="M1285 ${y}H1345"/><rect class="building-selection-label" x="1334" y="${y-24}" width="124" height="48" rx="7"/><text class="building-selection-number" x="1396" y="${y+1}"${f.floor === 1 ? ' style="font-size:23px"' : ''}>${floorLabel(f.floor)}</text></g>`;
     }).join('');
     $('#floor-buttons').innerHTML = [...floors].reverse().map(f=>`<button type="button" data-map-floor="${f.floor}" aria-pressed="${f.floor === activeFloor}"><span class="building-floor-name">${floorLabel(f.floor)}</span><span class="building-floor-availability" data-floor-summary="${f.floor}"></span></button>`).join('');
     const caption = $('.building-caption');

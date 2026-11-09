@@ -37,3 +37,13 @@ body.reference-redesign #parking-map-note>span{display:inline-block;margin-right
 /* Supplied linear dimensions retain up to millimetre precision. */
 body.reference-redesign .parking-facts .parking-dimensions{grid-column:1/-1}
 body.reference-redesign .parking-dimensions dd{font-size:22px;font-variant-numeric:tabular-nums}
+
+/* Labels are at the centroid of the actual bay outline, not on its entry line. */
+body.reference-redesign #parking-map .parking-bay{fill-opacity:.055;stroke-width:1;stroke-opacity:.35;pointer-events:all}
+body.reference-redesign #parking-map .parking-space circle{stroke-width:2}
+body.reference-redesign #parking-map .parking-space text{font-size:29px;stroke-width:1.5;dominant-baseline:central}
+body.reference-redesign #parking-map .parking-space[aria-pressed=true] .parking-bay,
+body.reference-redesign #parking-map .parking-space:focus-visible .parking-bay{fill-opacity:.13;stroke-width:2;stroke-opacity:1}
+body.reference-redesign #parking-map .parking-space:hover:not([aria-disabled=true]) .parking-bay{fill-opacity:.13;stroke-opacity:.85}
+body.reference-redesign #parking-map .parking-space:focus-visible{outline:none}
+body.reference-redesign #parking-map .parking-space:focus-visible circle{stroke-width:3}

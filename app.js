@@ -85,11 +85,12 @@
   });
   $('#privacy-open').addEventListener('click', () => openDialog($('#privacy-dialog')));
 
-  const exteriorBase = 'assets/exterior-20261109/';
   const architecture = [
-    { src: exteriorBase+'alexandra-1920.webp', srcset: [768,1280,1920,2560,3840].map(w => `${exteriorBase}alexandra-${w}.webp ${w}w`).join(', '), displaySrc: exteriorBase+'alexandra-3840.webp', downloadSrc: exteriorBase+'alexandra-8k.jpg', downloadLabel: 'Stáhnout vizualizaci (8K)', caption: 'Alexandra · pohled z ulice', alt: 'Vizualizace Rezidence Alexandra bez bočních balkonů v městském prostředí' },
-    { src: exteriorBase+'balconies-1280.webp', srcset: [768,1280,2560].map(w => `${exteriorBase}balconies-${w}.webp ${w}w`).join(', '), displaySrc: exteriorBase+'balconies-2560.webp', caption: 'Balkony a fasáda · detail vizualizace', alt: 'Detail světlé fasády a tmavého zábradlí balkonů Rezidence Alexandra' },
-    { src: exteriorBase+'entrance-1280.webp', srcset: [768,1280,2560].map(w => `${exteriorBase}entrance-${w}.webp ${w}w`).join(', '), displaySrc: exteriorBase+'entrance-2560.webp', caption: 'Vstup do domu · detail vizualizace', alt: 'Detail proskleného vstupu do Rezidence Alexandra' }
+    { src: 'assets/exterior-no-balconies.webp', caption: 'Levá strana · bez bočních balkonů', alt: 'Architektonická vizualizace levé strany domu bez bočních balkonů' },
+    { src: 'assets/exterior-rear-no-balconies.webp', caption: 'Zadní pohled · bez bočních balkonů', alt: 'Zadní strana domu bez bočních balkonů' },
+    { src: 'assets/exterior-hero.webp', caption: 'Pravý přední pohled', alt: 'Rezidence Alexandra z pravé přední strany' },
+    { src: 'assets/balcony-detail.webp', caption: 'Balkon', alt: 'Detail návrhu balkonů' },
+    { src: 'assets/facade-detail.webp', caption: 'Stínolam', alt: 'Detail návrhu stínolamu a fasády' }
   ];
   const interiorSequences = {
     '1': ['01','03','04','02','05','06','07'].map((n,i) => ({ src: `assets/interior-1-${n}.webp`, caption: `1+kk · ${i+1}/7`, alt: `Návrh interiéru bytu 1+kk, pohled ${i+1}` })),
@@ -122,8 +123,9 @@
   const interiorScope = galleryScope.innerHTML;
   $$('[data-variant]').forEach(button => button.addEventListener('click', () => {
     $$('[data-variant]').forEach(item => { item.classList.toggle('active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
-    const index = { 'no-balconies': 0, balconies: 1, entrance: 2 }[button.dataset.variant];
-    $('#architecture-image').srcset = architecture[index].srcset;
+    const index = { 'no-balconies': 0, rear: 1 }[button.dataset.variant];
+    if (!Number.isInteger(index)) return;
+    $('#architecture-image').removeAttribute('srcset');
     $('#architecture-image').src = architecture[index].src;
     $('#architecture-image').alt = architecture[index].alt;
     $('#architecture-caption').textContent = architecture[index].caption;

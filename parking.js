@@ -42,7 +42,8 @@
     const svg=$('#parking-map');svg.setAttribute('viewBox',`0 0 ${view.width} ${view.height}`);
     svg.innerHTML=`<title>${esc(view.label)} s dostupností parkovacích míst</title><image href="${esc(view.image)}" width="${view.width}" height="${view.height}"/>${data.spaces.filter(space=>space.view===activeView).map(space=>{
       const s=status(space),match=matches(space),[x,y]=space.anchor;
-      return `<g class="parking-space" data-parking-id="${esc(space.id)}" data-status="${s.key}" tabindex="${match?'0':'-1'}" role="button" aria-label="${esc(space.label)}, ${esc(types[space.type])}, ${esc(s.label)}, ${fmt.format(space.price)} korun" aria-pressed="${space.id===selectedId}" aria-disabled="${!match}" opacity="${match?'1':'.22'}"><circle cx="${x}" cy="${y}" r="${space.type==='garage'?44:31}"/><text x="${x}" y="${y}">${esc(space.type==='garage'?space.id:space.number)}</text></g>`;
+      const outline=space.polygon.map(point=>point.join(',')).join(' ');
+      return `<g class="parking-space" data-parking-id="${esc(space.id)}" data-status="${s.key}" tabindex="${match?'0':'-1'}" role="button" aria-label="${esc(space.label)}, ${esc(types[space.type])}, ${esc(s.label)}, ${fmt.format(space.price)} korun" aria-pressed="${space.id===selectedId}" aria-disabled="${!match}" opacity="${match?'1':'.22'}"><polygon class="parking-bay" points="${outline}"/><circle cx="${x}" cy="${y}" r="${space.type==='garage'?36:28}"/><text x="${x}" y="${y}">${esc(space.type==='garage'?space.id:space.number)}</text></g>`;
     }).join('')}`;
     $('#parking-list').innerHTML=list.map(space=>{const s=status(space);return `<button type="button" data-parking-id="${esc(space.id)}" data-status="${s.key}" aria-pressed="${space.id===selectedId}"><strong>${esc(space.label)}</strong><span class="status-badge status-${s.key}"><i class="availability-dot" aria-hidden="true"></i>${esc(s.label)}</span></button>`;}).join('');
     $('#parking-quick-select').innerHTML=list.length ? list.map(space=>`<option value="${esc(space.id)}">${esc(space.label)} · ${esc(types[space.type])}</option>`).join('') : '<option value="">Žádné místo pro tento filtr</option>';
@@ -93,10 +94,11 @@
     activeView=space?.view || (activeType==='garage'?'ground':'site');selectedId=space?.id || null;filter='all';$('#parking-status-filter').value='all';
   }
   window.addEventListener('popstate',()=>{if(data){fromUrl();render();}});
-  fetch('data/parking.json?v=revision20261105', {cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Parking unavailable');return r.json();}).then(result=>{
+  fetch('data/parking.json?v=centered20261109', {cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Parking unavailable');return r.json();}).then(result=>{
     if(!Array.isArray(result.views)||!Array.isArray(result.spaces)||!result.views.length)throw new Error('Invalid parking');
     if(!result.views.every(v=>/^[a-z-]+$/.test(v.id)&&/^assets\/parking\/[a-z-]+\.(svg|webp)$/.test(v.image)&&Number.isFinite(v.width)&&Number.isFinite(v.height)))throw new Error('Invalid view');
     if(!result.spaces.every(p=>/^[PG]\d+$/.test(p.id)&&validType(p.type)&&result.views.some(v=>v.id===p.view)&&Number.isFinite(p.price)&&Array.isArray(p.anchor)&&p.anchor.length===2&&p.anchor.every(Number.isFinite)))throw new Error('Invalid space');
+    if(!result.spaces.every(p=>p.geometryRole==='bay-boundary'&&Array.isArray(p.polygon)&&p.polygon.length>=3&&p.polygon.every(point=>Array.isArray(point)&&point.length===2&&point.every(Number.isFinite))))throw new Error('Invalid parking boundary');
     if(!result.spaces.every(p=>!p.plan || p.type==='garage' && /^assets\/parking\/garage-g[12]-plan\.webp$/.test(p.plan.image) && p.plan.pdf==='plans/floor-1.pdf' && Number.isFinite(p.plan.width) && Number.isFinite(p.plan.height)))throw new Error('Invalid garage plan');
     if(!result.spaces.every(p=>(p.area==null || Number.isFinite(p.area)&&p.area>0) && (!p.dimensions || validDimensions(p.dimensions))))throw new Error('Invalid dimensions');
     data=result;fromUrl();render();$('#parking-loading').hidden=true;$('#parking-workbench').hidden=false;

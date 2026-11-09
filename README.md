@@ -1,4 +1,15 @@
 # Rezidence Alexandra — Otrokovice
+## Platná klientská revize — 9. 11. 2026
+
+Původní architektura dodaná realitní kanceláří je obnovena ze stavu před změnou 7a88375, podle revize 32ef3b6. Úvod automaticky střídá pouze dodané vizualizace domu a interiéru; nové AI exteriéry ani generované průchody se nenačítají. Výběr podlaží používá původní render bez bočních balkonů a jeho registrované oblasti. Neověřený prostorový model domu je stažen z veřejného ovládání; Schéma dostupnosti zůstává založené na půdorysných polygonech 51 jednotek. Originální půdorysy, ceny a dostupnosti nejsou touto revizí změněné.
+
+Samostatná navigace Lokalita vede na interaktivní mapu s přesným bodem 49.21411387508866,17.51598485848693 a devíti ověřenými místy občanské vybavenosti. Leaflet1.9.4 je uložen lokálně s licencí; dlaždice OpenStreetMap se načítají až u sekce. Vzdálenosti jsou vzdušnou čarou. Při nedostupnosti mapy zůstávají přímé odkazy a dostupný seznam. Data a zdroje jsou v data/locality.json.
+
+Parkovací čísla jsou geometrické středy všech49stání a2garáží podle DWG/PDF. Webový podklad assets/parking/site-plan-centered.svg zachovává čáry dodaného výkresu a odstraňuje pouze původní čísla u hran stání; přes něj je vykreslen jediný interaktivní popisek na každém místě. Čísla ani rozměry se nemění.
+
+Přidružené galerie používají původní pohledy domu; exteriérové AI filmy a související downloady jsou vyřazené z prezentace. Zůstává interiérový film s českým komentářem. Bigboardová kampaň je na pokyn klienta mimo další práce.
+
+Následující datované části dokumentují historii; při rozporu platí tato revize.
 
 Prezentační web rezidenčního projektu s katalogem 51 jednotek, interaktivním výběrem podlaží, parkováním a přehledem vybavení. Hlavní navigace vede přímo na Nabídku bytů, Parkování, Vybavení, Ceník a Pro kupující; kontakt je dostupný samostatně. Nabídka se standardně otevírá výběrem přímo v domě. Ceník a tlačítko Přehled a ceny otevírají společný přehled všech 51 jednotek bez dalšího rozbalování. Galerie, filmy a 3D prohlídky zůstávají doplňující prezentací.
 

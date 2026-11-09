@@ -20,16 +20,29 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Check out website
         uses: actions/checkout@v4
+      - name: Prepare active website
+        run: |
+          mkdir -p "$RUNNER_TEMP/alexandra-pages"
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='assets/exterior-20261109/' \
+            --exclude='assets/hero-regenerated-20261109/' \
+            --exclude='assets/journey-sharp-20261026/' \
+            --exclude='assets/journey-rooms-20261027/' \
+            ./ "$RUNNER_TEMP/alexandra-pages/"
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '${{ runner.temp }}/alexandra-pages'
       - name: Publish to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          timeout: 1200000

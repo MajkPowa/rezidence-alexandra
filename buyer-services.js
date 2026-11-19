@@ -105,7 +105,8 @@
       if(writeQuery){const url=new URL(location.href);url.searchParams.set('financovani-byt','custom');history.replaceState(null,'',url);}
       render(); return;
     }
-    select.value=String(unit.id); price.value=String(unit.price);price.readOnly=true; equity.value=String(Math.round(unit.price*20)/100);
+    const wholePrice = Math.round(unit.price);
+    select.value=String(unit.id); price.value=String(wholePrice);price.readOnly=true; equity.value=String(Math.round(wholePrice*0.2));
     if(writeQuery){const url=new URL(location.href);url.searchParams.set('financovani-byt',String(unit.id));history.replaceState(null,'',url);}
     render();
   }
@@ -152,8 +153,48 @@
       const a=document.createElement('a');a.className='text-link';a.dataset.buyerMail=subject;a.dataset.buyerRecipient=contact.email;a.textContent=contact.email;
       box.replaceChildren(h,a);
     }
-    if(validContact(data.mortgageSpecialist))contactCard('#mortgage-specialist-contact',data.mortgageSpecialist,'hypoteční konzultace');
+    function showTeamContact(selector, contact, subject, description) {
+      const card = document.querySelector(selector);
+      if (!card) return;
+      card.querySelector('h4').textContent = contact.name;
+      card.querySelector('[data-adviser-description]').textContent = contact.description || description;
+      const links = card.querySelector('.buyer-team-links');
+      const email = document.createElement('a');
+      email.dataset.buyerMail = subject;
+      email.dataset.buyerRecipient = contact.email;
+      email.textContent = contact.email;
+      links.replaceChildren(email);
+      const phone = typeof contact.phone === 'string' ? contact.phone.replace(/\s/g,'') : '';
+      if (/^\+?\d{9,15}$/.test(phone)) {
+        const tel = document.createElement('a');
+        tel.href = 'tel:' + phone;
+        tel.textContent = contact.phoneDisplay || contact.phone;
+        links.prepend(tel);
+      }
+      const photo = contact.portrait || contact.logo;
+      if (typeof photo === 'string' && /^assets\/(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.(?:jpe?g|png|webp|svg)$/i.test(photo)) {
+        const media = card.querySelector('.buyer-team-media');
+        const img = new Image();
+        img.alt = '';
+        img.onload = () => media.replaceChildren(img);
+        img.src = photo;
+      }
+    }
+    if (validContact(data.mortgageSpecialist)) {
+      contactCard('#mortgage-specialist-contact',data.mortgageSpecialist,'hypoteční konzultace');
+      showTeamContact('#buyer-team-finance',data.mortgageSpecialist,'hypoteční konzultace','Konzultace financování a příprava podkladů pro banku.');
+    }
     const lawyers=Array.isArray(data.legalAdvisors)?data.legalAdvisors.filter(validContact):[];
+    if (lawyers.length === 1) showTeamContact('#buyer-team-legal', lawyers[0], 'právní zajištění koupě', 'Právní konzultace ke smlouvám a průběhu koupě bytu.');
+    else if (lawyers.length > 1) {
+      const link = document.querySelector('#buyer-team-legal .buyer-team-links a');
+      if (link) {
+        delete link.dataset.buyerMail;
+        link.href = '#pravni-sluzby';
+        link.textContent = 'Kontakty na advokáty';
+        document.querySelector('#buyer-team-legal [data-adviser-description]').textContent = 'Spolupracující advokáti s vámi projdou smlouvy a podmínky koupě bytu.';
+      }
+    }
     const lawBox=document.querySelector('#legal-advisor-contacts');
     if(lawBox&&lawyers.length){lawBox.replaceChildren();lawyers.forEach(c=>{const row=document.createElement('div');const h=document.createElement('h4');h.textContent=c.name;const a=document.createElement('a');a.className='text-link';a.dataset.buyerMail='právní zajištění koupě';a.dataset.buyerRecipient=c.email;a.textContent=c.email;row.append(h,a);lawBox.append(row);});}
     const docs=Array.isArray(data.contractDocuments)?data.contractDocuments.filter(d=>d&&typeof d.title==='string'&&typeof d.href==='string'&&/^plans\/[a-z0-9-]+\.pdf(?:#page=\d+)?$/.test(d.href)):[];

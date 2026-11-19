@@ -9,7 +9,7 @@
   const catalog = window.AlexandraCatalog;
   const inventory = window.AlexandraInventory;
   const number = new Intl.NumberFormat('cs-CZ', {maximumFractionDigits:2});
-  const price = value => `${number.format(value)} Kč`;
+  const price = window.AlexandraDetails.formatPrice;
   const area = value => `${number.format(value)} m²`;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   const status = unit => inventory.status(unit);
@@ -242,11 +242,12 @@
     card.innerHTML = `<div class="unit-detail-back"><button type="button" class="pick-back" data-pick-back="2">${icon('arrow-left')}Zpět na výběr jednotky</button></div>
       <div class="unit-photos">${roomGallery(unit)}${plan}</div>
       <div class="map-card-overview">
-        <div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
+        <div class="unit-sales-head"><div class="unit-sales-copy"><div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
         <h3 id="picked-unit-title" tabindex="-1">Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}
         <p class="map-unit-meta">${esc(unit.layout)} / ${esc(floorLabel(unit.floor))}${details.locationNote?' · '+esc(details.locationNote):''}</p>
-        <p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p>
+        <p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p></div>${window.AlexandraDetails.salesPortrait}</div>
         <div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a>
+          ${window.AlexandraDetails.callSales}
           <button type="button" class="unit-detail-button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button>
           <div class="map-card-links"><a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
         </div>

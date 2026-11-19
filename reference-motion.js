@@ -19,10 +19,15 @@
   let resumeAt = 0;
   let unavailable = false;
   let useH264 = false;
+  let revealRequest = 0;
+  const poster = picture.querySelector('img');
+  const posterPainted = (poster?.decode ? poster.decode().catch(() => {}) : Promise.resolve())
+    .then(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const allowMotion = () => !userStill && !reduced.matches && !connection?.saveData;
   const shouldPlay = () => inView && !document.hidden && allowMotion() && !unavailable;
 
   function showPhoto() {
+    revealRequest++;
     video.classList.remove('is-ready');
     picture.classList.add('is-visible');
   }
@@ -108,10 +113,17 @@
       resumeAt = 0;
     }
   });
-  video.addEventListener('playing', () => {
+  video.addEventListener('playing', async () => {
+    const request = ++revealRequest;
     if (!shouldPlay()) { video.pause(); return; }
-    video.classList.add('is-ready');
-    picture.classList.remove('is-visible');
+    await posterPainted;
+    const reveal = () => {
+      if (request !== revealRequest || video.paused || !shouldPlay()) return;
+      video.classList.add('is-ready');
+      picture.classList.remove('is-visible');
+    };
+    if (video.requestVideoFrameCallback) video.requestVideoFrameCallback(reveal);
+    else requestAnimationFrame(reveal);
   });
   video.addEventListener('error', () => {
     if (!source) return;

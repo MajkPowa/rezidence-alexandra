@@ -146,10 +146,27 @@ body.dr-brand #map-unit-card {
 .unit-source-plan img { display: block; width: 100%; max-height: 600px; object-fit: contain; border: 1px solid var(--line); border-radius: 8px; }
 .unit-source-plan a span { display: inline-flex; gap: 8px; align-items: center; padding-block: 12px; }
 #parking-explorer .parking-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
-#parking-explorer .parking-map-shell { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: start; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); }
-.parking-map-shell .parking-map-wrap { border: 0; border-radius: 0; min-width: 0; }
-.parking-map-controls { display: grid; align-content: start; gap: 4px; padding: 8px; }
-.parking-map-controls button { font-size: 12px; padding: 8px; text-align: left; }
+#parking-explorer .parking-map-shell {
+  position: relative;
+  container: parking-plan / inline-size;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.parking-map-shell .parking-map-wrap { min-width: 0; width: 100%; border: 0; border-radius: 0; }
+.parking-map-controls { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 4px; padding: 8px; }
+.parking-map-controls button { min-height: 44px; font-size: 12px; padding: 8px; text-align: center; }
+@container parking-plan (min-width: 640px) {
+  .parking-map-controls { position: absolute; z-index: 2; inset: 8px 8px auto auto; grid-template-columns: auto; padding: 0; }
+  .parking-map-controls button { background: #fff; text-align: left; box-shadow: 0 1px 3px rgb(20 20 24 / 7%); }
+  .parking-map-controls button[aria-pressed="true"] { background: var(--dr-red); }
+}
+@container parking-plan (max-width: 410px) {
+  .parking-map-controls { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
 #parking-explorer .parking-unit-context { justify-content: space-between; }
 @media (max-width: 900px) {
   #floor-explorer .picker-steps { padding-inline: 16px; }
@@ -157,9 +174,6 @@ body.dr-brand #map-unit-card {
   .picker-steps button { font-size: 13px; }
   .pick-floor-options { padding: 16px; }
   body.dr-brand #map-unit-card { grid-template-columns: minmax(0,1.35fr) minmax(255px,1fr); }
-  .parking-map-controls { grid-template-columns: repeat(4,minmax(0,1fr)); grid-row: 1; }
-  #parking-explorer .parking-map-shell { grid-template-columns: minmax(0,1fr); }
-  .parking-map-controls button { text-align: center; }
 }
 @media (max-width: 700px) {
   body.dr-brand #residence-journey .journey-bottom { inset: auto auto 24px var(--gutter); padding: 0; }
@@ -196,5 +210,46 @@ body.dr-brand #map-unit-card {
   #parking-explorer .parking-unit-context p { width: 100%; margin: 0 0 4px; }
   #parking-explorer .parking-unit-context :is(a,button) { gap: 5px; padding-inline: 0; }
 }
-@media (max-width: 420px) { .parking-map-controls { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+.buyer-team { margin-top: clamp(24px,3vw,40px); scroll-margin-top: calc(var(--header-height) + 16px); }
+.buyer-team > h3 { font: 600 clamp(22px,2.3vw,32px)/1.2 var(--sans); letter-spacing: -.025em; margin: 0 0 16px; }
+.buyer-team-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow: hidden; }
+.buyer-team-card { padding: clamp(16px,1.7vw,26px); display: grid; grid-template-columns: clamp(58px,6.3vw,96px) minmax(0,1fr); gap: clamp(12px,1.3vw,22px); align-items: start; }
+.buyer-team-card + .buyer-team-card { border-left: 1px solid var(--line); }
+.buyer-team-media { width: 100%; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; overflow: hidden; }
+.buyer-team-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+.buyer-team-media .buyer-team-sales-photo { transform: scale(1.42); transform-origin: 50% 23%; }
+.buyer-team-symbol { background: #f6f1f2; color: var(--dr-red); }
+.buyer-team-symbol svg { width: 65%; height: 65%; }
+.buyer-team-symbol img { object-fit: contain; }
+.buyer-team-copy { min-width: 0; }
+.buyer-team-copy h4 { margin: 3px 0 6px; font: 600 clamp(18px,1.35vw,23px)/1.22 var(--sans); letter-spacing: -.02em; }
+.buyer-team-copy p { font-size: 14px; line-height: 1.5; margin: 0; color: var(--muted); }
+.buyer-team-copy .buyer-team-role { font-weight: 500; color: var(--ink); }
+.buyer-team-links { display: flex; flex-direction: column; align-items: flex-start; margin-top: 8px; }
+.buyer-team-links a { display: inline-flex; align-items: center; min-height: 30px; font: 600 15px/1.4 var(--sans); color: var(--ink); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.buyer-team-links a:hover { color: var(--dr-red); }
+.unit-sales-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,34%); gap: 8px; align-items: end; background: white; }
+.unit-sales-copy { min-width: 0; }
+.unit-sales-portrait { display: block; align-self: end; justify-self: end; width: 100%; max-width: 164px; height: auto; max-height: 225px; object-fit: contain; object-position: center bottom; transform: scaleX(-1); background: #fff; }
+#map-unit-card .map-card-overview { container-type: inline-size; }
+#map-unit-card .unit-sales-copy .map-card-price { font-size: clamp(21px,7.5cqi,32px); line-height: 1.18; white-space: nowrap; }
+#map-unit-card .unit-sales-copy .map-price-note { margin-bottom: 8px; }
+#map-unit-card .unit-sales-head + .map-card-actions { margin-top: 0; }
+#unit-dialog .unit-dialog-identity { grid-template-columns: minmax(0,1fr) minmax(72px,112px); gap: 12px; padding-right: 34px; }
+#unit-dialog .unit-dialog-identity .unit-sales-portrait { max-height: 116px; width: auto; max-width: 100%; }
+#unit-dialog .unit-contact-actions { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; flex: 1 0 100%; }
+body.dr-brand :is(#map-unit-card,#unit-dialog) .button.unit-call { background: #29292e !important; color: #fff !important; border-color: #29292e !important; display: flex; justify-content: space-between; gap: 12px; min-height: 48px; }
+body.dr-brand :is(#map-unit-card,#unit-dialog) .button.unit-call:hover { background: #414147 !important; border-color: #414147 !important; }
+body.dr-brand :is(#map-unit-card,#unit-dialog) .unit-call > span { font: inherit; letter-spacing: inherit; }
+body.dr-brand :is(#map-unit-card,#unit-dialog) .unit-call .unit-call-number { font-variant-numeric: tabular-nums; font-weight: 500; white-space: nowrap; }
+@media (min-width: 801px) and (max-width: 1040px) {
+  .buyer-team-card { grid-template-columns: minmax(0,1fr); }
+  .buyer-team-media { width: 66px; }
+}
+@media (max-width: 800px) {
+  .buyer-team-grid { grid-template-columns: minmax(0,1fr); }
+  .buyer-team-card { grid-template-columns: clamp(58px,15vw,85px) minmax(0,1fr); }
+  .buyer-team-card + .buyer-team-card { border-left: 0; border-top: 1px solid var(--line); }
+  .buyer-team-links a { min-height: 42px; }
+}
 @media (prefers-reduced-motion: reduce) { #residence-journey .journey-picture { transition: none; } }

@@ -3,6 +3,10 @@
   const data = window.ALEXANDRA_DETAILS || { units: {}, standard: [], excluded: [] };
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const format = new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 2 });
+  const crown = new Intl.NumberFormat('cs-CZ', {style:'currency', currency:'CZK', maximumFractionDigits:0});
+  const formatPrice = value => crown.format(value);
+  const salesPortrait = '<img class="unit-sales-portrait" src="assets/developer-20261106/pavel-dvorak-white.webp" width="480" height="686" alt="Pavel Dvořák, prodej bytů" decoding="async">';
+  const callSales = '<a class="button unit-call" href="tel:+420734358581" aria-label="Zavolat Pavlu Dvořákovi na 734 358 581"><span>Zavolat</span><span class="unit-call-number">734 358 581</span></a>';
   const area = value => typeof value === 'number' && Number.isFinite(value) ? `${format.format(value)} m²` : 'Výměru upřesníme';
   const featureArea = (value, kind) => value === 0 ? (kind === 'cellar' ? 'Bez sklepa' : 'Bez balkonu') : area(value);
   const get = unit => data.units[String(unit?.id)] || {};
@@ -38,7 +42,7 @@
     const standardPdf = pdfPath(data.technicalCatalog?.url);
     return `<section class="unit-included" aria-label="Vybavení bytu ${esc(unit.id)}">${details.locationNote ? `<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>` : ''}<h3>Co je v ceně tohoto bytu</h3><ul class="equipment-list">${(details.equipment || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul>${standardPdf ? `<a class="equipment-document-link" href="${esc(standardPdf)}" target="_blank" rel="noopener">Technické listy standardního vybavení (PDF)</a>` : ''}<section class="unit-bathroom" aria-label="Koupelna pro byt ${esc(unit.id)}"><h4>Vaše koupelna · ${esc(bathroom?.label || unit.layout)}</h4><p class="included-confirmation"><strong>Skříňky, umyvadla, zrcadla i sanita podle tohoto katalogu jsou součástí ceny bytu.</strong></p>${bathroom?.referenceType ? `<p>${esc(bathroom.referenceType)}</p>${productsHTML(bathroom)}` : ''}${bathroomLinkHTML(unit,{pdf:true})}</section><div class="excluded-box"><h4>Není součástí ceny bytu</h4><p>${esc(data.excluded.join(', '))}.</p></div></section>`;
   }
-  window.AlexandraDetails = Object.freeze({ get, area, featureArea, areasHTML, cardHTML, detailHTML, bathroomKey, bathroomTarget, bathroomLinkHTML, tourHref });
+  window.AlexandraDetails = Object.freeze({ get, area, formatPrice, salesPortrait, callSales, featureArea, areasHTML, cardHTML, detailHTML, bathroomKey, bathroomTarget, bathroomLinkHTML, tourHref });
 
   const guide = document.querySelector('#standard-items');
   if (guide) guide.innerHTML = data.standard.map((group, index) => `<article id="standard-${esc(group.id)}"><span class="standard-number">${String(index+1).padStart(2,'0')}</span><div><h3>${esc(group.title)}</h3><ul>${group.items.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>${pdfPath(group.sourceUrl) ? `<a class="equipment-document-link" href="${esc(group.sourceUrl)}${group.sourcePage ? '#page='+Number(group.sourcePage) : ''}" target="_blank" rel="noopener">Technický list ${esc(group.title.toLocaleLowerCase('cs'))} (PDF)</a>` : ''}</div></article>`).join('');

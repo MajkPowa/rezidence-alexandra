@@ -29,7 +29,7 @@
   updateHeader();
   const menuToggle = $('.menu-toggle');
   const mobileNav = $('#mobile-nav');
-  const menuBackground = [$('#main'), $('.site-footer'), $('.brand', header), $('.header-contact', header)];
+  const menuBackground = [$('#main'), $('.site-footer'), $('.dr-lockup', header), $('.header-contact', header)];
   function closeMenu(restore = false) {
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', 'Otevřít navigaci');
@@ -98,6 +98,11 @@
     '3': ['01','02','03','09','10','07','08','04','05','06'].map((n,i) => ({ src: `assets/interior-3-${n}.webp`, caption: `3+kk · ${i+1}/10`, alt: `Návrh interiéru bytu 3+kk, pohled ${i+1}` }))
   };
   let activeInterior = '3';
+  const roomOrder = ['Obývací pokoj', 'Kuchyně', 'Ložnice', 'Odpočinkový kout', 'Předsíň', 'Koupelna', 'Samostatné WC', 'Komora'];
+  function roomPhotos(layout) {
+    const photos = interiorSequences[layout.charAt(0)] || [];
+    return roomOrder.map(room => photos.find(photo => photo.room === room)).filter(Boolean);
+  }
   function updateInteriorFeature() {
     const item = interiorSequences[activeInterior][0];
     $('#interior-feature-image').src = item.src;
@@ -113,9 +118,10 @@
     ['1', '2', '3'].forEach(type => {
       const selected = (data.items || []).filter(item => item.sourceKind === 'agency_original' && item.typology === `${type}+kk` && typeof item.src === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+\.(webp|jpe?g|png)$/i.test(item.src));
       selected.sort((a, b) => Number(b.room === 'Obývací pokoj') - Number(a.room === 'Obývací pokoj'));
-      if (selected.length) interiorSequences[type] = selected.map((item, index) => ({src:item.src, fullResolution:typeof item.fullResolution === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+-original\.(png|jpe?g)$/.test(item.fullResolution) ? item.fullResolution : null, width:item.width, height:item.height, alt:`${item.title} · ${item.typology}`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length}`, featureCaption:`${item.title} · ${item.typology}`}));
+      if (selected.length) interiorSequences[type] = selected.map((item, index) => ({src:item.src, room:item.room, thumb:item.src.replace(/\.webp$/, '-thumb.webp'), fullResolution:typeof item.fullResolution === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+-original\.(png|jpe?g)$/.test(item.fullResolution) ? item.fullResolution : null, width:item.width, height:item.height, alt:`${item.title} · ${item.typology}`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length}`, featureCaption:`${item.title} · ${item.typology}`}));
     });
     updateInteriorFeature();
+    document.dispatchEvent(new Event('alexandra:room-photos-ready'));
   }).catch(() => { /* The original project visualizations remain available. */ });
   let galleryItems = architecture;
   let galleryIndex = 0;
@@ -230,6 +236,11 @@
     }
     const saveButton = event.target.closest('[data-save]');
     if (saveButton) { const unit = findUnit(saveButton.dataset.save); if (!unit) return; const focus = captureFocus(saveButton); saveUnit(unit.id); restoreFocus(focus); return; }
+    const returnToPicker = event.target.closest('[data-return-unit]');
+    if (returnToPicker && window.AlexandraPicker?.openUnit(Number(returnToPicker.dataset.returnUnit))) {
+      event.preventDefault();
+      return;
+    }
     const unitButton = event.target.closest('[data-unit]');
     if (unitButton) openUnit(unitButton.dataset.unit);
   });
@@ -255,8 +266,8 @@
     saved = [];
     try { localStorage.removeItem(storageKey); } catch (_) {}
     setFilters({ favorites: false });
-    const focusTarget = $('#cenik').hidden ? $('[data-layout="all"]') : $('#favorites-only');
-    focusTarget.focus({ preventScroll: true });
+    const focusTarget = $('#cenik').hidden ? $('[data-pick-step][aria-current="step"]') : $('#favorites-only');
+    focusTarget?.focus({ preventScroll: true });
     notify('Uložené byty byly vymazány.');
   });
 
@@ -309,8 +320,12 @@
     const context = $('#parking-unit-context');
     if (!context) return;
     context.hidden = !parkingUnit;
-    context.innerHTML = parkingUnit ? `<p>Vybíráte parkování k <strong>bytu ${parkingUnit.id} · ${escape(parkingUnit.layout)} · ${escape(floorLabel(parkingUnit.floor))}</strong>.</p><button type="button" class="text-link" data-unit="${parkingUnit.id}">Detail bytu ${parkingUnit.id} ${icon('arrow-up-right')}</button><button type="button" class="text-link" data-clear-parking-unit>Zrušit výběr bytu ${icon('close')}</button>` : '';
+    context.innerHTML = parkingUnit ? `<p>Vybíráte parkování k <strong>bytu ${parkingUnit.id} · ${escape(parkingUnit.layout)} · ${escape(floorLabel(parkingUnit.floor))}</strong>.</p><a class="text-link" data-return-unit="${parkingUnit.id}" href="?podlazi=${parkingUnit.floor}&amp;byt=${parkingUnit.id}#vyber-v-dome">Detail bytu ${parkingUnit.id} ${icon('arrow-up-right')}</a><button type="button" class="text-link" data-clear-parking-unit>Zrušit výběr bytu ${icon('close')}</button>` : '';
   }
+  document.addEventListener('alexandra:picker-unit', event => {
+    parkingUnit = findUnit(event.detail?.id) || null;
+    renderParkingUnitContext();
+  });
   const inquiryForm = $('#inquiry-form');
   inquiryForm.noValidate = true;
   const formErrors = document.createElement('div');
@@ -376,6 +391,6 @@
   });
   const legacyUrl = new URL(location.href);
   if (legacyUrl.searchParams.get('byt') === '53') { legacyUrl.searchParams.set('byt','51'); legacyUrl.searchParams.set('podlazi','1'); history.replaceState(null,'',legacyUrl); }
-  window.AlexandraCatalog = Object.freeze({ snapshot, setFilters, openUnit, isSaved: id => { const unit = findUnit(id); return !!unit && saved.includes(unit.id); } });
+  window.AlexandraCatalog = Object.freeze({ snapshot, setFilters, openUnit, roomPhotos, isSaved: id => { const unit = findUnit(id); return !!unit && saved.includes(unit.id); } });
   renderUnits();
 })();

@@ -59,6 +59,11 @@
   function previewHTML(value, scope = 'map') {
     const unit = findUnit(value), variant = variantFor(unit);
     if (!variant) return '';
+    if (scope === 'selection') {
+      return `<button type="button" class="unit-plan-tile" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog">
+        <img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Návrh zařízení bytu ${unit.id}" loading="lazy" decoding="async">
+        <span><strong>Zařízený půdorys</strong><span>Byt ${unit.id} · ${escape(unit.layout)}</span><span class="plan-tile-action">Zobrazit ve 3D ${icon('arrow-up-right')}</span></span></button>`;
+    }
     const detail = scope === 'detail';
     return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Typový návrh zařízení bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Návrh zařízení bytu</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
   }

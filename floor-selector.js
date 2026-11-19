@@ -13,14 +13,15 @@
   const area = value => `${number.format(value)} m²`;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   const status = unit => inventory.status(unit);
-  let floors = [], activeFloor = 2, selectedId = null, projection = 'plan', snapshot, unitPicker;
+  let floors = [], activeFloor = 2, selectedId = null, unitPicker;
+  let step = 1, planLayout = 'all', facadeSide = 'front', roomIndex = 0;
   let orientation = { confirmed:false, northDegrees:null };
   const safeImage = path => typeof path === 'string' && /^assets\/floors\/[a-z0-9-]+\.webp$/.test(path);
   const validPoint = p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite);
   const path = points => points.map((p,i) => `${i ? 'L' : 'M'}${p[0].toFixed(2)} ${p[1].toFixed(2)}`).join(' ') + 'Z';
   const normalized = (f, points) => points.map(([x,y]) => [x * 1000 / f.width, y * 1000 / f.width]);
   const floorData = () => floors.find(f => f.floor === activeFloor);
-  const matching = unit => snapshot.filteredIds.includes(unit.id);
+  const matching = unit => planLayout === 'all' || unit.layout === planLayout;
   const polygonData = id => floorData()?.units.find(u => u.id === id);
   const badge = unit => `<span class="status-badge status-${status(unit).key}"><span class="availability-dot" aria-hidden="true"></span>${esc(status(unit).label)}</span>`;
   function orientationHTML() {
@@ -44,59 +45,54 @@
     return `<figure class="unit-location" data-unit-location="${unit.id}" data-orientation-state="${orientation.confirmed ? 'confirmed' : 'pending'}"><figcaption>${esc(title)}</figcaption><div class="unit-location-views"><svg class="unit-location-building" viewBox="0 0 116 158" role="img" aria-label="Zvýrazněné podlaží: ${esc(floorLabel(unit.floor))}"><title>${esc(floorLabel(f.floor))}</title>${levels}</svg><svg class="unit-location-plan" viewBox="0 0 ${f.width} ${f.height}" role="img" aria-label="Byt ${unit.id} zvýrazněný v půdorysu ${esc(floorLabel(f.floor))}"><title>Poloha bytu ${unit.id} v podlaží</title><image href="${esc(f.mapImage || f.image)}" width="${f.width}" height="${f.height}"/>${plan}</svg></div>${orientationHTML()}</figure>`;
   }
   window.AlexandraUnitLocation = Object.freeze({ html: locationHTML });
-  const signature = () => `${activeFloor}:${selectedId}:${projection}`;
-  let lastURLSignature = '', selectionInteracted = false, restoringURL = false;
-
-  function updateURL() {
-    if (!selectionInteracted || restoringURL) return;
-    if (signature() === lastURLSignature) return;
-    const url = new URL(location.href);
-    url.searchParams.set('podlazi', String(activeFloor));
-    if (selectedId !== null) url.searchParams.set('byt', String(selectedId)); else url.searchParams.delete('byt');
-    lastURLSignature = signature();
-    history.replaceState(null, '', url);
+  const facades = {
+    front: {
+      src: 'assets/exterior-no-balconies.webp',
+      viewBox: '465 65 1000 660',
+      levels: [
+        [[548,245],[812,92],[1304,282]], [[548,329],[812,236],[1304,357]],
+        [[548,406],[812,333],[1304,429]], [[548,482],[812,431],[1304,500]],
+        [[548,556],[812,529],[1304,570]], [[548,629],[812,626],[1304,639]],
+        [[548,674],[812,682],[1304,683]]
+      ]
+    },
+    rear: {
+      src: 'assets/exterior-rear-no-balconies.webp',
+      viewBox: '314 40 1190 730',
+      levels: [
+        [[415,142],[1268,84]], [[415,246],[1275,211]], [[413,338],[1277,312]],
+        [[411,427],[1279,412]], [[408,518],[1282,514]], [[406,611],[1286,614]],
+        [[405,702],[1288,698]]
+      ]
+    }
+  };
+  function drawFacade(side) {
+    facadeSide = side;
+    const {src, viewBox, levels} = facades[side];
+    const svg = $('#building-stack');
+    svg.setAttribute('viewBox', viewBox);
+    svg.setAttribute('aria-describedby', 'building-selection-caption');
+    const floorShapes = [...floors].reverse().map(f => {
+      const i = 6 - f.floor;
+      const upper = levels[i], lower = levels[i + 1];
+      const y = (upper.at(-1)[1] + lower.at(-1)[1]) / 2;
+      const outline = [...upper, ...[...lower].reverse()];
+      const label = floorLabel(f.floor);
+      return `<g class="stack-floor building-selection-floor" role="button" tabindex="0" data-map-floor="${f.floor}" aria-label="Vybrat patro: ${esc(label)}" aria-pressed="${activeFloor === f.floor}">
+        <path class="building-selection-zone" d="${path(outline)}"/>
+        <path class="building-selection-leader" d="M${upper.at(-1)[0]} ${y}H1340"/>
+        <rect class="building-selection-label" x="1334" y="${y-24}" width="124" height="48" rx="7"/>
+        <text class="building-selection-number" x="1396" y="${y+1}"${f.floor===1?' style="font-size:23px"':''}>${label}</text></g>`;
+    });
+    svg.innerHTML = `<title>${side==='front'?'Přední':'Zadní'} pohled · výběr patra</title><image href="${src}" width="1672" height="941" id="building-selection-image"/>${floorShapes.join('')}`;
   }
-
   function drawStack() {
-    // These regions select whole floors on the supplied perspective render.
-    // Apartment boundaries are shown only in the surveyed floor-plan polygons below.
-    const levels = [
-      [[548,245],[812,92],[1304,282]],
-      [[548,329],[812,236],[1304,357]],
-      [[548,406],[812,333],[1304,429]],
-      [[548,482],[812,431],[1304,500]],
-      [[548,556],[812,529],[1304,570]],
-      [[548,629],[812,626],[1304,639]],
-      [[548,674],[812,682],[1304,683]]
-    ];
-    const stack = $('#building-stack');
-    stack.setAttribute('viewBox', '465 65 1000 660');
-    stack.setAttribute('aria-label', 'Vyberte jedno ze šesti podlaží na vizualizaci domu');
-    stack.setAttribute('aria-describedby', 'building-selection-caption');
-    stack.innerHTML = `<title>Rezidence Alexandra · výběr podlaží</title><image id="building-selection-image" href="assets/exterior-no-balconies.webp" width="1672" height="941"/>` + [...floors].reverse().map(f => {
-      const index = 6 - f.floor, upper = levels[index], lower = levels[index + 1];
-      const count = units.filter(u => u.floor === f.floor).length;
-      const y = (upper[2][1] + lower[2][1]) / 2;
-      const polygon = [...upper, ...[...lower].reverse()];
-      return `<g class="stack-floor building-selection-floor" role="button" tabindex="0" data-map-floor="${f.floor}" aria-label="Zobrazit ${floorLabel(f.floor)}, ${count === 1 ? '1 jednotka' : `${count} jednotek`}" aria-pressed="${f.floor === activeFloor}"><path class="building-selection-zone" d="${path(polygon)}"/><path class="building-selection-leader" d="M1285 ${y}H1345"/><rect class="building-selection-label" x="1334" y="${y-24}" width="124" height="48" rx="7"/><text class="building-selection-number" x="1396" y="${y+1}"${f.floor === 1 ? ' style="font-size:23px"' : ''}>${floorLabel(f.floor)}</text></g>`;
-    }).join('');
-    $('#floor-buttons').innerHTML = [...floors].reverse().map(f=>`<button type="button" data-map-floor="${f.floor}" aria-pressed="${f.floor === activeFloor}"><span class="building-floor-name">${floorLabel(f.floor)}</span><span class="building-floor-availability" data-floor-summary="${f.floor}"></span></button>`).join('');
-    const caption = $('.building-caption');
-    caption.id = 'building-selection-caption';
-    caption.textContent = 'Dům bez bočních balkonů.';
-    caption.hidden = true;
-    if (!$('#building-selection-units')) {
-      const strip=document.createElement('div');
-      strip.id='building-selection-units';
-      strip.className='building-selection-units';
-      $('.building-picker').insertBefore(strip, caption);
-    }
-    if (!$('#selection-summary')) {
-      const confirmation=document.createElement('div');
-      confirmation.id='selection-summary'; confirmation.className='selection-summary';
-      confirmation.innerHTML=`<p><strong data-selection-name></strong><span data-selection-price></span></p><a class="map-mobile-jump" href="#map-unit-card">Zobrazit vybraný byt ${icon('arrow-down')}</a>`;
-      $('.building-picker').insertBefore(confirmation, caption);
-    }
+    drawFacade(facadeSide);
+    const buttons = [...floors].reverse().map(f =>
+      `<button type="button" data-map-floor="${f.floor}" aria-pressed="${f.floor===activeFloor}"><span class="building-floor-name">${floorLabel(f.floor)}</span><span class="building-floor-availability" data-floor-summary="${f.floor}"></span></button>`
+    ).join('');
+    $('#floor-buttons').innerHTML = buttons;
+    $('#plan-floor-buttons').innerHTML = buttons;
     updateBuildingSummary();
   }
 
@@ -109,15 +105,6 @@
       target.innerHTML = Object.entries(counts).filter(([,count])=>count).map(([key,count])=>`<span class="building-status-count status-${key}"><i aria-hidden="true"></i>${count} <span>${labels[key]}</span></span>`).join('');
       target.parentElement.setAttribute('aria-label', `${floorLabel(floor)}: ${Object.entries(counts).filter(([,count])=>count).map(([key,count])=>`${count} ${labels[key]}`).join(', ')}`);
     });
-    const strip=$('#building-selection-units');
-    if (strip) {
-      const focusedId=strip.contains(document.activeElement)?document.activeElement.dataset.buildingUnit:null;
-      strip.innerHTML=`<p>Byty ${window.AlexandraFloorLabels.location(activeFloor)}</p><div role="group" aria-label="Byty a dostupnost ${window.AlexandraFloorLabels.location(activeFloor)}">${units.filter(u=>u.floor===activeFloor).map(u=>{
-        const s=status(u), filtered=snapshot && !snapshot.filteredIds.includes(u.id);
-        return `<button type="button" class="building-unit-chip status-${s.key}" data-building-unit="${u.id}" aria-label="Byt ${u.id}, ${esc(u.layout)}, ${area(u.area)}, ${esc(s.label)}" aria-pressed="${u.id===selectedId}" ${filtered?'disabled':''}><strong>${String(u.id).padStart(2,'0')}</strong><span><i aria-hidden="true"></i>${esc(s.shortLabel||s.label)}</span></button>`;
-      }).join('')}</div>`;
-      if (focusedId) strip.querySelector(`[data-building-unit="${focusedId}"]`)?.focus({preventScroll:true});
-    }
   }
 
   function floorTransform() {
@@ -176,8 +163,8 @@
   function updatePlanState() {
     root.querySelectorAll('[data-map-floor]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.mapFloor)===activeFloor)));
     root.querySelectorAll('[data-map-unit]').forEach(b=>{
-      const id=Number(b.dataset.mapUnit), match=snapshot.filteredIds.includes(id);
-      const unit=units.find(u=>u.id===id);
+      const id=Number(b.dataset.mapUnit);
+      const unit=units.find(u=>u.id===id), match=unit && matching(unit);
       if (unit) {
         b.dataset.status=status(unit).key;
         b.setAttribute('aria-label',`Byt ${unit.id}, ${unit.layout}, ${area(unit.area)}, ${status(unit).label}`);
@@ -188,11 +175,13 @@
       b.setAttribute('tabindex',match?'0':'-1');
     });
     const floorUnits=units.filter(u=>u.floor===activeFloor), visible=floorUnits.filter(matching);
-    $('#map-floor-count').textContent = `${visible.length} z ${floorUnits.length} ${floorUnits.length===1?'jednotky':'jednotek'} ve filtru`;
+    const unitCount = n => n === 1 ? '1 jednotka' : n >= 2 && n <= 4 ? `${n} jednotky` : `${n} jednotek`;
+    $('#map-floor-count').textContent = planLayout === 'all' ? unitCount(floorUnits.length) : `${visible.length} z ${floorUnits.length} · ${planLayout}`;
+    root.querySelectorAll('[data-plan-layout]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.planLayout === planLayout)));
     $('#map-no-results').hidden=visible.length>0;
     const picker = unitPicker;
     if (picker) {
-      Array.from(picker.options).forEach(option => { option.disabled = option.value !== '' && !snapshot.filteredIds.includes(Number(option.value)); });
+      Array.from(picker.options).forEach(option => { option.disabled = option.value !== '' && !visible.some(unit => unit.id === Number(option.value)); });
       picker.value = selectedId === null ? '' : String(selectedId);
       picker.disabled = visible.length === 0;
     }
@@ -203,7 +192,7 @@
   }
 
   function selectedPlan(unit) {
-    const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'map');
+    const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'selection');
     if (furnished) return furnished;
     const f=floorData(), shape=polygonData(unit.id);
     if(!shape) return `<a class="map-card-plan" href="plans/floor-sheet-${unit.floor}-20261103.pdf" target="_blank" rel="noopener"><img src="${esc(f.image)}" alt="Původní půdorys · ${floorLabel(unit.floor)}"><span>Celé podlaží · otevřít PDF ${icon('arrow-up-right')}</span></a>`;
@@ -213,107 +202,157 @@
     return `<a class="map-card-plan" href="${esc(pdf)}" target="_blank" rel="noopener" aria-label="Otevřít ${unit.plan?'půdorys bytu':'zdrojový půdorys podlaží'} v PDF"><svg viewBox="${x-pad} ${y-pad} ${w+pad*2} ${h+pad*2}" role="img" aria-label="Výřez rozložení bytu ${unit.id} ze zdrojového půdorysu · ${floorLabel(unit.floor)}"><defs><clipPath id="selected-unit-clip"><path d="${path(points)}"/></clipPath></defs><image href="${esc(f.image)}" width="${f.width}" height="${f.height}" clip-path="url(#selected-unit-clip)"/></svg><span>Rozložení bytu · půdorys podlaží ${icon('arrow-up-right')}</span></a>`;
   }
 
+  function roomGallery(unit) {
+    const rooms = unit.id === 51 ? [] : catalog.roomPhotos(unit.layout);
+    if (!rooms.length) {
+      const plan = unit.plan || `plans/floor-sheet-${unit.floor}-20261103.pdf`;
+      const img = unit.plan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : floorData().image;
+      return `<figure class="unit-source-plan"><a href="${esc(plan)}" target="_blank" rel="noopener"><img alt="Projektový půdorys pro byt ${unit.id}" src="${esc(img)}"><span>Otevřít půdorys v PDF ${icon('arrow-up-right')}</span></a></figure>`;
+    }
+    const photo = rooms[roomIndex] || rooms[0];
+    const thumbs = rooms.map((item,index) =>
+      `<button type="button" data-room-photo="${index}" aria-pressed="${item===photo}" aria-label="${esc(item.room)}"><img src="${esc(item.thumb)}" width="160" height="90" loading="lazy" alt=""><span>${esc(item.room)}</span></button>`
+    ).join('');
+    return `<figure class="unit-room-frame"><img class="unit-room-main" src="${esc(photo.src)}" alt="${esc(photo.alt)}" width="${photo.width}" height="${photo.height}" decoding="async">
+      <figcaption><strong>Byt ${unit.id} · ${esc(unit.layout)}</strong><span data-room-caption>${esc(photo.room)}</span></figcaption></figure>
+      <div class="unit-room-thumbs" role="group" aria-label="Místnosti pro dispozici ${esc(unit.layout)}">${thumbs}</div>
+      <p class="room-scope">Typová vizualizace. Rozsah vybavení určuje standard bytu.</p>`;
+  }
+  function changeRoom(button) {
+    const unit = units.find(item => item.id === selectedId);
+    const index = Number(button.dataset.roomPhoto);
+    const photo = unit && catalog.roomPhotos(unit.layout)[index];
+    if (!photo) return;
+    roomIndex = index;
+    $('.unit-room-main').src = photo.src;
+    $('.unit-room-main').alt = photo.alt;
+    $('[data-room-caption]').textContent = photo.room;
+    root.querySelectorAll('[data-room-photo]').forEach(b => b.setAttribute('aria-pressed',String(b===button)));
+  }
   function drawCard() {
-    const unit=units.find(u=>u.id===selectedId), card=$('#map-unit-card');
-    const previousFocus = document.activeElement;
-    const focusAttribute = card.contains(previousFocus) && ['data-save','data-unit','data-furnished-unit','data-map-reset','href'].find(name => previousFocus.hasAttribute(name));
-    const restoreCardFocus = () => {
-      if (!focusAttribute || previousFocus.isConnected || document.querySelector('dialog[open]')) return;
-      const value = previousFocus.getAttribute(focusAttribute);
-      const target = card.querySelector(`[${focusAttribute}="${CSS.escape(value)}"]`) || card.querySelector('[data-unit]');
-      target?.focus({preventScroll:true});
-    };
-    const confirmation=$('#selection-summary');
-    if (confirmation) {
-      confirmation.hidden=!unit;
-      if (unit) {
-        confirmation.querySelector('[data-selection-name]').textContent=`Byt ${String(unit.id).padStart(2,'0')} · ${unit.layout} · ${area(unit.area)}`;
-        confirmation.querySelector('[data-selection-price]').textContent=`${price(unit.price)} · ${status(unit).label} · bez parkování`;
-      }
+    const card = $('#map-unit-card');
+    const unit = units.find(item => item.id === selectedId);
+    if (step !== 3 || !unit) return;
+    const focused = document.activeElement;
+    const focusKey = card.contains(focused) && ['data-room-photo','data-save','data-unit','data-furnished-unit','data-pick-back','href'].find(key => focused.hasAttribute(key));
+    const details = window.AlexandraDetails.get(unit);
+    const saved = catalog.isSaved(unit.id);
+    const plan = unit.id === 51 ? '' : selectedPlan(unit);
+    const tour = unit.id === 51 ? '' : `<a class="text-link detail-tour" href="${esc(window.AlexandraDetails.tourHref(unit))}">Typová 360° prohlídka ${icon('arrow-up-right')}</a>`;
+    card.innerHTML = `<div class="unit-detail-back"><button type="button" class="pick-back" data-pick-back="2">${icon('arrow-left')}Zpět na výběr jednotky</button></div>
+      <div class="unit-photos">${roomGallery(unit)}${plan}</div>
+      <div class="map-card-overview">
+        <div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
+        <h3 id="picked-unit-title" tabindex="-1">Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}
+        <p class="map-unit-meta">${esc(unit.layout)} / ${esc(floorLabel(unit.floor))}${details.locationNote?' · '+esc(details.locationNote):''}</p>
+        <p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p>
+        <div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a>
+          <button type="button" class="unit-detail-button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button>
+          <div class="map-card-links"><a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
+        </div>
+        <dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails.areasHTML(unit)}</dl>
+        ${locationHTML(unit)}<section class="map-standard-disclosure">${window.AlexandraDetails.cardHTML(unit)}</section>${tour}
+      </div>`;
+    if (focusKey && !document.querySelector('dialog[open]')) {
+      card.querySelector(`[${focusKey}="${CSS.escape(focused.getAttribute(focusKey))}"]`)?.focus({preventScroll:true});
     }
-    if(!unit){
-      card.innerHTML=`<div class="map-card-empty"><p class="explorer-step"><b>03</b> VÁŠ VÝBĚR</p><h3>${snapshot.filteredIds.some(id=>units.find(u=>u.id===id)?.floor===activeFloor)?'Prohlédněte si byt.':'Zkuste jiný výběr.'}</h3><p>Vyberte byt v půdorysu, jiné podlaží nebo upravte filtry dispozice a dostupnosti.</p><button class="button button-dark" data-map-reset>Zrušit filtry ${icon('arrow-up-right')}</button></div>`;
-      restoreCardFocus();
-      return;
-    }
-    const details=window.AlexandraDetails?.get(unit) || {};
-    card.innerHTML=`<div class="map-card-overview"><div class="map-card-topline"><p class="eyebrow">03 / VYBRANÝ BYT</p><button class="favorite-button ${catalog.isSaved(unit.id)?'saved':''}" data-save="${unit.id}" aria-pressed="${catalog.isSaved(unit.id)}" aria-label="${catalog.isSaved(unit.id)?'Odebrat':'Uložit'} byt ${unit.id}">${icon(catalog.isSaved(unit.id) ? 'favorite-filled' : 'favorite')}</button></div><h3>Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}<p class="map-unit-meta">${esc(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}</p>${details.locationNote?`<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>`:''}${locationHTML(unit)}<p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p><div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a><button class="unit-detail-button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button><div class="map-card-links"><a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('parking')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div></div><dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}</dl></div><div class="map-card-visuals">${selectedPlan(unit)}<section class="map-standard-disclosure">${window.AlexandraDetails?.cardHTML(unit) || ''}</section>${unit.id !== 51 ? `<div class="map-card-links"><a class="text-link" href="${window.AlexandraDetails?.tourHref?.(unit) || `tour.html?byt=${unit.layout.replace('+','')}&jednotka=${unit.id}&podlazi=${unit.floor}#walkthrough`}">Typová 360° prohlídka ${icon('arrow-up-right')}</a></div>` : ''}</div>`;
-    restoreCardFocus();
   }
 
-  function sync(detail, force=false) {
-    const previousFloor=snapshot?.filters.floor;
-    snapshot=detail || catalog.snapshot();
-    const next=Number(snapshot.filters.floor);
-    const changed=Number.isInteger(next)&&next>=1&&next<=6&&next!==activeFloor;
-    if(changed) { activeFloor=next; selectionInteracted=true; }
-    if (!restoringURL && detail && snapshot.filters.floor==='all' && previousFloor && previousFloor!=='all') {
-      selectionInteracted=false;
-      const url=new URL(location.href);
-      url.searchParams.delete('podlazi');url.searchParams.delete('byt');
-      history.replaceState(null,'',url);lastURLSignature='';
-    }
-    const candidates=units.filter(u=>u.floor===activeFloor&&matching(u));
-    if(!candidates.some(u=>u.id===selectedId)) selectedId=candidates[0]?.id??null;
-    if(changed||force) drawFloor(); else updatePlanState();
-    drawCard(); updateURL();
+  function updateSteps() {
+    root.querySelectorAll('[data-pick-panel]').forEach(panel => { panel.hidden = Number(panel.dataset.pickPanel) !== step; });
+    $('#map-legend').hidden = step !== 2;
+    root.querySelectorAll('[data-pick-step]').forEach(button => {
+      const n = Number(button.dataset.pickStep);
+      const label = ['Vyberte si patro', step >= 2 ? `Vyberte si jednotku · ${floorLabel(activeFloor)}` : 'Vyberte si jednotku', step === 3 ? `Byt ${String(selectedId).padStart(2,'0')}` : 'Detail jednotky'][n-1];
+      button.querySelector('.step-label').textContent = label;
+      button.querySelector('.step-number').innerHTML = n < step ? icon('check') : String(n).padStart(2,'0');
+      button.toggleAttribute('disabled', n > step);
+      if (n === step) button.setAttribute('aria-current','step');
+      else button.removeAttribute('aria-current');
+      button.dataset.complete = String(n < step);
+    });
+    root.dataset.step = String(step);
+    root.dataset.floor = String(activeFloor);
+    root.dataset.pickedUnit = selectedId === null ? '' : String(selectedId);
   }
-
-  function chooseFloor(floor) {
-    if(!floors.some(f=>f.floor===floor)) return;
-    selectionInteracted=true;
-    catalog.setFilters({floor:String(floor)});
-    $('#map-status-live').textContent=`Zobrazené podlaží: ${floorLabel(floor)}. Vyberte byt v půdorysu.`;
-  }
-
-  function restoreSelectionFromURL() {
-    if (!floors.length) return;
+  function writeSelection(method, setAnchor) {
     const url = new URL(location.href);
-    const requestedUnit = units.find(unit => unit.id === Number(url.searchParams.get('byt')));
-    const requestedFloor = Number(url.searchParams.get('podlazi'));
-    const validFloor = Number.isInteger(requestedFloor) && floors.some(floor => floor.floor === requestedFloor);
-    // History carries the selected floor/unit, not transient catalogue filters.
-    // Reset those filters so a valid deep-linked unit cannot remain disabled.
-    restoringURL = true;
-    activeFloor = requestedUnit?.floor || (validFloor ? requestedFloor : 2);
-    selectedId = requestedUnit?.id ?? null;
-    selectionInteracted = Boolean(requestedUnit || validFloor);
-    try {
-      catalog.setFilters({ floor: selectionInteracted ? String(activeFloor) : 'all', layout: 'all', area: 'all', status: 'all', favorites: false });
-      sync(null, true);
-      lastURLSignature = selectionInteracted ? signature() : '';
-    } finally {
-      restoringURL = false;
+    if (step >= 2) url.searchParams.set('podlazi', String(activeFloor));
+    else url.searchParams.delete('podlazi');
+    if (step === 3) url.searchParams.set('byt',String(selectedId));
+    else url.searchParams.delete('byt');
+    if (setAnchor) url.hash = 'vyber-v-dome';
+    if (location.href !== url.href) history[method](null,'',url);
+  }
+  function displayStep(next, options = {}) {
+    const {focus = false, historyMethod, anchor = true} = options;
+    step = next;
+    if (step === 2) drawFloor();
+    else if (step === 1) updatePlanState();
+    updateSteps();
+    if (step === 3) drawCard();
+    document.dispatchEvent(new CustomEvent('alexandra:picker-unit',{detail:{id:step===3 ? selectedId : null}}));
+    if (historyMethod) writeSelection(historyMethod, anchor);
+    if (focus) {
+      const heading = $(['#pick-floor-title','#map-floor-title','#picked-unit-title'][step-1]);
+      heading?.focus({preventScroll:true});
+      root.scrollIntoView({block:'start',behavior:'instant'});
     }
+  }
+  function chooseFloor(number) {
+    if (!floors.some(f => f.floor === number)) return;
+    if (step === 1) planLayout = 'all';
+    if (activeFloor !== number) selectedId = null;
+    activeFloor = number;
+    displayStep(2,{focus:true,historyMethod:'pushState'});
   }
   function chooseUnit(id) {
-    if(!snapshot.filteredIds.includes(id)) return;
-    const unit=units.find(u=>u.id===id);
-    if(!unit||unit.floor!==activeFloor) return;
-    selectionInteracted=true;
-    selectedId=id; updatePlanState(); drawCard(); updateURL();
-    $('#map-status-live').textContent=`Vybrán byt ${id}, ${unit.layout}, ${area(unit.area)}, ${status(unit).label}. Detail je pod půdorysem nebo vpravo.`;
+    const unit = units.find(item => item.id === id);
+    if (!unit || unit.floor !== activeFloor || !matching(unit)) return;
+    if (id !== selectedId) roomIndex = 0;
+    selectedId = id;
+    displayStep(3,{focus:true,historyMethod:'pushState'});
   }
-
-  root.addEventListener('click', event=>{
-    const buildingUnit=event.target.closest('[data-building-unit]');
-    if (buildingUnit) { chooseUnit(Number(buildingUnit.dataset.buildingUnit)); return; }
-    const jump = event.target.closest('.map-mobile-jump');
-    if (jump) {
-      event.preventDefault();
-      const card = $('#map-unit-card');
-      card.tabIndex = -1;
-      card.focus({preventScroll:true});
-      card.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-      return;
+  function openUnit(id) {
+    const unit = units.find(item => item.id === id);
+    if (!floors.length || !unit) return false;
+    document.dispatchEvent(new Event('alexandra:show-picker'));
+    activeFloor = unit.floor;
+    planLayout = 'all';
+    chooseUnit(id);
+    return true;
+  }
+  function restoreSelectionFromURL() {
+    if (!floors.length) return;
+    const params = new URL(location.href).searchParams;
+    const unit = units.find(item => item.id === Number(params.get('byt')));
+    const floor = floors.find(item => item.floor === Number(params.get('podlazi')));
+    activeFloor = unit?.floor || floor?.floor || 2;
+    selectedId = unit?.id ?? null;
+    planLayout = 'all';
+    roomIndex = 0;
+    displayStep(unit ? 3 : floor ? 2 : 1);
+  }
+  root.addEventListener('click', event => {
+    const button = event.target.closest('button, g[role="button"]');
+    if (!button) return;
+    if (button.hasAttribute('data-pick-back') || button.hasAttribute('data-pick-step')) {
+      const target = Number(button.dataset.pickBack || button.dataset.pickStep);
+      if (target < step) displayStep(target,{focus:true,historyMethod:'pushState'});
+    } else if (button.hasAttribute('data-map-floor')) chooseFloor(Number(button.dataset.mapFloor));
+    else if (button.hasAttribute('data-map-unit')) chooseUnit(Number(button.dataset.mapUnit));
+    else if (button.hasAttribute('data-room-photo')) changeRoom(button);
+    else if (button.hasAttribute('data-facade')) drawFacade(button.dataset.facade);
+    else if (button.hasAttribute('data-plan-layout') || button.hasAttribute('data-map-reset')) {
+      planLayout = button.dataset.planLayout || 'all';
+      if (!units.some(unit => unit.id === selectedId && matching(unit))) selectedId = null;
+      updatePlanState();
     }
-    const floor=event.target.closest('[data-map-floor]');
-    if(floor){chooseFloor(Number(floor.dataset.mapFloor));return;}
-    const unit=event.target.closest('[data-map-unit]');
-    if(unit){chooseUnit(Number(unit.dataset.mapUnit));return;}
-    if(event.target.closest('[data-map-reset]')){catalog.setFilters({layout:'all',floor:String(activeFloor),status:'all',area:'all',favorites:false,sort:'floor'});return;}
   });
-  root.addEventListener('change', event => { if (event.target.id === 'map-unit-select' && event.target.value) chooseUnit(Number(event.target.value)); });
+  root.addEventListener('change', event => {
+    if (event.target === unitPicker && unitPicker.value) chooseUnit(Number(unitPicker.value));
+  });
+
   root.addEventListener('keydown',event=>{
     if (event.altKey || event.ctrlKey || event.metaKey) return;
     const target=event.target.closest('[data-map-floor],g[data-map-unit]');
@@ -329,12 +368,11 @@
       const index=floors.findIndex(f=>f.floor===Number(target.dataset.mapFloor));
       const step=['ArrowRight','ArrowUp'].includes(event.key)?1:-1;
       const next=event.key==='Home'?floors[0]:event.key==='End'?floors.at(-1):floors[Math.max(0,Math.min(floors.length-1,index+step))];
-      chooseFloor(next.floor);
-      const context=target.closest('#building-stack')?'#building-stack':'#floor-buttons';
+      const context = target.closest('#building-stack') ? '#building-stack' : target.closest('#plan-floor-buttons') ? '#plan-floor-buttons' : '#floor-buttons';
       $(`${context} [data-map-floor="${next.floor}"]`)?.focus({preventScroll:true});
       return;
     }
-    const pool=floorData().units.filter(u=>snapshot.filteredIds.includes(u.id)).sort((a,b)=>a.id-b.id);
+    const pool=floorData().units.filter(u => matching(units.find(item => item.id === u.id))).sort((a,b)=>a.id-b.id);
     const current=pool.find(u=>u.id===Number(target.dataset.mapUnit));
     if (!current) return;
     let next=event.key==='Home'?pool[0]:event.key==='End'?pool.at(-1):null;
@@ -346,10 +384,19 @@
         return score(a)-score(b);
       })[0];
     }
-    if (next) { chooseUnit(next.id); $(`#floor-canvas [data-map-unit="${next.id}"]`)?.focus({preventScroll:true}); }
+    if (next) $(`#floor-canvas [data-map-unit="${next.id}"]`)?.focus({preventScroll:true});
   });
-  document.addEventListener('alexandra:furnished-ready', () => { if (snapshot && floors.length) drawCard(); });
-  document.addEventListener('alexandra:inventory-change', () => { if (snapshot && floors.length) sync(); });
+  ['alexandra:furnished-ready','alexandra:room-photos-ready','alexandra:catalog-change'].forEach(name => document.addEventListener(name, () => {
+    if (floors.length && step === 3) drawCard();
+  }));
+  document.addEventListener('alexandra:inventory-change', () => {
+    if (floors.length) { updatePlanState(); drawCard(); }
+  });
+  document.addEventListener('alexandra:picker-start', () => {
+    if (!floors.length) return;
+    selectedId = null; planLayout = 'all';
+    displayStep(1,{historyMethod:'replaceState',anchor:false});
+  });
 
   async function initialize() {
     root.setAttribute('aria-busy','true');
@@ -382,17 +429,14 @@
     $('#floor-canvas').insertAdjacentElement('afterend',picker);
     unitPicker=picker.querySelector('select');
     $('#map-status-live').setAttribute('aria-atomic','true');
-    const url=new URL(location.href), requestedUnit=units.find(u=>u.id===Number(url.searchParams.get('byt'))), requestedFloor=Number(url.searchParams.get('podlazi'));
-    activeFloor=requestedUnit?.floor||(Number.isInteger(requestedFloor)&&floors.some(f=>f.floor===requestedFloor)?requestedFloor:2);selectedId=requestedUnit?.id??null;
-    selectionInteracted=Boolean(requestedUnit || (Number.isInteger(requestedFloor)&&floors.some(f=>f.floor===requestedFloor)));
-    $('#explorer-loading').hidden=true;$('#explorer-workbench').hidden=false;$('#map-legend').hidden=false;
     drawStack();
-    document.addEventListener('alexandra:catalog-change',event=>sync(event.detail));
+    drawFloor();
+    $('#explorer-loading').hidden = true;
+    $('#explorer-workbench').hidden = false;
+    $('.picker-steps').hidden = false;
+    restoreSelectionFromURL();
     window.addEventListener('popstate', restoreSelectionFromURL);
-    // Opening the catalogue must retain the complete offer. Filter by floor only
-    // when a visitor explicitly selects it, or follows a deep link to a floor/unit.
-    if (requestedUnit || (Number.isInteger(requestedFloor) && floors.some(f=>f.floor===requestedFloor))) catalog.setFilters({floor:String(activeFloor)});
-    sync(null,true);
+    window.AlexandraPicker = Object.freeze({openUnit});
     root.setAttribute('aria-busy','false');
     document.dispatchEvent(new CustomEvent('alexandra:floor-selector-ready'));
   }

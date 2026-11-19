@@ -1,0 +1,200 @@
+/* The entrance and the three stages of apartment selection. */
+body.dr-brand #header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  background: transparent !important;
+  border-color: transparent;
+  color: #fff !important;
+}
+body.dr-brand #header:is(.scrolled, .menu-open) {
+  background: rgb(28 28 32 / 96%) !important;
+  backdrop-filter: blur(12px);
+  border-bottom-color: rgb(255 255 255 / 14%);
+}
+#header .dr-project-name, #header .dr-project-name small, body.dr-brand #header .desktop-nav a { color: #fff; }
+#header .dr-project-name { border-left-color: rgb(255 255 255 / 48%); }
+body.dr-brand #header .desktop-nav {
+  align-items: center;
+  gap: 2px;
+  padding: 2px 8px;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 28px;
+  background: rgb(25 26 31 / 62%);
+}
+#header .desktop-nav a { padding-inline: 9px; }
+body.dr-brand #header .menu-toggle {
+  color: #fff;
+  background: rgb(25 26 31 / 68%);
+  border-color: rgb(255 255 255 / 48%);
+}
+body.dr-brand #header :focus-visible, #residence-journey .journey-cta:focus-visible { outline-color: white; }
+body.dr-brand #residence-journey, body.dr-brand #residence-journey .journey-stage {
+  margin: 0;
+  height: 100svh;
+  min-height: 480px;
+}
+body.dr-brand #residence-journey .journey-copy {
+  left: max(var(--gutter), calc((100vw - 1560px) / 2));
+  top: 50%;
+  transform: translateY(-50%);
+}
+#residence-journey .journey-picture { transition: opacity .32s ease; }
+body.dr-brand #residence-journey .journey-bottom {
+  inset: auto max(var(--gutter), calc((100vw - 1560px) / 2)) 20px auto;
+  display: block;
+  width: auto;
+  padding: 0 290px 0 0;
+}
+#hero-motion-preference { background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 6px 0; }
+#hero-motion-preference[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
+body.dr-brand :is(#floor-explorer, #vyber-v-dome, .unit-filters, #parking-explorer) { scroll-margin-top: calc(var(--header-height) + 12px); }
+body.dr-brand #floor-explorer { --pick-pad: clamp(16px, 2vw, 30px); }
+body.dr-brand #explorer-workbench { display: block; }
+#floor-explorer [hidden], #byty .unit-filters[hidden] { display: none !important; }
+.picker-steps { border-bottom: 1px solid var(--line); padding: 14px var(--pick-pad); }
+.picker-steps ol { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; gap: 16px; }
+.picker-steps li { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; gap: 16px; }
+.picker-steps li:last-child { flex: 0 1 auto; }
+.picker-steps li:not(:last-child)::after { content: ''; align-self: center; flex: 1 1 10px; height: 1px; background: var(--line); }
+.picker-steps li:has([data-complete="true"])::after { background: var(--dr-red); }
+.picker-steps button { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; background: none; border: 0; padding: 0; text-align: left; font: 600 15px/1.3 var(--sans); color: var(--ink); cursor: pointer; }
+.picker-steps button[aria-current] { color: var(--dr-red); cursor: default; }
+.picker-steps button:disabled { color: var(--muted); font-weight: 500; cursor: default; opacity: 1; }
+.picker-steps [data-complete="true"]:hover .step-label { text-decoration: underline; text-underline-offset: 4px; }
+.step-number { display: grid; place-items: center; width: 39px; height: 39px; flex: none; border-radius: 50%; border: 1px solid var(--line); font-size: 14px; font-variant-numeric: tabular-nums; }
+.picker-steps [aria-current] .step-number { color: white; background: var(--dr-red); border-color: var(--dr-red); }
+.picker-steps [data-complete="true"] .step-number { color: white; background: var(--ink); border-color: var(--ink); }
+.step-number svg { width: 19px; height: 19px; }
+body.dr-brand #floor-explorer .building-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(190px, 17vw, 255px);
+  grid-template-areas: "heading heading" "image controls";
+  align-items: start;
+  padding: var(--pick-pad);
+  gap: 18px 24px;
+  border: 0;
+}
+#floor-explorer .pick-heading { grid-area: heading; align-self: center; margin: 0; font: 600 20px/1.35 var(--sans); justify-self: start; }
+.facade-controls { grid-area: heading; justify-self: end; display: flex; flex-wrap: wrap; gap: 6px; }
+.facade-controls button, .pick-layout button, .pick-back, .parking-map-controls button {
+  min-height: 44px;
+  padding: 9px 14px;
+  font: 500 14px/1.4 var(--sans);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  cursor: pointer;
+}
+.facade-controls button:hover, .pick-back:hover, .pick-layout button:hover, .parking-map-controls button:hover { border-color: var(--dr-red); color: var(--dr-red); }
+.facade-controls [aria-pressed="true"], .parking-map-controls [aria-pressed="true"] { background: var(--dr-red); color: white; border-color: var(--dr-red); }
+.facade-controls [aria-pressed="true"]:hover, .parking-map-controls [aria-pressed="true"]:hover { background: var(--dr-red-hover); color: white; }
+#floor-explorer .building-selection-view { grid-area: image; }
+#floor-explorer #building-stack { display: block; width: 100%; height: auto; aspect-ratio: auto; }
+#floor-explorer #floor-buttons, #floor-explorer #plan-floor-buttons { display: grid; grid-template-columns: 1fr; align-self: start; width: 100%; gap: 7px; margin: 0; }
+#floor-explorer #floor-buttons { grid-area: controls; }
+#floor-explorer .floor-buttons button { display: flex; justify-content: space-between; align-items: center; gap: 7px; min-height: 48px; width: 100%; padding: 10px 12px; }
+#floor-explorer .pick-floor { display: grid; grid-template-columns: minmax(0,1fr) clamp(205px,22vw,330px); }
+#floor-explorer .floor-stage { position: relative; inset: auto; border: 0; padding: var(--pick-pad); width: 100%; height: auto; }
+.pick-back { display: inline-flex; gap: 10px; align-items: center; justify-content: center; margin-bottom: 16px; }
+.pick-back svg, .plan-tile-action svg { width: 17px; height: 17px; flex: none; }
+#floor-explorer .floor-heading h3 { margin: 4px 0 0; }
+#floor-explorer .floor-canvas { max-width: 840px; margin: 4px auto 20px; }
+.pick-floor-options { display: grid; align-content: start; gap: 24px; border-left: 1px solid var(--line); padding: var(--pick-pad); }
+.pick-layout { min-width: 0; border: 0; padding: 0; margin: 0; }
+.pick-layout legend { font-weight: 600; font-size: 14px; margin-bottom: 9px; }
+.pick-layout > div { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.pick-layout button[aria-pressed="true"] { color: white; border-color: var(--ink); background: var(--ink); }
+body.dr-brand #map-unit-card {
+  display: grid;
+  grid-template-columns: minmax(0,1.95fr) minmax(285px,1fr);
+  grid-template-areas: "back info" "photos info";
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  gap: 0;
+  padding: 0;
+  border: 0;
+}
+.unit-detail-back { grid-area: back; padding: var(--pick-pad) var(--pick-pad) 0; }
+.unit-detail-back .pick-back { margin: 0; }
+.unit-photos { grid-area: photos; min-width: 0; padding: 16px var(--pick-pad) var(--pick-pad); }
+#map-unit-card .map-card-overview { grid-area: info; align-self: stretch; padding: var(--pick-pad); border-left: 1px solid var(--line); }
+#map-unit-card .map-card-actions { display: grid; margin-top: 10px; }
+#map-unit-card .map-card-topline { min-height: 40px; }
+#picked-unit-title, #map-floor-title { width: fit-content; }
+#map-unit-card .map-card-price { margin-top: 18px; }
+#map-unit-card .map-card-links { display: flex; flex-flow: row wrap; gap: 0 14px; }
+#map-unit-card .map-card-links .text-link { gap: 6px; }
+#map-unit-card .detail-tour { margin-top: 14px; display: inline-flex; gap: 10px; align-items: center; }
+.unit-room-frame { position: relative; overflow: hidden; border-radius: 8px; margin: 0; background: var(--dr-wash); }
+.unit-room-main { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.unit-room-frame figcaption { position: absolute; inset: auto 0 0; padding: 36px 16px 14px; color: white; background: linear-gradient(transparent, rgb(0 0 0 / 78%)); display: flex; flex-wrap: wrap; gap: 2px 12px; align-items: baseline; font-size: 14px; }
+.unit-room-frame figcaption strong { font-size: 17px; }
+.unit-room-thumbs { display: grid; grid-template-columns: repeat(auto-fit,minmax(78px,1fr)); margin-top: 12px; gap: 8px; }
+.unit-room-thumbs button { display: grid; align-content: start; width: 100%; min-width: 0; padding: 0; border: 2px solid transparent; border-radius: 7px; overflow: hidden; background: white; color: var(--ink); font: 500 12px/1.4 var(--sans); text-align: left; cursor: pointer; }
+.unit-room-thumbs button[aria-pressed="true"] { border-color: var(--dr-red); color: var(--dr-red); }
+.unit-room-thumbs img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.unit-room-thumbs span { padding: 5px 3px; overflow-wrap: anywhere; }
+.room-scope { margin: 8px 0 20px; font-size: 12px; color: var(--muted); }
+.unit-plan-tile { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); width: 100%; gap: 18px; align-items: center; min-width: 0; border-radius: 8px; border: 1px solid var(--line); padding: clamp(10px,2vw,24px); text-align: left; background: var(--dr-wash); color: var(--ink); cursor: pointer; }
+.unit-plan-tile img { width: 100%; max-height: 350px; height: auto; object-fit: contain; }
+.unit-plan-tile > span { display: grid; justify-items: start; gap: 7px; font: 500 14px/1.5 var(--sans); }
+.unit-plan-tile strong { font-size: clamp(18px,2vw,26px); line-height: 1.2; }
+.plan-tile-action { display: inline-flex; align-items: center; gap: 8px; padding: 7px 0; text-decoration: underline; text-underline-offset: 4px; color: var(--dr-red); font-weight: 600; }
+.unit-source-plan { margin: 0; }
+.unit-source-plan img { display: block; width: 100%; max-height: 600px; object-fit: contain; border: 1px solid var(--line); border-radius: 8px; }
+.unit-source-plan a span { display: inline-flex; gap: 8px; align-items: center; padding-block: 12px; }
+#parking-explorer .parking-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+#parking-explorer .parking-map-shell { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: start; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); }
+.parking-map-shell .parking-map-wrap { border: 0; border-radius: 0; min-width: 0; }
+.parking-map-controls { display: grid; align-content: start; gap: 4px; padding: 8px; }
+.parking-map-controls button { font-size: 12px; padding: 8px; text-align: left; }
+#parking-explorer .parking-unit-context { justify-content: space-between; }
+@media (max-width: 900px) {
+  #floor-explorer .picker-steps { padding-inline: 16px; }
+  .picker-steps ol, .picker-steps li { gap: 8px; }
+  .picker-steps button { font-size: 13px; }
+  .pick-floor-options { padding: 16px; }
+  body.dr-brand #map-unit-card { grid-template-columns: minmax(0,1.35fr) minmax(255px,1fr); }
+  .parking-map-controls { grid-template-columns: repeat(4,minmax(0,1fr)); grid-row: 1; }
+  #parking-explorer .parking-map-shell { grid-template-columns: minmax(0,1fr); }
+  .parking-map-controls button { text-align: center; }
+}
+@media (max-width: 700px) {
+  body.dr-brand #residence-journey .journey-bottom { inset: auto auto 24px var(--gutter); padding: 0; }
+  body.dr-brand #residence-journey .journey-copy { top: 48%; }
+  #floor-explorer .picker-steps { padding: 10px; }
+  .picker-steps ol { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 4px; }
+  .picker-steps li { align-items: start; }
+  .picker-steps li::after { display: none; }
+  .picker-steps button { display: flex; width: 100%; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px; text-align: center; font-size: 12px; min-height: 62px; }
+  .step-number { width: 29px; height: 29px; font-size: 12px; }
+  body.dr-brand #floor-explorer .building-picker { grid-template-columns: minmax(0,1fr); grid-template-areas: "heading" "side" "image" "controls"; padding: 14px; gap: 12px; }
+  .facade-controls { grid-area: side; justify-self: stretch; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .facade-controls button { font-size: 12px; padding: 5px 3px; }
+  #floor-explorer #floor-buttons, #floor-explorer #plan-floor-buttons { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; }
+  #floor-explorer .floor-buttons button { flex-direction: column; align-items: center; justify-content: center; padding: 6px 2px; gap: 0; }
+  #floor-explorer .building-floor-availability { margin: 0; font-size: 11px; }
+  #floor-explorer .pick-floor { grid-template-columns: 1fr; }
+  .pick-floor-options { border: 0; border-top: 1px solid var(--line); gap: 16px; }
+  .pick-layout > div { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .pick-layout button { padding-inline: 4px; }
+  #floor-explorer .floor-stage { padding: 14px; }
+  #floor-explorer .floor-canvas { margin-block: 8px 16px; }
+  body.dr-brand #map-unit-card { grid-template-columns: 1fr; grid-template-areas: "back" "photos" "info"; }
+  #map-unit-card .map-card-overview { border: 0; border-top: 1px solid var(--line); }
+  .unit-room-thumbs { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .unit-plan-tile { gap: 12px; }
+  #parking-explorer .parking-toolbar { display: grid; grid-template-columns: minmax(0,3fr) minmax(0,2fr); align-items: end; gap: 12px; }
+  #parking-explorer .parking-toolbar label { display: grid; grid-template-columns: minmax(0,1fr); gap: 4px; min-width: 0; }
+  #parking-explorer .parking-toolbar select { width: 100%; min-width: 0; text-overflow: ellipsis; }
+}
+@media (max-width: 500px) {
+  #parking-explorer .parking-toolbar { grid-template-columns: minmax(0,1fr); }
+  #parking-explorer .parking-unit-context { gap: 2px 12px; }
+  #parking-explorer .parking-unit-context p { width: 100%; margin: 0 0 4px; }
+  #parking-explorer .parking-unit-context :is(a,button) { gap: 5px; padding-inline: 0; }
+}
+@media (max-width: 420px) { .parking-map-controls { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (prefers-reduced-motion: reduce) { #residence-journey .journey-picture { transition: none; } }

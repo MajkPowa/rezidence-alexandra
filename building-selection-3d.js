@@ -27,7 +27,6 @@
     const view = document.createElement('div');
     view.className = 'building-selection-view';
     facade.before(view);
-    view.innerHTML = `<div class="building-selection-mode" role="group" aria-label="Zobrazení domu"><button type="button" data-building-mode="render" aria-pressed="true" aria-controls="building-stack">Vizualizace</button><button type="button" data-building-mode="availability" aria-pressed="false" aria-controls="building-selection-3d-panel">Schéma dostupnosti</button></div>`;
     view.append(facade);
     const panel = document.createElement('div');
     panel.id = 'building-selection-3d-panel';
@@ -50,8 +49,8 @@
     let model, ready = false, loadTimer, mode = 'render', content = 'availability', requestedSrc = '', loadingSource = '', geometry, geometryPromise, requestNumber = 0, lastFloor = 2;
     // Only source-plan availability volumes are exposed; the inferred architectural GLB is not an approved depiction.
     const srcForVariant = () => isolate.checked ? `assets/3d/availability-floor-${activeFloor()}.glb` : 'assets/3d/availability-building.glb';
-    const activeFloor = () => Number(facade.querySelector('[data-map-floor][aria-pressed="true"]')?.dataset.mapFloor) || 2;
-    const selectedUnit = () => Number(explorer.querySelector('#building-selection-units [aria-pressed="true"]')?.dataset.buildingUnit) || null;
+    const activeFloor = () => Number(explorer.dataset.floor) || 2;
+    const selectedUnit = () => Number(explorer.dataset.pickedUnit) || null;
     const unitStatus = unit => { const key = inventory?.status(unit)?.key; return Object.hasOwn(colors,key) ? key : 'unknown'; };
     const linear = hex => [1,3,5].map(i => { const value = parseInt(hex.slice(i,i+2),16)/255; return value <= .04045 ? value/12.92 : ((value+.055)/1.055)**2.4; });
 
@@ -105,13 +104,7 @@
     function chooseVolume(id) {
       const unit = units.find(unit=>unit.id===id);
       if (!unit || !catalog) return;
-      catalog.setFilters({floor:String(unit.floor)});
-      const button = explorer.querySelector(`#building-selection-units [data-building-unit="${id}"]`);
-      if (!button || button.disabled) {
-        selection.textContent = `Byt ${id} neodpovídá aktivním filtrům. Pro jeho výběr upravte filtry v přehledu.`;
-        return;
-      }
-      button.click();
+      window.AlexandraPicker?.openUnit(unit.id);
       syncAvailability();
     }
 
@@ -238,6 +231,7 @@
         else if (model.loaded) { clearTimeout(loadTimer); loadingSource=''; setBusy(false); syncFloor(); }
       } catch { if (currentRequest===requestNumber) {loadingSource='';showError();} }
     }
+    let facadeSide = 'front';
     function setMode(next) {
       if (!['render', 'availability'].includes(next)) return;
       mode = next === 'render' ? 'render' : '3d';
@@ -246,11 +240,16 @@
       // by browsers, so use the global attribute explicitly.
       facade.toggleAttribute('hidden', mode === '3d');
       panel.hidden = mode !== '3d';
-      view.querySelectorAll('.building-selection-mode [data-building-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.buildingMode === next)));
+      explorer.querySelectorAll('.facade-controls button').forEach(button => {
+        const chosen = mode === '3d' ? button.dataset.buildingMode === 'availability' : button.dataset.facade === facadeSide;
+        button.setAttribute('aria-pressed', String(chosen));
+      });
       updateCopy();
       if (mode === '3d') loadModel();
     }
     explorer.addEventListener('click', event => {
+      const side = event.target.closest('[data-facade]');
+      if (side) { facadeSide = side.dataset.facade; setMode('render'); return; }
       const modeButton = event.target.closest('[data-building-mode]');
       if (modeButton) { setMode(modeButton.dataset.buildingMode); return; }
       if (event.target.closest('[data-building-3d-retry]')) { loadModel(true); return; }
@@ -267,6 +266,7 @@
     isolate.addEventListener('change', () => {updateCopy();loadModel();});
     explorer.addEventListener('change', event => {if(event.target.id==='map-unit-select') queueMicrotask(syncFloor);});
     explorer.addEventListener('keydown', event => {if(event.target.closest('[data-map-unit],[data-map-floor]')) queueMicrotask(syncFloor);});
+    document.addEventListener('alexandra:picker-unit', syncFloor);
     document.addEventListener('alexandra:catalog-change', syncFloor);
     document.addEventListener('alexandra:inventory-change', syncAvailability);
     updateCopy();

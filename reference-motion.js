@@ -18,7 +18,7 @@
   let source;
   let resumeAt = 0;
   let unavailable = false;
-  let useH264 = false;
+  const failedSources = new Set();
   let revealRequest = 0;
   const poster = picture.querySelector('img');
   const posterPainted = (poster?.decode ? poster.decode().catch(() => {}) : Promise.resolve())
@@ -47,8 +47,14 @@
     const mobile = portrait.matches;
     const pixels = Math.max(innerWidth, innerHeight * 16 / 9) * Math.min(devicePixelRatio, 2);
     const constrained = /2g|3g/.test(connection?.effectiveType || '') || (connection?.downlink > 0 && connection.downlink < 2.5) || (navigator.deviceMemory && navigator.deviceMemory <= 4);
-    const target = constrained || useH264 ? 1920 : pixels > 2560 ? 3840 : pixels > 1600 ? 2560 : 1920;
-    const choices = config.variants.filter(item => item.id.startsWith(mobile ? 'mobile-' : 'desktop-') && item.width <= target && video.canPlayType(item.type)).sort((a, b) => b.width - a.width);
+    const playable = config.variants
+      .filter(item => !failedSources.has(item.src) && video.canPlayType(item.type))
+      .sort((a, b) => b.width - a.width);
+    const deviceVariants = playable.filter(item => item.id.startsWith(mobile ? 'mobile-' : 'desktop-'));
+    const pool = mobile && !deviceVariants.length ? playable.filter(item => item.id.startsWith('desktop-')) : deviceVariants;
+    const target = constrained || !deviceVariants.length ? 960 : pixels > 2560 ? 3840 : pixels > 1600 ? 2560 : 1920;
+    const choices = pool.filter(item => item.width <= target);
+    if (!choices.length && pool.length) choices.push(pool.at(-1));
     for (const item of choices) {
       if (item.type.includes('vp9') && navigator.mediaCapabilities?.decodingInfo) {
         try {
@@ -127,14 +133,9 @@
   });
   video.addEventListener('error', () => {
     if (!source) return;
-    if (source.type.includes('vp9') && !useH264) {
-      useH264 = true;
-      releaseSource();
-      reconcile();
-    } else {
-      unavailable = true;
-      releaseSource();
-    }
+    failedSources.add(source.src);
+    releaseSource();
+    reconcile();
   });
   preferenceButton?.addEventListener('click', () => {
     userStill = !userStill;
@@ -147,7 +148,12 @@
     visibility();
   });
   reduced.addEventListener('change', preferenceChanged);
-  connection?.addEventListener('change', preferenceChanged);
+  function connectionChanged() {
+    failedSources.clear();
+    preferenceChanged();
+  }
+  connection?.addEventListener('change', connectionChanged);
+  window.addEventListener('online', connectionChanged);
   const observer = new IntersectionObserver(visibility, {threshold:[0, 0.1, 1]});
   observer.observe(hero);
   window.addEventListener('pageshow', visibility);

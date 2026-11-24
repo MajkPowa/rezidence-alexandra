@@ -3,6 +3,9 @@
   const root = document.querySelector('#parking-explorer');
   if (!root) return;
   const $ = selector => root.querySelector(selector);
+  const map = $('#parking-map');
+  map.setAttribute('aria-labelledby','parking-drawing-title');
+  map.innerHTML = '<title id="parking-drawing-title">Situační výkres parkování</title><image id="parking-drawing" aria-hidden="true"/><g id="parking-bays"></g>';
   const esc = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt = new Intl.NumberFormat('cs-CZ');
   const dimensionFormat = new Intl.NumberFormat('cs-CZ',{minimumFractionDigits:2,maximumFractionDigits:3});
@@ -11,12 +14,14 @@
   const types = { outdoor:'Venkovní stání', covered:'Kryté stání', garage:'Garáž' };
   const validType = value => typeof value==='string' && Object.prototype.hasOwnProperty.call(types,value);
   const icon = () => window.AlexandraIcons?.svg('arrow-up-right') || '';
-  let data, activeView='site', selectedId=null, filter='all', activeType='all';
+  let data, selectedId=null, filter='all', activeType='all';
   const status = space => window.AlexandraInventory?.parkingStatus(space.id) || {key:'unknown',label:'Dostupnost na dotaz'};
-  const matches = space => space.view === activeView && (activeType === 'all' || space.type === activeType) && (filter === 'all' || status(space).key === filter);
+  const inDrawing = space => activeType === 'all' || space.type === activeType;
+  const matches = space => inDrawing(space) && (filter === 'all' || status(space).key === filter);
   function updateUrl() {
     const url = new URL(location.href); if (selectedId) url.searchParams.set('parkovani',selectedId); else url.searchParams.delete('parkovani');
-    if (activeType !== 'all') url.searchParams.set('typ-parkovani',activeType); else url.searchParams.delete('typ-parkovani');
+    // Older garage links without a layer open the garage detail drawing.
+    if (activeType !== 'all' || selectedId?.startsWith('G')) url.searchParams.set('typ-parkovani',activeType); else url.searchParams.delete('typ-parkovani');
     history.replaceState(null,'',url);
   }
   function detail() {
@@ -31,39 +36,71 @@
     const planHTML=plan ? `<figure class="parking-garage-plan"><a href="${esc(plan.image)}" target="_blank" rel="noopener" aria-label="Zvětšit půdorys: ${esc(space.label)}"><img src="${esc(plan.image)}" alt="Původní projektový půdorys: ${esc(space.label)}, včetně skutečných kót" width="${plan.width}" height="${plan.height}" loading="lazy"/></a><figcaption>${esc(space.label)} · původní projektový výřez</figcaption><a class="parking-document-link" href="${esc(plan.pdf)}" target="_blank" rel="noopener">Otevřít celý projektový výkres (PDF) ${icon()}</a></figure>` : '';
     $('#parking-detail').innerHTML=`<span class="eyebrow">${esc(types[space.type])}</span><h3>${esc(space.label)}</h3><span class="status-badge status-${s.key}"><span class="availability-dot" aria-hidden="true"></span>${esc(s.label)}</span><strong class="parking-price">${fmt.format(space.price)} Kč</strong><dl class="parking-facts"><div><dt>Označení</dt><dd>${esc(space.id)}</dd></div>${dimensionsHTML}<div><dt>${areaLabel}</dt><dd>${area}</dd></div><div><dt>Umístění</dt><dd>${esc(space.type==='garage'?'Přízemí':types[space.type])}</dd></div></dl><p class="parking-separate-price">Parkování se kupuje samostatně.</p><a class="button button-dark viewing-cta" href="#kontakt" data-parking-inquiry="${esc(space.id)}">Domluvit prohlídku ${icon()}</a>${planHTML}<p class="parking-purchase-rule">${esc(data.purchaseRule)}</p>`;
   }
+  function drawBays(view) {
+    const image = $('#parking-drawing');
+    map.setAttribute('viewBox', `0 0 ${view.width} ${view.height}`);
+    $('#parking-drawing-title').textContent = view.label;
+    if (image.getAttribute('href') !== view.image && image.getAttribute('href') !== view.original) {
+      image.setAttribute('width', view.width);
+      image.setAttribute('height', view.height);
+      image.setAttribute('href', view.image);
+    }
+    $('#parking-bays').innerHTML = data.spaces.filter(inDrawing).map(space => {
+      const [x,y,width,height] = view.bays[space.id];
+      const s = status(space);
+      const enabled = matches(space);
+      const radius = Math.max(7, Math.min(12, Math.min(width,height) * 0.075));
+      const inset = Math.ceil(radius * 1.8);
+      return `<g class="parking-space" data-parking-id="${esc(space.id)}" data-status="${s.key}" role="button" tabindex="${enabled?'0':'-1'}" aria-pressed="${space.id===selectedId}" aria-disabled="${!enabled}" aria-label="${esc(space.label)}, ${esc(types[space.type])}, ${esc(s.label)}, ${fmt.format(space.price)} korun">
+        <rect class="parking-bay" x="${x}" y="${y}" width="${width}" height="${height}" rx="7"/>
+        <circle class="parking-status-dot" cx="${x+inset}" cy="${y+inset}" r="${radius}"/>
+      </g>`;
+    }).join('');
+  }
+  $('#parking-drawing').addEventListener('error', () => {
+    const view = data?.drawings[activeType];
+    const image = $('#parking-drawing');
+    if (view && image.getAttribute('href') === view.image) image.setAttribute('href', view.original);
+  });
+  function revealSelection() {
+    const viewport = map.parentElement;
+    if (viewport.scrollWidth <= viewport.clientWidth) return;
+    const bay = map.querySelector('[aria-pressed=true] .parking-bay');
+    if (!bay) return;
+    const box = bay.getBoundingClientRect();
+    const frame = viewport.getBoundingClientRect();
+    if (box.left < frame.left + 6 || box.right > frame.right - 6) {
+      viewport.scrollLeft += box.left + box.width / 2 - frame.left - frame.width / 2;
+    }
+  }
   function render() {
-    const focus=root.contains(document.activeElement) ? {id:document.activeElement.dataset.parkingId,view:document.activeElement.dataset.parkingView,map:!!document.activeElement.closest('#parking-map')} : null;
-    const view=data.views.find(item=>item.id===activeView);
+    const focus=root.contains(document.activeElement) ? {id:document.activeElement.dataset.parkingId,map:!!document.activeElement.closest('#parking-map')} : null;
+    const view=data.drawings[activeType];
     const list=data.spaces.filter(matches);
     if (!list.some(space=>space.id===selectedId)) selectedId=list[0]?.id || null;
     root.querySelectorAll('[data-park-layer]').forEach(button => {
       button.setAttribute('aria-pressed', String(button.dataset.parkLayer === activeType));
     });
     root.dataset.parkingType=activeType;
-    document.querySelectorAll('.parking-options [data-parking-type]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.parkingType===activeType || activeType==='all' && activeView==='ground' && button.dataset.parkingType==='garage')));
-    const svg=$('#parking-map');svg.setAttribute('viewBox',`0 0 ${view.width} ${view.height}`);
-    svg.innerHTML=`<title>${esc(view.label)} s dostupností parkovacích míst</title><image href="${esc(view.image)}" width="${view.width}" height="${view.height}"/>${data.spaces.filter(space=>space.view===activeView).map(space=>{
-      const s=status(space),match=matches(space),[x,y]=space.anchor;
-      const outline=space.polygon.map(point=>point.join(',')).join(' ');
-      return `<g class="parking-space" data-parking-id="${esc(space.id)}" data-status="${s.key}" tabindex="${match?'0':'-1'}" role="button" aria-label="${esc(space.label)}, ${esc(types[space.type])}, ${esc(s.label)}, ${fmt.format(space.price)} korun" aria-pressed="${space.id===selectedId}" aria-disabled="${!match}" opacity="${match?'1':'.22'}"><polygon class="parking-bay" points="${outline}"/><circle cx="${x}" cy="${y}" r="${space.type==='garage'?36:28}"/><text x="${x}" y="${y}">${esc(space.type==='garage'?space.id:space.number)}</text></g>`;
-    }).join('')}`;
+    document.querySelectorAll('.parking-options [data-parking-type]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.parkingType===activeType)));
+    drawBays(view);
     $('#parking-list').innerHTML=list.map(space=>{const s=status(space);return `<button type="button" data-parking-id="${esc(space.id)}" data-status="${s.key}" aria-pressed="${space.id===selectedId}"><strong>${esc(space.label)}</strong><span class="status-badge status-${s.key}"><i class="availability-dot" aria-hidden="true"></i>${esc(s.label)}</span></button>`;}).join('');
     $('#parking-quick-select').innerHTML=list.length ? list.map(space=>`<option value="${esc(space.id)}">${esc(space.label)} · ${esc(types[space.type])}</option>`).join('') : '<option value="">Žádné místo pro tento filtr</option>';
     $('#parking-quick-select').value=selectedId || '';
     $('#parking-quick-select').disabled = list.length === 0;
     $('#parking-list-count').textContent=`(${list.length})`;
-    $('#parking-map-note').innerHTML=`<span>${activeType==='all'?'Místa v tomto výkresu':esc(types[activeType])}: ${list.length}</span>${view.pdf?` <a class="parking-document-link" href="${esc(view.pdf)}" target="_blank" rel="noopener">Výkres parkování (PDF) ${icon()}</a>`:''}`;
+    $('#parking-map-note').innerHTML=`<span>Počet míst: ${list.length}</span> <a class="parking-document-link" href="${esc(view.original)}" target="_blank" rel="noopener">Zvětšit výkres ${icon()}</a>`;
     $('#parking-empty').hidden=list.length>0;
     detail();
-    if (focus?.view) root.querySelector(`[data-parking-view="${focus.view}"]`)?.focus({preventScroll:true});
-    else if (focus?.id) $(focus.map ? '#parking-map' : '#parking-list').querySelector(`[data-parking-id="${focus.id}"]`)?.focus({preventScroll:true});
+    if (focus?.id) $(focus.map ? '#parking-map' : '#parking-list').querySelector(`[data-parking-id="${focus.id}"]`)?.focus({preventScroll:true});
+    requestAnimationFrame(revealSelection);
   }
   function select(id) {
     const space=data.spaces.find(item=>item.id===id);
     if (!space || !matches(space)) return;
     selectedId=id;
     root.querySelectorAll('[data-parking-id]').forEach(node=>node.setAttribute('aria-pressed',String(node.dataset.parkingId===id)));
-    detail();updateUrl();
+    detail();updateUrl();revealSelection();
     $('#parking-quick-select').value=selectedId;
     $('#parking-live').textContent=`${space.label}, ${types[space.type]}, ${status(space).label}, ${fmt.format(space.price)} Kč.${dimensionLabel(space)?` Rozměry ${dimensionLabel(space)}.`:''}`;
   }
@@ -85,8 +122,6 @@
       $('#parking-status-filter').value = 'all';
     }
     activeType = type;
-    activeView = type === 'garage' ? 'ground' : 'site';
-    selectedId = null;
     render();
     updateUrl();
     $('#parking-live').textContent = `${types[type] || 'Situační výkres'} · Počet míst: ${data.spaces.filter(matches).length}.`;
@@ -104,18 +139,28 @@
   function fromUrl() {
     const params=new URL(location.href).searchParams, id=params.get('parkovani');
     const space=data.spaces.find(item=>item.id===id);
-    activeType=validType(params.get('typ-parkovani')) ? params.get('typ-parkovani') : 'all';
+    const requestedType=params.get('typ-parkovani');
+    activeType=requestedType==='all' || validType(requestedType) ? requestedType : (space?.type==='garage'?'garage':'all');
     if(space && activeType!=='all' && space.type!==activeType) activeType=space.type;
-    activeView=space?.view || (activeType==='garage'?'ground':'site');selectedId=space?.id || null;filter='all';$('#parking-status-filter').value='all';
+    selectedId=space?.id || null;filter='all';$('#parking-status-filter').value='all';
   }
   window.addEventListener('popstate',()=>{if(data){fromUrl();render();}});
-  fetch('data/parking.json?v=centered20261109', {cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Parking unavailable');return r.json();}).then(result=>{
-    if(!Array.isArray(result.views)||!Array.isArray(result.spaces)||!result.views.length)throw new Error('Invalid parking');
-    if(!result.views.every(v=>/^[a-z-]+$/.test(v.id)&&/^assets\/parking\/[a-z-]+\.(svg|webp)$/.test(v.image)&&Number.isFinite(v.width)&&Number.isFinite(v.height)))throw new Error('Invalid view');
-    if(!result.spaces.every(p=>/^[PG]\d+$/.test(p.id)&&validType(p.type)&&result.views.some(v=>v.id===p.view)&&Number.isFinite(p.price)&&Array.isArray(p.anchor)&&p.anchor.length===2&&p.anchor.every(Number.isFinite)))throw new Error('Invalid space');
-    if(!result.spaces.every(p=>p.geometryRole==='bay-boundary'&&Array.isArray(p.polygon)&&p.polygon.length>=3&&p.polygon.every(point=>Array.isArray(point)&&point.length===2&&point.every(Number.isFinite))))throw new Error('Invalid parking boundary');
+  function validDrawing(view, spaces) {
+    if (!view?.bays || !/^assets\/parking\/[\d-]+\/[a-z-]+\.webp$/.test(view.image) || view.original !== view.image.replace(/\.webp$/,'.png')) return false;
+    if (![view.width,view.height].every(n=>Number.isFinite(n) && n>0)) return false;
+    return spaces.every(space => {
+      const box = view.bays[space.id];
+      if (!Array.isArray(box) || box.length!==4 || !box.every(Number.isFinite)) return false;
+      const [x,y,w,h] = box;
+      return x>=0 && y>=0 && w>0 && h>0 && x+w<=view.width && y+h<=view.height;
+    });
+  }
+  fetch('data/parking.json?v=hebelka20261123', {cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Parking unavailable');return r.json();}).then(result=>{
+    if(!Array.isArray(result.spaces) || !result.spaces.length || !result.drawings)throw new Error('Invalid parking');
+    if(!result.spaces.every(p=>/^[PG]\d+$/.test(p.id)&&validType(p.type)&&Number.isFinite(p.price)))throw new Error('Invalid space');
+    if(!['all',...Object.keys(types)].every(type=>validDrawing(result.drawings[type],result.spaces.filter(p=>type==='all' || p.type===type))))throw new Error('Invalid parking drawing');
     if(!result.spaces.every(p=>!p.plan || p.type==='garage' && /^assets\/parking\/garage-g[12]-plan\.webp$/.test(p.plan.image) && p.plan.pdf==='plans/floor-1.pdf' && Number.isFinite(p.plan.width) && Number.isFinite(p.plan.height)))throw new Error('Invalid garage plan');
     if(!result.spaces.every(p=>(p.area==null || Number.isFinite(p.area)&&p.area>0) && (!p.dimensions || validDimensions(p.dimensions))))throw new Error('Invalid dimensions');
     data=result;fromUrl();render();$('#parking-loading').hidden=true;$('#parking-workbench').hidden=false;
-  }).catch(()=>{$('#parking-loading').innerHTML='Výkres se nepodařilo načíst. <a href="plans/floor-1.pdf" target="_blank" rel="noopener">Otevřít původní půdorys parkování</a> nebo <a href="#kontakt">kontaktovat prodejce</a>.';});
+  }).catch(()=>{$('#parking-loading').innerHTML='Výběr míst se nepodařilo načíst. <a href="assets/parking/2026-11-23/situace.png" target="_blank" rel="noopener">Otevřít situační výkres parkování</a> nebo <a href="#kontakt">kontaktovat prodejce</a>.';});
 })();

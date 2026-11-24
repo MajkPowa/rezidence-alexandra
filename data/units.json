@@ -11,12 +11,14 @@
     "sourcePrice": null,
     "availability": "sold",
     "sourceRow": 10,
-    "plan": "plans/unit-51.pdf",
+    "plan": "plans/byty-20261124/byt-51.pdf",
     "balconyArea": 0,
     "cellarArea": 1.3,
     "balconyIncluded": false,
     "belowGroundLevel": true,
-    "locationNote": "Byt se nachází pod úrovní terénu a nemá balkon."
+    "locationNote": "Byt se nachází pod úrovní terénu a nemá balkon.",
+    "planPreview": "assets/pudorysy-20261124/byt-51.webp",
+    "interiorLayout": null
   },
   {
     "id": 1,
@@ -30,11 +32,13 @@
     "sourcePrice": 5275548.8,
     "availability": null,
     "sourceRow": 15,
-    "plan": "plans/unit-01.pdf",
+    "plan": "plans/byty-20261124/byt-01.pdf",
     "balconyArea": 10.35,
     "cellarArea": 0,
     "priceSourceRow": 11,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "planPreview": "assets/pudorysy-20261124/byt-01.webp",
+    "interiorLayout": "3+kk"
   },
   {
     "id": 2,
@@ -48,11 +52,13 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 16,
-    "plan": "plans/unit-02.pdf",
+    "plan": "plans/byty-20261124/byt-02.pdf",
     "balconyArea": 9.45,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 12
+    "priceSourceRow": 12,
+    "planPreview": "assets/pudorysy-20261124/byt-02.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 3,
@@ -66,11 +72,13 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 17,
-    "plan": "plans/unit-03.pdf",
+    "plan": "plans/byty-20261124/byt-03.pdf",
     "balconyArea": 8.75,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 13
+    "priceSourceRow": 13,
+    "planPreview": "assets/pudorysy-20261124/byt-03.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 4,
@@ -84,10 +92,12 @@
     "sourcePrice": 3560104.3,
     "availability": null,
     "sourceRow": 18,
-    "plan": "plans/unit-04.pdf",
+    "plan": "plans/byty-20261124/byt-04.pdf",
     "balconyArea": 6.75,
     "cellarArea": 1.95,
-    "priceSourceRow": 14
+    "priceSourceRow": 14,
+    "planPreview": "assets/pudorysy-20261124/byt-04.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 5,
@@ -101,10 +111,12 @@
     "sourcePrice": 3564560.0,
     "availability": null,
     "sourceRow": 19,
-    "plan": "plans/unit-05.pdf",
+    "plan": "plans/byty-20261124/byt-05.pdf",
     "balconyArea": 6.75,
     "cellarArea": 2,
-    "priceSourceRow": 15
+    "priceSourceRow": 15,
+    "planPreview": "assets/pudorysy-20261124/byt-05.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 6,
@@ -118,11 +130,13 @@
     "sourcePrice": 4870080.1,
     "availability": null,
     "sourceRow": 20,
-    "plan": "plans/unit-06.pdf",
+    "plan": "plans/byty-20261124/byt-06.pdf",
     "balconyArea": 9.7,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 16
+    "priceSourceRow": 16,
+    "planPreview": "assets/pudorysy-20261124/byt-06.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 7,
@@ -136,10 +150,12 @@
     "sourcePrice": 3769522.2,
     "availability": null,
     "sourceRow": 21,
-    "plan": "plans/unit-07.pdf",
+    "plan": "plans/byty-20261124/byt-07.pdf",
     "balconyArea": 7.4,
     "cellarArea": 2,
-    "priceSourceRow": 17
+    "priceSourceRow": 17,
+    "planPreview": "assets/pudorysy-20261124/byt-07.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 8,
@@ -153,10 +169,12 @@
     "sourcePrice": 3613572.7,
     "availability": null,
     "sourceRow": 22,
-    "plan": "plans/unit-08.pdf",
+    "plan": "plans/byty-20261124/byt-08.pdf",
     "balconyArea": 7.05,
     "cellarArea": 1.65,
-    "priceSourceRow": 18
+    "priceSourceRow": 18,
+    "planPreview": "assets/pudorysy-20261124/byt-08.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 9,
@@ -170,10 +188,12 @@
     "sourcePrice": 3573471.4,
     "availability": null,
     "sourceRow": 23,
-    "plan": "plans/unit-09.pdf",
+    "plan": "plans/byty-20261124/byt-09.pdf",
     "balconyArea": 6.9,
     "cellarArea": 1.65,
-    "priceSourceRow": 19
+    "priceSourceRow": 19,
+    "planPreview": "assets/pudorysy-20261124/byt-09.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 10,
@@ -187,10 +207,12 @@
     "sourcePrice": 3720509.5,
     "availability": null,
     "sourceRow": 24,
-    "plan": "plans/unit-10.pdf",
+    "plan": "plans/byty-20261124/byt-10.pdf",
     "balconyArea": 6.9,
     "cellarArea": 1.65,
-    "priceSourceRow": 20
+    "priceSourceRow": 20,
+    "planPreview": "assets/pudorysy-20261124/byt-10.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 11,
@@ -204,10 +226,12 @@
     "sourcePrice": 5805777.1,
     "availability": null,
     "sourceRow": 28,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-11.pdf",
     "balconyArea": 10.35,
     "cellarArea": 5.95,
-    "priceSourceRow": 24
+    "priceSourceRow": 24,
+    "planPreview": "assets/pudorysy-20261124/byt-11.webp",
+    "interiorLayout": "3+kk"
   },
   {
     "id": 12,
@@ -221,11 +245,13 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 29,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-12.pdf",
     "balconyArea": 9.45,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 25
+    "priceSourceRow": 25,
+    "planPreview": "assets/pudorysy-20261124/byt-12.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 13,
@@ -239,11 +265,13 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 30,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-13.pdf",
     "balconyArea": 8.75,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 26
+    "priceSourceRow": 26,
+    "planPreview": "assets/pudorysy-20261124/byt-13.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 14,
@@ -257,10 +285,12 @@
     "sourcePrice": 3533370.1,
     "availability": null,
     "sourceRow": 31,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-14.pdf",
     "balconyArea": 6.75,
     "cellarArea": 1.65,
-    "priceSourceRow": 27
+    "priceSourceRow": 27,
+    "planPreview": "assets/pudorysy-20261124/byt-14.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 15,
@@ -274,10 +304,12 @@
     "sourcePrice": 3533370.1,
     "availability": null,
     "sourceRow": 32,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-15.pdf",
     "balconyArea": 6.75,
     "cellarArea": 1.65,
-    "priceSourceRow": 28
+    "priceSourceRow": 28,
+    "planPreview": "assets/pudorysy-20261124/byt-15.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 16,
@@ -291,11 +323,13 @@
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 33,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-16.pdf",
     "balconyArea": 8.35,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 29
+    "priceSourceRow": 29,
+    "planPreview": "assets/pudorysy-20261124/byt-16.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 17,
@@ -309,10 +343,12 @@
     "sourcePrice": 3506635.9,
     "availability": null,
     "sourceRow": 34,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-17.pdf",
     "balconyArea": 4.9,
     "cellarArea": 1.55,
-    "priceSourceRow": 30
+    "priceSourceRow": 30,
+    "planPreview": "assets/pudorysy-20261124/byt-17.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 18,
@@ -326,10 +362,12 @@
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 35,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-18.pdf",
     "balconyArea": 4.9,
     "cellarArea": 1.65,
-    "priceSourceRow": 31
+    "priceSourceRow": 31,
+    "planPreview": "assets/pudorysy-20261124/byt-18.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 19,
@@ -343,10 +381,12 @@
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 36,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-19.pdf",
     "balconyArea": 5.2,
     "cellarArea": 1.65,
-    "priceSourceRow": 32
+    "priceSourceRow": 32,
+    "planPreview": "assets/pudorysy-20261124/byt-19.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 20,
@@ -360,10 +400,12 @@
     "sourcePrice": 3720509.5,
     "availability": null,
     "sourceRow": 37,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-20.pdf",
     "balconyArea": 6.9,
     "cellarArea": 1.65,
-    "priceSourceRow": 33
+    "priceSourceRow": 33,
+    "planPreview": "assets/pudorysy-20261124/byt-20.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 21,
@@ -377,10 +419,12 @@
     "sourcePrice": 5805777.1,
     "availability": null,
     "sourceRow": 42,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-21.pdf",
     "balconyArea": 10.35,
     "cellarArea": 5.95,
-    "priceSourceRow": 38
+    "priceSourceRow": 38,
+    "planPreview": "assets/pudorysy-20261124/byt-21.webp",
+    "interiorLayout": "3+kk"
   },
   {
     "id": 22,
@@ -394,11 +438,13 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 43,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-22.pdf",
     "balconyArea": 9.45,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 39
+    "priceSourceRow": 39,
+    "planPreview": "assets/pudorysy-20261124/byt-22.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 23,
@@ -412,11 +458,13 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 44,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-23.pdf",
     "balconyArea": 8.75,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 40
+    "priceSourceRow": 40,
+    "planPreview": "assets/pudorysy-20261124/byt-23.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 24,
@@ -430,10 +478,12 @@
     "sourcePrice": 3653674.0,
     "availability": null,
     "sourceRow": 45,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-24.pdf",
     "balconyArea": 6.75,
     "cellarArea": 3,
-    "priceSourceRow": 41
+    "priceSourceRow": 41,
+    "planPreview": "assets/pudorysy-20261124/byt-24.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 25,
@@ -447,10 +497,12 @@
     "sourcePrice": 3537825.8,
     "availability": null,
     "sourceRow": 46,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-25.pdf",
     "balconyArea": 6.75,
     "cellarArea": 1.7,
-    "priceSourceRow": 42
+    "priceSourceRow": 42,
+    "planPreview": "assets/pudorysy-20261124/byt-25.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 26,
@@ -464,11 +516,13 @@
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 47,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-26.pdf",
     "balconyArea": 8.35,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 43
+    "priceSourceRow": 43,
+    "planPreview": "assets/pudorysy-20261124/byt-26.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 27,
@@ -482,10 +536,12 @@
     "sourcePrice": 3515547.3,
     "availability": null,
     "sourceRow": 48,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-27.pdf",
     "balconyArea": 4.9,
     "cellarArea": 1.65,
-    "priceSourceRow": 44
+    "priceSourceRow": 44,
+    "planPreview": "assets/pudorysy-20261124/byt-27.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 28,
@@ -499,10 +555,12 @@
     "sourcePrice": 3457623.2,
     "availability": null,
     "sourceRow": 49,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-28.pdf",
     "balconyArea": 4.9,
     "cellarArea": 1.65,
-    "priceSourceRow": 45
+    "priceSourceRow": 45,
+    "planPreview": "assets/pudorysy-20261124/byt-28.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 29,
@@ -516,10 +574,12 @@
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 50,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-29.pdf",
     "balconyArea": 5.2,
     "cellarArea": 1.65,
-    "priceSourceRow": 46
+    "priceSourceRow": 46,
+    "planPreview": "assets/pudorysy-20261124/byt-29.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 30,
@@ -533,10 +593,12 @@
     "sourcePrice": 3711598.1,
     "availability": null,
     "sourceRow": 51,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-30.pdf",
     "balconyArea": 6.9,
     "cellarArea": 1.55,
-    "priceSourceRow": 47
+    "priceSourceRow": 47,
+    "planPreview": "assets/pudorysy-20261124/byt-30.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 31,
@@ -550,10 +612,12 @@
     "sourcePrice": 5792410.0,
     "availability": null,
     "sourceRow": 57,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-31.pdf",
     "balconyArea": 10.35,
     "cellarArea": 5.8,
-    "priceSourceRow": 53
+    "priceSourceRow": 53,
+    "planPreview": "assets/pudorysy-20261124/byt-31.webp",
+    "interiorLayout": "3+kk"
   },
   {
     "id": 32,
@@ -567,11 +631,13 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 58,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-32.pdf",
     "balconyArea": 9.45,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 54
+    "priceSourceRow": 54,
+    "planPreview": "assets/pudorysy-20261124/byt-32.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 33,
@@ -585,11 +651,13 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 59,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-33.pdf",
     "balconyArea": 8.75,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 55
+    "priceSourceRow": 55,
+    "planPreview": "assets/pudorysy-20261124/byt-33.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 34,
@@ -603,10 +671,12 @@
     "sourcePrice": 3524458.7,
     "availability": null,
     "sourceRow": 60,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-34.pdf",
     "balconyArea": 6.75,
     "cellarArea": 1.55,
-    "priceSourceRow": 56
+    "priceSourceRow": 56,
+    "planPreview": "assets/pudorysy-20261124/byt-34.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 35,
@@ -620,10 +690,12 @@
     "sourcePrice": 3524458.7,
     "availability": null,
     "sourceRow": 61,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-35.pdf",
     "balconyArea": 6.75,
     "cellarArea": 1.55,
-    "priceSourceRow": 57
+    "priceSourceRow": 57,
+    "planPreview": "assets/pudorysy-20261124/byt-35.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 36,
@@ -637,11 +709,13 @@
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 62,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-36.pdf",
     "balconyArea": 8.35,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 58
+    "priceSourceRow": 58,
+    "planPreview": "assets/pudorysy-20261124/byt-36.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 37,
@@ -655,10 +729,12 @@
     "sourcePrice": 3506635.9,
     "availability": null,
     "sourceRow": 63,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-37.pdf",
     "balconyArea": 4.9,
     "cellarArea": 1.55,
-    "priceSourceRow": 59
+    "priceSourceRow": 59,
+    "planPreview": "assets/pudorysy-20261124/byt-37.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 38,
@@ -672,10 +748,12 @@
     "sourcePrice": 3448711.8,
     "availability": null,
     "sourceRow": 64,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-38.pdf",
     "balconyArea": 4.9,
     "cellarArea": 1.55,
-    "priceSourceRow": 60
+    "priceSourceRow": 60,
+    "planPreview": "assets/pudorysy-20261124/byt-38.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 39,
@@ -689,10 +767,12 @@
     "sourcePrice": 3413066.2,
     "availability": null,
     "sourceRow": 65,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-39.pdf",
     "balconyArea": 5.2,
     "cellarArea": 1.55,
-    "priceSourceRow": 61
+    "priceSourceRow": 61,
+    "planPreview": "assets/pudorysy-20261124/byt-39.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 40,
@@ -706,10 +786,12 @@
     "sourcePrice": 3711598.1,
     "availability": null,
     "sourceRow": 66,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-40.pdf",
     "balconyArea": 6.9,
     "cellarArea": 1.55,
-    "priceSourceRow": 62
+    "priceSourceRow": 62,
+    "planPreview": "assets/pudorysy-20261124/byt-40.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 41,
@@ -723,11 +805,13 @@
     "sourcePrice": 5275548.8,
     "availability": null,
     "sourceRow": 73,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-41.pdf",
     "balconyArea": 10.35,
     "cellarArea": 0,
     "priceSourceRow": 69,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "planPreview": "assets/pudorysy-20261124/byt-41.webp",
+    "interiorLayout": "3+kk"
   },
   {
     "id": 42,
@@ -741,11 +825,13 @@
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 74,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-42.pdf",
     "balconyArea": 9.45,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 70
+    "priceSourceRow": 70,
+    "planPreview": "assets/pudorysy-20261124/byt-42.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 43,
@@ -759,11 +845,13 @@
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 75,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-43.pdf",
     "balconyArea": 8.75,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 71
+    "priceSourceRow": 71,
+    "planPreview": "assets/pudorysy-20261124/byt-43.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 44,
@@ -777,10 +865,12 @@
     "sourcePrice": 3524458.7,
     "availability": null,
     "sourceRow": 76,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-44.pdf",
     "balconyArea": 6.75,
     "cellarArea": 1.55,
-    "priceSourceRow": 72
+    "priceSourceRow": 72,
+    "planPreview": "assets/pudorysy-20261124/byt-44.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 45,
@@ -794,10 +884,12 @@
     "sourcePrice": 3502180.2,
     "availability": null,
     "sourceRow": 77,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-45.pdf",
     "balconyArea": 6.75,
     "cellarArea": 1.3,
-    "priceSourceRow": 73
+    "priceSourceRow": 73,
+    "planPreview": "assets/pudorysy-20261124/byt-45.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 46,
@@ -811,11 +903,13 @@
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 78,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-46.pdf",
     "balconyArea": 8.35,
     "cellarArea": 0,
     "cellarIncluded": false,
-    "priceSourceRow": 74
+    "priceSourceRow": 74,
+    "planPreview": "assets/pudorysy-20261124/byt-46.webp",
+    "interiorLayout": "2+kk"
   },
   {
     "id": 47,
@@ -829,10 +923,12 @@
     "sourcePrice": 3484357.4,
     "availability": null,
     "sourceRow": 79,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-47.pdf",
     "balconyArea": 4.9,
     "cellarArea": 1.3,
-    "priceSourceRow": 75
+    "priceSourceRow": 75,
+    "planPreview": "assets/pudorysy-20261124/byt-47.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 48,
@@ -846,10 +942,12 @@
     "sourcePrice": 3426433.3,
     "availability": null,
     "sourceRow": 80,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-48.pdf",
     "balconyArea": 4.9,
     "cellarArea": 1.3,
-    "priceSourceRow": 76
+    "priceSourceRow": 76,
+    "planPreview": "assets/pudorysy-20261124/byt-48.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 49,
@@ -863,10 +961,12 @@
     "sourcePrice": 3390787.7,
     "availability": null,
     "sourceRow": 81,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-49.pdf",
     "balconyArea": 5.2,
     "cellarArea": 1.3,
-    "priceSourceRow": 77
+    "priceSourceRow": 77,
+    "planPreview": "assets/pudorysy-20261124/byt-49.webp",
+    "interiorLayout": "1+kk"
   },
   {
     "id": 50,
@@ -880,9 +980,11 @@
     "sourcePrice": 3698231.0,
     "availability": null,
     "sourceRow": 82,
-    "plan": null,
+    "plan": "plans/byty-20261124/byt-50.pdf",
     "balconyArea": 6.9,
     "cellarArea": 1.4,
-    "priceSourceRow": 78
+    "priceSourceRow": 78,
+    "planPreview": "assets/pudorysy-20261124/byt-50.webp",
+    "interiorLayout": "1+kk"
   }
 ]

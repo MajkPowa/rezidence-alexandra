@@ -239,13 +239,13 @@ body.dr-brand #map-unit-card {
 .buyer-team-links a:hover { color: var(--dr-red); }
 .unit-sales-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,34%); gap: 8px; align-items: end; background: white; }
 .unit-sales-copy { min-width: 0; }
-.unit-sales-portrait { display: block; align-self: end; justify-self: end; width: 100%; max-width: 164px; height: auto; max-height: 225px; object-fit: contain; object-position: center bottom; transform: scaleX(-1); background: #fff; }
+.unit-sales-portrait { display: block; align-self: center; justify-self: end; width: 100%; max-width: 160px; height: auto; aspect-ratio: 1; border-radius: 6px; background: #fff; }
 #map-unit-card .map-card-overview { container-type: inline-size; }
 #map-unit-card .unit-sales-copy .map-card-price { font-size: clamp(21px,7.5cqi,32px); line-height: 1.18; white-space: nowrap; }
 #map-unit-card .unit-sales-copy .map-price-note { margin-bottom: 8px; }
 #map-unit-card .unit-sales-head + .map-card-actions { margin-top: 0; }
 #unit-dialog .unit-dialog-identity { grid-template-columns: minmax(0,1fr) minmax(72px,112px); gap: 12px; padding-right: 34px; }
-#unit-dialog .unit-dialog-identity .unit-sales-portrait { max-height: 116px; width: auto; max-width: 100%; }
+#unit-dialog .unit-dialog-identity .unit-sales-portrait { width: 100%; max-width: 112px; }
 #unit-dialog .unit-contact-actions { display: grid; grid-template-columns: minmax(0,1fr); gap: 8px; flex: 1 0 100%; }
 body.dr-brand :is(#map-unit-card,#unit-dialog) .button.unit-call { background: #29292e !important; color: #fff !important; border-color: #29292e !important; display: flex; justify-content: space-between; gap: 12px; min-height: 48px; }
 body.dr-brand :is(#map-unit-card,#unit-dialog) .button.unit-call:hover { background: #414147 !important; border-color: #414147 !important; }

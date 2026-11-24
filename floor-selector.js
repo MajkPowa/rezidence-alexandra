@@ -22,7 +22,6 @@
   const normalized = (f, points) => points.map(([x,y]) => [x * 1000 / f.width, y * 1000 / f.width]);
   const floorData = () => floors.find(f => f.floor === activeFloor);
   const matching = unit => planLayout === 'all' || unit.layout === planLayout;
-  const polygonData = id => floorData()?.units.find(u => u.id === id);
   const badge = unit => `<span class="status-badge status-${status(unit).key}"><span class="availability-dot" aria-hidden="true"></span>${esc(status(unit).label)}</span>`;
   function orientationHTML() {
     if (orientation.confirmed !== true || !Number.isFinite(orientation.northDegrees)) return '<p class="floor-orientation is-pending">Orientaci ke světovým stranám doplníme.</p>';
@@ -37,12 +36,11 @@
     const selected = f?.units.find(item => item.id === unit?.id);
     if (!f || !selected) return '';
     const title = `Umístění bytu ${unit.id} · ${floorLabel(unit.floor)}`;
-    const levels = [...floors].reverse().map((floor, index) => {
-      const y = 14 + index * 22, active = floor.floor === unit.floor;
-      return `<g class="${active ? 'is-active' : ''}" data-location-floor="${floor.floor}"><rect x="6" y="${y}" width="104" height="19" rx="2"/><text x="58" y="${y+13}">${esc(floorLabel(floor.floor))}</text></g>`;
-    }).join('');
     const plan = f.units.map(item => `<path class="${item.id === unit.id ? 'is-active' : ''}" data-location-unit="${item.id}" d="${path(item.polygon)}"/>`).join('');
-    return `<figure class="unit-location" data-unit-location="${unit.id}" data-orientation-state="${orientation.confirmed ? 'confirmed' : 'pending'}"><figcaption>${esc(title)}</figcaption><div class="unit-location-views"><svg class="unit-location-building" viewBox="0 0 116 158" role="img" aria-label="Zvýrazněné podlaží: ${esc(floorLabel(unit.floor))}"><title>${esc(floorLabel(f.floor))}</title>${levels}</svg><svg class="unit-location-plan" viewBox="0 0 ${f.width} ${f.height}" role="img" aria-label="Byt ${unit.id} zvýrazněný v půdorysu ${esc(floorLabel(f.floor))}"><title>Poloha bytu ${unit.id} v podlaží</title><image href="${esc(f.mapImage || f.image)}" width="${f.width}" height="${f.height}"/>${plan}</svg></div>${orientationHTML()}</figure>`;
+    const side = detailSide || facadeSide;
+    return `<figure class="unit-location" data-unit-location="${unit.id}" data-orientation-state="${orientation.confirmed ? 'confirmed' : 'pending'}"><figcaption>${esc(title)}</figcaption>
+      <div class="unit-facade-switch" role="group" aria-label="Pohled na vybrané podlaží"><button type="button" data-unit-side="front" aria-pressed="${side==='front'}">Přední pohled</button><button type="button" data-unit-side="rear" aria-pressed="${side==='rear'}">Zadní pohled</button></div>
+      <div class="unit-location-views"><div data-unit-elevation>${unitElevation(side,unit.floor)}</div><svg class="unit-location-plan" viewBox="0 0 ${f.width} ${f.height}" role="img" aria-label="Byt ${unit.id} zvýrazněný v půdorysu ${esc(floorLabel(f.floor))}"><title>Poloha bytu ${unit.id} v podlaží</title><image href="${esc(f.mapImage || f.image)}" width="${f.width}" height="${f.height}"/>${plan}</svg></div>${orientationHTML()}</figure>`;
   }
   window.AlexandraUnitLocation = Object.freeze({ html: locationHTML });
   const facades = {
@@ -59,17 +57,35 @@
       ]
     },
     rear: {
-      src: 'assets/projekt-20261124/zadni-pohled.webp',
-      imageBox: [318, 25, 1184, 748],
-      viewBox: '318 25 1184 748',
-      labelX: 1342,
+      src: 'assets/projekt-20261124/zadni-final-1600.webp',
+      imageBox: [0, 0, 1100, 618.75],
+      viewBox: '12 0 1078 567',
+      labelX: 946,
       levels: [
-        [[415,142],[1268,84]], [[415,246],[1275,211]], [[413,338],[1277,312]],
-        [[411,427],[1279,412]], [[408,518],[1282,514]], [[406,611],[1286,614]],
-        [[405,702],[1288,698]]
+        [[165,46],[925,46]], [[165,140],[925,140]], [[165,210],[925,209]],
+        [[165,280],[925,280]], [[165,351],[925,351]], [[164,422],[928,422]],
+        [[164,502],[929,500]]
       ]
     }
   };
+  let detailSide = null;
+  function unitElevation(side, floor) {
+    const {src, imageBox:[x,y,w,h], viewBox, levels} = facades[side];
+    const i = 6 - floor;
+    const band = [...levels[i], ...[...levels[i+1]].reverse()];
+    const label = `${side==='rear'?'Zadní':'Přední'} pohled · ${floorLabel(floor)}`;
+    return `<svg class="unit-location-building" viewBox="${viewBox}" role="img" aria-label="${esc(label)}"><title>${esc(label)}</title><image href="${src}" x="${x}" y="${y}" width="${w}" height="${h}"/><g class="is-active" data-location-floor="${floor}"><path class="unit-facade-floor" d="${path(band)}"/></g></svg>`;
+  }
+  document.addEventListener('click', event => {
+    const control = event.target.closest('button[data-unit-side]');
+    if (!control) return;
+    const figure = control.closest('[data-unit-location]');
+    const unit = units.find(u => u.id === Number(figure?.dataset.unitLocation));
+    if (!unit || !Object.hasOwn(facades,control.dataset.unitSide)) return;
+    detailSide = control.dataset.unitSide;
+    figure.querySelector('[data-unit-elevation]').innerHTML = unitElevation(detailSide,unit.floor);
+    figure.querySelectorAll('[data-unit-side]').forEach(b=>b.setAttribute('aria-pressed',String(b===control)));
+  });
   function drawFacade(side) {
     facadeSide = side;
     const {src, imageBox, viewBox, levels, labelX} = facades[side];
@@ -143,7 +159,7 @@
   function drawFloor() {
     const f = floorData();
     $('#map-floor-title').textContent = `${floorLabel(activeFloor)}`;
-    $('#map-floor-pdf').href = `plans/floor-sheet-${activeFloor}-20261103.pdf`;
+    $('#map-floor-pdf').href = `plans/byty-20261124/podlazi-${activeFloor}.pdf`;
     $('#map-floor-pdf').setAttribute('aria-label', `Půdorys podlaží: ${floorLabel(activeFloor)}`);
     $('#map-floor-pdf').title = `Půdorys ${floorLabel(activeFloor)}`;
     $('#map-floor-pdf').innerHTML = `Půdorys podlaží ${icon('arrow-up-right')}`;
@@ -199,19 +215,16 @@
   function selectedPlan(unit) {
     const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'selection');
     if (furnished) return furnished;
-    const f=floorData(), shape=polygonData(unit.id);
-    if(!shape) return `<a class="map-card-plan" href="plans/floor-sheet-${unit.floor}-20261103.pdf" target="_blank" rel="noopener"><img src="${esc(f.image)}" alt="Původní půdorys · ${floorLabel(unit.floor)}"><span>Celé podlaží · otevřít PDF ${icon('arrow-up-right')}</span></a>`;
-    const points=shape.polygon, xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
-    const x=Math.min(...xs),y=Math.min(...ys),w=Math.max(...xs)-x,h=Math.max(...ys)-y,pad=Math.min(w,h)*.045;
-    const pdf=unit.plan || `plans/floor-sheet-${unit.floor}-20261103.pdf`;
-    return `<a class="map-card-plan" href="${esc(pdf)}" target="_blank" rel="noopener" aria-label="Otevřít ${unit.plan?'půdorys bytu':'zdrojový půdorys podlaží'} v PDF"><svg viewBox="${x-pad} ${y-pad} ${w+pad*2} ${h+pad*2}" role="img" aria-label="Výřez rozložení bytu ${unit.id} ze zdrojového půdorysu · ${floorLabel(unit.floor)}"><defs><clipPath id="selected-unit-clip"><path d="${path(points)}"/></clipPath></defs><image href="${esc(f.image)}" width="${f.width}" height="${f.height}" clip-path="url(#selected-unit-clip)"/></svg><span>Rozložení bytu · půdorys podlaží ${icon('arrow-up-right')}</span></a>`;
+    const pdf=unit.plan || `plans/byty-20261124/podlazi-${unit.floor}.pdf`;
+    const image=unit.planPreview || floorData().image;
+    return `<a class="map-card-plan" href="${esc(pdf)}" target="_blank" rel="noopener"><img src="${esc(image)}" alt="Půdorys bytu ${unit.id}" loading="lazy"><span>Otevřít půdorys PDF ${icon('arrow-up-right')}</span></a>`;
   }
 
   function roomGallery(unit) {
-    const rooms = unit.id === 51 ? [] : catalog.roomPhotos(unit.layout);
+    const rooms = unit.interiorLayout ? catalog.roomPhotos(unit.interiorLayout) : [];
     if (!rooms.length) {
-      const plan = unit.plan || `plans/floor-sheet-${unit.floor}-20261103.pdf`;
-      const img = unit.plan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : floorData().image;
+      const plan = unit.plan || `plans/byty-20261124/podlazi-${unit.floor}.pdf`;
+      const img = unit.planPreview || floorData().image;
       return `<figure class="unit-source-plan"><a href="${esc(plan)}" target="_blank" rel="noopener"><img alt="Projektový půdorys pro byt ${unit.id}" src="${esc(img)}"><span>Otevřít půdorys v PDF ${icon('arrow-up-right')}</span></a></figure>`;
     }
     const photo = rooms[roomIndex] || rooms[0];
@@ -221,6 +234,7 @@
     return `<figure class="unit-room-frame"><img class="unit-room-main" src="${esc(photo.src)}" alt="${esc(photo.alt)}" width="${photo.width}" height="${photo.height}" decoding="async">
       <figcaption><strong>Byt ${unit.id} · ${esc(unit.layout)}</strong><span data-room-caption>${esc(photo.room)}</span></figcaption></figure>
       <div class="unit-room-thumbs" role="group" aria-label="Místnosti pro dispozici ${esc(unit.layout)}">${thumbs}</div>
+      <a class="text-link unit-gallery-link" href="interiors.html?typology=${encodeURIComponent(unit.interiorLayout)}#gallery">Všechny vizualizace ${esc(unit.interiorLayout)} ${icon('arrow-up-right')}</a>
       <p class="room-scope">Typová vizualizace. Rozsah vybavení určuje standard bytu.</p>`;
   }
   function changeRoom(button) {
@@ -254,7 +268,7 @@
         <div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a>
           ${window.AlexandraDetails.callSales}
           <button type="button" class="unit-detail-button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button>
-          <div class="map-card-links">${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
+          <div class="map-card-links">${unit.plan ? `<a class="text-link" href="${esc(unit.plan)}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>` : ''}${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
         </div>
         <dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails.areasHTML(unit)}</dl>
         ${locationHTML(unit)}<section class="map-standard-disclosure">${window.AlexandraDetails.cardHTML(unit)}</section>${tour}
@@ -348,7 +362,7 @@
     } else if (button.hasAttribute('data-map-floor')) chooseFloor(Number(button.dataset.mapFloor));
     else if (button.hasAttribute('data-map-unit')) chooseUnit(Number(button.dataset.mapUnit));
     else if (button.hasAttribute('data-room-photo')) changeRoom(button);
-    else if (button.hasAttribute('data-facade')) drawFacade(button.dataset.facade);
+    else if (button.hasAttribute('data-facade')) { detailSide = null; drawFacade(button.dataset.facade); }
     else if (button.hasAttribute('data-plan-layout') || button.hasAttribute('data-map-reset')) {
       planLayout = button.dataset.planLayout || 'all';
       if (!units.some(unit => unit.id === selectedId && matching(unit))) selectedId = null;

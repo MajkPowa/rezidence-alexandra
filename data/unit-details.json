@@ -2,11 +2,11 @@
   "updatedAt": "2026-11-24",
   "source": {
     "units": "seznam bytů karty (5).xlsx, List1",
-    "equipment": "Zarizovaci_prvky_rezidence_Alexandra_komplet.pdf, doručeno Martinem Hebelkou 3. 11. 2026. Strana 11 (model a parametry svítidla) ověřena vizuálně.",
+    "equipment": "Zarizovaci_prvky_komplet_prezentace.pdf, dodáno 24. 11. 2026.",
     "illustration": "Vybavení foto.png je pouze inspirace pro podobu interaktivních popisků; věcné údaje se řídí dokumentem Vybavení bytu.docx.",
     "unitCorrections": "Potvrzení zadavatele z 20. 10. 2026: všechny byty 2+kk jsou bez sklepní kóje; byt 51 nemá balkon a nachází se pod úrovní terénu.",
-    "bathroomCatalogs": "Koupelna 1KK.pdf, Koupelna 2KK.pdf, Koupelna 3kk.pdf a Koupelna Byt suterén.pdf, doručeno Martinem Hebelkou 3. 11. 2026.",
-    "tiling": "Dlažby.pdf, doručeno 20. 10. 2026. Dlažba OA32082 pro chodbu je podle doprovodného e-mailu určena do společných prostor domu.",
+    "bathroomCatalogs": "Finální katalogy 1+kk, 2+kk a 3+kk ze dne 24. 11. 2026. Samostatný katalog bytu 51 byl dodán 3. 11. 2026.",
+    "tiling": "Společná prezentace, strany 12–15. Pro společné chodby a schodiště je určena dlažba OI11511.",
     "bathroomFurniture": "Doprovodný e-mail Martina Hebelky z 3. 11. 2026 výslovně potvrzuje, že koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
     "prices": "Klientský ceník doručený 24. 11. 2026, kupní cena bez parkování, zobrazená v celých korunách po vypuštění haléřů. Byt 51 není uveden.",
     "cellarsNovember": "Podle ceníku a potvrzení zadavatele 24. 11. jsou byty 1 a 41 bez sklepa, s celkovou plochou 59,20 m²."
@@ -20,8 +20,8 @@
         "Lamely 196 × 1320 mm; celková tloušťka 2,5 mm a nášlapná vrstva 0,55 mm.",
         "Užitná třída 23/33/42; podrobný technický list je součástí katalogu."
       ],
-      "sourceUrl": "plans/equipment-standard-20261103.pdf",
-      "sourcePage": 12
+      "sourceUrl": "plans/vybaveni-a-obklady-20261124.pdf",
+      "sourcePage": 16
     },
     {
       "id": "doors",
@@ -32,7 +32,7 @@
         "Interiérové dveře PORTA FOCUS Premium, bílé provedení, modely 5.A, 4.A a 4.B podle dveřního schématu projektu, včetně zárubní.",
         "Interiérové kování Athena v černém provedení; zamak, rozeta 52 × 52 mm, tloušťka rozety 10 mm."
       ],
-      "sourceUrl": "plans/equipment-standard-20261103.pdf",
+      "sourceUrl": "plans/vybaveni-a-obklady-20261124.pdf",
       "sourcePage": 1
     },
     {
@@ -61,7 +61,7 @@
         "Stropní LED svítidlo ecolite LADA LED-WSL-CCT/18W/CR: příkon 18 W, světelný tok 1550 lm, krytí IP44, průměr 225 mm.",
         "Volitelná teplota světla svítidla 3000 / 4000 / 6000 K (CCT)."
       ],
-      "sourceUrl": "plans/equipment-standard-20261103.pdf",
+      "sourceUrl": "plans/vybaveni-a-obklady-20261124.pdf",
       "sourcePage": 10
     },
     {
@@ -231,8 +231,8 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "in_bathroom",
@@ -284,10 +284,10 @@
       "bathroom": {
         "id": "3kk",
         "label": "3+kk",
-        "source": "Koupelna 3kk.pdf",
-        "sourcePdf": "plans/bathroom-3kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-3kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_3kk_final.pdf",
+        "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -427,12 +427,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 14,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -477,10 +477,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -624,12 +624,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -674,10 +674,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -821,12 +821,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -871,10 +871,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -1017,12 +1017,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -1067,10 +1067,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -1213,12 +1213,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -1263,10 +1263,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -1410,12 +1410,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -1460,10 +1460,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -1606,12 +1606,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -1656,10 +1656,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -1802,12 +1802,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -1852,10 +1852,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -1998,12 +1998,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -2048,10 +2048,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -2194,12 +2194,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -2244,10 +2244,10 @@
       "bathroom": {
         "id": "3kk",
         "label": "3+kk",
-        "source": "Koupelna 3kk.pdf",
-        "sourcePdf": "plans/bathroom-3kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-3kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_3kk_final.pdf",
+        "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -2387,12 +2387,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 14,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -2437,10 +2437,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -2584,12 +2584,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -2634,10 +2634,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -2781,12 +2781,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -2831,10 +2831,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -2977,12 +2977,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -3027,10 +3027,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -3173,12 +3173,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -3223,10 +3223,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -3370,12 +3370,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -3420,10 +3420,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -3566,12 +3566,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -3616,10 +3616,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -3762,12 +3762,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -3812,10 +3812,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -3958,12 +3958,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -4008,10 +4008,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -4154,12 +4154,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -4204,10 +4204,10 @@
       "bathroom": {
         "id": "3kk",
         "label": "3+kk",
-        "source": "Koupelna 3kk.pdf",
-        "sourcePdf": "plans/bathroom-3kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-3kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_3kk_final.pdf",
+        "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -4347,12 +4347,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 14,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -4397,10 +4397,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -4544,12 +4544,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -4594,10 +4594,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -4741,12 +4741,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -4791,10 +4791,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -4937,12 +4937,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -4987,10 +4987,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -5133,12 +5133,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -5183,10 +5183,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -5330,12 +5330,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -5380,10 +5380,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -5526,12 +5526,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -5576,10 +5576,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -5722,12 +5722,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -5772,10 +5772,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -5918,12 +5918,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -5968,10 +5968,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -6114,12 +6114,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -6164,10 +6164,10 @@
       "bathroom": {
         "id": "3kk",
         "label": "3+kk",
-        "source": "Koupelna 3kk.pdf",
-        "sourcePdf": "plans/bathroom-3kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-3kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_3kk_final.pdf",
+        "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -6307,12 +6307,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 14,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -6357,10 +6357,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -6504,12 +6504,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -6554,10 +6554,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -6701,12 +6701,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -6751,10 +6751,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -6897,12 +6897,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -6947,10 +6947,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -7093,12 +7093,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -7143,10 +7143,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -7290,12 +7290,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -7340,10 +7340,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -7486,12 +7486,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -7536,10 +7536,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -7682,12 +7682,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -7732,10 +7732,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -7878,12 +7878,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -7928,10 +7928,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -8074,12 +8074,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -8124,10 +8124,10 @@
       "bathroom": {
         "id": "3kk",
         "label": "3+kk",
-        "source": "Koupelna 3kk.pdf",
-        "sourcePdf": "plans/bathroom-3kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-3kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_3kk_final.pdf",
+        "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -8267,12 +8267,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 14,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -8317,10 +8317,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -8464,12 +8464,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -8514,10 +8514,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -8661,12 +8661,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -8711,10 +8711,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -8857,12 +8857,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -8907,10 +8907,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -9053,12 +9053,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -9103,10 +9103,10 @@
       "bathroom": {
         "id": "2kk",
         "label": "2+kk",
-        "source": "Koupelna 2KK.pdf",
-        "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_2KK_final.pdf",
+        "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -9250,12 +9250,12 @@
             120,
             60
           ],
-          "sourcePage": 2,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 13,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -9300,10 +9300,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -9446,12 +9446,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -9496,10 +9496,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -9642,12 +9642,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -9692,10 +9692,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -9838,12 +9838,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -9888,10 +9888,10 @@
       "bathroom": {
         "id": "1kk",
         "label": "1+kk",
-        "source": "Koupelna 1KK.pdf",
-        "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-        "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-        "catalogDate": "2026-11-03",
+        "source": "Koupelna_1KK_final.pdf",
+        "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+        "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+        "catalogDate": "2026-11-24",
         "catalogConfirmed": true,
         "confirmationScope": "typology_catalog_and_furniture_inclusion",
         "confirmedForUnit": false,
@@ -10034,12 +10034,12 @@
             60,
             60
           ],
-          "sourcePage": 1,
-          "sourcePdf": "plans/tiling.pdf",
+          "sourcePage": 12,
+          "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
           "application": "Dlažba koupelny a WC"
         },
         "toilet": "separate",
-        "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+        "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
         "furnitureIncluded": true
       },
       "availability": "inquiry"
@@ -10049,10 +10049,10 @@
     "1kk": {
       "id": "1kk",
       "label": "1+kk",
-      "source": "Koupelna 1KK.pdf",
-      "sourcePdf": "plans/bathroom-1kk-20261103.pdf",
-      "catalogUrl": "plans/bathroom-1kk-20261103.pdf",
-      "catalogDate": "2026-11-03",
+      "source": "Koupelna_1KK_final.pdf",
+      "sourcePdf": "plans/bathroom-1kk-20261124.pdf",
+      "catalogUrl": "plans/bathroom-1kk-20261124.pdf",
+      "catalogDate": "2026-11-24",
       "catalogConfirmed": true,
       "confirmationScope": "typology_catalog_and_furniture_inclusion",
       "confirmedForUnit": false,
@@ -10195,21 +10195,21 @@
           60,
           60
         ],
-        "sourcePage": 1,
-        "sourcePdf": "plans/tiling.pdf",
+        "sourcePage": 12,
+        "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
         "application": "Dlažba koupelny a WC"
       },
       "toilet": "separate",
-      "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+      "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
       "furnitureIncluded": true
     },
     "2kk": {
       "id": "2kk",
       "label": "2+kk",
-      "source": "Koupelna 2KK.pdf",
-      "sourcePdf": "plans/bathroom-2kk-20261103.pdf",
-      "catalogUrl": "plans/bathroom-2kk-20261103.pdf",
-      "catalogDate": "2026-11-03",
+      "source": "Koupelna_2KK_final.pdf",
+      "sourcePdf": "plans/bathroom-2kk-20261124.pdf",
+      "catalogUrl": "plans/bathroom-2kk-20261124.pdf",
+      "catalogDate": "2026-11-24",
       "catalogConfirmed": true,
       "confirmationScope": "typology_catalog_and_furniture_inclusion",
       "confirmedForUnit": false,
@@ -10353,21 +10353,21 @@
           120,
           60
         ],
-        "sourcePage": 2,
-        "sourcePdf": "plans/tiling.pdf",
+        "sourcePage": 13,
+        "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
         "application": "Dlažba koupelny a WC"
       },
       "toilet": "separate",
-      "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+      "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
       "furnitureIncluded": true
     },
     "3kk": {
       "id": "3kk",
       "label": "3+kk",
-      "source": "Koupelna 3kk.pdf",
-      "sourcePdf": "plans/bathroom-3kk-20261103.pdf",
-      "catalogUrl": "plans/bathroom-3kk-20261103.pdf",
-      "catalogDate": "2026-11-03",
+      "source": "Koupelna_3kk_final.pdf",
+      "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
+      "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
+      "catalogDate": "2026-11-24",
       "catalogConfirmed": true,
       "confirmationScope": "typology_catalog_and_furniture_inclusion",
       "confirmedForUnit": false,
@@ -10507,12 +10507,12 @@
           120,
           60
         ],
-        "sourcePage": 2,
-        "sourcePdf": "plans/tiling.pdf",
+        "sourcePage": 14,
+        "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
         "application": "Dlažba koupelny a WC"
       },
       "toilet": "separate",
-      "note": "Vybavení podle katalogu příslušné dispozice dodaného 3. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
+      "note": "Vybavení podle katalogu příslušné dispozice dodaného 24. 11. 2026. Koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
       "furnitureIncluded": true
     },
     "51": {
@@ -10611,8 +10611,8 @@
           60,
           60
         ],
-        "sourcePage": 1,
-        "sourcePdf": "plans/tiling.pdf",
+        "sourcePage": 12,
+        "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
         "application": "Dlažba koupelny a WC"
       },
       "toilet": "in_bathroom",
@@ -10622,22 +10622,22 @@
   },
   "commonAreas": {
     "flooring": {
-      "code": "OA32082",
-      "title": "Dlažba společných chodeb 60 × 60 cm",
+      "code": "OI11511",
+      "title": "Dlažba společných chodeb a schodiště 60 × 60 cm",
       "sizeCm": [
         60,
         60
       ],
-      "sourcePdf": "plans/tiling.pdf",
-      "sourcePage": 3,
-      "application": "Společné chodby domu",
+      "sourcePdf": "plans/vybaveni-a-obklady-20261124.pdf",
+      "sourcePage": 15,
+      "application": "Společné chodby a schodiště domu",
       "note": "Tato dlažba není určena pro předsíně uvnitř bytů."
     }
   },
   "technicalCatalog": {
-    "url": "plans/equipment-standard-20261103.pdf",
-    "date": "2026-11-03",
-    "source": "Zarizovaci_prvky_rezidence_Alexandra_komplet.pdf",
-    "pages": 14
+    "url": "plans/vybaveni-a-obklady-20261124.pdf",
+    "date": "2026-11-24",
+    "source": "Zarizovaci_prvky_komplet_prezentace.pdf",
+    "pages": 18
   }
 }

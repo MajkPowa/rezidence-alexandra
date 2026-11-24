@@ -52,9 +52,9 @@
   }
 
   const variantFor = unit => unit && variants.get(assignments.get(unit.id));
-  const pdfFor = unit => unit.id >= 1 && unit.id <= 10 ? `plans/unit-${String(unit.id).padStart(2, '0')}.pdf` : `plans/floor-sheet-${unit.floor}-20261103.pdf`;
-  const sourceFor = unit => unit.id >= 1 && unit.id <= 10 ? `assets/plan-unit-${String(unit.id).padStart(2, '0')}.webp` : `assets/floors/floor-${unit.floor}.webp`;
-  const sourceLabel = unit => unit.id >= 1 && unit.id <= 10 ? `Původní půdorys bytu ${unit.id}` : `Původní půdorys · ${window.AlexandraFloorLabels.source(unit.floor)}`;
+  const pdfFor = unit => unit.plan || `plans/byty-20261124/podlazi-${unit.floor}.pdf`;
+  const sourceFor = unit => unit.planPreview || `assets/floors/floor-${unit.floor}.webp`;
+  const sourceLabel = unit => unit.plan ? `Půdorys bytu ${unit.id}` : `Půdorys podlaží · ${floorLabel(unit.floor)}`;
 
   function previewHTML(value, scope = 'map') {
     const unit = findUnit(value), variant = variantFor(unit);
@@ -83,7 +83,7 @@
       if (ok) return;
       if (source) {
         image.hidden = true;
-        $('.furnished-source-sheet>span').innerHTML = `Náhled není dostupný. ${currentUnit?.id <= 10 ? 'Otevřít původní PDF bytu' : 'Otevřít půdorys podlaží PDF'} ${icon('arrow-up-right')}`;
+        $('.furnished-source-sheet>span').innerHTML = `Otevřít půdorys PDF ${icon('arrow-up-right')}`;
       } else {
         const plane = $('.furnished-image-plane'), error = $('.furnished-image-error');
         if (plane) plane.hidden = true;
@@ -104,7 +104,7 @@
     $('#furnished-view-note').textContent = view === '3d' ? '' : `${sourceLabel(unit)} · rozměry v PDF.`;
     $('#furnished-view-note').hidden = view === '3d';
     if (view === 'source') {
-      $('#furnished-plan-canvas').innerHTML = `<a class="furnished-source-sheet" href="${pdfFor(unit)}" target="_blank" rel="noopener"><img src="${sourceFor(unit)}" alt="${escape(sourceLabel(unit))}" decoding="async"><span>${unit.id <= 10 ? 'Otevřít původní PDF bytu' : 'Otevřít půdorys podlaží PDF'} ${icon('arrow-up-right')}</span></a>`;
+      $('#furnished-plan-canvas').innerHTML = `<a class="furnished-source-sheet" href="${pdfFor(unit)}" target="_blank" rel="noopener"><img src="${sourceFor(unit)}" alt="${escape(sourceLabel(unit))}" decoding="async"><span>Otevřít půdorys PDF ${icon('arrow-up-right')}</span></a>`;
       watchImage($('.furnished-source-sheet>img'), true);
       return;
     }
@@ -124,7 +124,7 @@
     $('#furnished-plan-price').textContent = window.AlexandraDetails.formatPrice(unit.price);
     $('#furnished-room-legend').innerHTML = `${window.AlexandraUnitLocation?.html(unit) || ''}<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Kuchyňská linka, spotřebiče, volný nábytek a žaluzie nejsou v ceně. <a href="#vybaveni" data-furnished-equipment>Vybavení v ceně bytu</a>.</p>`;
     $('#furnished-plan-pdf').href = pdfFor(unit);
-    $('#furnished-plan-pdf').innerHTML = `${unit.id <= 10 ? 'Půdorys bytu PDF' : `Půdorys ${escape(floorLabel(unit.floor))} PDF`} ${icon('arrow-up-right')}`;
+    $('#furnished-plan-pdf').innerHTML = `Půdorys bytu PDF ${icon('arrow-up-right')}`;
     const tour = unit.id === 51 ? null : { '1+kk': '1kk', '2+kk': '2kk', '3+kk': '3kk' }[unit.layout];
     $('#furnished-plan-tour').href = window.AlexandraDetails?.tourHref?.(unit) || `tour.html?byt=${tour}&jednotka=${unit.id}&podlazi=${unit.floor}#walkthrough`;
     const viewing = $('#furnished-viewing-cta');

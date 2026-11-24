@@ -5,13 +5,14 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char]);
   const params = new URLSearchParams(location.search);
   const typologies = ['1+kk', '2+kk', '3+kk'];
-  const rooms = ['Obývací pokoj', 'Kuchyně', 'Ložnice', 'Koupelna', 'Odpočinkový kout', 'Předsíň', 'Komora', 'Samostatné WC'];
-  const state = {typology:typologies.includes(params.get('typology')) ? params.get('typology') : 'all', room:rooms.includes(params.get('room')) ? params.get('room') : 'all'};
+  const rooms = ['Obývací pokoj', 'Kuchyně', 'Ložnice', 'Koupelna', 'Jídelní kout', 'Předsíň', 'Komora', 'Pracovna', 'Samostatné WC'];
+  const roomFromQuery = name => name === 'Odpočinkový kout' ? 'Obývací pokoj' : rooms.includes(name) ? name : 'all';
+  const state = {typology:typologies.includes(params.get('typology')) ? params.get('typology') : 'all', room:roomFromQuery(params.get('room'))};
   let items = [], filtered = [], dialogItems = [], dialogIndex = 0, lastFocus = null, heroItem = null;
   const dialog = $('#interior-dialog');
   const imageAlt = item => `${item.typology} · ${item.title}`;
   const countText = n => `${n} ${n === 1 ? 'vizualizace' : n > 1 && n < 5 ? 'vizualizace' : 'vizualizací'}`;
-  const isLocalAsset = path => typeof path === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+\.(?:webp|jpe?g|png)$/i.test(path);
+  const isLocalAsset = path => typeof path === 'string' && /^assets\/interiery-20261124\/[a-z0-9-]+\.webp$/.test(path);
   const imageSet = item => item.thumb ? `${item.thumb} ${item.thumbWidth || 720}w, ${item.src} ${item.width}w` : `${item.src} ${item.width}w`;
   const dimensions = item => Number.isInteger(item.width) && Number.isInteger(item.height) && item.width > 0 && item.height > 0 ? [item.width, item.height] : [1620, 911];
   const cardSizes = '(max-width: 600px) calc(100vw - 40px), (min-width: 1800px) 816px, 44vw';
@@ -49,7 +50,7 @@
     const query = new URLSearchParams(location.search);
     const wasDialogOpen = dialog.open, previousRoom = state.room;
     state.typology = typologies.includes(query.get('typology')) ? query.get('typology') : 'all';
-    state.room = rooms.includes(query.get('room')) ? query.get('room') : 'all';
+    state.room = roomFromQuery(query.get('room'));
     if (wasDialogOpen) { lastFocus = null; dialog.close(); }
     if (items.length) render(); else syncFilters();
     if (wasDialogOpen) $(`#${previousRoom !== state.room ? 'room' : 'typology'}-filters [aria-pressed="true"]`).focus();
@@ -60,7 +61,7 @@
     $('.detail-image-wrap').setAttribute('aria-busy', 'true');
     $('#detail-image-status').textContent = 'Načítání interiéru…';
     $('#detail-image-status').hidden = false;
-    setImage($('#detail-image'), {...item, src:item.fullResolution || item.src, thumb:null}, '(min-width: 1548px) 1500px, calc(100vw - 20px)');
+    setImage($('#detail-image'), {...item, src:item.fullResolution || item.src, width:item.fullWidth || item.width, height:item.fullHeight || item.height}, '(min-width: 1548px) 1500px, calc(100vw - 20px)');
     $('#detail-title').textContent = item.title;
     $('#detail-meta').textContent = `${item.typology} / ${item.room} / INTERIÉR`;
     $('#detail-description').textContent = '';
@@ -70,7 +71,7 @@
     const full = item.fullResolution || item.src;
     $('#detail-download').href = full;
     $('#detail-download').setAttribute('download', full.split('/').pop());
-    $('#detail-download-label').textContent = 'Stáhnout původní obrázek';
+    $('#detail-download-label').textContent = 'Stáhnout vizualizaci';
     $('#detail-resolution').textContent = `${item.fullWidth || item.width} × ${item.fullHeight || item.height} px · ${item.downloadFormat || 'původní rozlišení'}`;
     const tourRoom = item.tourRoom || {'Obývací pokoj':'living','Kuchyně':'kitchen','Ložnice':'bedroom','Koupelna':'bathroom','Odpočinkový kout':'living','Předsíň':'hall','Samostatné WC':'wc'}[item.room];
     $('#detail-tour').href = `tour.html?byt=${item.typology.replace('+','')}&mistnost=${tourRoom}#walkthrough`;
@@ -106,7 +107,7 @@
     $('#interior-grid').setAttribute('aria-busy', 'true');
     $('#gallery-status').textContent = 'Načítání kolekce interiérů…';
     try {
-      const response = await fetch('assets/agency-interiors-20261026/manifest.json?v=agency20261026', {cache:'no-cache'});
+      const response = await fetch('assets/interiery-20261124/manifest.json');
       if (!response.ok) throw new Error('Collection unavailable');
       const data = await response.json();
       items = (Array.isArray(data.items) ? data.items : []).filter(item => item && item.sourceKind === 'agency_original' && isLocalAsset(item.src) && (!item.thumb || isLocalAsset(item.thumb)) && typologies.includes(item.typology) && rooms.includes(item.room)).map(item => ({...item, fullResolution:isLocalAsset(item.fullResolution) ? item.fullResolution : null}));

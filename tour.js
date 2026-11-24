@@ -51,7 +51,7 @@
   canvas.setAttribute('aria-label',`${current.label}, ${apartment.label}, 360° interiér. Šipky mění směr, plus a minus přibližují. Místnosti vyberete tlačítky pod prohlídkou.`);
   $('#fallback-image').alt=`Náhled místnosti ${current.label}, ${apartment.label}`;
   $('#tour-summary').textContent=`${apartment.nodes.length} propojených stanovišť`;
-  $('#source-plan').href=`plans/unit-${apartment.sourceUnit}.pdf`;
+  $('#source-plan').href=matchingContext()?.plan || `plans/byty-20261124/byt-${String(apartment.sourceUnit).padStart(2,'0')}.pdf`;
   $('#apartment-note').textContent='';
   $('#room-description').textContent='';
   const gallery=new URL('interiors.html',location.href);gallery.searchParams.set('typology',apartment.label);const category=roomCategory(current.id);if(category)gallery.searchParams.set('room',category);$('#room-gallery').href=gallery.pathname+gallery.search;

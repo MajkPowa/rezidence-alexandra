@@ -87,18 +87,19 @@
 
   const architecture = [
     { src: 'assets/exterior-no-balconies.webp', caption: 'Levá strana · bez bočních balkonů', alt: 'Architektonická vizualizace levé strany domu bez bočních balkonů' },
-    { src: 'assets/exterior-rear-no-balconies.webp', caption: 'Zadní pohled · bez bočních balkonů', alt: 'Zadní strana domu bez bočních balkonů' },
+    { src: 'assets/projekt-20261124/zadni-final-1600.webp', displaySrc: 'assets/projekt-20261124/zadni-final-3200.webp', caption: 'Zadní pohled', alt: 'Zadní průčelí Rezidence Alexandra s balkony a vjezdy do garáží' },
     { src: 'assets/exterior-hero.webp', caption: 'Pravý přední pohled', alt: 'Rezidence Alexandra z pravé přední strany' },
     { src: 'assets/balcony-detail.webp', caption: 'Balkon', alt: 'Detail návrhu balkonů' },
     { src: 'assets/facade-detail.webp', caption: 'Stínolam', alt: 'Detail návrhu stínolamu a fasády' }
   ];
-  const interiorSequences = {
-    '1': ['01','03','04','02','05','06','07'].map((n,i) => ({ src: `assets/interior-1-${n}.webp`, caption: `1+kk · ${i+1}/7`, alt: `Návrh interiéru bytu 1+kk, pohled ${i+1}` })),
-    '2': ['07','06','08','04','05','01','02','03','09','10'].map((n,i) => ({ src: `assets/interior-2-${n}.webp`, caption: `2+kk · ${i+1}/10`, alt: `Návrh interiéru bytu 2+kk, pohled ${i+1}` })),
-    '3': ['01','02','03','09','10','07','08','04','05','06'].map((n,i) => ({ src: `assets/interior-3-${n}.webp`, caption: `3+kk · ${i+1}/10`, alt: `Návrh interiéru bytu 3+kk, pohled ${i+1}` }))
-  };
+  const interiorSequences = {};
+  for (const type of ['1','2','3']) {
+    const base = `assets/interiery-20261124/${type}kk-interior-01`;
+    const caption = `Obývací pokoj · ${type}+kk`;
+    interiorSequences[type] = [{src:base+'.webp',thumb:base+'-thumb.webp',width:1600,height:900,room:'Obývací pokoj',alt:caption,caption,featureCaption:caption}];
+  }
   let activeInterior = '3';
-  const roomOrder = ['Obývací pokoj', 'Kuchyně', 'Ložnice', 'Odpočinkový kout', 'Předsíň', 'Koupelna', 'Samostatné WC', 'Komora'];
+  const roomOrder = ['Obývací pokoj','Kuchyně','Ložnice','Koupelna','Předsíň','Pracovna','Komora','Jídelní kout','Samostatné WC'];
   function roomPhotos(layout) {
     const photos = interiorSequences[layout.charAt(0)] || [];
     return roomOrder.map(room => photos.find(photo => photo.room === room)).filter(Boolean);
@@ -111,18 +112,19 @@
     $('#interior-feature-image').height = item.height || 911;
     $('#interior-feature-caption').textContent = item.featureCaption || `Obývací prostor · ${activeInterior}+kk`;
   }
-  fetch('assets/agency-interiors-20261026/manifest.json?v=agency20261026', {cache:'no-cache'}).then(response => {
+  const galleryAsset = path => typeof path === 'string' && /^assets\/interiery-20261124\/[a-z0-9-]+\.webp$/.test(path);
+  fetch('assets/interiery-20261124/manifest.json').then(response => {
     if (!response.ok) throw new Error('Collection unavailable');
     return response.json();
   }).then(data => {
     ['1', '2', '3'].forEach(type => {
-      const selected = (data.items || []).filter(item => item.sourceKind === 'agency_original' && item.typology === `${type}+kk` && typeof item.src === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+\.(webp|jpe?g|png)$/i.test(item.src));
+      const selected = (data.items || []).filter(item => item.sourceKind === 'agency_original' && item.typology === `${type}+kk` && galleryAsset(item.src) && galleryAsset(item.thumb));
       selected.sort((a, b) => Number(b.room === 'Obývací pokoj') - Number(a.room === 'Obývací pokoj'));
-      if (selected.length) interiorSequences[type] = selected.map((item, index) => ({src:item.src, room:item.room, thumb:item.src.replace(/\.webp$/, '-thumb.webp'), fullResolution:typeof item.fullResolution === 'string' && /^assets\/agency-interiors-20261026\/[a-zA-Z0-9_-]+-original\.(png|jpe?g)$/.test(item.fullResolution) ? item.fullResolution : null, width:item.width, height:item.height, alt:`${item.title} · ${item.typology}`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length}`, featureCaption:`${item.title} · ${item.typology}`}));
+      if (selected.length) interiorSequences[type] = selected.map((item, index) => ({...item, fullResolution:galleryAsset(item.fullResolution) ? item.fullResolution : null, downloadLabel:'Stáhnout vizualizaci', alt:`${item.title} · ${item.typology}`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length}`, featureCaption:`${item.title} · ${item.typology}`}));
     });
     updateInteriorFeature();
     document.dispatchEvent(new Event('alexandra:room-photos-ready'));
-  }).catch(() => { /* The original project visualizations remain available. */ });
+  }).catch(() => { /* The supplied cover for each layout is also available offline. */ });
   let galleryItems = architecture;
   let galleryIndex = 0;
   const galleryScope = $('#gallery-dialog .visual-scope');
@@ -272,13 +274,18 @@
     const tour = unit.id === 51 ? null : { '1+kk': { id: '1kk', source: '04' }, '2+kk': { id: '2kk', source: '02' }, '3+kk': { id: '3kk', source: '01' } }[unit.layout];
 
     const planPath = directPlan ? unit.plan : `plans/floor-sheet-${unit.floor}-20261103.pdf`;
-    const previewPath = directPlan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : `assets/floors/floor-${unit.floor}.webp`;
+    const previewPath = unit.planPreview || (directPlan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : `assets/floors/floor-${unit.floor}.webp`);
     const notice = directPlan ? 'Půdorys bytu.' : `Půdorys: ${window.AlexandraFloorLabels.source(unit.floor)}.`;
     $('#unit-dialog-content').innerHTML = `<header class="unit-dialog-identity unit-sales-head"><div class="unit-sales-copy"><p class="eyebrow">REZIDENCE ALEXANDRA · BYDLENÍ</p><h2 id="unit-dialog-title">Byt ${String(unit.id).padStart(2,'0')}</h2><p class="unit-meta">${escape(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}${unit.belowGroundLevel ? " · pod úrovní terénu" : ""}</p></div>${window.AlexandraDetails.salesPortrait}</header><div class="unit-dialog-grid"><div class="unit-overview">${window.AlexandraUnitLocation?.html(unit) || ''}<p class="unit-price">${money(unit.price)}</p><span class="unit-price-note">Orientační cena · bez parkování</span><div class="unit-actions"><div class="unit-contact-actions"><button class="button viewing-cta" id="inquire-unit" data-id="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</button>${window.AlexandraDetails.callSales}</div><button class="button" data-save="${unit.id}" aria-label="${saved.includes(unit.id) ? 'Odebrat' : 'Uložit'} byt ${unit.id}" aria-pressed="${saved.includes(unit.id)}">${icon(saved.includes(unit.id) ? 'favorite-filled' : 'favorite')} <span>${saved.includes(unit.id) ? 'Uloženo' : 'Uložit'}</span></button><a class="text-link" href="${planPath}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>${!directPlan ? `<a class="text-link" href="plans/floor-${unit.floor}.pdf" target="_blank" rel="noopener" title="${escape(window.AlexandraFloorLabels.source(unit.floor))}">Původní projektový výkres ${icon('arrow-up-right')}</a>` : ''}${tour ? `<a class="text-link unit-tour-link" href="${window.AlexandraDetails?.tourHref?.(unit) || `tour.html?byt=${tour.id}&jednotka=${unit.id}&podlazi=${unit.floor}#walkthrough`}">Typová 360° prohlídka ${escape(unit.layout)} ${icon('arrow-up-right')}</a>` : ''}</div><div class="unit-purchase-links">${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a>${window.AlexandraDetails?.bathroomLinkHTML?.(unit) || ''}</div><dl class="unit-data"><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div><div><dt>Otápěná plocha dle ceníku</dt><dd>${area(unit.heatedArea)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}<div><dt><span class="icon-label">${icon('parking-open', 'art')} <span>Parkování</span></span></dt><dd>Samostatně k dokoupení</dd></div><div><dt>Dostupnost</dt><dd>${statusBadge(unit)}</dd></div></dl></div><div class="unit-preview"><a class="unit-plan" href="${planPath}" target="_blank" rel="noopener" aria-label="Otevřít půdorys v PDF"><img src="${previewPath}" alt="${directPlan ? `Zdrojový půdorys bytu ${unit.id}` : `Zdrojový půdorys ${floorLabel(unit.floor)}`}" loading="lazy"><span class="plan-caption">${directPlan ? `Půdorys bytu ${String(unit.id).padStart(2,'0')}` : `Půdorys · ${floorLabel(unit.floor)}`} · otevřít PDF ${icon('arrow-up-right')}</span></a><p class="unit-notice">${notice}</p></div><div class="unit-detail-notes">${window.AlexandraDetails?.detailHTML(unit) || ''}</div></div>`;
     const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'detail');
     if (furnished) {
       $('.unit-plan', $('#unit-dialog-content')).outerHTML = furnished;
-      $('.unit-notice', $('#unit-dialog-content')).textContent = `Typový návrh zařízení bez balkonů. Původní výkres: ${window.AlexandraFloorLabels.source(unit.floor)}.`;
+      $('.unit-notice', $('#unit-dialog-content')).textContent = 'Zařízený náhled zobrazuje vnitřní prostor bytu. Balkon a rozměry jsou vyznačeny v půdorysu PDF.';
+    }
+    if (unit.interiorLayout) {
+      const photo = roomPhotos(unit.interiorLayout)[0];
+      if (photo) $('.unit-preview', $('#unit-dialog-content')).insertAdjacentHTML('afterbegin',
+        `<a class="detail-interior-link" href="interiors.html?typology=${encodeURIComponent(unit.interiorLayout)}#gallery"><img src="${escape(photo.src)}" width="${photo.width}" height="${photo.height}" loading="lazy" alt="${escape(photo.alt)}"><span>Vizualizace interiéru ${escape(unit.interiorLayout)} ${icon('arrow-up-right')}</span></a>`);
     }
     $('#inquire-unit').addEventListener('click', () => requestViewing(unit));
   }

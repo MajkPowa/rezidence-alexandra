@@ -5,7 +5,7 @@
   const format = new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 2 });
   const crown = new Intl.NumberFormat('cs-CZ', {style:'currency', currency:'CZK', maximumFractionDigits:0});
   const formatPrice = value => Number.isFinite(value) ? crown.format(Math.trunc(value)) : 'Cena neuvedena';
-  const salesPortrait = '<img class="unit-sales-portrait" src="assets/developer-20261106/pavel-dvorak-white.webp" width="480" height="686" alt="Pavel Dvořák, prodej bytů" decoding="async">';
+  const salesPortrait = '<img class="unit-sales-portrait" src="assets/projekt-20261124/pavel-dvorak-detail.webp" width="560" height="560" alt="Pavel Dvořák, prodej bytů" decoding="async">';
   const callSales = '<a class="button unit-call" href="tel:+420734358581" aria-label="Zavolat Pavlu Dvořákovi na 734 358 581"><span>Zavolat</span><span class="unit-call-number">734 358 581</span></a>';
   const area = value => typeof value === 'number' && Number.isFinite(value) ? `${format.format(value)} m²` : 'Výměru upřesníme';
   const featureArea = (value, kind) => value === 0 ? (kind === 'cellar' ? 'Bez sklepa' : 'Bez balkonu') : area(value);
@@ -58,15 +58,15 @@
       const bathroom = data.units[String(variant.unit)]?.bathroom;
       if (!bathroom) return '';
       const pdf = pdfPath(bathroom.catalogUrl);
-      const preview = variant.image ? `<a href="interiors.html?typology=${encodeURIComponent(variant.title)}&amp;room=Koupelna#gallery" aria-label="Prohlédnout koupelnu ${esc(variant.title)}"><img src="assets/agency-interiors-20261026/${variant.image}-thumb.webp" alt="Původní vizualizace koupelny ${esc(variant.title)} z podkladů projektu" width="720" height="405" loading="lazy"></a>` : '';
+      const preview = variant.image ? `<a href="interiors.html?typology=${encodeURIComponent(variant.title)}&amp;room=Koupelna#gallery" aria-label="Prohlédnout koupelnu ${esc(variant.title)}"><img src="assets/interiery-20261124/${variant.image}-thumb.webp" alt="Vizualizace koupelny pro dispozici ${esc(variant.title)}" width="640" height="360" loading="lazy"></a>` : '';
       return `<article id="bathroom-${esc(bathroom.id)}" class="bathroom-catalog${variant.image ? '' : ' bathroom-catalog-ground'}" tabindex="-1">${preview}<div><p class="eyebrow">${esc(variant.title)}</p><h4>${esc(bathroom.referenceType)}</h4><p class="included-confirmation"><strong>Koupelnové skříňky a zrcadla jsou v ceně.</strong></p>${productsHTML(bathroom)}${pdf ? `<a class="bathroom-direct-link" href="${esc(pdf)}" target="_blank" rel="noopener">Prohlédnout katalog koupelny <span>${esc(bathroom.label)}</span><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19 19 5M8 5h11v11"/></svg></a>` : ''}</div></article>`;
     }).join('');
   }
   const points = [
-    { id:'flooring', label:'Vinylová podlaha', x:14,y:84, text:'Vinylová podlaha je v ceně bytu.' },
-    { id:'doors', label:'Interiérové dveře', x:9,y:43, text:'Interiérové dveře včetně zárubní jsou v ceně.' },
-    { id:'preparations', label:'Příprava kuchyně', x:34,y:43, text:'Rozvody a přípojky jsou v ceně. Kuchyň a spotřebiče se pořizují samostatně.' },
-    { id:'furniture', label:'Volné zařízení', x:75,y:67, text:'Pohovka, stůl, židle a další nábytek ukazují možné zařízení interiéru. Nejsou součástí ceny bytu.' }
+    { id:'flooring', label:'Vinylová podlaha', x:6,y:90, text:'Vinylová podlaha je v ceně bytu.' },
+    { id:'doors', label:'Interiérové dveře', x:6,y:42, text:'Interiérové dveře včetně zárubní jsou v ceně.' },
+    { id:'preparations', label:'Příprava kuchyně', x:40,y:40, text:'Rozvody a přípojky jsou v ceně. Kuchyň a spotřebiče se pořizují samostatně.' },
+    { id:'furniture', label:'Volné zařízení', x:76,y:60, text:'Pohovka, stůl, židle a další nábytek ukazují možné zařízení interiéru. Nejsou součástí ceny bytu.' }
   ];
   const stage = document.querySelector('#standard-hotspots');
   const detail = document.querySelector('#standard-hotspot-detail');

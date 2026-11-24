@@ -1,0 +1,42 @@
+[
+  {
+    "sourceFilename": "Zarizovaci_prvky_komplet_prezentace.pdf",
+    "url": "plans/vybaveni-a-obklady-20261124.pdf",
+    "bytes": 3069860,
+    "sha256": "af88cc60d1467b0462c8c67ff472922f3c2c982bfa2ad363e3bc36742aae71e9",
+    "pages": 18,
+    "date": "2026-11-24"
+  },
+  {
+    "sourceFilename": "Koupelna_3kk_final.pdf",
+    "url": "plans/bathroom-3kk-20261124.pdf",
+    "bytes": 7113652,
+    "sha256": "0d35b04270706d4022ae9027645f84b5bf49795e5439b89a46f59d495cc693ce",
+    "pages": 13,
+    "date": "2026-11-24"
+  },
+  {
+    "sourceFilename": "Koupelna_2KK_final.pdf",
+    "url": "plans/bathroom-2kk-20261124.pdf",
+    "bytes": 3623403,
+    "sha256": "e8653e0da890053a5c870a1f44977944318ebcfc06592b05b9958d2c6dc6b9c8",
+    "pages": 14,
+    "date": "2026-11-24"
+  },
+  {
+    "sourceFilename": "Koupelna_1KK_final.pdf",
+    "url": "plans/bathroom-1kk-20261124.pdf",
+    "bytes": 3983681,
+    "sha256": "20a9c78cb003487054eba0aae21cb6b9512fdcd9bcd1fb6317274a1432b771c7",
+    "pages": 14,
+    "date": "2026-11-24"
+  },
+  {
+    "sourceFilename": "Koupelna Byt suterén.pdf",
+    "url": "plans/bathroom-51-20261103.pdf",
+    "bytes": 2098550,
+    "sha256": "2bb89e59c7e19357433ed42b3837d232f1ef7f5494fcc4f491a457eed92f04c5",
+    "pages": 9,
+    "date": "2026-11-03"
+  }
+]

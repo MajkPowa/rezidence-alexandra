@@ -167,7 +167,7 @@
       if (state.area === 'large' && unit.area <= 55) return false;
       if (state.status !== 'all' && statusOf(unit).key !== state.status) return false;
       return !state.favorites || saved.includes(unit.id);
-    }).sort((a,b) => ({ 'price-up': () => a.price-b.price, 'price-down': () => b.price-a.price, 'area-up': () => a.area-b.area, 'area-down': () => b.area-a.area, floor: () => a.floor-b.floor || a.id-b.id }[state.sort] || (()=>0))());
+    }).sort((a,b) => ({ 'price-up': () => (a.price ?? Infinity) - (b.price ?? Infinity), 'price-down': () => (b.price ?? -Infinity) - (a.price ?? -Infinity), 'area-up': () => a.area-b.area, 'area-down': () => b.area-a.area, floor: () => a.floor-b.floor || a.id-b.id }[state.sort] || (()=>0))());
   }
   const unitCount = n => n === 1 ? '1 jednotka' : n > 1 && n < 5 ? `${n} jednotky` : `${n} jednotek`;
   function snapshot() { return { filters: { ...state }, filteredIds: filteredUnits().map(unit => unit.id), savedIds: [...saved] }; }
@@ -215,16 +215,11 @@
   }
   document.addEventListener('click', event => {
     const clearParkingUnit = event.target.closest('[data-clear-parking-unit]');
-    if (clearParkingUnit) {
-      parkingUnit = null;
-      renderParkingUnitContext();
-      $('#parking-quick-select')?.focus({ preventScroll: true });
-      return;
-    }
+    if (clearParkingUnit) parkingUnit = null;
     const parkingLink = event.target.closest('[data-section-link="parkovani"][data-unit-id]');
     if (parkingLink) {
       const unit = findUnit(parkingLink.dataset.unitId);
-      if (unit) { parkingUnit = unit; renderParkingUnitContext(); }
+      if (unit) parkingUnit = unit;
     }
     const viewingButton = event.target.closest('[data-viewing-unit]');
     if (viewingButton) {
@@ -279,7 +274,7 @@
     const planPath = directPlan ? unit.plan : `plans/floor-sheet-${unit.floor}-20261103.pdf`;
     const previewPath = directPlan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : `assets/floors/floor-${unit.floor}.webp`;
     const notice = directPlan ? 'Půdorys bytu.' : `Půdorys: ${window.AlexandraFloorLabels.source(unit.floor)}.`;
-    $('#unit-dialog-content').innerHTML = `<header class="unit-dialog-identity unit-sales-head"><div class="unit-sales-copy"><p class="eyebrow">REZIDENCE ALEXANDRA · BYDLENÍ</p><h2 id="unit-dialog-title">Byt ${String(unit.id).padStart(2,'0')}</h2><p class="unit-meta">${escape(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}${unit.belowGroundLevel ? " · pod úrovní terénu" : ""}</p></div>${window.AlexandraDetails.salesPortrait}</header><div class="unit-dialog-grid"><div class="unit-overview">${window.AlexandraUnitLocation?.html(unit) || ''}<p class="unit-price">${money(unit.price)}</p><span class="unit-price-note">Orientační cena · bez parkování</span><div class="unit-actions"><div class="unit-contact-actions"><button class="button viewing-cta" id="inquire-unit" data-id="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</button>${window.AlexandraDetails.callSales}</div><button class="button" data-save="${unit.id}" aria-label="${saved.includes(unit.id) ? 'Odebrat' : 'Uložit'} byt ${unit.id}" aria-pressed="${saved.includes(unit.id)}">${icon(saved.includes(unit.id) ? 'favorite-filled' : 'favorite')} <span>${saved.includes(unit.id) ? 'Uloženo' : 'Uložit'}</span></button><a class="text-link" href="${planPath}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>${!directPlan ? `<a class="text-link" href="plans/floor-${unit.floor}.pdf" target="_blank" rel="noopener" title="${escape(window.AlexandraFloorLabels.source(unit.floor))}">Původní projektový výkres ${icon('arrow-up-right')}</a>` : ''}${tour ? `<a class="text-link unit-tour-link" href="${window.AlexandraDetails?.tourHref?.(unit) || `tour.html?byt=${tour.id}&jednotka=${unit.id}&podlazi=${unit.floor}#walkthrough`}">Typová 360° prohlídka ${escape(unit.layout)} ${icon('arrow-up-right')}</a>` : ''}</div><div class="unit-purchase-links"><a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a>${window.AlexandraDetails?.bathroomLinkHTML?.(unit) || ''}</div><dl class="unit-data"><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div><div><dt>Otápěná plocha dle ceníku</dt><dd>${area(unit.heatedArea)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}<div><dt><span class="icon-label">${icon('parking-open', 'art')} <span>Parkování</span></span></dt><dd>Samostatně k dokoupení</dd></div><div><dt>Dostupnost</dt><dd>${statusBadge(unit)}</dd></div></dl></div><div class="unit-preview"><a class="unit-plan" href="${planPath}" target="_blank" rel="noopener" aria-label="Otevřít půdorys v PDF"><img src="${previewPath}" alt="${directPlan ? `Zdrojový půdorys bytu ${unit.id}` : `Zdrojový půdorys ${floorLabel(unit.floor)}`}" loading="lazy"><span class="plan-caption">${directPlan ? `Půdorys bytu ${String(unit.id).padStart(2,'0')}` : `Půdorys · ${floorLabel(unit.floor)}`} · otevřít PDF ${icon('arrow-up-right')}</span></a><p class="unit-notice">${notice}</p></div><div class="unit-detail-notes">${window.AlexandraDetails?.detailHTML(unit) || ''}</div></div>`;
+    $('#unit-dialog-content').innerHTML = `<header class="unit-dialog-identity unit-sales-head"><div class="unit-sales-copy"><p class="eyebrow">REZIDENCE ALEXANDRA · BYDLENÍ</p><h2 id="unit-dialog-title">Byt ${String(unit.id).padStart(2,'0')}</h2><p class="unit-meta">${escape(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}${unit.belowGroundLevel ? " · pod úrovní terénu" : ""}</p></div>${window.AlexandraDetails.salesPortrait}</header><div class="unit-dialog-grid"><div class="unit-overview">${window.AlexandraUnitLocation?.html(unit) || ''}<p class="unit-price">${money(unit.price)}</p><span class="unit-price-note">Orientační cena · bez parkování</span><div class="unit-actions"><div class="unit-contact-actions"><button class="button viewing-cta" id="inquire-unit" data-id="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</button>${window.AlexandraDetails.callSales}</div><button class="button" data-save="${unit.id}" aria-label="${saved.includes(unit.id) ? 'Odebrat' : 'Uložit'} byt ${unit.id}" aria-pressed="${saved.includes(unit.id)}">${icon(saved.includes(unit.id) ? 'favorite-filled' : 'favorite')} <span>${saved.includes(unit.id) ? 'Uloženo' : 'Uložit'}</span></button><a class="text-link" href="${planPath}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>${!directPlan ? `<a class="text-link" href="plans/floor-${unit.floor}.pdf" target="_blank" rel="noopener" title="${escape(window.AlexandraFloorLabels.source(unit.floor))}">Původní projektový výkres ${icon('arrow-up-right')}</a>` : ''}${tour ? `<a class="text-link unit-tour-link" href="${window.AlexandraDetails?.tourHref?.(unit) || `tour.html?byt=${tour.id}&jednotka=${unit.id}&podlazi=${unit.floor}#walkthrough`}">Typová 360° prohlídka ${escape(unit.layout)} ${icon('arrow-up-right')}</a>` : ''}</div><div class="unit-purchase-links">${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a>${window.AlexandraDetails?.bathroomLinkHTML?.(unit) || ''}</div><dl class="unit-data"><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div><div><dt>Otápěná plocha dle ceníku</dt><dd>${area(unit.heatedArea)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}<div><dt><span class="icon-label">${icon('parking-open', 'art')} <span>Parkování</span></span></dt><dd>Samostatně k dokoupení</dd></div><div><dt>Dostupnost</dt><dd>${statusBadge(unit)}</dd></div></dl></div><div class="unit-preview"><a class="unit-plan" href="${planPath}" target="_blank" rel="noopener" aria-label="Otevřít půdorys v PDF"><img src="${previewPath}" alt="${directPlan ? `Zdrojový půdorys bytu ${unit.id}` : `Zdrojový půdorys ${floorLabel(unit.floor)}`}" loading="lazy"><span class="plan-caption">${directPlan ? `Půdorys bytu ${String(unit.id).padStart(2,'0')}` : `Půdorys · ${floorLabel(unit.floor)}`} · otevřít PDF ${icon('arrow-up-right')}</span></a><p class="unit-notice">${notice}</p></div><div class="unit-detail-notes">${window.AlexandraDetails?.detailHTML(unit) || ''}</div></div>`;
     const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'detail');
     if (furnished) {
       $('.unit-plan', $('#unit-dialog-content')).outerHTML = furnished;
@@ -316,15 +311,8 @@
     const feedback = mayReplace ? '' : `Vybráno: ${interest}. Váš rozepsaný text zůstává zachován.`;
     if (status.textContent !== feedback) status.textContent = feedback;
   }
-  function renderParkingUnitContext() {
-    const context = $('#parking-unit-context');
-    if (!context) return;
-    context.hidden = !parkingUnit;
-    context.innerHTML = parkingUnit ? `<p>Vybíráte parkování k <strong>bytu ${parkingUnit.id} · ${escape(parkingUnit.layout)} · ${escape(floorLabel(parkingUnit.floor))}</strong>.</p><a class="text-link" data-return-unit="${parkingUnit.id}" href="?podlazi=${parkingUnit.floor}&amp;byt=${parkingUnit.id}#vyber-v-dome">Detail bytu ${parkingUnit.id} ${icon('arrow-up-right')}</a><button type="button" class="text-link" data-clear-parking-unit>Zrušit výběr bytu ${icon('close')}</button>` : '';
-  }
   document.addEventListener('alexandra:picker-unit', event => {
     parkingUnit = findUnit(event.detail?.id) || null;
-    renderParkingUnitContext();
   });
   const inquiryForm = $('#inquiry-form');
   inquiryForm.noValidate = true;

@@ -36,15 +36,16 @@ body.dr-brand #residence-journey, body.dr-brand #residence-journey .journey-stag
 }
 body.dr-brand #residence-journey .journey-copy {
   left: max(var(--gutter), calc((100vw - 1560px) / 2));
-  top: 50%;
-  transform: translateY(-50%);
+  top: auto;
+  bottom: clamp(56px, 8svh, 106px);
+  transform: none;
 }
-#residence-journey .journey-picture { transition: opacity .32s ease; }
+body.dr-brand #residence-journey .journey-poster { object-position: 52% 47%; }
 body.dr-brand #residence-journey .journey-bottom {
-  inset: auto max(var(--gutter), calc((100vw - 1560px) / 2)) 20px auto;
+  inset: auto max(var(--gutter), calc((100vw - 1560px) / 2)) 18px auto;
   display: block;
   width: auto;
-  padding: 0 290px 0 0;
+  padding: 0;
 }
 #hero-motion-preference { background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 6px 0; }
 #hero-motion-preference[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
@@ -176,8 +177,8 @@ body.dr-brand #map-unit-card {
   body.dr-brand #map-unit-card { grid-template-columns: minmax(0,1.35fr) minmax(255px,1fr); }
 }
 @media (max-width: 700px) {
-  body.dr-brand #residence-journey .journey-bottom { inset: auto auto 24px var(--gutter); padding: 0; }
-  body.dr-brand #residence-journey .journey-copy { top: 48%; }
+  body.dr-brand #residence-journey .journey-bottom { right: 20px; bottom: 14px; }
+  body.dr-brand #residence-journey .journey-copy { bottom: 56px; }
   #floor-explorer .picker-steps { padding: 10px; }
   .picker-steps ol { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 4px; }
   .picker-steps li { align-items: start; }
@@ -221,6 +222,14 @@ body.dr-brand #map-unit-card {
 .buyer-team-symbol { background: #f6f1f2; color: var(--dr-red); }
 .buyer-team-symbol svg { width: 65%; height: 65%; }
 .buyer-team-symbol img { object-fit: contain; }
+#buyer-team-finance .buyer-team-media img { object-fit: cover; object-position: 50% 20%; }
+#buyer-team-legal .buyer-team-media { background: white; border: 1px solid var(--dr-line); }
+#buyer-team-legal .buyer-team-media img { width: 78%; height: 65%; object-position: center; }
+#spolupracujici-banky { margin-top: 20px; scroll-margin-top: calc(var(--header-height) + 20px); }
+#spolupracujici-banky h5 { margin: 0 0 12px; font: 600 16px/1.4 var(--sans); }
+.partner-banks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.partner-banks li { display: grid; place-items: center; background: white; border: 1px solid var(--dr-line); border-radius: 6px; min-height: 56px; padding: 8px; }
+.partner-banks img { display: block; width: auto; height: auto; max-width: 100%; max-height: 36px; }
 .buyer-team-copy { min-width: 0; }
 .buyer-team-copy h4 { margin: 3px 0 6px; font: 600 clamp(18px,1.35vw,23px)/1.22 var(--sans); letter-spacing: -.02em; }
 .buyer-team-copy p { font-size: 14px; line-height: 1.5; margin: 0; color: var(--muted); }

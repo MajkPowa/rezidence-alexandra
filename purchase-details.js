@@ -4,7 +4,7 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const format = new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 2 });
   const crown = new Intl.NumberFormat('cs-CZ', {style:'currency', currency:'CZK', maximumFractionDigits:0});
-  const formatPrice = value => crown.format(value);
+  const formatPrice = value => Number.isFinite(value) ? crown.format(Math.trunc(value)) : 'Cena neuvedena';
   const salesPortrait = '<img class="unit-sales-portrait" src="assets/developer-20261106/pavel-dvorak-white.webp" width="480" height="686" alt="Pavel Dvořák, prodej bytů" decoding="async">';
   const callSales = '<a class="button unit-call" href="tel:+420734358581" aria-label="Zavolat Pavlu Dvořákovi na 734 358 581"><span>Zavolat</span><span class="unit-call-number">734 358 581</span></a>';
   const area = value => typeof value === 'number' && Number.isFinite(value) ? `${format.format(value)} m²` : 'Výměru upřesníme';
@@ -16,6 +16,7 @@
   function bathroomLinkHTML(unit, { pdf = false } = {}) {
     const bathroom = get(unit).bathroom;
     if (!bathroom) return '';
+    if (Number(unit.id) === 51) pdf = true;
     const target = pdf ? pdfPath(bathroom.catalogUrl) : bathroomTarget(unit);
     if (!target) return '';
     return `<a class="bathroom-direct-link" href="${esc(target)}" ${pdf ? 'target="_blank" rel="noopener"' : `data-section-link="${esc(target.slice(1))}" data-unit-id="${esc(unit.id)}"`}>${pdf ? 'Prohlédnout katalog koupelny' : 'Vybavení vaší koupelny'} <span>${esc(bathroom.label)}</span><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19 19 5M8 5h11v11"/></svg></a>`;
@@ -51,8 +52,7 @@
     const variants = [
       { unit: 4, title: '1+kk', image: '1kk-bathroom-05' },
       { unit: 2, title: '2+kk', image: '2kk-bathroom-04' },
-      { unit: 1, title: '3+kk', image: '3kk-bathroom-03' },
-      { unit: 51, title: 'Byt 51 · pod úrovní terénu' }
+      { unit: 1, title: '3+kk', image: '3kk-bathroom-03' }
     ];
     catalogs.innerHTML = variants.map(variant => {
       const bathroom = data.units[String(variant.unit)]?.bathroom;

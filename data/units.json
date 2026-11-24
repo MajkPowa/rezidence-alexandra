@@ -7,9 +7,9 @@
     "heatedArea": 34.4,
     "parking": null,
     "cellar": "ano",
-    "price": 3181369.8,
-    "sourcePrice": 3181369.8000000003,
-    "availability": null,
+    "price": null,
+    "sourcePrice": null,
+    "availability": "sold",
     "sourceRow": 10,
     "plan": "plans/unit-51.pdf",
     "balconyArea": 0,
@@ -22,17 +22,19 @@
     "id": 1,
     "floor": 2,
     "layout": "3+kk",
-    "area": 65.15,
+    "area": 59.2,
     "heatedArea": 48.85,
     "parking": null,
-    "cellar": "ano",
-    "price": 5805777.1,
-    "sourcePrice": 5805777.100000001,
+    "cellar": "ne",
+    "price": 5275548,
+    "sourcePrice": 5275548.8,
     "availability": null,
     "sourceRow": 15,
     "plan": "plans/unit-01.pdf",
     "balconyArea": 10.35,
-    "cellarArea": 5.95
+    "cellarArea": 0,
+    "priceSourceRow": 11,
+    "cellarIncluded": false
   },
   {
     "id": 2,
@@ -42,14 +44,15 @@
     "heatedArea": 49.85,
     "parking": null,
     "cellar": "ne",
-    "price": 5284460.2,
+    "price": 5284460,
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 16,
     "plan": "plans/unit-02.pdf",
     "balconyArea": 9.45,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 12
   },
   {
     "id": 3,
@@ -59,14 +62,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4785421.8,
+    "price": 4785421,
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 17,
     "plan": "plans/unit-03.pdf",
     "balconyArea": 8.75,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 13
   },
   {
     "id": 4,
@@ -76,13 +80,14 @@
     "heatedArea": 31.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3560104.3,
-    "sourcePrice": 3560104.3000000003,
+    "price": 3560104,
+    "sourcePrice": 3560104.3,
     "availability": null,
     "sourceRow": 18,
     "plan": "plans/unit-04.pdf",
     "balconyArea": 6.75,
-    "cellarArea": 1.95
+    "cellarArea": 1.95,
+    "priceSourceRow": 14
   },
   {
     "id": 5,
@@ -93,12 +98,13 @@
     "parking": null,
     "cellar": "ano",
     "price": 3564560,
-    "sourcePrice": 3564560,
+    "sourcePrice": 3564560.0,
     "availability": null,
     "sourceRow": 19,
     "plan": "plans/unit-05.pdf",
     "balconyArea": 6.75,
-    "cellarArea": 2
+    "cellarArea": 2,
+    "priceSourceRow": 15
   },
   {
     "id": 6,
@@ -108,14 +114,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4870080.1,
+    "price": 4870080,
     "sourcePrice": 4870080.1,
     "availability": null,
     "sourceRow": 20,
     "plan": "plans/unit-06.pdf",
     "balconyArea": 9.7,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 16
   },
   {
     "id": 7,
@@ -125,13 +132,14 @@
     "heatedArea": 32.9,
     "parking": null,
     "cellar": "ano",
-    "price": 3769522.2,
-    "sourcePrice": 3769522.1999999993,
+    "price": 3769522,
+    "sourcePrice": 3769522.2,
     "availability": null,
     "sourceRow": 21,
     "plan": "plans/unit-07.pdf",
     "balconyArea": 7.4,
-    "cellarArea": 2
+    "cellarArea": 2,
+    "priceSourceRow": 17
   },
   {
     "id": 8,
@@ -141,13 +149,14 @@
     "heatedArea": 31.85,
     "parking": null,
     "cellar": "ano",
-    "price": 3613572.7,
-    "sourcePrice": 3613572.6999999993,
+    "price": 3613572,
+    "sourcePrice": 3613572.7,
     "availability": null,
     "sourceRow": 22,
     "plan": "plans/unit-08.pdf",
     "balconyArea": 7.05,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 18
   },
   {
     "id": 9,
@@ -157,13 +166,14 @@
     "heatedArea": 31.55,
     "parking": null,
     "cellar": "ano",
-    "price": 3573471.4,
+    "price": 3573471,
     "sourcePrice": 3573471.4,
     "availability": null,
     "sourceRow": 23,
     "plan": "plans/unit-09.pdf",
     "balconyArea": 6.9,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 19
   },
   {
     "id": 10,
@@ -173,13 +183,14 @@
     "heatedArea": 33.2,
     "parking": null,
     "cellar": "ano",
-    "price": 3720509.5,
+    "price": 3720509,
     "sourcePrice": 3720509.5,
     "availability": null,
     "sourceRow": 24,
     "plan": "plans/unit-10.pdf",
     "balconyArea": 6.9,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 20
   },
   {
     "id": 11,
@@ -189,13 +200,14 @@
     "heatedArea": 48.85,
     "parking": null,
     "cellar": "ano",
-    "price": 5805777.1,
-    "sourcePrice": 5805777.100000001,
+    "price": 5805777,
+    "sourcePrice": 5805777.1,
     "availability": null,
     "sourceRow": 28,
     "plan": null,
     "balconyArea": 10.35,
-    "cellarArea": 5.95
+    "cellarArea": 5.95,
+    "priceSourceRow": 24
   },
   {
     "id": 12,
@@ -205,14 +217,15 @@
     "heatedArea": 49.85,
     "parking": null,
     "cellar": "ne",
-    "price": 5284460.2,
+    "price": 5284460,
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 29,
     "plan": null,
     "balconyArea": 9.45,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 25
   },
   {
     "id": 13,
@@ -222,14 +235,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4785421.8,
+    "price": 4785421,
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 30,
     "plan": null,
     "balconyArea": 8.75,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 26
   },
   {
     "id": 14,
@@ -239,13 +253,14 @@
     "heatedArea": 31.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3533370.1,
+    "price": 3533370,
     "sourcePrice": 3533370.1,
     "availability": null,
     "sourceRow": 31,
     "plan": null,
     "balconyArea": 6.75,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 27
   },
   {
     "id": 15,
@@ -255,13 +270,14 @@
     "heatedArea": 31.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3533370.1,
+    "price": 3533370,
     "sourcePrice": 3533370.1,
     "availability": null,
     "sourceRow": 32,
     "plan": null,
     "balconyArea": 6.75,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 28
   },
   {
     "id": 16,
@@ -271,14 +287,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4749776.2,
+    "price": 4749776,
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 33,
     "plan": null,
     "balconyArea": 8.35,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 29
   },
   {
     "id": 17,
@@ -288,13 +305,14 @@
     "heatedArea": 32.9,
     "parking": null,
     "cellar": "ano",
-    "price": 3506635.9,
+    "price": 3506635,
     "sourcePrice": 3506635.9,
     "availability": null,
     "sourceRow": 34,
     "plan": null,
     "balconyArea": 4.9,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 30
   },
   {
     "id": 18,
@@ -304,13 +322,14 @@
     "heatedArea": 31.85,
     "parking": null,
     "cellar": "ano",
-    "price": 3421977.6,
+    "price": 3421977,
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 35,
     "plan": null,
     "balconyArea": 4.9,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 31
   },
   {
     "id": 19,
@@ -320,13 +339,14 @@
     "heatedArea": 31.55,
     "parking": null,
     "cellar": "ano",
-    "price": 3421977.6,
+    "price": 3421977,
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 36,
     "plan": null,
     "balconyArea": 5.2,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 32
   },
   {
     "id": 20,
@@ -336,13 +356,14 @@
     "heatedArea": 33.2,
     "parking": null,
     "cellar": "ano",
-    "price": 3720509.5,
+    "price": 3720509,
     "sourcePrice": 3720509.5,
     "availability": null,
     "sourceRow": 37,
     "plan": null,
     "balconyArea": 6.9,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 33
   },
   {
     "id": 21,
@@ -352,13 +373,14 @@
     "heatedArea": 48.85,
     "parking": null,
     "cellar": "ano",
-    "price": 5805777.1,
-    "sourcePrice": 5805777.100000001,
+    "price": 5805777,
+    "sourcePrice": 5805777.1,
     "availability": null,
     "sourceRow": 42,
     "plan": null,
     "balconyArea": 10.35,
-    "cellarArea": 5.95
+    "cellarArea": 5.95,
+    "priceSourceRow": 38
   },
   {
     "id": 22,
@@ -368,14 +390,15 @@
     "heatedArea": 49.85,
     "parking": null,
     "cellar": "ne",
-    "price": 5284460.2,
+    "price": 5284460,
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 43,
     "plan": null,
     "balconyArea": 9.45,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 39
   },
   {
     "id": 23,
@@ -385,14 +408,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4785421.8,
+    "price": 4785421,
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 44,
     "plan": null,
     "balconyArea": 8.75,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 40
   },
   {
     "id": 24,
@@ -403,12 +427,13 @@
     "parking": null,
     "cellar": "ano",
     "price": 3653674,
-    "sourcePrice": 3653674,
+    "sourcePrice": 3653674.0,
     "availability": null,
     "sourceRow": 45,
     "plan": null,
     "balconyArea": 6.75,
-    "cellarArea": 3
+    "cellarArea": 3,
+    "priceSourceRow": 41
   },
   {
     "id": 25,
@@ -418,13 +443,14 @@
     "heatedArea": 31.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3537825.8,
-    "sourcePrice": 3537825.8000000003,
+    "price": 3537825,
+    "sourcePrice": 3537825.8,
     "availability": null,
     "sourceRow": 46,
     "plan": null,
     "balconyArea": 6.75,
-    "cellarArea": 1.7
+    "cellarArea": 1.7,
+    "priceSourceRow": 42
   },
   {
     "id": 26,
@@ -434,14 +460,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4749776.2,
+    "price": 4749776,
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 47,
     "plan": null,
     "balconyArea": 8.35,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 43
   },
   {
     "id": 27,
@@ -451,13 +478,14 @@
     "heatedArea": 32.9,
     "parking": null,
     "cellar": "ano",
-    "price": 3515547.3,
-    "sourcePrice": 3515547.3000000003,
+    "price": 3515547,
+    "sourcePrice": 3515547.3,
     "availability": null,
     "sourceRow": 48,
     "plan": null,
     "balconyArea": 4.9,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 44
   },
   {
     "id": 28,
@@ -467,13 +495,14 @@
     "heatedArea": 32.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3457623.2,
-    "sourcePrice": 3457623.1999999993,
+    "price": 3457623,
+    "sourcePrice": 3457623.2,
     "availability": null,
     "sourceRow": 49,
     "plan": null,
     "balconyArea": 4.9,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 45
   },
   {
     "id": 29,
@@ -483,13 +512,14 @@
     "heatedArea": 31.55,
     "parking": null,
     "cellar": "ano",
-    "price": 3421977.6,
+    "price": 3421977,
     "sourcePrice": 3421977.6,
     "availability": null,
     "sourceRow": 50,
     "plan": null,
     "balconyArea": 5.2,
-    "cellarArea": 1.65
+    "cellarArea": 1.65,
+    "priceSourceRow": 46
   },
   {
     "id": 30,
@@ -499,13 +529,14 @@
     "heatedArea": 33.2,
     "parking": null,
     "cellar": "ano",
-    "price": 3711598.1,
+    "price": 3711598,
     "sourcePrice": 3711598.1,
     "availability": null,
     "sourceRow": 51,
     "plan": null,
     "balconyArea": 6.9,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 47
   },
   {
     "id": 31,
@@ -516,12 +547,13 @@
     "parking": null,
     "cellar": "ano",
     "price": 5792410,
-    "sourcePrice": 5792410,
+    "sourcePrice": 5792410.0,
     "availability": null,
     "sourceRow": 57,
     "plan": null,
     "balconyArea": 10.35,
-    "cellarArea": 5.8
+    "cellarArea": 5.8,
+    "priceSourceRow": 53
   },
   {
     "id": 32,
@@ -531,14 +563,15 @@
     "heatedArea": 49.85,
     "parking": null,
     "cellar": "ne",
-    "price": 5284460.2,
+    "price": 5284460,
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 58,
     "plan": null,
     "balconyArea": 9.45,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 54
   },
   {
     "id": 33,
@@ -548,14 +581,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4785421.8,
+    "price": 4785421,
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 59,
     "plan": null,
     "balconyArea": 8.75,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 55
   },
   {
     "id": 34,
@@ -565,13 +599,14 @@
     "heatedArea": 31.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3524458.7,
-    "sourcePrice": 3524458.6999999993,
+    "price": 3524458,
+    "sourcePrice": 3524458.7,
     "availability": null,
     "sourceRow": 60,
     "plan": null,
     "balconyArea": 6.75,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 56
   },
   {
     "id": 35,
@@ -581,13 +616,14 @@
     "heatedArea": 31.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3524458.7,
-    "sourcePrice": 3524458.6999999993,
+    "price": 3524458,
+    "sourcePrice": 3524458.7,
     "availability": null,
     "sourceRow": 61,
     "plan": null,
     "balconyArea": 6.75,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 57
   },
   {
     "id": 36,
@@ -597,14 +633,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4749776.2,
+    "price": 4749776,
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 62,
     "plan": null,
     "balconyArea": 8.35,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 58
   },
   {
     "id": 37,
@@ -614,13 +651,14 @@
     "heatedArea": 32.9,
     "parking": null,
     "cellar": "ano",
-    "price": 3506635.9,
+    "price": 3506635,
     "sourcePrice": 3506635.9,
     "availability": null,
     "sourceRow": 63,
     "plan": null,
     "balconyArea": 4.9,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 59
   },
   {
     "id": 38,
@@ -630,13 +668,14 @@
     "heatedArea": 32.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3448711.8,
-    "sourcePrice": 3448711.8000000003,
+    "price": 3448711,
+    "sourcePrice": 3448711.8,
     "availability": null,
     "sourceRow": 64,
     "plan": null,
     "balconyArea": 4.9,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 60
   },
   {
     "id": 39,
@@ -646,13 +685,14 @@
     "heatedArea": 31.55,
     "parking": null,
     "cellar": "ano",
-    "price": 3413066.2,
-    "sourcePrice": 3413066.1999999997,
+    "price": 3413066,
+    "sourcePrice": 3413066.2,
     "availability": null,
     "sourceRow": 65,
     "plan": null,
     "balconyArea": 5.2,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 61
   },
   {
     "id": 40,
@@ -662,29 +702,32 @@
     "heatedArea": 33.2,
     "parking": null,
     "cellar": "ano",
-    "price": 3711598.1,
+    "price": 3711598,
     "sourcePrice": 3711598.1,
     "availability": null,
     "sourceRow": 66,
     "plan": null,
     "balconyArea": 6.9,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 62
   },
   {
     "id": 41,
     "floor": 6,
     "layout": "3+kk",
-    "area": 65,
+    "area": 59.2,
     "heatedArea": 48.85,
     "parking": null,
-    "cellar": "ano",
-    "price": 5792410,
-    "sourcePrice": 5792410,
+    "cellar": "ne",
+    "price": 5275548,
+    "sourcePrice": 5275548.8,
     "availability": null,
     "sourceRow": 73,
     "plan": null,
     "balconyArea": 10.35,
-    "cellarArea": 5.8
+    "cellarArea": 0,
+    "priceSourceRow": 69,
+    "cellarIncluded": false
   },
   {
     "id": 42,
@@ -694,14 +737,15 @@
     "heatedArea": 49.85,
     "parking": null,
     "cellar": "ne",
-    "price": 5284460.2,
+    "price": 5284460,
     "sourcePrice": 5284460.2,
     "availability": null,
     "sourceRow": 74,
     "plan": null,
     "balconyArea": 9.45,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 70
   },
   {
     "id": 43,
@@ -711,14 +755,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4785421.8,
+    "price": 4785421,
     "sourcePrice": 4785421.8,
     "availability": null,
     "sourceRow": 75,
     "plan": null,
     "balconyArea": 8.75,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 71
   },
   {
     "id": 44,
@@ -728,13 +773,14 @@
     "heatedArea": 31.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3524458.7,
-    "sourcePrice": 3524458.6999999993,
+    "price": 3524458,
+    "sourcePrice": 3524458.7,
     "availability": null,
     "sourceRow": 76,
     "plan": null,
     "balconyArea": 6.75,
-    "cellarArea": 1.55
+    "cellarArea": 1.55,
+    "priceSourceRow": 72
   },
   {
     "id": 45,
@@ -744,13 +790,14 @@
     "heatedArea": 31.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3502180.2,
-    "sourcePrice": 3502180.1999999993,
+    "price": 3502180,
+    "sourcePrice": 3502180.2,
     "availability": null,
     "sourceRow": 77,
     "plan": null,
     "balconyArea": 6.75,
-    "cellarArea": 1.3
+    "cellarArea": 1.3,
+    "priceSourceRow": 73
   },
   {
     "id": 46,
@@ -760,14 +807,15 @@
     "heatedArea": 44.95,
     "parking": null,
     "cellar": "ne",
-    "price": 4749776.2,
+    "price": 4749776,
     "sourcePrice": 4749776.2,
     "availability": null,
     "sourceRow": 78,
     "plan": null,
     "balconyArea": 8.35,
     "cellarArea": 0,
-    "cellarIncluded": false
+    "cellarIncluded": false,
+    "priceSourceRow": 74
   },
   {
     "id": 47,
@@ -777,13 +825,14 @@
     "heatedArea": 32.9,
     "parking": null,
     "cellar": "ano",
-    "price": 3484357.4,
+    "price": 3484357,
     "sourcePrice": 3484357.4,
     "availability": null,
     "sourceRow": 79,
     "plan": null,
     "balconyArea": 4.9,
-    "cellarArea": 1.3
+    "cellarArea": 1.3,
+    "priceSourceRow": 75
   },
   {
     "id": 48,
@@ -793,13 +842,14 @@
     "heatedArea": 32.25,
     "parking": null,
     "cellar": "ano",
-    "price": 3426433.3,
-    "sourcePrice": 3426433.3000000003,
+    "price": 3426433,
+    "sourcePrice": 3426433.3,
     "availability": null,
     "sourceRow": 80,
     "plan": null,
     "balconyArea": 4.9,
-    "cellarArea": 1.3
+    "cellarArea": 1.3,
+    "priceSourceRow": 76
   },
   {
     "id": 49,
@@ -809,13 +859,14 @@
     "heatedArea": 31.55,
     "parking": null,
     "cellar": "ano",
-    "price": 3390787.7,
-    "sourcePrice": 3390787.6999999997,
+    "price": 3390787,
+    "sourcePrice": 3390787.7,
     "availability": null,
     "sourceRow": 81,
     "plan": null,
     "balconyArea": 5.2,
-    "cellarArea": 1.3
+    "cellarArea": 1.3,
+    "priceSourceRow": 77
   },
   {
     "id": 50,
@@ -826,11 +877,12 @@
     "parking": null,
     "cellar": "ano",
     "price": 3698231,
-    "sourcePrice": 3698231,
+    "sourcePrice": 3698231.0,
     "availability": null,
     "sourceRow": 82,
     "plan": null,
     "balconyArea": 6.9,
-    "cellarArea": 1.4
+    "cellarArea": 1.4,
+    "priceSourceRow": 78
   }
 ]

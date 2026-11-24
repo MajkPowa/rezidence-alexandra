@@ -1,17 +1,55 @@
 {
-  "updatedAt": "2026-11-06",
+  "updatedAt": "2026-11-24",
   "developer": {
     "name": "MAXI holding",
     "portrait": "assets/developer-20261106/pavel-dvorak.webp",
     "portraitAlt": "Pavel Dvořák",
     "portraitStatus": "Fotografie dodaná projektovým týmem 6. 11. 2026; webová kopie bez retuše."
   },
-  "mortgageSpecialist": null,
-  "legalAdvisors": [],
+  "mortgageSpecialist": {
+    "name": "Jan Prusenovský",
+    "email": "jan.prusenovsky@zfpa.cz",
+    "website": "https://janprusenovsky.cz/",
+    "portrait": "assets/projekt-20261124/jan-prusenovsky.webp",
+    "description": "Pomůže vám vybrat financování a připravit podklady pro banku.",
+    "banks": [
+      {
+        "name": "Česká spořitelna",
+        "logo": "assets/projekt-20261124/banka-ceska-sporitelna.webp"
+      },
+      {
+        "name": "ČSOB",
+        "logo": "assets/projekt-20261124/banka-csob.webp"
+      },
+      {
+        "name": "Komerční banka",
+        "logo": "assets/projekt-20261124/banka-komercni-banka.webp"
+      },
+      {
+        "name": "mBank",
+        "logo": "assets/projekt-20261124/banka-mbank.webp"
+      },
+      {
+        "name": "Raiffeisenbank",
+        "logo": "assets/projekt-20261124/banka-raiffeisenbank.webp"
+      },
+      {
+        "name": "UniCredit Bank",
+        "logo": "assets/projekt-20261124/banka-unicredit-bank.webp"
+      }
+    ]
+  },
+  "legalAdvisors": [
+    {
+      "name": "Mgr. Adéla Mikelová",
+      "email": "mikelova@akmikelova.cz",
+      "website": "https://www.akmikelova.cz/",
+      "logo": "assets/projekt-20261124/adela-mikelova.webp",
+      "description": "Projde s vámi smlouvy a právní kroky při koupi bytu."
+    }
+  ],
   "contractDocuments": [],
   "pendingConfirmedByClient": [
-    "mortgageSpecialist",
-    "legalAdvisors",
     "contractDocuments"
   ],
   "salesContact": {

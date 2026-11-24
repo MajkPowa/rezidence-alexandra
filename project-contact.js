@@ -20,6 +20,8 @@
   document.body.classList.add('has-project-contact');
   let frame = 0;
   function externalBlock() {
+    const hero = document.getElementById('residence-journey');
+    if (hero && hero.getBoundingClientRect().bottom >= innerHeight - 100) return 'hero';
     if (document.querySelector('dialog[open]:not(#project-contact-dialog)')) return 'other-dialog';
     if (document.body.classList.contains('menu-is-open')) return 'menu';
     if (document.fullscreenElement || document.body.classList.contains('tour-expanded')) return 'full-screen';
@@ -37,7 +39,7 @@
     for (const x of [left+2,left+width/2,left+width-2]) {
       for (const y of [top+2,top+height/2,top+height-2]) {
         for (const element of document.elementsFromPoint(x,y)) {
-          const control = element.closest('a[href],button,input,select,textarea,summary,[role="button"],#mortgage-calculator');
+          const control = element.closest('a[href],button,input,select,textarea,summary,[role="button"],#mortgage-calculator,#parking-detail,#bathroom-catalogs,#poradci,#spolupracujici-banky');
           if (!control || widget.contains(control) || dialog.contains(control) || control.closest('[hidden],[inert],[aria-hidden="true"]')) continue;
           return true;
         }

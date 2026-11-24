@@ -10,7 +10,7 @@
   window.AlexandraMortgage = Object.freeze({ calculate });
   const form = document.querySelector('#mortgage-calculator');
   if (!form) return;
-  const units = window.ALEXANDRA_UNITS || [];
+  const units = (window.ALEXANDRA_UNITS || []).filter(unit => Number.isFinite(unit.price) && unit.price > 0);
   const byId = id => units.find(u=>u.id===Number(id));
   const select = form.querySelector('#mortgage-unit');
   const fields = ['price','equity','rate','years'].map(key=>form.querySelector('#mortgage-'+key));
@@ -105,7 +105,7 @@
       if(writeQuery){const url=new URL(location.href);url.searchParams.set('financovani-byt','custom');history.replaceState(null,'',url);}
       render(); return;
     }
-    const wholePrice = Math.round(unit.price);
+    const wholePrice = Math.trunc(unit.price);
     select.value=String(unit.id); price.value=String(wholePrice);price.readOnly=true; equity.value=String(Math.round(wholePrice*0.2));
     if(writeQuery){const url=new URL(location.href);url.searchParams.set('financovani-byt',String(unit.id));history.replaceState(null,'',url);}
     render();
@@ -143,15 +143,28 @@
   const query=new URLSearchParams(location.search);
   const initial=query.get('financovani-byt') || query.get('byt');
   if(validUnit(initial))choose(initial);else{select.value='custom';render();}
-  // Empty confirmed slots remain truthful contact requests until the client supplies details.
-  if (typeof fetch === 'function') fetch('data/project-contacts.json?v=20261106',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(data=>{
+  if (typeof fetch === 'function') fetch('data/project-contacts.json?v=podklady20261124',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(data=>{
     if(!data || typeof data!=='object')return;
     const validContact=c=>c&&typeof c.name==='string'&&c.name.trim()&&typeof c.email==='string'&&/^[A-Z0-9.!#$%&'*+\-/=?^_`{|}~]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(c.email);
-    function contactCard(target,contact,subject) {
-      const box=document.querySelector(target);if(!box)return;
-      const h=document.createElement('h4');h.textContent=contact.name;
-      const a=document.createElement('a');a.className='text-link';a.dataset.buyerMail=subject;a.dataset.buyerRecipient=contact.email;a.textContent=contact.email;
-      box.replaceChildren(h,a);
+    const localImage=path=>typeof path==='string' && /^assets\/(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.(?:jpe?g|png|webp|svg)$/i.test(path);
+    function contactLinks(contact,subject) {
+      const links=document.createDocumentFragment();
+      const mail=document.createElement('a');
+      mail.href='mailto:'+contact.email;
+      mail.dataset.buyerMail=subject; mail.dataset.buyerRecipient=contact.email;
+      mail.textContent=contact.email; links.append(mail);
+      if (typeof contact.website==='string' && /^https:\/\/[a-z0-9.-]+\/?$/i.test(contact.website)) {
+        const site=document.createElement('a');
+        site.href=contact.website; site.textContent=new URL(contact.website).hostname;
+        links.append(site);
+      }
+      return links;
+    }
+    function serviceContact(box,contact,subject) {
+      const h=document.createElement('h4'); h.textContent=contact.name;
+      const links=document.createElement('div'); links.className='buyer-team-links';
+      links.append(contactLinks(contact,subject));
+      box.replaceChildren(h,links);
     }
     function showTeamContact(selector, contact, subject, description) {
       const card = document.querySelector(selector);
@@ -159,11 +172,7 @@
       card.querySelector('h4').textContent = contact.name;
       card.querySelector('[data-adviser-description]').textContent = contact.description || description;
       const links = card.querySelector('.buyer-team-links');
-      const email = document.createElement('a');
-      email.dataset.buyerMail = subject;
-      email.dataset.buyerRecipient = contact.email;
-      email.textContent = contact.email;
-      links.replaceChildren(email);
+      links.replaceChildren(contactLinks(contact,subject));
       const phone = typeof contact.phone === 'string' ? contact.phone.replace(/\s/g,'') : '';
       if (/^\+?\d{9,15}$/.test(phone)) {
         const tel = document.createElement('a');
@@ -172,17 +181,38 @@
         links.prepend(tel);
       }
       const photo = contact.portrait || contact.logo;
-      if (typeof photo === 'string' && /^assets\/(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.(?:jpe?g|png|webp|svg)$/i.test(photo)) {
+      if (localImage(photo)) {
         const media = card.querySelector('.buyer-team-media');
         const img = new Image();
-        img.alt = '';
-        img.onload = () => media.replaceChildren(img);
+        img.alt = contact.portrait ? contact.name : 'Logo advokátní kanceláře '+contact.name;
+        img.loading = 'lazy';
         img.src = photo;
+        media.replaceChildren(img);
       }
     }
     if (validContact(data.mortgageSpecialist)) {
-      contactCard('#mortgage-specialist-contact',data.mortgageSpecialist,'hypoteční konzultace');
-      showTeamContact('#buyer-team-finance',data.mortgageSpecialist,'hypoteční konzultace','Konzultace financování a příprava podkladů pro banku.');
+      const adviser=data.mortgageSpecialist;
+      const box=document.querySelector('#mortgage-specialist-contact');
+      if(box) {
+        serviceContact(box,adviser,'hypoteční konzultace');
+        const banks=Array.isArray(adviser.banks) ? adviser.banks.filter(b=>b && b.name && localImage(b.logo)) : [];
+        if(banks.length) {
+          const section=document.createElement('section'); section.id='spolupracujici-banky';
+          const title=document.createElement('h5'); title.textContent='Spolupracující banky';
+          const list=document.createElement('ul'); list.className='partner-banks';
+          banks.forEach(bank=>{
+            const item=document.createElement('li'), img=new Image();
+            img.src=bank.logo; img.alt=bank.name; img.title=bank.name; img.loading='lazy';
+            item.append(img); list.append(item);
+          });
+          section.append(title,list); box.append(section);
+        }
+      }
+      showTeamContact('#buyer-team-finance',adviser,'hypoteční konzultace','Konzultace financování a příprava podkladů pro banku.');
+      if (document.getElementById('spolupracujici-banky')) {
+        const link=document.createElement('a'); link.href='#spolupracujici-banky'; link.textContent='Spolupracující banky';
+        document.querySelector('#buyer-team-finance .buyer-team-links')?.append(link);
+      }
     }
     const lawyers=Array.isArray(data.legalAdvisors)?data.legalAdvisors.filter(validContact):[];
     if (lawyers.length === 1) showTeamContact('#buyer-team-legal', lawyers[0], 'právní zajištění koupě', 'Právní konzultace ke smlouvám a průběhu koupě bytu.');
@@ -196,7 +226,7 @@
       }
     }
     const lawBox=document.querySelector('#legal-advisor-contacts');
-    if(lawBox&&lawyers.length){lawBox.replaceChildren();lawyers.forEach(c=>{const row=document.createElement('div');const h=document.createElement('h4');h.textContent=c.name;const a=document.createElement('a');a.className='text-link';a.dataset.buyerMail='právní zajištění koupě';a.dataset.buyerRecipient=c.email;a.textContent=c.email;row.append(h,a);lawBox.append(row);});}
+    if(lawBox&&lawyers.length){lawBox.replaceChildren();lawyers.forEach(c=>{const row=document.createElement('div');serviceContact(row,c,'právní zajištění koupě');lawBox.append(row);});}
     const docs=Array.isArray(data.contractDocuments)?data.contractDocuments.filter(d=>d&&typeof d.title==='string'&&typeof d.href==='string'&&/^plans\/[a-z0-9-]+\.pdf(?:#page=\d+)?$/.test(d.href)):[];
     const docBox=document.querySelector('#contract-document-links');
     if(docBox&&docs.length){docBox.replaceChildren();docs.forEach(d=>{const a=document.createElement('a');a.className='text-link';a.href=d.href;a.textContent=d.title+' (PDF)';a.target='_blank';a.rel='noopener';docBox.append(a);});}

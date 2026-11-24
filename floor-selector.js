@@ -47,18 +47,22 @@
   window.AlexandraUnitLocation = Object.freeze({ html: locationHTML });
   const facades = {
     front: {
-      src: 'assets/exterior-no-balconies.webp',
-      viewBox: '465 65 1000 660',
+      src: 'assets/projekt-20261124/dum-1600.webp',
+      imageBox: [0, 0, 1672, 940.5],
+      viewBox: '192 0 1454 900',
+      labelX: 1478,
       levels: [
-        [[548,245],[812,92],[1304,282]], [[548,329],[812,236],[1304,357]],
-        [[548,406],[812,333],[1304,429]], [[548,482],[812,431],[1304,500]],
-        [[548,556],[812,529],[1304,570]], [[548,629],[812,626],[1304,639]],
-        [[548,674],[812,682],[1304,683]]
+        [[314,298],[683,28],[1418,338]], [[314,387],[683,216],[1418,419]],
+        [[314,475],[683,365],[1418,509]], [[314,568],[683,508],[1418,601]],
+        [[314,664],[683,657],[1418,689]], [[314,765],[683,770],[1418,769]],
+        [[314,829],[683,831],[1418,817]]
       ]
     },
     rear: {
-      src: 'assets/exterior-rear-no-balconies.webp',
-      viewBox: '314 40 1190 730',
+      src: 'assets/projekt-20261124/zadni-pohled.webp',
+      imageBox: [318, 25, 1184, 748],
+      viewBox: '318 25 1184 748',
+      labelX: 1342,
       levels: [
         [[415,142],[1268,84]], [[415,246],[1275,211]], [[413,338],[1277,312]],
         [[411,427],[1279,412]], [[408,518],[1282,514]], [[406,611],[1286,614]],
@@ -68,7 +72,8 @@
   };
   function drawFacade(side) {
     facadeSide = side;
-    const {src, viewBox, levels} = facades[side];
+    const {src, imageBox, viewBox, levels, labelX} = facades[side];
+    const [imageX, imageY, imageWidth, imageHeight] = imageBox;
     const svg = $('#building-stack');
     svg.setAttribute('viewBox', viewBox);
     svg.setAttribute('aria-describedby', 'building-selection-caption');
@@ -80,11 +85,11 @@
       const label = floorLabel(f.floor);
       return `<g class="stack-floor building-selection-floor" role="button" tabindex="0" data-map-floor="${f.floor}" aria-label="Vybrat patro: ${esc(label)}" aria-pressed="${activeFloor === f.floor}">
         <path class="building-selection-zone" d="${path(outline)}"/>
-        <path class="building-selection-leader" d="M${upper.at(-1)[0]} ${y}H1340"/>
-        <rect class="building-selection-label" x="1334" y="${y-24}" width="124" height="48" rx="7"/>
-        <text class="building-selection-number" x="1396" y="${y+1}"${f.floor===1?' style="font-size:23px"':''}>${label}</text></g>`;
+        <path class="building-selection-leader" d="M${upper.at(-1)[0]} ${y}H${labelX}"/>
+        <rect class="building-selection-label" x="${labelX}" y="${y-23}" width="124" height="46" rx="7"/>
+        <text class="building-selection-number" x="${labelX+62}" y="${y+1}"${f.floor===1?' style="font-size:23px"':''}>${label}</text></g>`;
     });
-    svg.innerHTML = `<title>${side==='front'?'Přední':'Zadní'} pohled · výběr patra</title><image href="${src}" width="1672" height="941" id="building-selection-image"/>${floorShapes.join('')}`;
+    svg.innerHTML = `<title>${side==='front'?'Přední':'Zadní'} pohled · výběr patra</title><image href="${src}" x="${imageX}" y="${imageY}" width="${imageWidth}" height="${imageHeight}" id="building-selection-image"/>${floorShapes.join('')}`;
   }
   function drawStack() {
     drawFacade(facadeSide);
@@ -245,11 +250,11 @@
         <div class="unit-sales-head"><div class="unit-sales-copy"><div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
         <h3 id="picked-unit-title" tabindex="-1">Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}
         <p class="map-unit-meta">${esc(unit.layout)} / ${esc(floorLabel(unit.floor))}${details.locationNote?' · '+esc(details.locationNote):''}</p>
-        <p class="map-card-price">${price(unit.price)}</p><p class="map-price-note">Orientační cena · bez parkování</p></div>${window.AlexandraDetails.salesPortrait}</div>
+        <p class="map-card-price">${price(unit.price)}</p>${Number.isFinite(unit.price) ? '<p class="map-price-note">Cena bez parkování</p>' : ''}</div>${window.AlexandraDetails.salesPortrait}</div>
         <div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a>
           ${window.AlexandraDetails.callSales}
           <button type="button" class="unit-detail-button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button>
-          <div class="map-card-links"><a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a><a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
+          <div class="map-card-links">${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
         </div>
         <dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails.areasHTML(unit)}</dl>
         ${locationHTML(unit)}<section class="map-standard-disclosure">${window.AlexandraDetails.cardHTML(unit)}</section>${tour}

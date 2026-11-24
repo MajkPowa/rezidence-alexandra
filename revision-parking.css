@@ -14,11 +14,11 @@ body.reference-redesign #parkovani .parking-type-card:hover{background:#e0ad5f1a
 body.reference-redesign #parkovani .parking-type-card[aria-pressed=true]{background:#e0ad5f24;box-shadow:inset 0 -3px 0 var(--accent,#e0ad5f)}
 body.reference-redesign #parkovani .parking-type-card:focus-visible{outline:3px solid var(--ink);outline-offset:-5px;z-index:1}
 body.reference-redesign .parking-explorer{scroll-margin-top:calc(var(--header-height,88px) + 20px)}
-body.reference-redesign .parking-detail .parking-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:22px 0 0;gap:0 20px}
+body.reference-redesign .parking-detail .parking-facts{display:grid;grid-template-columns:minmax(0,1fr);margin:22px 0 0;gap:0}
 body.reference-redesign .parking-facts>div{padding:12px 0;border-top:1px solid var(--line);min-width:0}
 body.reference-redesign .parking-facts>div:last-child{grid-column:1/-1}
 body.reference-redesign .parking-facts dt{font-size:13px;line-height:1.5;color:var(--muted,#586970)}
-body.reference-redesign .parking-facts dd{margin:5px 0 0;font-size:17px;line-height:1.5;font-weight:600;overflow-wrap:anywhere}
+body.reference-redesign .parking-facts dd{margin:5px 0 0;font-size:clamp(18px,1.4vw,22px);line-height:1.45;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 body.reference-redesign .parking-detail .parking-separate-price{font-size:14px;margin:14px 0 20px}
 body.reference-redesign .parking-detail .viewing-cta{display:flex;width:100%;justify-content:space-between;min-height:48px}
 body.reference-redesign .parking-detail .parking-purchase-rule{font-size:14px;line-height:1.65;margin:20px 0 0;padding-top:18px;border-top:1px solid var(--line)}
@@ -36,7 +36,10 @@ body.reference-redesign #parking-map-note>span{display:inline-block;margin-right
 
 /* Supplied linear dimensions retain up to millimetre precision. */
 body.reference-redesign .parking-facts .parking-dimensions{grid-column:1/-1}
-body.reference-redesign .parking-dimensions dd{font-size:22px;font-variant-numeric:tabular-nums}
+.parking-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.parking-detail-head h3{margin-block:5px 8px}
+.parking-clear{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:4px 0;background:none;color:var(--ink);font:500 14px/1.35 var(--sans);text-decoration:underline;text-underline-offset:4px}
+.parking-clear span{font-size:18px}
 
 /* The drawings supply the bay outlines and numbers. Dots show live availability. */
 #parking-map .parking-space { --bay-status: var(--status-unknown); }
@@ -44,30 +47,29 @@ body.reference-redesign .parking-dimensions dd{font-size:22px;font-variant-numer
 #parking-map .parking-space[data-status=reserved] { --bay-status: var(--status-reserved); }
 #parking-map .parking-space[data-status=sold] { --bay-status: var(--status-sold); }
 #parking-map .parking-bay {
-  fill: transparent;
-  stroke: transparent;
-  stroke-width: 2.5;
+  fill: var(--bay-status);
+  stroke: white;
+  stroke-width: 1;
   vector-effect: non-scaling-stroke;
   pointer-events: all;
 }
-#parking-map .parking-status-dot {
-  fill: var(--bay-status);
-  stroke: #fff;
-  stroke-width: 1.25;
-  vector-effect: non-scaling-stroke;
+#parking-map .parking-space text {
+  fill: white;
+  stroke: none;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-weight: 700;
   pointer-events: none;
 }
-#parking-map .parking-space[aria-disabled=true] .parking-bay { fill: #fff; fill-opacity: .64; }
 #parking-map .parking-space[aria-pressed=true] .parking-bay,
 #parking-map .parking-space:focus-visible .parking-bay {
-  fill: var(--dr-red);
-  fill-opacity: .10;
-  stroke: var(--dr-red);
+  stroke: var(--dr-ink);
+  stroke-width: 3;
 }
 #parking-map .parking-space:focus-visible { outline: none; }
 #parking-map .parking-space:focus-visible .parking-bay { stroke-dasharray: 6 3; }
 @media (hover: hover) {
-  #parking-map .parking-space:hover:not([aria-disabled=true]) .parking-bay { stroke: var(--dr-red); }
+  #parking-map .parking-space:hover .parking-bay { stroke: var(--dr-ink); stroke-width: 2.5; }
 }
 @media (max-width: 700px) {
   #parking-explorer[data-parking-type=garage] #parking-map { min-width: 440px; min-height: 0; }

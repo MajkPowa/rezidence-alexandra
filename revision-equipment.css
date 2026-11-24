@@ -15,7 +15,7 @@ body.reference-redesign .unit-included h3{font:700 clamp(25px,2.7vw,34px)/1.2 va
 .unit-standard-preview .bathroom-direct-link{width:100%;margin:8px 0}
 .unit-standard-preview .excluded-line{font-size:13px}
 #standard-items .equipment-document-link{margin-top:14px;font-size:14px}
-#bathroom-catalogs{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:stretch}
+#bathroom-catalogs{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);align-items:stretch}
 #bathroom-catalogs .bathroom-catalog{scroll-margin-top:calc(var(--header-height,88px) + 22px);min-width:0}
 #bathroom-catalogs .bathroom-catalog>div{display:block;padding:24px}
 #bathroom-catalogs .bathroom-catalog h4{font:700 23px/1.35 var(--sans);letter-spacing:-.015em;margin:12px 0 20px}

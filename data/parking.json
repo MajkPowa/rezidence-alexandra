@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-23",
+  "updatedAt": "2026-11-24",
   "source": "Situační výkresy parkování dodané 23. 11. 2026. Ceny podle aktualizovaného ceníku z 19. 10. 2026.",
-  "availabilityNote": "Dostupnost konkrétních parkovacích míst potvrdíme na dotaz.",
-  "purchaseRule": "K bytu lze přikoupit jedno parkovací místo. Další místo je možné řešit až po dokončení prodeje bytů, pokud zbude volná kapacita.",
+  "availabilityNote": "Aktuální dostupnost parkování se načítá ze společného seznamu dostupnosti.",
+  "purchaseRule": "K bytu lze přikoupit pouze jedno parkovací místo. Další parkovací místa lze dokoupit až po dokončení projektu dle volné kapacity.",
   "views": [
     {
       "id": "site",
@@ -53,7 +53,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "1",
       "area": 13.75,
@@ -104,7 +103,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "2",
       "area": 12.5,
@@ -155,7 +153,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "3",
       "area": 12.5,
@@ -206,7 +203,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "4",
       "area": 12.5,
@@ -257,7 +253,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "5",
       "area": 11.5,
@@ -308,7 +303,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "6",
       "area": 12.5,
@@ -359,7 +353,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "7",
       "area": 12.5,
@@ -410,7 +403,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "8",
       "area": 12.5,
@@ -461,7 +453,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "9",
       "area": 13.75,
@@ -512,7 +503,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "10",
       "area": 13.75,
@@ -561,7 +551,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "11",
       "area": 12.5,
@@ -610,7 +599,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "12",
       "area": 12.5,
@@ -659,7 +647,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "13",
       "area": 12.5,
@@ -708,7 +695,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "14",
       "area": 12.5,
@@ -757,7 +743,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "15",
       "area": 12.5,
@@ -806,7 +791,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "16",
       "area": 12.5,
@@ -855,7 +839,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "17",
       "area": 12.5,
@@ -904,7 +887,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "18",
       "area": 12.5,
@@ -953,7 +935,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "19",
       "area": 14.575,
@@ -1002,7 +983,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "20",
       "area": 13.75,
@@ -1051,7 +1031,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "21",
       "area": 12.5,
@@ -1100,7 +1079,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "22",
       "area": 13.75,
@@ -1149,7 +1127,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "23",
       "area": 12.5,
@@ -1198,7 +1175,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "24",
       "area": 12.5,
@@ -1247,7 +1223,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "25",
       "area": 12.5,
@@ -1296,7 +1271,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "26",
       "area": 12.5,
@@ -1345,7 +1319,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "27",
       "area": 12.5,
@@ -1394,7 +1367,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "28",
       "area": 13.75,
@@ -1443,7 +1415,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "29",
       "area": 13.75,
@@ -1492,7 +1463,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "30",
       "area": 12.5,
@@ -1541,7 +1511,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "31",
       "area": 12.5,
@@ -1590,7 +1559,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "32",
       "area": 13.75,
@@ -1639,7 +1607,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "33",
       "area": 14.5,
@@ -1688,7 +1655,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "34",
       "area": 14.5,
@@ -1737,7 +1703,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "35",
       "area": 12.5,
@@ -1786,7 +1751,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "36",
       "area": 12.5,
@@ -1835,7 +1799,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "37",
       "area": 12.5,
@@ -1884,7 +1847,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "38",
       "area": 13.75,
@@ -1933,7 +1895,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "39",
       "area": 13.75,
@@ -1982,7 +1943,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "40",
       "area": 12.5,
@@ -2031,7 +1991,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "41",
       "area": 12.5,
@@ -2080,7 +2039,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "42",
       "area": 12.5,
@@ -2129,7 +2087,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "43",
       "area": 12.5,
@@ -2178,7 +2135,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "44",
       "area": 12.5,
@@ -2227,7 +2183,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "45",
       "area": 15.795,
@@ -2276,7 +2231,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "46",
       "area": 19.0,
@@ -2325,7 +2279,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "47",
       "area": 13.75,
@@ -2375,7 +2328,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "48",
       "area": 13.75,
@@ -2425,7 +2377,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "Situace.dwg, vrstva 1parkovací stání",
       "sourceLabel": "49",
       "area": 13.75,
@@ -2475,7 +2426,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "1. NP (6.10.2026).pdf, Garáž č. 1",
       "sourceLabel": "Garáž č. 1",
       "plan": {
@@ -2563,7 +2513,6 @@
         ]
       ],
       "geometryRole": "bay-boundary",
-      "status": "inquiry",
       "source": "1. NP (6.10.2026).pdf, Garáž č. 2",
       "sourceLabel": "Garáž č. 2",
       "plan": {

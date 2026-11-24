@@ -3,14 +3,14 @@
   const statuses = {
     available: { key: 'available', label: 'Volný', shortLabel: 'Volný' },
     reserved: { key: 'reserved', label: 'Rezervovaný', shortLabel: 'Rezervovaný' },
-    sold: { key: 'sold', label: 'Prodaný', shortLabel: 'Prodaný' },
+    sold: { key: 'sold', label: 'Prodáno', shortLabel: 'Prodáno' },
     unknown: { key: 'unknown', label: 'Dostupnost na dotaz', shortLabel: 'Na dotaz' }
   };
   let inventory = { updatedAt: null, units: {}, parking: {} };
   let pending = null;
   let signature = '';
-  function statusFor(collection, id) {
-    const value = Object.prototype.hasOwnProperty.call(inventory[collection], String(id)) ? inventory[collection][id] : null;
+  function statusFor(collection, id, initialStatus) {
+    const value = Object.prototype.hasOwnProperty.call(inventory[collection], String(id)) ? inventory[collection][id] : (signature ? null : initialStatus);
     const key = typeof value === 'string' ? value : value?.status;
     return { ...(Object.prototype.hasOwnProperty.call(statuses, key) ? statuses[key] : statuses.unknown) };
   }
@@ -43,7 +43,7 @@
     })();
     return pending;
   }
-  window.AlexandraInventory = Object.freeze({ status: unit => statusFor('units', unit?.id), parkingStatus: id => statusFor('parking', id), updatedAt: () => inventory.updatedAt, refresh });
+  window.AlexandraInventory = Object.freeze({ status: unit => statusFor('units', unit?.id, unit?.availability), parkingStatus: id => statusFor('parking', id), updatedAt: () => inventory.updatedAt, refresh });
   refresh();
   setInterval(() => { if (!document.hidden) refresh(); }, 60000);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });

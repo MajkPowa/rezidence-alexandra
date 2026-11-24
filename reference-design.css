@@ -344,7 +344,7 @@ body.reference-redesign .architecture-controls .segmented { padding:0; gap:0; bo
 body.reference-redesign .architecture-controls .segmented button { border-radius:0; border:0; padding:12px 22px; background:transparent; color:var(--ink); }
 body.reference-redesign .architecture-controls .segmented button.active { background:var(--ink); color:#fffefa; }
 body.reference-redesign .architecture-controls p { font-size:13px; line-height:1.7; }
-body.reference-redesign .interiors { background:#e8e4db; padding-block:clamp(64px,7vw,108px); gap:36px 64px; }
+body.reference-redesign .interiors { display:grid; background:#e8e4db; padding-block:clamp(64px,7vw,108px); gap:36px 64px; }
 body.reference-redesign .interior-title h2 { margin-top:28px; font-size:clamp(40px,4vw,64px); }
 body.reference-redesign .interior-title p { font-size:15px; line-height:1.85; }
 body.reference-redesign .interior-caption { margin-top:20px; color:#4f5c60; font-size:12px; }
@@ -521,7 +521,7 @@ body.reference-redesign .toast { border-radius:0; }
   body.reference-redesign .menu-toggle { display:flex; }
   body.reference-redesign .section-heading { grid-template-columns:1fr 1fr; gap:28px; }
   body.reference-redesign .section-heading>div+div { max-width:none; }
-  body.reference-redesign .interiors { grid-template-columns:1fr; }
+  body.reference-redesign .interiors { grid-template-columns:minmax(0,1fr); }
   body.reference-redesign .interior-title p { max-width:620px; }
   body.reference-redesign .unit-filters { padding:20px; }
   body.reference-redesign .building-picker { padding:24px; }
@@ -598,8 +598,7 @@ body.reference-redesign .toast { border-radius:0; }
   body.reference-redesign .interiors { padding-inline:20px; gap:28px; }
   body.reference-redesign .interior-title h2 { margin-top:24px; }
   body.reference-redesign .interior-picker button { min-height:64px; padding:16px; font-size:15px; }
-  body.reference-redesign .interior-room-links { display:flex; gap:8px 22px; }
-  body.reference-redesign .interior-room-links>span { flex-basis:100%; }
+  body.reference-redesign .interior-room-links { margin-top:0; gap:8px 22px; }
   body.reference-redesign .interior-room-links a { font-size:13px; }
   body.reference-redesign .tour { gap:32px; }
   body.reference-redesign .tour-cta { left:16px; right:16px; bottom:16px; padding:16px; }

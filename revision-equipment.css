@@ -74,8 +74,11 @@ body.dr-brand .equipment-copy h3 { margin: 0 0 16px; font: 600 clamp(21px, 2.2vw
 .equipment-spec li + li { margin-top: 5px; }
 .equipment-spec p { margin: 6px 0 12px; }
 .equipment-spec a:not(.bathroom-direct-link) { text-decoration: underline; text-underline-offset: .18em; }
-.equipment-catalog-picker { margin-top: 18px; }
-.equipment-catalog-picker > summary { display: inline-flex; gap: 16px; padding: 9px 16px; min-height: 44px; border: 1px solid currentColor; border-radius: 6px; }
+.equipment-primary-catalog { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px; max-width: 100%; margin-top: 18px; padding: 10px 14px; min-height: 44px; border: 1px solid currentColor; border-radius: 6px; text-decoration: none; font-weight: 600; }
+.equipment-primary-catalog:hover, .equipment-primary-catalog:focus-visible { color: var(--dr-red); }
+.equipment-primary-catalog span { white-space: nowrap; font-size: .85em; }
+.equipment-catalog-picker { margin-top: 4px; }
+.equipment-catalog-picker > summary { display: inline-flex; gap: 12px; min-height: 44px; font-size: .875rem; font-weight: 500; }
 .equipment-catalog-picker > summary:hover, .equipment-copy details > summary:hover { color: var(--dr-red); }
 .equipment-copy #bathroom-catalogs { display: block; }
 .equipment-catalog-picker[open] > summary { margin-bottom: 14px; }

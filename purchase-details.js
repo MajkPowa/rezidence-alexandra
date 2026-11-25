@@ -62,6 +62,17 @@
   renderStandards('#standard-items', ['flooring', 'doors', 'preparations', 'windows', 'electrical']);
   renderStandards('#standard-bath-items', ['bathroom', 'toilet']);
 
+  function showCatalogForUnit(id) {
+    const link = document.querySelector('#equipment-catalog-link');
+    const bathroom = data.units[String(id)]?.bathroom || data.bathroomCatalogs?.['1kk'];
+    const pdf = pdfPath(bathroom?.catalogUrl);
+    if (!link || !pdf) return;
+    link.href = pdf;
+    link.querySelector('[data-catalog-layout]').textContent = bathroom.label;
+  }
+  showCatalogForUnit(new URLSearchParams(location.search).get('byt'));
+  document.addEventListener('alexandra:picker-unit', event => showCatalogForUnit(event.detail?.id));
+
   const catalogs = document.querySelector('#bathroom-catalogs');
   if (catalogs) {
     const bathroomImages = { '1kk':'1kk-bathroom-05', '2kk':'2kk-bathroom-04', '3kk':'3kk-bathroom-03' };
@@ -98,6 +109,7 @@
     const selection = document.querySelector('#equipment-unit-context');
     if ((section.id === 'vybaveni' || section.closest('#vybaveni')) && selection) {
       const unit = (window.ALEXANDRA_UNITS || []).find(item=>item.id===Number(link.dataset.unitId));
+      if (unit) showCatalogForUnit(unit.id);
       selection.hidden = !unit;
       selection.innerHTML = unit ? `Prohlížíte standard pro <strong>byt ${unit.id} · ${esc(unit.layout)}</strong>. <button type="button" class="text-link" data-unit="${unit.id}">Zpět do karty bytu</button>` : '';
     }

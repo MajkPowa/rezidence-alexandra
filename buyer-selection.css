@@ -91,7 +91,7 @@ body.dr-brand #floor-explorer .building-picker {
 .facade-controls button:hover, .pick-back:hover, .pick-layout button:hover, .parking-map-controls button:hover { border-color: var(--dr-red); color: var(--dr-red); }
 .facade-controls [aria-pressed="true"], .parking-map-controls [aria-pressed="true"] { background: var(--dr-red); color: white; border-color: var(--dr-red); }
 .facade-controls [aria-pressed="true"]:hover, .parking-map-controls [aria-pressed="true"]:hover { background: var(--dr-red-hover); color: white; }
-#floor-explorer .building-selection-view { grid-area: image; }
+#floor-explorer #building-stack { grid-area: image; }
 #floor-explorer #building-stack { display: block; width: 100%; height: auto; aspect-ratio: auto; }
 #floor-explorer #floor-buttons, #floor-explorer #plan-floor-buttons { display: grid; grid-template-columns: 1fr; align-self: start; width: 100%; gap: 7px; margin: 0; }
 #floor-explorer #floor-buttons { grid-area: controls; }
@@ -186,7 +186,7 @@ body.dr-brand #map-unit-card {
   .picker-steps button { display: flex; width: 100%; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px; text-align: center; font-size: 12px; min-height: 62px; }
   .step-number { width: 29px; height: 29px; font-size: 12px; }
   body.dr-brand #floor-explorer .building-picker { grid-template-columns: minmax(0,1fr); grid-template-areas: "heading" "side" "image" "controls"; padding: 14px; gap: 12px; }
-  .facade-controls { grid-area: side; justify-self: stretch; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .facade-controls { grid-area: side; justify-self: stretch; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
   .facade-controls button { font-size: 12px; padding: 5px 3px; }
   #floor-explorer #floor-buttons, #floor-explorer #plan-floor-buttons { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; }
   #floor-explorer .floor-buttons button { flex-direction: column; align-items: center; justify-content: center; padding: 6px 2px; gap: 0; }
@@ -218,7 +218,7 @@ body.dr-brand #map-unit-card {
 .buyer-team-card + .buyer-team-card { border-left: 1px solid var(--line); }
 .buyer-team-media { width: 100%; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; overflow: hidden; }
 .buyer-team-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
-.buyer-team-media .buyer-team-sales-photo { transform: scale(1.42); transform-origin: 50% 23%; }
+.buyer-team-media .buyer-team-sales-photo { object-position: center 22%; }
 .buyer-team-symbol { background: #f6f1f2; color: var(--dr-red); }
 .buyer-team-symbol svg { width: 65%; height: 65%; }
 .buyer-team-symbol img { object-fit: contain; }
@@ -244,8 +244,25 @@ body.dr-brand #map-unit-card {
 .buyer-team-links a:hover { color: var(--dr-red); }
 .unit-sales-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,34%); gap: 8px; align-items: end; background: white; }
 .unit-sales-copy { min-width: 0; }
-.unit-sales-portrait { display: block; align-self: end; justify-self: end; width: 100%; max-width: 160px; height: auto; aspect-ratio: 1; background: #fff; }
-#map-unit-card .map-card-overview { container-type: inline-size; }
+.unit-sales-portrait { display: block; align-self: end; justify-self: end; width: 100%; max-width: 160px; height: auto; background: #fff; }
+#map-unit-card .map-card-overview, #map-unit-card .unit-summary { container-type: inline-size; }
+#map-unit-card .unit-summary .unit-sales-portrait { width: min(100%, 136px); max-height: 158px; object-fit: contain; object-position: right bottom; }
+#map-unit-card .unit-facts { margin-top: 16px; }
+#map-unit-card .unit-specification { border-block: 1px solid var(--dr-line); margin-block: 16px 6px; min-width: 0; }
+#map-unit-card .unit-specification summary { display: flex; justify-content: space-between; gap: 12px; align-items: center; min-height: 48px; font-weight: 600; cursor: pointer; list-style: none; }
+#map-unit-card .unit-specification summary::-webkit-details-marker { display: none; }
+#map-unit-card .unit-specification summary::after { content: "+"; color: var(--dr-red); }
+#map-unit-card .unit-specification[open] summary::after { content: "−"; }
+#map-unit-card .unit-facts > .bathroom-direct-link, #map-unit-card .unit-facts > .detail-tour { display: flex; width: fit-content; }
+#map-unit-card .unit-included { min-width: 0; padding: 0 0 12px; }
+#map-unit-card .unit-included h3 { font: 600 18px/1.35 var(--sans); }
+@media (max-width: 800px) {
+  body.dr-brand #map-unit-card { grid-template-columns: minmax(0,1fr); grid-template-areas: "back" "summary" "photos" "facts"; }
+  #map-unit-card .map-card-overview { display: contents; }
+  #map-unit-card .unit-summary { grid-area: summary; padding: 12px var(--pick-pad) 0; }
+  #map-unit-card .unit-facts { grid-area: facts; margin: 0; padding: 0 var(--pick-pad) var(--pick-pad); }
+  #map-unit-card .unit-photos { padding-block-start: 18px; }
+}
 #map-unit-card .unit-sales-head { row-gap: 6px; }
 #map-unit-card .map-card-topline { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 #map-unit-card .map-card-topline .favorite-button { flex: none; margin: 0; width: 48px; height: 48px; }

@@ -207,11 +207,9 @@ body.dr-brand :is(.unit-filters select,.parking-toolbar select){border-color:var
 body.dr-brand .unit-table-wrap{border-color:var(--dr-line)}
 body.dr-brand .unit-table th{background:var(--dr-wash);color:var(--dr-muted)}
 body.dr-brand .building-stack{background:#eee}
-body.dr-brand .building-selection-zone{fill:var(--dr-red);stroke:#fff}
 body.dr-brand .building-selection-label{fill:#fff;stroke:var(--dr-grey)}
 body.dr-brand .building-selection-number{fill:var(--dr-ink)}
-body.dr-brand .building-selection-floor[aria-pressed=true] .building-selection-zone{fill:var(--dr-red);fill-opacity:.12;stroke:var(--dr-red);stroke-opacity:1}
-body.dr-brand .building-selection-floor[aria-pressed=true] :is(.building-selection-label,.building-selection-leader){fill:var(--dr-red);stroke:var(--dr-red)}
+body.dr-brand .building-selection-floor[aria-pressed=true] .building-selection-label{fill:var(--dr-red);stroke:var(--dr-red)}
 body.dr-brand .building-selection-floor[aria-pressed=true] .building-selection-number{fill:#fff}
 body.dr-brand .building-selection-floor:focus-visible .building-selection-label{stroke:var(--dr-ink);stroke-width:4}
 body.dr-brand :is(.building-caption,.visual-scope,.interior-caption,.interior-note,.faq-list details>p){color:var(--dr-muted)}

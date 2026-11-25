@@ -74,16 +74,22 @@ body.dr-brand .equipment-copy h3 { margin: 0 0 16px; font: 600 clamp(21px, 2.2vw
 .equipment-spec li + li { margin-top: 5px; }
 .equipment-spec p { margin: 6px 0 12px; }
 .equipment-spec a:not(.bathroom-direct-link) { text-decoration: underline; text-underline-offset: .18em; }
-.equipment-primary-catalog { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px; max-width: 100%; margin-top: 18px; padding: 10px 14px; min-height: 44px; border: 1px solid currentColor; border-radius: 6px; text-decoration: none; font-weight: 600; }
-.equipment-primary-catalog:hover, .equipment-primary-catalog:focus-visible { color: var(--dr-red); }
-.equipment-primary-catalog span { white-space: nowrap; font-size: .85em; }
-.equipment-catalog-picker { margin-top: 4px; }
-.equipment-catalog-picker > summary { display: inline-flex; gap: 12px; min-height: 44px; font-size: .875rem; font-weight: 500; }
-.equipment-catalog-picker > summary:hover, .equipment-copy details > summary:hover { color: var(--dr-red); }
-.equipment-copy #bathroom-catalogs { display: block; }
-.equipment-catalog-picker[open] > summary { margin-bottom: 14px; }
-.catalog-gallery-link { display: inline-flex; align-items: center; gap: 12px; margin-top: 12px; font-weight: 600; }
-.catalog-gallery-link img { width: 104px; height: auto; border-radius: 4px; }
+.bathroom-library { margin-top: 24px; }
+.bathroom-library h4 { margin: 0 0 8px; font: 600 18px/1.35 var(--sans); }
+.equipment-copy #bathroom-catalogs { display: grid; grid-template-columns: minmax(0,1fr); gap: 0; }
+.bathroom-option { display: grid; grid-template-columns: minmax(4.2em,1fr) auto auto; align-items: center; gap: 0 14px; padding: 8px 0; border-top: 1px solid var(--dr-line); scroll-margin-top: calc(var(--header-height,88px) + 22px); }
+.bathroom-option:last-child { border-bottom: 1px solid var(--dr-line); }
+.bathroom-option h5 { margin: 0; font: 600 17px/1.25 var(--sans); }
+.bathroom-option[aria-current] h5 { color: var(--dr-red); }
+.bathroom-option a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; line-height: 1.35; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.bathroom-pdf { font-weight: 650; color: var(--dr-red); }
+.bathroom-products { grid-column: 1 / -1; }
+.equipment-copy .bathroom-products summary { justify-content: flex-start; font-size: 13px; font-weight: 500; min-height: 40px; padding-block: 4px; }
+.unit-specific-catalog { margin-block: 12px 0; }
+@media (max-width: 400px) {
+  .bathroom-option { column-gap: 8px; grid-template-columns: minmax(3.6em,1fr) auto auto; }
+  .bathroom-option a { font-size: 13px; }
+}
 @media (max-width: 760px) {
   #vybaveni .section-heading { display: grid; gap: 8px; }
   .equipment-row, .equipment-row-reverse { grid-template-columns: minmax(0, 1fr); grid-template-areas: "photo" "copy"; gap: 18px; }

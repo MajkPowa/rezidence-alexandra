@@ -5,7 +5,7 @@
   const format = new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 2 });
   const crown = new Intl.NumberFormat('cs-CZ', {style:'currency', currency:'CZK', maximumFractionDigits:0});
   const formatPrice = value => Number.isFinite(value) ? crown.format(Math.trunc(value)) : 'Cena neuvedena';
-  const salesPortrait = '<img class="unit-sales-portrait" src="assets/projekt-20261124/pavel-dvorak-detail.webp" width="560" height="560" alt="Pavel Dvořák, prodej bytů" decoding="async">';
+  const salesPortrait = '<img class="unit-sales-portrait" src="assets/projekt-20261124/pavel-dvorak-detail.webp?v=20261125c" width="619" height="780" alt="Pavel Dvořák, prodej bytů" decoding="async">';
   const callSales = '<a class="button unit-call" href="tel:+420734358581" aria-label="Zavolat Pavlu Dvořákovi na 734 358 581"><span>Zavolat</span><span class="unit-call-number">734 358 581</span></a>';
   const area = value => typeof value === 'number' && Number.isFinite(value) ? `${format.format(value)} m²` : 'Výměru upřesníme';
   const featureArea = (value, kind) => value === 0 ? (kind === 'cellar' ? 'Bez sklepa' : 'Bez balkonu') : area(value);
@@ -34,17 +34,13 @@
     const details = get(unit);
     return `<div><dt>Balkon</dt><dd>${featureArea(details.balconyArea, 'balcony')}</dd></div><div><dt>Sklep</dt><dd>${featureArea(details.cellarArea, 'cellar')}</dd></div>`;
   }
-  function cardHTML(unit) {
-    const details = get(unit);
-    return `<div class="unit-standard-preview">${details.locationNote ? `<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>` : ''}<h4>Standard v ceně bytu</h4><p>Vinylová podlaha Ultimo, dveře, elektroinstalace, koupelnová sanita a technické přípravy.</p><p class="included-confirmation"><strong>Koupelnové skříňky a zrcadla jsou v ceně.</strong></p><p>${esc(details.bathroom?.referenceType || 'Koupelna podle katalogu bytu.')}</p>${bathroomLinkHTML(unit)}<p class="excluded-line">Kuchyň, spotřebiče, volný nábytek a žaluzie nejsou v ceně.</p></div>`;
-  }
   function detailHTML(unit) {
     const details = get(unit);
     const bathroom = details.bathroom;
     const standardPdf = pdfPath(data.technicalCatalog?.url);
     return `<section class="unit-included" aria-label="Vybavení bytu ${esc(unit.id)}">${details.locationNote ? `<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>` : ''}<h3>Co je v ceně tohoto bytu</h3><ul class="equipment-list">${(details.equipment || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul>${standardPdf ? `<a class="equipment-document-link" href="${esc(standardPdf)}" target="_blank" rel="noopener">Technické listy standardního vybavení (PDF)</a>` : ''}<section class="unit-bathroom" aria-label="Koupelna pro byt ${esc(unit.id)}"><h4>Vaše koupelna · ${esc(bathroom?.label || unit.layout)}</h4><p class="included-confirmation"><strong>Skříňky, umyvadla, zrcadla i sanita podle tohoto katalogu jsou součástí ceny bytu.</strong></p>${bathroom?.referenceType ? `<p>${esc(bathroom.referenceType)}</p>${productsHTML(bathroom)}` : ''}${bathroomLinkHTML(unit,{pdf:true})}</section><div class="excluded-box"><h4>Není součástí ceny bytu</h4><p>${esc(data.excluded.join(', '))}.</p></div></section>`;
   }
-  window.AlexandraDetails = Object.freeze({ get, area, formatPrice, salesPortrait, callSales, featureArea, areasHTML, cardHTML, detailHTML, bathroomKey, bathroomTarget, bathroomLinkHTML, tourHref });
+  window.AlexandraDetails = Object.freeze({ get, area, formatPrice, salesPortrait, callSales, featureArea, areasHTML, detailHTML, bathroomKey, bathroomTarget, bathroomLinkHTML, tourHref });
 
   function renderStandards(selector, ids) {
     const target = document.querySelector(selector);
@@ -62,29 +58,25 @@
   renderStandards('#standard-items', ['flooring', 'doors', 'preparations', 'windows', 'electrical']);
   renderStandards('#standard-bath-items', ['bathroom', 'toilet']);
 
+  const catalogs = document.getElementById('bathroom-catalogs');
+  if (catalogs) {
+    for (const card of catalogs.querySelectorAll('[data-bathroom-type]')) {
+      const bathroom = data.bathroomCatalogs[card.dataset.bathroomType];
+      if (!bathroom) continue;
+      card.insertAdjacentHTML('beforeend', `<details class="bathroom-products"><summary>Seznam vybavení<span class="sr-only"> ${esc(bathroom.label)}</span></summary><div class="equipment-spec"><p>${esc(bathroom.referenceType)}</p>${productsHTML(bathroom)}</div></details>`);
+    }
+  }
   function showCatalogForUnit(id) {
-    const link = document.querySelector('#equipment-catalog-link');
-    const bathroom = data.units[String(id)]?.bathroom || data.bathroomCatalogs?.['1kk'];
-    const pdf = pdfPath(bathroom?.catalogUrl);
-    if (!link || !pdf) return;
-    link.href = pdf;
-    link.querySelector('[data-catalog-layout]').textContent = bathroom.label;
+    const bathroom = data.units[String(id)]?.bathroom;
+    for (const card of catalogs?.querySelectorAll('[data-bathroom-type]') || []) {
+      if (card.dataset.bathroomType === bathroom?.id) card.setAttribute('aria-current', 'true');
+      else card.removeAttribute('aria-current');
+    }
+    const special = document.getElementById('bathroom-51');
+    if (special) special.hidden = bathroom?.id !== '51' && location.hash !== '#bathroom-51';
   }
   showCatalogForUnit(new URLSearchParams(location.search).get('byt'));
   document.addEventListener('alexandra:picker-unit', event => showCatalogForUnit(event.detail?.id));
-
-  const catalogs = document.querySelector('#bathroom-catalogs');
-  if (catalogs) {
-    const bathroomImages = { '1kk':'1kk-bathroom-05', '2kk':'2kk-bathroom-04', '3kk':'3kk-bathroom-03' };
-    catalogs.innerHTML = [4, 2, 1, 51].map(id => {
-      const bathroom = data.units[String(id)]?.bathroom;
-      const pdf = pdfPath(bathroom?.catalogUrl);
-      if (!bathroom || !pdf) return '';
-      const photo = bathroomImages[bathroom.id];
-      const gallery = photo ? `<a class="catalog-gallery-link" href="interiors.html?typology=${encodeURIComponent(bathroom.label)}&amp;room=Koupelna#gallery"><img src="assets/interiery-20261124/${photo}-thumb.webp" width="640" height="360" alt="" loading="lazy"><span>Fotografie koupelny ${esc(bathroom.label)}</span></a>` : '';
-      return `<details id="bathroom-${esc(bathroom.id)}" class="equipment-catalog"><summary>${esc(bathroom.label)}</summary><div class="equipment-spec"><p><strong>${esc(bathroom.referenceType)}</strong></p><p>Koupelnové skříňky a zrcadla jsou v ceně.</p><a class="bathroom-direct-link" href="${esc(pdf)}" target="_blank" rel="noopener">Katalog ${esc(bathroom.label)} (PDF)</a>${productsHTML(bathroom)}${gallery}</div></details>`;
-    }).join('');
-  }
   function revealEquipment(target) {
     if (!target?.closest('#vybaveni')) return;
     for (let node = target; node && node.id !== 'vybaveni'; node = node.parentElement) {
@@ -93,7 +85,8 @@
   }
   function revealLinkedEquipment() {
     const target = document.getElementById(location.hash.slice(1));
-    if (target?.matches('#vybaveni details')) {
+    if (target?.matches('#vybaveni details, .bathroom-option, #bathroom-51')) {
+      if (target.id === 'bathroom-51') target.hidden = false;
       revealEquipment(target);
       requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
     }

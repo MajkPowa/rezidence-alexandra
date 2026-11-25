@@ -107,7 +107,7 @@ body.reference-redesign .unit-location .floor-orientation svg{width:58px;height:
 .unit-facade-switch button { min-height:44px;padding:6px 12px;border:1px solid var(--dr-line);border-radius:5px;background:white;color:var(--ink);font:600 13px/1.35 var(--sans);cursor:pointer; }
 .unit-facade-switch button[aria-pressed=true] { background:var(--ink);border-color:var(--ink);color:white; }
 .unit-facade-switch button:focus-visible { outline:2px solid var(--dr-red);outline-offset:2px; }
-@container (max-width: 370px) {
+@container (max-width: 290px) {
   .unit-location .unit-location-views { grid-template-columns:minmax(0,1fr); }
   .unit-location .unit-location-plan { max-height:130px; }
 }

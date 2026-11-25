@@ -25,6 +25,13 @@
     describeFilters();
   }
   function fromHash() {
+    const moved = {'#projekt':'#byty', '#architektura':'#vyber-v-dome', '#interiery':'#vybaveni', '#prohlidka':'#byty'};
+    if (Object.hasOwn(moved, location.hash)) {
+      const url = new URL(location.href);
+      url.hash = moved[location.hash];
+      history.replaceState(null, '', url);
+      requestAnimationFrame(() => document.getElementById(url.hash.slice(1))?.scrollIntoView({block:'start'}));
+    }
     if (['#byty','#vyber-v-dome','#map-unit-card','#floor-explorer'].includes(location.hash) || !location.hash) setView('model');
     else if (location.hash === '#cenik') { setView('catalog'); scrollCatalog(); }
   }

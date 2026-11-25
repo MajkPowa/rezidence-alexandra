@@ -108,12 +108,12 @@
     $('#interior-grid').setAttribute('aria-busy', 'true');
     $('#gallery-status').textContent = 'Načítání kolekce interiérů…';
     try {
-      const response = await fetch('assets/interiery-20261124/manifest.json?v=pripominky20261125');
+      const response = await fetch('assets/interiery-20261124/manifest.json?v=hebelka20261125c');
       if (!response.ok) throw new Error('Collection unavailable');
       const data = await response.json();
       items = (Array.isArray(data.items) ? data.items : []).filter(item => item && item.sourceKind === 'agency_original' && isLocalAsset(item.src) && (!item.thumb || isLocalAsset(item.thumb)) && typologies.includes(item.typology) && rooms.includes(item.room)).map(item => ({...item, fullResolution:isLocalAsset(item.fullResolution) ? item.fullResolution : null}));
       if (!items.length) throw new Error('Empty collection');
-      heroItem = items.find(item => item.typology === '2,5 + kk' && item.room === 'Obývací pokoj') || items[0];
+      heroItem = items.find(item => item.typology === '2,5+kk' && item.room === 'Obývací pokoj') || items[0];
       setImage($('#hero-image'), heroItem, '(min-width: 1800px) 1608px, (max-width: 500px) 100vw, 89.2vw');
       $('#hero-open').disabled = false; $('#hero-open').setAttribute('aria-label', `Zvětšit: ${heroItem.title}, ${heroItem.typology}`);
       $('#hero-caption').textContent = `${heroItem.title} · ${heroItem.typology}`;

@@ -143,7 +143,7 @@
   const query=new URLSearchParams(location.search);
   const initial=query.get('financovani-byt') || query.get('byt');
   if(validUnit(initial))choose(initial);else{select.value='custom';render();}
-  if (typeof fetch === 'function') fetch('data/project-contacts.json?v=podklady20261124',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(data=>{
+  if (typeof fetch === 'function') fetch('data/project-contacts.json?v=hebelka20261125c',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(data=>{
     if(!data || typeof data!=='object')return;
     const validContact=c=>c&&typeof c.name==='string'&&c.name.trim()&&typeof c.email==='string'&&/^[A-Z0-9.!#$%&'*+\-/=?^_`{|}~]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(c.email);
     const localImage=path=>typeof path==='string' && /^assets\/(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.(?:jpe?g|png|webp|svg)$/i.test(path);

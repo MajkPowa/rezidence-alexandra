@@ -88,6 +88,9 @@
   });
   function drawFacade(side) {
     facadeSide = side;
+    root.querySelectorAll('[data-facade]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.facade === side));
+    });
     const {src, imageBox, viewBox, levels, labelX} = facades[side];
     const [imageX, imageY, imageWidth, imageHeight] = imageBox;
     const svg = $('#building-stack');
@@ -101,7 +104,6 @@
       const label = floorLabel(f.floor);
       return `<g class="stack-floor building-selection-floor" role="button" tabindex="0" data-map-floor="${f.floor}" aria-label="Vybrat patro: ${esc(label)}" aria-pressed="${activeFloor === f.floor}">
         <path class="building-selection-zone" d="${path(outline)}"/>
-        <path class="building-selection-leader" d="M${upper.at(-1)[0]} ${y}H${labelX}"/>
         <rect class="building-selection-label" x="${labelX}" y="${y-23}" width="124" height="46" rx="7"/>
         <text class="building-selection-number" x="${labelX+62}" y="${y+1}"${f.floor===1?' style="font-size:23px"':''}>${label}</text></g>`;
     });
@@ -234,7 +236,6 @@
     return `<figure class="unit-room-frame"><img class="unit-room-main" src="${esc(photo.src)}" alt="${esc(photo.alt)}" width="${photo.width}" height="${photo.height}" decoding="async">
       <figcaption><strong>Byt ${unit.id} · ${esc(unit.layout)}</strong><span data-room-caption>${esc(photo.room)}</span></figcaption></figure>
       <div class="unit-room-thumbs" role="group" aria-label="Místnosti pro dispozici ${esc(unit.layout)}">${thumbs}</div>
-      <a class="text-link unit-gallery-link" href="interiors.html?typology=${encodeURIComponent(unit.interiorLayout)}#gallery">Všechny vizualizace ${esc(unit.interiorLayout)} ${icon('arrow-up-right')}</a>
       <p class="room-scope">Typová vizualizace. Rozsah vybavení určuje standard bytu.</p>`;
   }
   function changeRoom(button) {
@@ -257,22 +258,24 @@
     const details = window.AlexandraDetails.get(unit);
     const saved = catalog.isSaved(unit.id);
     const plan = unit.id === 51 ? '' : selectedPlan(unit);
+    const galleryLink = unit.interiorLayout ? `<a class="text-link unit-gallery-link" href="interiors.html?typology=${encodeURIComponent(unit.interiorLayout)}#gallery">Všechny vizualizace ${esc(unit.interiorLayout)} ${icon('arrow-up-right')}</a>` : '';
     const tour = unit.id === 51 ? '' : `<a class="text-link detail-tour" href="${esc(window.AlexandraDetails.tourHref(unit))}">Typová 360° prohlídka ${icon('arrow-up-right')}</a>`;
     card.innerHTML = `<div class="unit-detail-back"><button type="button" class="pick-back" data-pick-back="2">${icon('arrow-left')}Zpět na výběr jednotky</button></div>
-      <div class="unit-photos">${roomGallery(unit)}${plan}</div>
+      <div class="unit-photos">${roomGallery(unit)}${plan}${galleryLink}</div>
       <div class="map-card-overview">
-        <div class="unit-sales-head"><div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
+        <div class="unit-summary"><div class="unit-sales-head"><div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
         <div class="unit-sales-copy"><h3 id="picked-unit-title" tabindex="-1">Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}
         <p class="map-unit-meta">${esc(unit.layout)} / ${esc(floorLabel(unit.floor))}${details.locationNote?' · '+esc(details.locationNote):''}</p>
         <p class="map-card-price">${price(unit.price)}</p>${Number.isFinite(unit.price) ? '<p class="map-price-note">Cena bez parkování</p>' : ''}</div>${window.AlexandraDetails.salesPortrait}</div>
         <div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a>
           ${window.AlexandraDetails.callSales}
-          <button type="button" class="unit-detail-button" data-unit="${unit.id}">Detail bytu ${icon('arrow-up-right')}</button>
-          <div class="map-card-links">${unit.plan ? `<a class="text-link" href="${esc(unit.plan)}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>` : ''}${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
-        </div>
-        <dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails.areasHTML(unit)}</dl>
-        ${locationHTML(unit)}<section class="map-standard-disclosure">${window.AlexandraDetails.cardHTML(unit)}</section>${tour}
-      </div>`;
+        </div></div>
+        <div class="unit-facts"><div class="map-card-links">${unit.plan ? `<a class="text-link" href="${esc(unit.plan)}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>` : ''}${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
+        <dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails.areasHTML(unit)}<div><dt>Otápěná plocha</dt><dd>${area(unit.heatedArea)}</dd></div></dl>
+        ${locationHTML(unit)}
+        <details class="unit-specification"><summary>Standard a koupelna</summary>${window.AlexandraDetails.detailHTML(unit)}</details>
+        ${window.AlexandraDetails.bathroomLinkHTML(unit,{pdf:true})}${tour}
+      </div></div>`;
     if (focusKey && !document.querySelector('dialog[open]')) {
       card.querySelector(`[${focusKey}="${CSS.escape(focused.getAttribute(focusKey))}"]`)?.focus({preventScroll:true});
     }
@@ -421,7 +424,7 @@
   async function initialize() {
     root.setAttribute('aria-busy','true');
     if(!catalog||!inventory)throw new Error('Katalog bytů není dostupný.');
-    const response=await fetch('data/floors.json');
+    const response=await fetch('data/floors.json?v=hebelka20261125c');
     if(!response.ok)throw new Error('Půdorysy se nepodařilo načíst.');
     const data=await response.json();
     if(!Array.isArray(data.floors)||data.floors.length!==6)throw new Error('Neúplná data podlaží.');
@@ -464,6 +467,7 @@
     root.setAttribute('aria-busy','false');
     $('#explorer-loading').hidden=false;$('#explorer-workbench').hidden=true;$('#map-legend').hidden=true;
     $('#explorer-loading').innerHTML=`<p>Interaktivní mapu se nepodařilo načíst.</p><a href="#cenik">Pokračovat do seznamu bytů ${icon('arrow-down')}</a>`;
+    document.dispatchEvent(new Event('alexandra:floor-selector-error'));
     console.warn('Apartment selector:',error.message);
   });
 })();

@@ -17,6 +17,7 @@
   const statusBadge = unit => { const status = statusOf(unit); return `<span class="status-badge status-${status.key}" aria-label="Dostupnost bytu ${unit.id}: ${escape(status.label)}"><span class="availability-dot" aria-hidden="true"></span>${escape(status.label)}</span>`; };
   const findUnit = id => { const value = typeof id === 'number' ? id : typeof id === 'string' && /^\d+$/.test(id) ? Number(id) : NaN; return Number.isSafeInteger(value) ? units.find(unit => unit.id === value) : undefined; };
   let currentUnit = null;
+  let pendingDetail = null;
   let parkingUnit = null;
   let toastTimer;
   const dialogFocus = new WeakMap();
@@ -85,35 +86,19 @@
   });
   $('#privacy-open').addEventListener('click', () => openDialog($('#privacy-dialog')));
 
-  const architecture = [
-    { src: 'assets/exterior-no-balconies.webp', caption: 'Levá strana · bez bočních balkonů', alt: 'Architektonická vizualizace levé strany domu bez bočních balkonů' },
-    { src: 'assets/projekt-20261124/zadni-final-1600.webp', displaySrc: 'assets/projekt-20261124/zadni-final-3200.webp', caption: 'Zadní pohled', alt: 'Zadní průčelí Rezidence Alexandra s balkony a vjezdy do garáží' },
-    { src: 'assets/exterior-hero.webp', caption: 'Pravý přední pohled', alt: 'Rezidence Alexandra z pravé přední strany' },
-    { src: 'assets/balcony-detail.webp', caption: 'Balkon', alt: 'Detail návrhu balkonů' },
-    { src: 'assets/facade-detail.webp', caption: 'Stínolam', alt: 'Detail návrhu stínolamu a fasády' }
-  ];
   const interiorSequences = {};
   for (const [type, layout] of Object.entries(window.AlexandraLayouts.labels)) {
     const base = `assets/interiery-20261124/${type}-interior-01`;
     const caption = `Obývací pokoj · ${layout}`;
     interiorSequences[type] = [{src:base+'.webp',thumb:base+'-thumb.webp',width:1600,height:900,room:'Obývací pokoj',alt:caption,caption,featureCaption:caption}];
   }
-  let activeInterior = '3kk';
   const roomOrder = ['Obývací pokoj','Kuchyně','Ložnice','Koupelna','Předsíň','Pracovna','Komora','Jídelní kout','Samostatné WC'];
   function roomPhotos(layout) {
     const photos = interiorSequences[window.AlexandraLayouts.mediaId(layout)] || [];
     return roomOrder.map(room => photos.find(photo => photo.room === room)).filter(Boolean);
   }
-  function updateInteriorFeature() {
-    const item = interiorSequences[activeInterior][0];
-    $('#interior-feature-image').src = item.src;
-    $('#interior-feature-image').alt = item.alt;
-    $('#interior-feature-image').width = item.width || 1620;
-    $('#interior-feature-image').height = item.height || 911;
-    $('#interior-feature-caption').textContent = item.featureCaption || `Obývací prostor · ${window.AlexandraLayouts.labels[activeInterior]}`;
-  }
   const galleryAsset = path => typeof path === 'string' && /^assets\/interiery-20261124\/[a-z0-9-]+\.webp$/.test(path);
-  fetch('assets/interiery-20261124/manifest.json?v=20261125').then(response => {
+  fetch('assets/interiery-20261124/manifest.json?v=hebelka20261125c').then(response => {
     if (!response.ok) throw new Error('Collection unavailable');
     return response.json();
   }).then(data => {
@@ -122,44 +107,8 @@
       selected.sort((a, b) => Number(b.room === 'Obývací pokoj') - Number(a.room === 'Obývací pokoj'));
       if (selected.length) interiorSequences[type] = selected.map((item, index) => ({...item, fullResolution:galleryAsset(item.fullResolution) ? item.fullResolution : null, downloadLabel:'Stáhnout vizualizaci', alt:`${item.title} · ${item.typology}`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length}`, featureCaption:`${item.title} · ${item.typology}`}));
     });
-    updateInteriorFeature();
     document.dispatchEvent(new Event('alexandra:room-photos-ready'));
   }).catch(() => { /* The supplied cover for each layout is also available offline. */ });
-  let galleryItems = architecture;
-  let galleryIndex = 0;
-  const galleryScope = $('#gallery-dialog .visual-scope');
-  const interiorScope = galleryScope.innerHTML;
-  $$('[data-variant]').forEach(button => button.addEventListener('click', () => {
-    $$('[data-variant]').forEach(item => { item.classList.toggle('active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
-    const index = { 'no-balconies': 0, rear: 1 }[button.dataset.variant];
-    if (!Number.isInteger(index)) return;
-    $('#architecture-image').removeAttribute('srcset');
-    $('#architecture-image').src = architecture[index].src;
-    $('#architecture-image').alt = architecture[index].alt;
-    $('#architecture-caption').textContent = architecture[index].caption;
-    $('[data-gallery="architecture"]').dataset.index = index;
-  }));
-  $$('[data-interior]').forEach(button => button.addEventListener('click', () => {
-    activeInterior = button.dataset.interior;
-    $$('[data-interior]').forEach(item => { item.classList.toggle('active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
-    updateInteriorFeature();
-  }));
-  const renderGallery = () => {
-    const item = galleryItems[galleryIndex];
-    galleryScope.innerHTML = galleryItems === architecture
-      ? 'Vizualizace projektu. Rozhodující je projektová a smluvní dokumentace.'
-      : interiorScope;
-    $('#gallery-image').removeAttribute('srcset');
-    $('#gallery-image').src = item.displaySrc || item.fullResolution || item.src; $('#gallery-image').alt = item.alt;
-    const download = item.downloadSrc || item.fullResolution;
-    $('#gallery-caption').innerHTML = `${escape(item.caption)}${download ? `<br><a class="text-link" href="${escape(download)}" download>${escape(item.downloadLabel || 'Stáhnout původní obrázek')} ${icon('download')}</a>` : ''}`;
-  };
-  $$('[data-gallery]').forEach(button => button.addEventListener('click', () => { galleryItems = button.dataset.gallery === 'architecture' ? architecture : interiorSequences[activeInterior]; galleryIndex = Number(button.dataset.index || 0); renderGallery(); openDialog($('#gallery-dialog')); }));
-  const stepGallery = step => { galleryIndex = (galleryIndex + step + galleryItems.length) % galleryItems.length; renderGallery(); };
-  $('#gallery-prev').addEventListener('click', () => stepGallery(-1));
-  $('#gallery-next').addEventListener('click', () => stepGallery(1));
-  document.addEventListener('keydown', event => { if ($('#gallery-dialog').open && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); stepGallery(event.key === 'ArrowLeft' ? -1 : 1); } });
-
   function filteredUnits() {
     return units.filter(unit => {
       if (state.layout !== 'all' && unit.layout !== state.layout) return false;
@@ -175,7 +124,7 @@
   function snapshot() { return { filters: { ...state }, filteredIds: filteredUnits().map(unit => unit.id), savedIds: [...saved] }; }
   function setFilters(patch = {}) {
     if (!patch || typeof patch !== 'object' || Array.isArray(patch)) return snapshot();
-    const allowed = { layout: ['all', '1+kk', '2+kk', '2,5 + kk'], floor: ['all', '1', '2', '3', '4', '5', '6'], area: ['all', 'small', 'medium', 'large'], status: ['all', 'available', 'reserved', 'sold', 'unknown'], sort: ['floor', 'price-up', 'price-down', 'area-up', 'area-down'] };
+    const allowed = { layout: ['all', '1+kk', '2+kk', '2,5+kk'], floor: ['all', '1', '2', '3', '4', '5', '6'], area: ['all', 'small', 'medium', 'large'], status: ['all', 'available', 'reserved', 'sold', 'unknown'], sort: ['floor', 'price-up', 'price-down', 'area-up', 'area-down'] };
     let filterChanged = false;
     Object.entries(allowed).forEach(([key, values]) => {
       if (!Object.prototype.hasOwnProperty.call(patch, key)) return;
@@ -245,7 +194,16 @@
     const unit = findUnit(id);
     if (!unit) return false;
     const returnFocus = $('#compare-dialog').open ? dialogFocus.get($('#compare-dialog')) : captureFocus();
-    if ($('#compare-dialog').open) $('#compare-dialog').close();
+    if ($('#compare-dialog').open) {
+      dialogFocus.delete($('#compare-dialog'));
+      $('#compare-dialog').close();
+    }
+    if (window.AlexandraPicker?.openUnit(unit.id)) return true;
+    if (document.getElementById('floor-explorer')?.getAttribute('aria-busy') === 'true') {
+      pendingDetail = unit.id;
+      return true;
+    }
+    // Keep the unit, its plan and contact details available if the floor data cannot load.
     currentUnit = unit;
     renderUnitDetail(unit);
     openDialog($('#unit-dialog'), returnFocus);
@@ -268,10 +226,18 @@
     notify('Uložené byty byly vymazány.');
   });
 
+  function openPendingDetail() {
+    if (pendingDetail === null) return;
+    const id = pendingDetail;
+    pendingDetail = null;
+    openUnit(id);
+  }
+  document.addEventListener('alexandra:floor-selector-ready', openPendingDetail);
+  document.addEventListener('alexandra:floor-selector-error', openPendingDetail);
   function renderUnitDetail(unit) {
     if (!unit) return;
     const directPlan = !!unit.plan;
-    const tour = unit.id === 51 ? null : { '1+kk': { id: '1kk', source: '04' }, '2+kk': { id: '2kk', source: '02' }, '2,5 + kk': { id: '3kk', source: '01' } }[unit.layout];
+    const tour = unit.id === 51 ? null : { '1+kk': { id: '1kk', source: '04' }, '2+kk': { id: '2kk', source: '02' }, '2,5+kk': { id: '3kk', source: '01' } }[unit.layout];
 
     const planPath = directPlan ? unit.plan : `plans/floor-sheet-${unit.floor}-20261103.pdf`;
     const previewPath = unit.planPreview || (directPlan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : `assets/floors/floor-${unit.floor}.webp`);

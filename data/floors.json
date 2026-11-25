@@ -266,7 +266,7 @@
           "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 1",
           "identityConfidence": "confirmed-explicit-floor-legend",
           "geometryConfidence": "verified-wall-aligned-selection-region",
-          "sourceIndexLayout": "3+kk",
+          "sourceIndexLayout": "2,5 + kk",
           "sourceIndexArea": 65.15
         },
         {
@@ -1800,7 +1800,7 @@
           "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 11",
           "identityConfidence": "confirmed-explicit-floor-legend",
           "geometryConfidence": "verified-wall-aligned-selection-region",
-          "sourceIndexLayout": "3+kk",
+          "sourceIndexLayout": "2,5 + kk",
           "sourceIndexArea": 65.15
         },
         {
@@ -3414,7 +3414,7 @@
           "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 21",
           "identityConfidence": "confirmed-explicit-floor-legend",
           "geometryConfidence": "verified-wall-aligned-selection-region",
-          "sourceIndexLayout": "3+kk",
+          "sourceIndexLayout": "2,5 + kk",
           "sourceIndexArea": 65.15
         },
         {
@@ -5028,7 +5028,7 @@
           "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 31",
           "identityConfidence": "confirmed-explicit-floor-legend",
           "geometryConfidence": "verified-wall-aligned-selection-region",
-          "sourceIndexLayout": "3+kk",
+          "sourceIndexLayout": "2,5 + kk",
           "sourceIndexArea": 65
         },
         {
@@ -6642,7 +6642,7 @@
           "sourceLegendTitle": "BYTOVÁ JEDNOTKA č. 41",
           "identityConfidence": "confirmed-explicit-floor-legend",
           "geometryConfidence": "verified-wall-aligned-selection-region",
-          "sourceIndexLayout": "3+kk",
+          "sourceIndexLayout": "2,5 + kk",
           "sourceIndexArea": 65
         },
         {

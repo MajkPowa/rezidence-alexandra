@@ -5,7 +5,7 @@
     "equipment": "Zarizovaci_prvky_komplet_prezentace.pdf, dodáno 24. 11. 2026.",
     "illustration": "Vybavení foto.png je pouze inspirace pro podobu interaktivních popisků; věcné údaje se řídí dokumentem Vybavení bytu.docx.",
     "unitCorrections": "Potvrzení zadavatele z 20. 10. 2026: všechny byty 2+kk jsou bez sklepní kóje; byt 51 nemá balkon a nachází se pod úrovní terénu.",
-    "bathroomCatalogs": "Finální katalogy 1+kk, 2+kk a 3+kk ze dne 24. 11. 2026. Samostatný katalog bytu 51 byl dodán 3. 11. 2026.",
+    "bathroomCatalogs": "Finální katalogy 1+kk, 2+kk a 2,5 + kk ze dne 24. 11. 2026. Samostatný katalog bytu 51 byl dodán 3. 11. 2026.",
     "tiling": "Společná prezentace, strany 12–15. Pro společné chodby a schodiště je určena dlažba OI11511.",
     "bathroomFurniture": "Doprovodný e-mail Martina Hebelky z 3. 11. 2026 výslovně potvrzuje, že koupelnové skříňky a zrcadla jsou součástí ceny bytu.",
     "prices": "Klientský ceník doručený 24. 11. 2026, kupní cena bez parkování, zobrazená v celých korunách po vypuštění haléřů. Byt 51 není uveden.",
@@ -247,7 +247,7 @@
     "1": {
       "id": 1,
       "floor": 2,
-      "layout": "3+kk",
+      "layout": "2,5 + kk",
       "area": 59.2,
       "heatedArea": 48.85,
       "price": 5275548,
@@ -283,7 +283,7 @@
       "individualEquipmentStatus": "typology_catalog_with_confirmed_furniture_inclusion",
       "bathroom": {
         "id": "3kk",
-        "label": "3+kk",
+        "label": "2,5 + kk",
         "source": "Koupelna_3kk_final.pdf",
         "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
         "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
@@ -2207,7 +2207,7 @@
     "11": {
       "id": 11,
       "floor": 3,
-      "layout": "3+kk",
+      "layout": "2,5 + kk",
       "area": 65.15,
       "heatedArea": 48.85,
       "price": 5805777,
@@ -2243,7 +2243,7 @@
       "individualEquipmentStatus": "typology_catalog_with_confirmed_furniture_inclusion",
       "bathroom": {
         "id": "3kk",
-        "label": "3+kk",
+        "label": "2,5 + kk",
         "source": "Koupelna_3kk_final.pdf",
         "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
         "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
@@ -4167,7 +4167,7 @@
     "21": {
       "id": 21,
       "floor": 4,
-      "layout": "3+kk",
+      "layout": "2,5 + kk",
       "area": 65.15,
       "heatedArea": 48.85,
       "price": 5805777,
@@ -4203,7 +4203,7 @@
       "individualEquipmentStatus": "typology_catalog_with_confirmed_furniture_inclusion",
       "bathroom": {
         "id": "3kk",
-        "label": "3+kk",
+        "label": "2,5 + kk",
         "source": "Koupelna_3kk_final.pdf",
         "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
         "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
@@ -6127,7 +6127,7 @@
     "31": {
       "id": 31,
       "floor": 5,
-      "layout": "3+kk",
+      "layout": "2,5 + kk",
       "area": 65,
       "heatedArea": 48.85,
       "price": 5792410,
@@ -6163,7 +6163,7 @@
       "individualEquipmentStatus": "typology_catalog_with_confirmed_furniture_inclusion",
       "bathroom": {
         "id": "3kk",
-        "label": "3+kk",
+        "label": "2,5 + kk",
         "source": "Koupelna_3kk_final.pdf",
         "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
         "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
@@ -8087,7 +8087,7 @@
     "41": {
       "id": 41,
       "floor": 6,
-      "layout": "3+kk",
+      "layout": "2,5 + kk",
       "area": 59.2,
       "heatedArea": 48.85,
       "price": 5275548,
@@ -8123,7 +8123,7 @@
       "individualEquipmentStatus": "typology_catalog_with_confirmed_furniture_inclusion",
       "bathroom": {
         "id": "3kk",
-        "label": "3+kk",
+        "label": "2,5 + kk",
         "source": "Koupelna_3kk_final.pdf",
         "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
         "catalogUrl": "plans/bathroom-3kk-20261124.pdf",
@@ -10363,7 +10363,7 @@
     },
     "3kk": {
       "id": "3kk",
-      "label": "3+kk",
+      "label": "2,5 + kk",
       "source": "Koupelna_3kk_final.pdf",
       "sourcePdf": "plans/bathroom-3kk-20261124.pdf",
       "catalogUrl": "plans/bathroom-3kk-20261124.pdf",

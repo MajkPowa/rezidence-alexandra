@@ -5,7 +5,7 @@ Pracovní publikační podklady · 19. 10. 2026
 Soubor: reels/hero.mp4 · 30 sekund
 
 Popisek:
-Váš nový začátek. Poznejte Rezidenci Alexandra v Otrokovicích — od architektury domu po návrhy interiérů 1+kk, 2+kk a 3+kk. Který prostor je vám nejbližší?
+Váš nový začátek. Poznejte Rezidenci Alexandra v Otrokovicích — od architektury domu po návrhy interiérů 1+kk, 2+kk a 2,5 + kk. Který prostor je vám nejbližší?
 
 Prohlédněte si půdorysy a projekt:
 https://majkpowa.github.io/rezidence-alexandra/#byty
@@ -15,7 +15,7 @@ Návrhová AI vizualizace podle podkladů projektu. Zobrazené zařízení je il
 #RezidenceAlexandra #Otrokovice #Bydleni
 
 CTA: Prohlédnout byty
-Alt popis: Vertikální film návrhu Rezidence Alexandra. Celek domu v městském kontextu, detail vstupu, obytné prostory 1+kk a 3+kk a ložnice 2+kk. České titulky a závěrečná pozvánka na web. Návrhové AI vizualizace, nikoli fotografie dokončeného projektu.
+Alt popis: Vertikální film návrhu Rezidence Alexandra. Celek domu v městském kontextu, detail vstupu, obytné prostory 1+kk a 2,5 + kk a ložnice 2+kk. České titulky a závěrečná pozvánka na web. Návrhové AI vizualizace, nikoli fotografie dokončeného projektu.
 
 
 02 / DOMOV — JEDEN DEN. VLASTNÍ TEMPO.

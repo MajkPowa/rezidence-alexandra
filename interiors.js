@@ -4,10 +4,11 @@
   const $$ = selector => [...document.querySelectorAll(selector)];
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char]);
   const params = new URLSearchParams(location.search);
-  const typologies = ['1+kk', '2+kk', '3+kk'];
+  const typologies = Object.values(window.AlexandraLayouts.labels);
+  const layoutFromQuery = value => window.AlexandraLayouts.labels[window.AlexandraLayouts.mediaId(value)] || 'all';
   const rooms = ['Obývací pokoj', 'Kuchyně', 'Ložnice', 'Koupelna', 'Jídelní kout', 'Předsíň', 'Komora', 'Pracovna', 'Samostatné WC'];
   const roomFromQuery = name => name === 'Odpočinkový kout' ? 'Obývací pokoj' : rooms.includes(name) ? name : 'all';
-  const state = {typology:typologies.includes(params.get('typology')) ? params.get('typology') : 'all', room:roomFromQuery(params.get('room'))};
+  const state = {typology:layoutFromQuery(params.get('typology')), room:roomFromQuery(params.get('room'))};
   let items = [], filtered = [], dialogItems = [], dialogIndex = 0, lastFocus = null, heroItem = null;
   const dialog = $('#interior-dialog');
   const imageAlt = item => `${item.typology} · ${item.title}`;
@@ -49,7 +50,7 @@
   window.addEventListener('popstate', () => {
     const query = new URLSearchParams(location.search);
     const wasDialogOpen = dialog.open, previousRoom = state.room;
-    state.typology = typologies.includes(query.get('typology')) ? query.get('typology') : 'all';
+    state.typology = layoutFromQuery(query.get('typology'));
     state.room = roomFromQuery(query.get('room'));
     if (wasDialogOpen) { lastFocus = null; dialog.close(); }
     if (items.length) render(); else syncFilters();
@@ -74,7 +75,7 @@
     $('#detail-download-label').textContent = 'Stáhnout vizualizaci';
     $('#detail-resolution').textContent = `${item.fullWidth || item.width} × ${item.fullHeight || item.height} px · ${item.downloadFormat || 'původní rozlišení'}`;
     const tourRoom = item.tourRoom || {'Obývací pokoj':'living','Kuchyně':'kitchen','Ložnice':'bedroom','Koupelna':'bathroom','Odpočinkový kout':'living','Předsíň':'hall','Samostatné WC':'wc'}[item.room];
-    $('#detail-tour').href = `tour.html?byt=${item.typology.replace('+','')}&mistnost=${tourRoom}#walkthrough`;
+    $('#detail-tour').href = `tour.html?byt=${window.AlexandraLayouts.mediaId(item.typology)}&mistnost=${tourRoom}#walkthrough`;
     $('#detail-tour').innerHTML = `Typová 360° prohlídka ${window.AlexandraArrows.svg('arrow-up-right')}`;
     $('#detail-prev').hidden = $('#detail-next').hidden = dialogItems.length < 2;
     const next = dialogItems[(dialogIndex + 1) % dialogItems.length];
@@ -107,12 +108,12 @@
     $('#interior-grid').setAttribute('aria-busy', 'true');
     $('#gallery-status').textContent = 'Načítání kolekce interiérů…';
     try {
-      const response = await fetch('assets/interiery-20261124/manifest.json');
+      const response = await fetch('assets/interiery-20261124/manifest.json?v=pripominky20261125');
       if (!response.ok) throw new Error('Collection unavailable');
       const data = await response.json();
       items = (Array.isArray(data.items) ? data.items : []).filter(item => item && item.sourceKind === 'agency_original' && isLocalAsset(item.src) && (!item.thumb || isLocalAsset(item.thumb)) && typologies.includes(item.typology) && rooms.includes(item.room)).map(item => ({...item, fullResolution:isLocalAsset(item.fullResolution) ? item.fullResolution : null}));
       if (!items.length) throw new Error('Empty collection');
-      heroItem = items.find(item => item.typology === '3+kk' && item.room === 'Obývací pokoj') || items[0];
+      heroItem = items.find(item => item.typology === '2,5 + kk' && item.room === 'Obývací pokoj') || items[0];
       setImage($('#hero-image'), heroItem, '(min-width: 1800px) 1608px, (max-width: 500px) 100vw, 89.2vw');
       $('#hero-open').disabled = false; $('#hero-open').setAttribute('aria-label', `Zvětšit: ${heroItem.title}, ${heroItem.typology}`);
       $('#hero-caption').textContent = `${heroItem.title} · ${heroItem.typology}`;

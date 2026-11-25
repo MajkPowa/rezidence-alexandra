@@ -160,12 +160,6 @@
       }
       return links;
     }
-    function serviceContact(box,contact,subject) {
-      const h=document.createElement('h4'); h.textContent=contact.name;
-      const links=document.createElement('div'); links.className='buyer-team-links';
-      links.append(contactLinks(contact,subject));
-      box.replaceChildren(h,links);
-    }
     function showTeamContact(selector, contact, subject, description) {
       const card = document.querySelector(selector);
       if (!card) return;
@@ -192,21 +186,18 @@
     }
     if (validContact(data.mortgageSpecialist)) {
       const adviser=data.mortgageSpecialist;
-      const box=document.querySelector('#mortgage-specialist-contact');
-      if(box) {
-        serviceContact(box,adviser,'hypoteční konzultace');
-        const banks=Array.isArray(adviser.banks) ? adviser.banks.filter(b=>b && b.name && localImage(b.logo)) : [];
-        if(banks.length) {
-          const section=document.createElement('section'); section.id='spolupracujici-banky';
-          const title=document.createElement('h5'); title.textContent='Spolupracující banky';
-          const list=document.createElement('ul'); list.className='partner-banks';
-          banks.forEach(bank=>{
-            const item=document.createElement('li'), img=new Image();
-            img.src=bank.logo; img.alt=bank.name; img.title=bank.name; img.loading='lazy';
-            item.append(img); list.append(item);
-          });
-          section.append(title,list); box.append(section);
-        }
+      const list = form.querySelector('#spolupracujici-banky .partner-banks');
+      const banks = Array.isArray(adviser.banks) ? adviser.banks.filter(bank => bank?.name && localImage(bank.logo)) : [];
+      if (list && banks.length) {
+        list.replaceChildren(...banks.map(bank => {
+          const item = document.createElement('li');
+          const image = new Image();
+          image.alt = bank.name;
+          image.src = bank.logo;
+          image.loading = 'lazy';
+          item.append(image);
+          return item;
+        }));
       }
       showTeamContact('#buyer-team-finance',adviser,'hypoteční konzultace','Konzultace financování a příprava podkladů pro banku.');
       if (document.getElementById('spolupracujici-banky')) {
@@ -215,18 +206,15 @@
       }
     }
     const lawyers=Array.isArray(data.legalAdvisors)?data.legalAdvisors.filter(validContact):[];
-    if (lawyers.length === 1) showTeamContact('#buyer-team-legal', lawyers[0], 'právní zajištění koupě', 'Právní konzultace ke smlouvám a průběhu koupě bytu.');
-    else if (lawyers.length > 1) {
-      const link = document.querySelector('#buyer-team-legal .buyer-team-links a');
-      if (link) {
-        delete link.dataset.buyerMail;
-        link.href = '#pravni-sluzby';
-        link.textContent = 'Kontakty na advokáty';
-        document.querySelector('#buyer-team-legal [data-adviser-description]').textContent = 'Spolupracující advokáti s vámi projdou smlouvy a podmínky koupě bytu.';
+    if (lawyers.length) {
+      showTeamContact('#buyer-team-legal', lawyers[0], 'právní zajištění koupě', 'Právní konzultace ke smlouvám a průběhu koupě bytu.');
+      const links = document.querySelector('#buyer-team-legal .buyer-team-links');
+      for (const lawyer of lawyers.slice(1)) {
+        const name = document.createElement('strong');
+        name.textContent = lawyer.name;
+        links?.append(name, contactLinks(lawyer, 'právní zajištění koupě'));
       }
     }
-    const lawBox=document.querySelector('#legal-advisor-contacts');
-    if(lawBox&&lawyers.length){lawBox.replaceChildren();lawyers.forEach(c=>{const row=document.createElement('div');serviceContact(row,c,'právní zajištění koupě');lawBox.append(row);});}
     const docs=Array.isArray(data.contractDocuments)?data.contractDocuments.filter(d=>d&&typeof d.title==='string'&&typeof d.href==='string'&&/^plans\/[a-z0-9-]+\.pdf(?:#page=\d+)?$/.test(d.href)):[];
     const docBox=document.querySelector('#contract-document-links');
     if(docBox&&docs.length){docBox.replaceChildren();docs.forEach(d=>{const a=document.createElement('a');a.className='text-link';a.href=d.href;a.textContent=d.title+' (PDF)';a.target='_blank';a.rel='noopener';docBox.append(a);});}

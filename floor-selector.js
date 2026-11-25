@@ -169,7 +169,7 @@
     $('#floor-canvas').innerHTML = `<title>Půdorys · ${floorLabel(activeFloor)} · výběr bytů</title><g class="floor-projection" style="transform:${floorTransform()}"><path class="floor-sheet" d="${path(normalizedOutline)}"/><image class="floor-linework" href="${esc(f.mapImage || f.image)}" width="1000" height="${f.height*1000/f.width}"/>${f.units.map(p => {
       const u=units.find(unit=>unit.id===p.id);
       const s=status(u), center=normalized(f,[p.labelPoint])[0];
-      return `<g class="map-apartment" role="button" tabindex="0" data-map-unit="${u.id}" data-status="${s.key}" aria-label="Byt ${u.id}, ${esc(u.layout)}, ${area(u.area)}, ${esc(s.label)}" aria-pressed="false"><path class="unit-shape" d="${path(normalized(f,p.polygon))}"/><g transform="translate(${center[0]},${center[1]})" pointer-events="none"><rect class="unit-tag-bg" x="-59" y="-32" width="118" height="66" rx="8"/><text class="unit-tag-number" y="-7">${String(u.id).padStart(2,'0')}</text><text class="unit-tag-layout" y="19">${esc(u.layout)}</text></g></g>`;
+      return `<g class="map-apartment" role="button" tabindex="0" data-map-unit="${u.id}" data-status="${s.key}" aria-label="Byt ${u.id}, ${esc(u.layout)}, ${area(u.area)}, ${esc(s.label)}" aria-pressed="false"><path class="unit-shape" d="${path(normalized(f,p.polygon))}"/><g transform="translate(${center[0]},${center[1]})" pointer-events="none"><rect class="unit-tag-bg" x="-59" y="-32" width="118" height="66" rx="8"/><text class="unit-tag-number" y="-7">${String(u.id).padStart(2,'0')}</text><text class="unit-tag-layout" y="19"${u.layout.length > 5 ? ' textLength="98" lengthAdjust="spacingAndGlyphs"' : ''}>${esc(u.layout)}</text></g></g>`;
     }).join('')}</g>`;
     fitFloorViewport();
     const compass = $('#map-floor-orientation');
@@ -240,7 +240,7 @@
   function changeRoom(button) {
     const unit = units.find(item => item.id === selectedId);
     const index = Number(button.dataset.roomPhoto);
-    const photo = unit && catalog.roomPhotos(unit.layout)[index];
+    const photo = unit && catalog.roomPhotos(unit.interiorLayout)[index];
     if (!photo) return;
     roomIndex = index;
     $('.unit-room-main').src = photo.src;
@@ -261,8 +261,8 @@
     card.innerHTML = `<div class="unit-detail-back"><button type="button" class="pick-back" data-pick-back="2">${icon('arrow-left')}Zpět na výběr jednotky</button></div>
       <div class="unit-photos">${roomGallery(unit)}${plan}</div>
       <div class="map-card-overview">
-        <div class="unit-sales-head"><div class="unit-sales-copy"><div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
-        <h3 id="picked-unit-title" tabindex="-1">Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}
+        <div class="unit-sales-head"><div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
+        <div class="unit-sales-copy"><h3 id="picked-unit-title" tabindex="-1">Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}
         <p class="map-unit-meta">${esc(unit.layout)} / ${esc(floorLabel(unit.floor))}${details.locationNote?' · '+esc(details.locationNote):''}</p>
         <p class="map-card-price">${price(unit.price)}</p>${Number.isFinite(unit.price) ? '<p class="map-price-note">Cena bez parkování</p>' : ''}</div>${window.AlexandraDetails.salesPortrait}</div>
         <div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a>

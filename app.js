@@ -93,15 +93,15 @@
     { src: 'assets/facade-detail.webp', caption: 'Stínolam', alt: 'Detail návrhu stínolamu a fasády' }
   ];
   const interiorSequences = {};
-  for (const type of ['1','2','3']) {
-    const base = `assets/interiery-20261124/${type}kk-interior-01`;
-    const caption = `Obývací pokoj · ${type}+kk`;
+  for (const [type, layout] of Object.entries(window.AlexandraLayouts.labels)) {
+    const base = `assets/interiery-20261124/${type}-interior-01`;
+    const caption = `Obývací pokoj · ${layout}`;
     interiorSequences[type] = [{src:base+'.webp',thumb:base+'-thumb.webp',width:1600,height:900,room:'Obývací pokoj',alt:caption,caption,featureCaption:caption}];
   }
-  let activeInterior = '3';
+  let activeInterior = '3kk';
   const roomOrder = ['Obývací pokoj','Kuchyně','Ložnice','Koupelna','Předsíň','Pracovna','Komora','Jídelní kout','Samostatné WC'];
   function roomPhotos(layout) {
-    const photos = interiorSequences[layout.charAt(0)] || [];
+    const photos = interiorSequences[window.AlexandraLayouts.mediaId(layout)] || [];
     return roomOrder.map(room => photos.find(photo => photo.room === room)).filter(Boolean);
   }
   function updateInteriorFeature() {
@@ -110,15 +110,15 @@
     $('#interior-feature-image').alt = item.alt;
     $('#interior-feature-image').width = item.width || 1620;
     $('#interior-feature-image').height = item.height || 911;
-    $('#interior-feature-caption').textContent = item.featureCaption || `Obývací prostor · ${activeInterior}+kk`;
+    $('#interior-feature-caption').textContent = item.featureCaption || `Obývací prostor · ${window.AlexandraLayouts.labels[activeInterior]}`;
   }
   const galleryAsset = path => typeof path === 'string' && /^assets\/interiery-20261124\/[a-z0-9-]+\.webp$/.test(path);
-  fetch('assets/interiery-20261124/manifest.json').then(response => {
+  fetch('assets/interiery-20261124/manifest.json?v=20261125').then(response => {
     if (!response.ok) throw new Error('Collection unavailable');
     return response.json();
   }).then(data => {
-    ['1', '2', '3'].forEach(type => {
-      const selected = (data.items || []).filter(item => item.sourceKind === 'agency_original' && item.typology === `${type}+kk` && galleryAsset(item.src) && galleryAsset(item.thumb));
+    Object.entries(window.AlexandraLayouts.labels).forEach(([type, layout]) => {
+      const selected = (data.items || []).filter(item => item.sourceKind === 'agency_original' && item.typology === layout && galleryAsset(item.src) && galleryAsset(item.thumb));
       selected.sort((a, b) => Number(b.room === 'Obývací pokoj') - Number(a.room === 'Obývací pokoj'));
       if (selected.length) interiorSequences[type] = selected.map((item, index) => ({...item, fullResolution:galleryAsset(item.fullResolution) ? item.fullResolution : null, downloadLabel:'Stáhnout vizualizaci', alt:`${item.title} · ${item.typology}`, caption:`${item.title} · ${item.typology} · ${index + 1}/${selected.length}`, featureCaption:`${item.title} · ${item.typology}`}));
     });
@@ -175,7 +175,7 @@
   function snapshot() { return { filters: { ...state }, filteredIds: filteredUnits().map(unit => unit.id), savedIds: [...saved] }; }
   function setFilters(patch = {}) {
     if (!patch || typeof patch !== 'object' || Array.isArray(patch)) return snapshot();
-    const allowed = { layout: ['all', '1+kk', '2+kk', '3+kk'], floor: ['all', '1', '2', '3', '4', '5', '6'], area: ['all', 'small', 'medium', 'large'], status: ['all', 'available', 'reserved', 'sold', 'unknown'], sort: ['floor', 'price-up', 'price-down', 'area-up', 'area-down'] };
+    const allowed = { layout: ['all', '1+kk', '2+kk', '2,5 + kk'], floor: ['all', '1', '2', '3', '4', '5', '6'], area: ['all', 'small', 'medium', 'large'], status: ['all', 'available', 'reserved', 'sold', 'unknown'], sort: ['floor', 'price-up', 'price-down', 'area-up', 'area-down'] };
     let filterChanged = false;
     Object.entries(allowed).forEach(([key, values]) => {
       if (!Object.prototype.hasOwnProperty.call(patch, key)) return;
@@ -271,7 +271,7 @@
   function renderUnitDetail(unit) {
     if (!unit) return;
     const directPlan = !!unit.plan;
-    const tour = unit.id === 51 ? null : { '1+kk': { id: '1kk', source: '04' }, '2+kk': { id: '2kk', source: '02' }, '3+kk': { id: '3kk', source: '01' } }[unit.layout];
+    const tour = unit.id === 51 ? null : { '1+kk': { id: '1kk', source: '04' }, '2+kk': { id: '2kk', source: '02' }, '2,5 + kk': { id: '3kk', source: '01' } }[unit.layout];
 
     const planPath = directPlan ? unit.plan : `plans/floor-sheet-${unit.floor}-20261103.pdf`;
     const previewPath = unit.planPreview || (directPlan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : `assets/floors/floor-${unit.floor}.webp`);

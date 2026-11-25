@@ -43,3 +43,45 @@ body.reference-redesign .unit-included h3{font:700 clamp(25px,2.7vw,34px)/1.2 va
  .tour-return-strip{display:block;margin-bottom:20px}
  .tour-return-strip>p{margin-top:12px}
 }
+
+#vybaveni .section-heading { align-items: baseline; }
+#vybaveni .section-heading h2 { margin: 0; }
+.equipment-rows { display: grid; gap: clamp(48px, 7vw, 112px); }
+.equipment-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-areas: "photo copy";
+  align-items: start;
+  gap: clamp(28px, 4vw, 76px);
+}
+.equipment-row-reverse { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); grid-template-areas: "copy photo"; }
+.equipment-photo { grid-area: photo; display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 8px; }
+.equipment-copy { grid-area: copy; min-width: 0; }
+body.dr-brand .equipment-copy h3 { margin: 0 0 16px; font: 600 clamp(21px, 2.2vw, 34px)/1.2 var(--sans); letter-spacing: -.025em; color: var(--dr-red); }
+.equipment-copy > p, .equipment-spec { font-size: clamp(15px, 1.05vw, 17px); line-height: 1.65; }
+.equipment-copy > p { margin: 0 0 12px; }
+.equipment-copy > p:last-child { margin-bottom: 0; }
+.equipment-copy details { scroll-margin-top: calc(var(--header-height, 88px) + 16px); }
+.equipment-copy summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; list-style: none; min-height: 50px; padding: 12px 0; cursor: pointer; font-weight: 600; }
+.equipment-copy summary::-webkit-details-marker { display: none; }
+.equipment-copy summary::after { content: ""; flex: 0 0 16px; height: 16px; background: linear-gradient(currentColor,currentColor) center / 12px 1.5px no-repeat, linear-gradient(currentColor,currentColor) center / 1.5px 12px no-repeat; }
+.equipment-copy details[open] > summary::after { background-size: 12px 1.5px, 0 0; }
+.equipment-copy summary:focus-visible { outline: 2px solid var(--dr-red); outline-offset: 3px; }
+.equipment-folds, .equipment-catalog { border-bottom: 1px solid var(--dr-line); }
+.equipment-folds > details, .equipment-catalog:first-child { border-top: 1px solid var(--dr-line); }
+.equipment-spec { padding-bottom: 16px; }
+.equipment-spec ul { margin: 0 0 8px; padding-inline-start: 1.25em; }
+.equipment-spec li + li { margin-top: 5px; }
+.equipment-spec p { margin: 6px 0 12px; }
+.equipment-spec a:not(.bathroom-direct-link) { text-decoration: underline; text-underline-offset: .18em; }
+.equipment-catalog-picker { margin-top: 18px; }
+.equipment-catalog-picker > summary { display: inline-flex; gap: 16px; padding: 9px 16px; min-height: 44px; border: 1px solid currentColor; border-radius: 6px; }
+.equipment-catalog-picker > summary:hover, .equipment-copy details > summary:hover { color: var(--dr-red); }
+.equipment-copy #bathroom-catalogs { display: block; }
+.equipment-catalog-picker[open] > summary { margin-bottom: 14px; }
+.catalog-gallery-link { display: inline-flex; align-items: center; gap: 12px; margin-top: 12px; font-weight: 600; }
+.catalog-gallery-link img { width: 104px; height: auto; border-radius: 4px; }
+@media (max-width: 760px) {
+  #vybaveni .section-heading { display: grid; gap: 8px; }
+  .equipment-row, .equipment-row-reverse { grid-template-columns: minmax(0, 1fr); grid-template-areas: "photo" "copy"; gap: 18px; }
+}

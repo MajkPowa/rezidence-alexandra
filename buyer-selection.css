@@ -226,8 +226,13 @@ body.dr-brand #map-unit-card {
 #buyer-team-legal .buyer-team-media { background: white; border: 1px solid var(--dr-line); }
 #buyer-team-legal .buyer-team-media img { width: 78%; height: 65%; object-position: center; }
 #spolupracujici-banky { margin-top: 20px; scroll-margin-top: calc(var(--header-height) + 20px); }
-#spolupracujici-banky h5 { margin: 0 0 12px; font: 600 16px/1.4 var(--sans); }
-.partner-banks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+#spolupracujici-banky h4 { margin: 0 0 12px; color: inherit; font: 600 15px/1.4 var(--sans); }
+.partner-banks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+#mortgage-result #spolupracujici-banky { border-top: 1px solid #536569; padding-top: 16px; }
+#mortgage-result .partner-banks li { min-height: 42px; }
+#mortgage-result .partner-banks img { max-height: 26px; }
+#mortgage-result .mortgage-model-note { padding-top: 20px; }
+#mortgage-specialist-contact, #pravni-sluzby { scroll-margin-top: calc(var(--header-height,88px) + 20px); }
 .partner-banks li { display: grid; place-items: center; background: white; border: 1px solid var(--dr-line); border-radius: 6px; min-height: 56px; padding: 8px; }
 .partner-banks img { display: block; width: auto; height: auto; max-width: 100%; max-height: 36px; }
 .buyer-team-copy { min-width: 0; }
@@ -239,8 +244,12 @@ body.dr-brand #map-unit-card {
 .buyer-team-links a:hover { color: var(--dr-red); }
 .unit-sales-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,34%); gap: 8px; align-items: end; background: white; }
 .unit-sales-copy { min-width: 0; }
-.unit-sales-portrait { display: block; align-self: center; justify-self: end; width: 100%; max-width: 160px; height: auto; aspect-ratio: 1; border-radius: 6px; background: #fff; }
+.unit-sales-portrait { display: block; align-self: end; justify-self: end; width: 100%; max-width: 160px; height: auto; aspect-ratio: 1; background: #fff; }
 #map-unit-card .map-card-overview { container-type: inline-size; }
+#map-unit-card .unit-sales-head { row-gap: 6px; }
+#map-unit-card .map-card-topline { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+#map-unit-card .map-card-topline .favorite-button { flex: none; margin: 0; width: 48px; height: 48px; }
+#map-unit-card .unit-sales-copy { align-self: start; }
 #map-unit-card .unit-sales-copy .map-card-price { font-size: clamp(21px,7.5cqi,32px); line-height: 1.18; white-space: nowrap; }
 #map-unit-card .unit-sales-copy .map-price-note { margin-bottom: 8px; }
 #map-unit-card .unit-sales-head + .map-card-actions { margin-top: 0; }

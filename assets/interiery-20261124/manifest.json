@@ -1,11 +1,11 @@
 {
   "revision": "2026-11-24",
   "unitLayouts": {
-    "1": "3+kk",
-    "11": "3+kk",
-    "21": "3+kk",
-    "31": "3+kk",
-    "41": "3+kk",
+    "1": "2,5 + kk",
+    "11": "2,5 + kk",
+    "21": "2,5 + kk",
+    "31": "2,5 + kk",
+    "41": "2,5 + kk",
     "2": "2+kk",
     "3": "2+kk",
     "6": "2+kk",
@@ -55,7 +55,7 @@
   "items": [
     {
       "id": "3kk-interior-01",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Obývací pokoj",
       "title": "Obývací pokoj · pohled 01",
       "tourRoom": "living",
@@ -74,7 +74,7 @@
     },
     {
       "id": "3kk-interior-02",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Obývací pokoj",
       "title": "Obývací pokoj · pohled 02",
       "tourRoom": "living",
@@ -93,7 +93,7 @@
     },
     {
       "id": "3kk-interior-03",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Kuchyně",
       "title": "Kuchyně · pohled 03",
       "tourRoom": "kitchen",
@@ -112,7 +112,7 @@
     },
     {
       "id": "3kk-interior-04",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Předsíň",
       "title": "Předsíň · pohled 04",
       "tourRoom": "hall",
@@ -131,7 +131,7 @@
     },
     {
       "id": "3kk-interior-05",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Předsíň",
       "title": "Předsíň · pohled 05",
       "tourRoom": "hall",
@@ -150,7 +150,7 @@
     },
     {
       "id": "3kk-interior-06",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Předsíň",
       "title": "Předsíň · pohled 06",
       "tourRoom": "hall",
@@ -169,7 +169,7 @@
     },
     {
       "id": "3kk-interior-07",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Pracovna",
       "title": "Pracovna · pohled 07",
       "tourRoom": "komora",
@@ -188,7 +188,7 @@
     },
     {
       "id": "3kk-interior-08",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Pracovna",
       "title": "Pracovna · pohled 08",
       "tourRoom": "komora",
@@ -207,7 +207,7 @@
     },
     {
       "id": "3kk-interior-09",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Ložnice",
       "title": "Ložnice · pohled 09",
       "tourRoom": "bedroom",
@@ -226,7 +226,7 @@
     },
     {
       "id": "3kk-interior-10",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Ložnice",
       "title": "Ložnice · pohled 10",
       "tourRoom": "bedroom",
@@ -245,7 +245,7 @@
     },
     {
       "id": "3kk-bathroom-03",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Koupelna",
       "title": "Koupelna · pohled 03",
       "tourRoom": "bathroom",
@@ -264,7 +264,7 @@
     },
     {
       "id": "3kk-bathroom-04",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Koupelna",
       "title": "Koupelna · pohled 04",
       "tourRoom": "bathroom",
@@ -283,7 +283,7 @@
     },
     {
       "id": "3kk-bathroom-05",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Koupelna",
       "title": "Koupelna · pohled 05",
       "tourRoom": "bathroom",
@@ -302,7 +302,7 @@
     },
     {
       "id": "3kk-bathroom-06",
-      "typology": "3+kk",
+      "typology": "2,5 + kk",
       "room": "Samostatné WC",
       "title": "Samostatné WC · pohled 06",
       "tourRoom": "wc",

@@ -40,7 +40,7 @@
   const cacheLimit=matchMedia('(max-width:768px)').matches?3:6;if(cache.size>cacheLimit)cache.delete(cache.keys().next().value);return promise;
  }
  function defaultView(node){const t=node.target||[node.position[0],node.position[1]+1,node.position[2]],p=node.position;const dx=t[0]-p[0],dy=t[1]-p[1],dz=t[2]-p[2];return {yaw:Math.atan2(dx,dy),pitch:Math.atan2(dz,Math.hypot(dx,dy)),fov:MAX_FOV};}
- function matchingContext(){return contextUnit&&contextUnit.layout.replace('+','')===apartment.id?contextUnit:null;}
+ function matchingContext(){return contextUnit&&window.AlexandraLayouts.mediaId(contextUnit.layout)===apartment.id?contextUnit:null;}
  function updateURL(mode='replace'){if(mode==='none')return;const url=new URL(location.href);url.searchParams.set('byt',apartment.id);url.searchParams.set('mistnost',current.id);const unit=matchingContext();if(unit){url.searchParams.set('jednotka',unit.id);url.searchParams.set('podlazi',unit.floor);}else{url.searchParams.delete('jednotka');url.searchParams.delete('podlazi');}if(url.href!==location.href)history[mode==='push'?'pushState':'replaceState'](null,'',url);}
  function returnToSelection(){const unit=matchingContext();const href=unit?`index.html?podlazi=${unit.floor}&byt=${unit.id}#byty`:'index.html#byty';$$('[data-tour-return]').forEach(link=>{link.href=href;link.setAttribute('aria-label',unit?`Zpět na výběr bytů, byt ${String(unit.id).padStart(2,'0')}`:'Zpět na výběr bytů');});const context=$('#tour-unit-context');if(context){context.hidden=!unit;context.textContent=unit?`Návrh zařízení pro byt ${String(unit.id).padStart(2,'0')} · ${unit.layout}`:'';}const catalog=$('#tour-bathroom-link');if(catalog){catalog.href=`index.html#bathroom-${apartment.id}`;catalog.textContent=`Vybavení koupelny ${apartment.label}`;}}
  function roomCategory(id){return id.includes('kitchen')?'Kuchyně':id.includes('bedroom')?'Ložnice':id.includes('bath')?'Koupelna':id.includes('living')?'Obývací pokoj':null;}
@@ -97,7 +97,7 @@
    for(const link of (node.links||[]).slice(0,2)){const adjacent=apartment.nodes.find(n=>n.id===link.to);if(adjacent?.preview)image(adjacent.preview).catch(()=>{});}
   }catch(error){if(serial!==requestSerial)return;console.warn('Panorama could not be displayed:',error.message);busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent=`Místnost „${node.label}“ se nepodařilo načíst. Zkuste to znovu nebo vyberte jinou místnost.`;}
  }
- function chooseApartment(id,nodeId,historyMode='push'){const a=manifest.apartments.find(x=>x.id===id);if(!a)return false;for(const name of ['map','help'])togglePanel(name,false);navigate(a.nodes.some(n=>n.id===nodeId)?nodeId:a.defaultNode||a.nodes[0].id,a,{historyMode});return true;}
+ function chooseApartment(id,nodeId,historyMode='push'){const a=manifest.apartments.find(x=>x.id===window.AlexandraLayouts.mediaId(id));if(!a)return false;for(const name of ['map','help'])togglePanel(name,false);navigate(a.nodes.some(n=>n.id===nodeId)?nodeId:a.defaultNode||a.nodes[0].id,a,{historyMode});return true;}
  const pointers=new Map();let previousPinch=0;
  canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);canvas.focus({preventScroll:true});pointers.set(e.pointerId,[e.clientX,e.clientY]);previousPinch=0;});
  canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;const previous=pointers.get(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size===2){const p=[...pointers.values()],distance=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);if(previousPinch)move(0,0,(previousPinch-distance)*.004);previousPinch=distance;}else{move(-(e.clientX-previous[0])*.0045,(e.clientY-previous[1])*.0045);}});
@@ -134,7 +134,7 @@
  new ResizeObserver(schedule).observe(stage);
  async function load(){
   busy(true,'Načítání prohlídky…');$('#error-panel').hidden=true;
-  try{const r=await fetch('assets/walkthrough-v3/manifest.json?v=catalog20261020',{cache:'no-cache'});if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button,.direction-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost'),'replace'))chooseApartment('3kk',null,'replace');}
+  try{const r=await fetch('assets/walkthrough-v3/manifest.json?v=pripominky20261125',{cache:'no-cache'});if(!r.ok)throw Error('Manifest');manifest=await r.json();if(!manifest.apartments?.length)throw Error('No apartments');for(const a of manifest.apartments){if(!a.nodes?.length||a.nodes.some(n=>!safePath(n.src)||!safePath(n.thumb)))throw Error('Invalid assets');}try{initGL();}catch(_){gl=null;}controlsEnabled=!!gl;$$('.view-controls button,.direction-controls button').forEach(b=>{if(b.id!=='fullscreen')b.disabled=!gl;});if(!chooseApartment(query.get('byt')||'3kk',query.get('mistnost'),'replace'))chooseApartment('3kk',null,'replace');}
   catch(_){busy(false);$('#error-panel').hidden=false;$('#error-detail').textContent='Prohlídku se nepodařilo načíst. Zkuste stránku obnovit.';}
  }
  load();

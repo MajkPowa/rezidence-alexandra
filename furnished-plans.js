@@ -125,7 +125,7 @@
     $('#furnished-room-legend').innerHTML = `${window.AlexandraUnitLocation?.html(unit) || ''}<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Kuchyňská linka, spotřebiče, volný nábytek a žaluzie nejsou v ceně. <a href="#vybaveni" data-furnished-equipment>Vybavení v ceně bytu</a>.</p>`;
     $('#furnished-plan-pdf').href = pdfFor(unit);
     $('#furnished-plan-pdf').innerHTML = `Půdorys bytu PDF ${icon('arrow-up-right')}`;
-    const tour = unit.id === 51 ? null : { '1+kk': '1kk', '2+kk': '2kk', '3+kk': '3kk' }[unit.layout];
+    const tour = unit.id === 51 ? null : window.AlexandraLayouts.mediaId(unit.layout);
     $('#furnished-plan-tour').href = window.AlexandraDetails?.tourHref?.(unit) || `tour.html?byt=${tour}&jednotka=${unit.id}&podlazi=${unit.floor}#walkthrough`;
     const viewing = $('#furnished-viewing-cta');
     if (viewing) viewing.dataset.viewingUnit = String(unit.id);

@@ -188,7 +188,13 @@
       return;
     }
     const unitButton = event.target.closest('[data-unit]');
-    if (unitButton) openUnit(unitButton.dataset.unit);
+    if (!unitButton) return;
+    if (unitButton.getAttribute('aria-controls') === 'unit-dialog') {
+      const unit = findUnit(unitButton.dataset.unit);
+      if (unit) showUnitDialog(unit, captureFocus(unitButton));
+      return;
+    }
+    openUnit(unitButton.dataset.unit);
   });
   function openUnit(id) {
     const unit = findUnit(id);
@@ -204,10 +210,15 @@
       return true;
     }
     // Keep the unit, its plan and contact details available if the floor data cannot load.
+    showUnitDialog(unit, returnFocus);
+    return true;
+  }
+  function showUnitDialog(unit, returnFocus) {
     currentUnit = unit;
     renderUnitDetail(unit);
-    openDialog($('#unit-dialog'), returnFocus);
-    return true;
+    const dialog = $('#unit-dialog');
+    openDialog(dialog, returnFocus);
+    dialog.scrollTop = 0;
   }
   $$('[data-layout]').forEach(button => button.addEventListener('click', () => setFilters({ layout: button.dataset.layout, all: false })));
   [['floor-filter','floor'], ['area-filter','area'], ['status-filter','status'], ['sort-filter','sort']].forEach(([id,key]) => $(`#${id}`)?.addEventListener('change', event => setFilters({ [key]: event.target.value, all: false })));

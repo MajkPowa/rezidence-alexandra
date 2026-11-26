@@ -269,6 +269,7 @@
         <p class="map-card-price">${price(unit.price)}</p>${Number.isFinite(unit.price) ? '<p class="map-price-note">Cena bez parkování</p>' : ''}</div>${window.AlexandraDetails.salesPortrait}</div>
         <div class="map-card-actions"><a class="button viewing-cta" href="#kontakt" data-viewing-unit="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</a>
           ${window.AlexandraDetails.callSales}
+          <button type="button" class="unit-detail-button" data-unit="${unit.id}" aria-haspopup="dialog" aria-controls="unit-dialog">Detail bytu ${icon('arrow-up-right')}</button>
         </div></div>
         <div class="unit-facts"><div class="map-card-links">${unit.plan ? `<a class="text-link" href="${esc(unit.plan)}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>` : ''}${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a></div>
         <dl class="map-card-data"><div><dt>Dispozice</dt><dd>${esc(unit.layout)}</dd></div><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>${window.AlexandraDetails.areasHTML(unit)}<div><dt>Otápěná plocha</dt><dd>${area(unit.heatedArea)}</dd></div></dl>

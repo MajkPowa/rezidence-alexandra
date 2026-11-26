@@ -36,8 +36,8 @@ html:has(.furnished-plan-dialog[open]){overflow:hidden}
 .furnished-plan-workbench{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:32px;align-items:start}
 .furnished-plan-workbench[data-view=source]{grid-template-columns:1fr}
 .furnished-plan-canvas{position:relative;min-width:0;min-height:220px;background:transparent}
-.furnished-image-plane{position:relative;width:min(100%,max(320px,calc(100dvh - 320px)));margin-inline:auto;line-height:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f2f3ec}
-.furnished-image-plane>img{display:block;width:100%;height:auto;aspect-ratio:1;max-width:100%}
+.furnished-image-plane{position:relative;width:min(100%,max(320px,calc((100dvh - 320px) * var(--plan-ratio,1))));margin-inline:auto;line-height:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f2f3ec}
+.furnished-image-plane>img{display:block;width:100%;height:auto;max-width:100%}
 .furnished-room-pin{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fffefaed;border:1px solid var(--olive);box-shadow:0 2px 6px #253a3220;font:600 12px/1 var(--sans);color:var(--ink);pointer-events:none}
 .furnished-zoom{position:absolute;right:12px;bottom:12px;display:flex;gap:16px;align-items:center;min-height:48px;padding:12px 16px;border:1px solid #95a58e;border-radius:6px;background:var(--surface,#fffefa);color:var(--ink);font:500 14px/1.4 var(--sans);box-shadow:0 2px 6px #253a3210}
 .furnished-zoom:hover{background:var(--cream)}

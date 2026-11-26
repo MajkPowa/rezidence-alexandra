@@ -257,7 +257,7 @@
     const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'detail');
     if (furnished) {
       $('.unit-plan', $('#unit-dialog-content')).outerHTML = furnished;
-      $('.unit-notice', $('#unit-dialog-content')).textContent = 'Zařízený náhled zobrazuje vnitřní prostor bytu. Balkon a rozměry jsou vyznačeny v půdorysu PDF.';
+      $('.unit-notice', $('#unit-dialog-content')).textContent = 'Přesné rozměry bytu jsou vyznačeny v projektovém půdorysu PDF.';
     }
     if (unit.interiorLayout) {
       const photo = roomPhotos(unit.interiorLayout)[0];

@@ -5,7 +5,7 @@
   const format = new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 2 });
   const crown = new Intl.NumberFormat('cs-CZ', {style:'currency', currency:'CZK', maximumFractionDigits:0});
   const formatPrice = value => Number.isFinite(value) ? crown.format(Math.trunc(value)) : 'Cena neuvedena';
-  const salesPortrait = '<img class="unit-sales-portrait" src="assets/projekt-20261124/pavel-dvorak-detail.webp?v=20261125c" width="619" height="780" alt="Pavel Dvořák, prodej bytů" decoding="async">';
+  const salesPortrait = '<img class="unit-sales-portrait" src="assets/podklady-20261126/pavel-dvorak.webp" width="600" height="857" alt="Pavel Dvořák, prodej bytů" decoding="async">';
   const callSales = '<a class="button unit-call" href="tel:+420734358581" aria-label="Zavolat Pavlu Dvořákovi na 734 358 581"><span>Zavolat</span><span class="unit-call-number">734 358 581</span></a>';
   const area = value => typeof value === 'number' && Number.isFinite(value) ? `${format.format(value)} m²` : 'Výměru upřesníme';
   const featureArea = (value, kind) => value === 0 ? (kind === 'cellar' ? 'Bez sklepa' : 'Bez balkonu') : area(value);

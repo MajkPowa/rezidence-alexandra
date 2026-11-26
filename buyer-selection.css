@@ -244,7 +244,7 @@ body.dr-brand #map-unit-card {
 .buyer-team-links a:hover { color: var(--dr-red); }
 .unit-sales-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,34%); gap: 8px; align-items: end; background: white; }
 .unit-sales-copy { min-width: 0; }
-.unit-sales-portrait { display: block; align-self: end; justify-self: end; width: 100%; max-width: 160px; height: auto; background: #fff; }
+.unit-sales-portrait { display: block; transform: scaleX(-1); align-self: end; justify-self: end; width: 100%; max-width: 160px; height: auto; background: #fff; }
 #map-unit-card .map-card-overview, #map-unit-card .unit-summary { container-type: inline-size; }
 #map-unit-card .unit-summary .unit-sales-portrait { width: min(100%, 136px); max-height: 158px; object-fit: contain; object-position: right bottom; }
 #map-unit-card .unit-facts { margin-top: 16px; }

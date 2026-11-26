@@ -16,20 +16,15 @@
   const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
   const text = (value, max = 400) => typeof value === 'string' && value.trim().length > 0 && value.length <= max;
   const variants = new Map(), assignments = new Map();
-  let currentUnit = null, view = '3d', returnFocus = null, globalNote = '', imageRequest = 0;
+  const planDirectory = 'assets/podklady-20261126';
+  let currentUnit = null, view = '3d', returnFocus = null, imageRequest = 0;
 
   function validateManifest(data) {
-    if (!object(data) || data.version !== 1 || !object(data.units) || !object(data.variants)) throw new Error('Neplatný přehled zařízených půdorysů.');
-    if (data.revision != null && data.revision !== 'catalog-20261020') throw new Error('Neplatná revize zařízených půdorysů.');
-    const revisionSuffix = data.revision === 'catalog-20261020' ? '-catalog-20261020' : '';
+    if (!object(data) || data.version !== 2 || !object(data.units) || !object(data.variants)) throw new Error('Neplatný přehled zařízených půdorysů.');
     const checkedVariants = new Map(), checkedAssignments = new Map();
     for (const [id, raw] of Object.entries(data.variants)) {
-      if (!/^variant-(0[1-9]|10)$/.test(id) || !object(raw) || raw.id !== id || raw.sourceUnit !== Number(id.slice(-2))) throw new Error('Neplatná dispoziční rodina.');
-      const expectedImage = `assets/furnished-plans-v2/${id}${revisionSuffix}.webp`;
-      const expectedThumb = `assets/furnished-plans-v2/${id}${revisionSuffix}-thumb.webp`;
-      const expectedFull = `assets/furnished-plans-v2/${id}${revisionSuffix}-4k.webp`;
-      if (raw.fullResolution !== expectedFull || raw.renderer !== 'Blender Cycles') throw new Error('Neplatný 4K náhled.');
-      if (raw.image !== expectedImage || (raw.thumbnail != null && raw.thumbnail !== expectedThumb && raw.thumbnail !== expectedImage)) throw new Error('Neplatná cesta náhledu.');
+      if (!/^byt-\d{2}$/.test(id) || !object(raw) || ![raw.width,raw.height].every(n => Number.isSafeInteger(n) && n > 0)) throw new Error('Neplatný izometrický půdorys.');
+      const base = `${planDirectory}/${id}`;
       if (!Array.isArray(raw.rooms) || !raw.rooms.length || raw.rooms.length > 20) throw new Error('Chybí legenda místností.');
       const roomNumbers = new Set();
       const rooms = raw.rooms.map(room => {
@@ -38,17 +33,15 @@
         const normalized = value => Number.isFinite(value) && value >= 0 && value <= 1;
         return Object.freeze({ number: room.number, label: room.label, ...(normalized(room.x) && normalized(room.y) ? { x: room.x, y: room.y } : {}) });
       });
-      checkedVariants.set(id, Object.freeze({ id, sourceUnit: raw.sourceUnit, image: expectedImage, fullResolution: expectedFull, thumbnail: raw.thumbnail || expectedImage, rooms: Object.freeze(rooms), note: text(raw.note) ? raw.note : 'Návrh zařízení · dispozice dle projektových podkladů.' }));
+      checkedVariants.set(id, Object.freeze({ image: base + '.webp', fullResolution: base + '-full.webp', thumbnail: base + '-thumb.webp', width: raw.width, height: raw.height, rooms: Object.freeze(rooms) }));
     }
     for (const [unitId, variantId] of Object.entries(data.units)) {
       if (!/^[1-9]\d?$/.test(unitId)) throw new Error('Neplatné číslo jednotky.');
       const unit = findUnit(Number(unitId));
-      if (!unit || unit.id < 1 || unit.id > 50 || typeof variantId !== 'string' || !checkedVariants.has(variantId)) throw new Error('Nepotvrzené přiřazení půdorysu.');
-      const family = `variant-${String((unit.id - 1) % 10 + 1).padStart(2, '0')}`;
-      if (variantId !== family) throw new Error('Náhled neodpovídá ověřené rodině bytu.');
+      if (!unit || !checkedVariants.has(variantId)) throw new Error('Nepotvrzené přiřazení půdorysu.');
       checkedAssignments.set(unit.id, variantId);
     }
-    return { checkedVariants, checkedAssignments, note: text(data.note, 600) ? data.note : '' };
+    return { checkedVariants, checkedAssignments };
   }
 
   const variantFor = unit => unit && variants.get(assignments.get(unit.id));
@@ -61,11 +54,11 @@
     if (!variant) return '';
     if (scope === 'selection') {
       return `<button type="button" class="unit-plan-tile" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog">
-        <img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Návrh zařízení bytu ${unit.id}" loading="lazy" decoding="async">
+        <img src="${escape(variant.thumbnail)}" width="${variant.width}" height="${variant.height}" alt="Izometrický půdorys bytu ${unit.id}" loading="lazy" decoding="async">
         <span><strong>Zařízený půdorys</strong><span>Byt ${unit.id} · ${escape(unit.layout)}</span><span class="plan-tile-action">Zobrazit ve 3D ${icon('arrow-up-right')}</span></span></button>`;
     }
     const detail = scope === 'detail';
-    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="640" height="640" alt="Typový návrh zařízení bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Návrh zařízení bytu</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
+    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="${variant.width}" height="${variant.height}" alt="Izometrický půdorys bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Návrh zařízení bytu</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
   }
 
   function watchImage(image, source = false) {
@@ -108,7 +101,7 @@
       watchImage($('.furnished-source-sheet>img'), true);
       return;
     }
-    $('#furnished-plan-canvas').innerHTML = `<div class="furnished-image-plane"><img src="${escape(variant.image)}" srcset="${escape(variant.thumbnail)} 640w, ${escape(variant.image)} 2200w" sizes="(max-width:900px) calc(100vw - 64px), 680px" width="2200" height="2200" alt="Zařízený 3D půdorys dispoziční rodiny bytu ${unit.id}; návrh interiéru bez balkonů" decoding="async" data-furnished-full-image>${variant.rooms.filter(room => own(room, 'x')).map(room => `<span class="furnished-room-pin" style="left:${(room.x * 100).toFixed(3)}%;top:${(room.y * 100).toFixed(3)}%" aria-hidden="true">${room.number}</span>`).join('')}<a class="furnished-zoom" href="${escape(variant.fullResolution)}" target="_blank" rel="noopener" aria-label="Otevřít 4K půdorys bytu ${unit.id} v nové záložce">Otevřít 4K ${icon('arrow-up-right')}</a></div><div class="furnished-image-error" hidden role="status"><p>Náhled se nepodařilo načíst.</p><button type="button" data-furnished-view="source">Zobrazit zdrojový půdorys ${icon('arrow-up-right')}</button></div>`;
+    $('#furnished-plan-canvas').innerHTML = `<div class="furnished-image-plane" style="--plan-ratio:${variant.width / variant.height}"><img src="${escape(variant.image)}" srcset="${escape(variant.thumbnail)} 640w, ${escape(variant.image)} 1200w, ${escape(variant.fullResolution)} ${variant.width}w" sizes="(max-width:900px) calc(100vw - 64px), 680px" width="${variant.width}" height="${variant.height}" alt="Izometrický půdorys bytu ${unit.id}" decoding="async" data-furnished-full-image>${variant.rooms.filter(room => own(room, 'x')).map(room => `<span class="furnished-room-pin" style="left:${(room.x * 100).toFixed(3)}%;top:${(room.y * 100).toFixed(3)}%" aria-hidden="true">${room.number}</span>`).join('')}<a class="furnished-zoom" href="${escape(variant.fullResolution)}" target="_blank" rel="noopener" aria-label="Otevřít půdorys bytu ${unit.id} v plném rozlišení ${variant.width} × ${variant.height} px">Plné rozlišení ${icon('arrow-up-right')}</a></div><div class="furnished-image-error" hidden role="status"><p>Náhled se nepodařilo načíst.</p><button type="button" data-furnished-view="source">Zobrazit zdrojový půdorys ${icon('arrow-up-right')}</button></div>`;
     watchImage($('[data-furnished-full-image]'));
   }
 
@@ -193,14 +186,13 @@
     $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(currentUnit).label || 'Dostupnost na dotaz';
   });
 
-  const ready = fetch('assets/furnished-plans-v2/manifest.json?v=catalog20261020', {cache:'no-cache'}).then(response => {
+  const ready = fetch(`${planDirectory}/manifest.json`, {cache:'no-cache'}).then(response => {
     if (!response.ok) throw new Error('Zařízené půdorysy nejsou dostupné.');
     return response.json();
   }).then(data => {
     const checked = validateManifest(data);
     checked.checkedVariants.forEach((value, key) => variants.set(key, value));
     checked.checkedAssignments.forEach((value, key) => assignments.set(key, value));
-    globalNote = checked.note;
     document.dispatchEvent(new CustomEvent('alexandra:furnished-ready'));
     return true;
   }).catch(error => {

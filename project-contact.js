@@ -125,7 +125,7 @@
     portrait.src = developer.portrait;
   }
   if (typeof fetch === 'function') {
-    fetch('data/project-contacts.json?v=hebelka20261125c', {cache:'no-cache'})
+    fetch('data/project-contacts.json?v=podklady20261126', {cache:'no-cache'})
       .then(response => response.ok ? response.json() : null)
       .then(applyDeveloperContact)
       .catch(() => { /* The verified logo and current sales contact remain usable. */ });

@@ -7,7 +7,7 @@
   widget.id = 'project-contact-widget';
   widget.className = 'project-contact-widget';
   widget.setAttribute('aria-label', 'Dům realit — kontakt k Rezidenci Alexandra');
-  widget.innerHTML = `<button type="button" class="project-contact-trigger viewing-cta" aria-haspopup="dialog" aria-controls="project-contact-dialog" aria-expanded="false"><img src="assets/dumrealit/dumrealit-logo.svg" alt="Dům realit" width="60" height="53"/><span class="project-contact-trigger-label"><span class="project-contact-brand-name">Dům realit</span><strong>Domluvit prohlídku</strong></span>${arrow}</button>`;
+  widget.innerHTML = `<button type="button" class="project-contact-trigger viewing-cta" aria-haspopup="dialog" aria-controls="project-contact-dialog" aria-expanded="false">Domluvit prohlídku</button>`;
   const trigger = widget.querySelector('button');
   const dialog = document.createElement('dialog');
   dialog.id = 'project-contact-dialog';
@@ -15,7 +15,7 @@
   dialog.setAttribute('aria-labelledby', 'project-contact-title');
   const contactHref = document.querySelector('#kontakt') ? '#kontakt' : 'index.html#kontakt';
   const mail = 'mailto:dvorak@dumrealit.cz?subject=' + encodeURIComponent('Prohlídka bytu — Rezidence Alexandra');
-  dialog.innerHTML = `<button type="button" class="project-contact-close" aria-label="Zavřít kontakt" autofocus><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 6 12 12M18 6 6 18"/></svg></button><img class="project-contact-logo" src="assets/dumrealit/dumrealit-logo.svg" alt="Dům realit" width="112" height="98"/><p class="project-contact-project">Rezidence Alexandra</p><h2 id="project-contact-title">Domluvit prohlídku</h2><p class="project-contact-intro">Zavolejte nebo napište a domluvte si termín prohlídky.</p><div class="project-contact-person"><strong>Pavel Dvořák</strong><span>Informace k bytům a prohlídky</span><a href="tel:+420734358581">734 358 581</a><a href="mailto:dvorak@dumrealit.cz">dvorak@dumrealit.cz</a></div><a class="button viewing-cta project-contact-mail" href="${mail}">Napsat ohledně prohlídky ${arrow}</a><a class="project-contact-details" href="${contactHref}">Kontaktní formulář ${arrow}</a>`;
+  dialog.innerHTML = `<button type="button" class="project-contact-close" aria-label="Zavřít kontakt" autofocus><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 6 12 12M18 6 6 18"/></svg></button><img class="project-contact-logo" src="assets/dumrealit/dumrealit-logo.svg" alt="Dům realit" width="112" height="98"/><p class="project-contact-project">Rezidence Alexandra</p><h2 id="project-contact-title">Domluvit prohlídku</h2><p class="project-contact-intro">Zavolejte nebo napište a domluvte si termín prohlídky.</p><div class="project-contact-person"><strong>Pavel Dvořák</strong><span>Informace k bytům a prohlídky</span><a href="tel:+420734358581">734 358 581</a><a href="mailto:dvorak@dumrealit.cz">dvorak@dumrealit.cz</a></div><a class="button viewing-cta project-contact-mail" href="${mail}">Napsat ohledně prohlídky ${arrow}</a><p class="contact-privacy-note">Odesláním potvrzujete, že jste se seznámili s <a href="ochrana-osobnich-udaju.html" target="_blank" rel="noopener">informacemi o zpracování osobních údajů</a>.</p><a class="project-contact-details" href="${contactHref}">Kontaktní formulář ${arrow}</a>`;
   document.body.append(widget, dialog);
   document.body.classList.add('has-project-contact');
   let frame = 0;
@@ -101,24 +101,12 @@
     portrait.height = 112;
     portrait.decoding = 'async';
     portrait.addEventListener('load', () => {
-      if (!portrait.naturalWidth || widget.classList.contains('has-developer-portrait')) return;
+      if (!portrait.naturalWidth || dialog.querySelector('.project-contact-identity')) return;
       const logo = dialog.querySelector('.project-contact-logo');
       const identity = document.createElement('div');
       identity.className = 'project-contact-identity';
       logo.replaceWith(identity);
       identity.append(logo,portrait);
-      const widgetLogo = trigger.querySelector('img');
-      const media = document.createElement('span');
-      media.className = 'project-contact-media';
-      const compact = portrait.cloneNode();
-      compact.className = 'project-contact-portrait-compact';
-      compact.width = 34;
-      compact.height = 52;
-      widgetLogo.replaceWith(media);
-      widgetLogo.src = 'assets/dumrealit/dumrealit-mark.svg';
-      widgetLogo.classList.add('project-contact-brand-badge');
-      media.append(compact,widgetLogo);
-      widget.classList.add('has-developer-portrait');
       schedule();
     }, {once:true});
     // Missing images leave the existing logo-only contact completely intact.

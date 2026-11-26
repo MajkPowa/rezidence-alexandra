@@ -113,7 +113,7 @@
     returnFocus = { element: trigger, scope: trigger?.closest?.('#unit-dialog, #map-unit-card')?.id, unit: unit.id };
     $('#furnished-plan-title').textContent = `Byt ${String(unit.id).padStart(2, '0')}`;
     $('#furnished-plan-meta').innerHTML = `<span class="icon-label">${icon('plan', 'art')} <span>${escape(unit.layout)}</span></span> · ${escape(floorLabel(unit.floor))} · <span class="icon-label">${icon('area', 'art')} <span>${escape(number.format(unit.area))} m²</span></span>`;
-    $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(unit).label || 'Dostupnost na dotaz';
+    $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(unit).label || 'Dostupnost se ověřuje';
     $('#furnished-plan-price').textContent = window.AlexandraDetails.formatPrice(unit.price);
     $('#furnished-room-legend').innerHTML = `${window.AlexandraUnitLocation?.html(unit) || ''}<p class="furnished-legend-title">MÍSTNOSTI V NÁVRHU</p><ol>${variant.rooms.map(room => `<li><span class="furnished-legend-number">${room.number}</span><span>${escape(room.label)}</span></li>`).join('')}</ol><p class="furnished-legend-note">Kuchyňská linka, spotřebiče, volný nábytek a žaluzie nejsou v ceně. <a href="#vybaveni" data-furnished-equipment>Vybavení v ceně bytu</a>.</p>`;
     $('#furnished-plan-pdf').href = pdfFor(unit);
@@ -183,7 +183,7 @@
 
   document.addEventListener('alexandra:inventory-change', () => {
     if (!currentUnit || !dialog.open) return;
-    $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(currentUnit).label || 'Dostupnost na dotaz';
+    $('#furnished-plan-status').textContent = window.AlexandraInventory?.status(currentUnit).label || 'Dostupnost se ověřuje';
   });
 
   const ready = fetch(`${planDirectory}/manifest.json`, {cache:'no-cache'}).then(response => {

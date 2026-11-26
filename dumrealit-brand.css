@@ -244,3 +244,70 @@ body.dr-brand :is(.button-outline,.button-ghost):hover{background:var(--dr-red)!
 @media(max-width:700px){body.dr-brand .project-contact-media{width:28px;flex:0 0 28px}body.dr-brand .project-contact-media .project-contact-brand-badge{display:none}body.dr-brand .project-contact-portrait-compact{width:28px;height:36px;flex:0 0 28px}}
 @media(max-width:480px){body.dr-brand .unit-actions{flex-wrap:wrap}body.dr-brand .unit-overview .unit-actions>.button{flex:1 1 100%;width:100%;min-width:0;white-space:normal;justify-content:center}}
 @media(prefers-reduced-motion:reduce){body.dr-brand{scroll-behavior:auto}body.dr-brand :is(a,button,input,select,textarea){transition:none!important}}
+
+body.dr-brand .project-contact-widget {
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  height: 48px;
+}
+body.dr-brand .project-contact-widget .project-contact-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+body.dr-brand .contact-privacy-note {
+  margin: 12px 0;
+  font: 400 14px/1.55 var(--sans);
+}
+body.dr-brand .contact-privacy-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+body.dr-brand #project-contact-dialog .contact-privacy-note { color: var(--dr-muted); }
+body.dr-brand .site-footer .footer-links { flex-wrap: wrap; }
+body.dr-brand .project-subfooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+}
+body.dr-brand .footer-project-nav {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 20px;
+  box-shadow: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  transform: none;
+}
+body.dr-brand .footer-project-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 0;
+  font: 500 14px/1.4 var(--sans);
+  color: var(--dr-ink);
+  text-decoration: none;
+}
+body.dr-brand .footer-project-nav a:hover { color: var(--dr-red); text-decoration: underline; }
+body.dr-brand .project-subfooter .dr-partners { flex-basis: 100%; margin-top: 0; }
+body.privacy-page { margin: 0; font: 400 17px/1.65 var(--sans); background: var(--dr-paper); color: var(--dr-ink); }
+.privacy-header { display: flex; align-items: center; padding: 20px max(5vw, 20px); background: var(--dr-ink); }
+body.privacy-page .privacy-header .dr-lockup { color: #fff; text-decoration: none; }
+body.privacy-page .privacy-header .dr-project-name { color: #fff; }
+.privacy-page main { max-width: 46rem; margin: auto; padding: clamp(32px, 6vw, 72px) 20px; }
+.privacy-page h1 { font: 650 clamp(30px, 5vw, 52px)/1.13 var(--sans); letter-spacing: -.025em; margin: 0 0 32px; }
+.privacy-page h2 { font: 600 clamp(21px, 3vw, 27px)/1.25 var(--sans); margin: 28px 0 10px; }
+.privacy-page main p { margin: 0 0 14px; }
+.privacy-page main a { color: var(--dr-red-hover); text-underline-offset: .18em; overflow-wrap: anywhere; }
+.privacy-page .privacy-back { display: inline-block; margin-top: 16px; }
+.privacy-page a:focus-visible { outline: 3px solid var(--dr-red); outline-offset: 4px; }

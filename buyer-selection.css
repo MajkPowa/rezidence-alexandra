@@ -264,7 +264,7 @@ body.dr-brand #map-unit-card {
   #map-unit-card .unit-photos { padding-block-start: 18px; }
 }
 #map-unit-card .unit-sales-head { row-gap: 6px; }
-#map-unit-card .map-card-topline { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+#map-unit-card .map-card-topline { grid-column: 1 / -1; display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
 #map-unit-card .map-card-topline .favorite-button { flex: none; margin: 0; width: 48px; height: 48px; }
 #map-unit-card .unit-sales-copy { align-self: start; }
 #map-unit-card .unit-sales-copy .map-card-price { font-size: clamp(21px,7.5cqi,32px); line-height: 1.18; white-space: nowrap; }

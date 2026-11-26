@@ -13,7 +13,7 @@
   let saved = [];
   try { const stored = JSON.parse(localStorage.getItem(storageKey) || '[]'); if (Array.isArray(stored)) saved = [...new Set(stored.map(id => id === 53 ? 51 : id))].filter(id => units.some(unit => unit.id === id)).slice(0,4); } catch (_) { /* Browser may restrict local storage. */ }
   const state = { layout: 'all', floor: 'all', area: 'all', status: 'all', sort: 'floor', favorites: false, all: false };
-  const statusOf = unit => window.AlexandraInventory?.status(unit) || { key: 'unknown', label: 'Dostupnost na dotaz', shortLabel: 'Na dotaz' };
+  const statusOf = unit => window.AlexandraInventory?.status(unit) || { key: 'unknown', label: 'Dostupnost se ověřuje', shortLabel: 'Neověřeno' };
   const statusBadge = unit => { const status = statusOf(unit); return `<span class="status-badge status-${status.key}" aria-label="Dostupnost bytu ${unit.id}: ${escape(status.label)}"><span class="availability-dot" aria-hidden="true"></span>${escape(status.label)}</span>`; };
   const findUnit = id => { const value = typeof id === 'number' ? id : typeof id === 'string' && /^\d+$/.test(id) ? Number(id) : NaN; return Number.isSafeInteger(value) ? units.find(unit => unit.id === value) : undefined; };
   let currentUnit = null;
@@ -84,7 +84,6 @@
     dialog.addEventListener('click', event => { if (event.target !== dialog) return; const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); });
     dialog.addEventListener('close', () => restoreFocus(dialogFocus.get(dialog)));
   });
-  $('#privacy-open').addEventListener('click', () => openDialog($('#privacy-dialog')));
 
   const interiorSequences = {};
   for (const [type, layout] of Object.entries(window.AlexandraLayouts.labels)) {
@@ -124,7 +123,7 @@
   function snapshot() { return { filters: { ...state }, filteredIds: filteredUnits().map(unit => unit.id), savedIds: [...saved] }; }
   function setFilters(patch = {}) {
     if (!patch || typeof patch !== 'object' || Array.isArray(patch)) return snapshot();
-    const allowed = { layout: ['all', '1+kk', '2+kk', '2,5+kk'], floor: ['all', '1', '2', '3', '4', '5', '6'], area: ['all', 'small', 'medium', 'large'], status: ['all', 'available', 'reserved', 'sold', 'unknown'], sort: ['floor', 'price-up', 'price-down', 'area-up', 'area-down'] };
+    const allowed = { layout: ['all', '1+kk', '2+kk', '2,5+kk'], floor: ['all', '1', '2', '3', '4', '5', '6'], area: ['all', 'small', 'medium', 'large'], status: ['all', 'available', 'reserved', 'sold'], sort: ['floor', 'price-up', 'price-down', 'area-up', 'area-down'] };
     let filterChanged = false;
     Object.entries(allowed).forEach(([key, values]) => {
       if (!Object.prototype.hasOwnProperty.call(patch, key)) return;

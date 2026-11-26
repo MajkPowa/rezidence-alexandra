@@ -1,10 +1,10 @@
 (() => {
   'use strict';
   const statuses = {
-    available: { key: 'available', label: 'Volný', shortLabel: 'Volný' },
+    available: { key: 'available', label: 'Dostupný', shortLabel: 'Dostupný' },
     reserved: { key: 'reserved', label: 'Rezervovaný', shortLabel: 'Rezervovaný' },
     sold: { key: 'sold', label: 'Prodáno', shortLabel: 'Prodáno' },
-    unknown: { key: 'unknown', label: 'Dostupnost na dotaz', shortLabel: 'Na dotaz' }
+    unknown: { key: 'unknown', label: 'Dostupnost se ověřuje', shortLabel: 'Neověřeno' }
   };
   let inventory = { updatedAt: null, units: {}, parking: {} };
   let pending = null;

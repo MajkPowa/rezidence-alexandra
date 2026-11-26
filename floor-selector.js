@@ -119,14 +119,28 @@
     updateBuildingSummary();
   }
 
+  function availabilityCounts(list) {
+    const counts = {available:0, reserved:0, sold:0};
+    for (const unit of list) {
+      const key = status(unit).key;
+      if (Object.hasOwn(counts, key)) counts[key]++;
+    }
+    return counts;
+  }
+  const stateWords = {
+    available: ['dostupný', 'dostupné', 'dostupných'],
+    reserved: ['rezervovaný', 'rezervované', 'rezervovaných'],
+    sold: ['prodaný', 'prodané', 'prodaných']
+  };
+  function countedLabel(state, count) {
+    return stateWords[state][count === 1 ? 0 : count >= 2 && count <= 4 ? 1 : 2];
+  }
   function updateBuildingSummary() {
     root.querySelectorAll('[data-floor-summary]').forEach(target => {
       const floor = Number(target.dataset.floorSummary), list = units.filter(u => u.floor === floor);
-      const counts = {available:0,reserved:0,sold:0,unknown:0};
-      list.forEach(u => counts[status(u).key]++);
-      const labels = {available:'volné',reserved:'rezervované',sold:'prodané',unknown:'na dotaz'};
-      target.innerHTML = Object.entries(counts).filter(([,count])=>count).map(([key,count])=>`<span class="building-status-count status-${key}"><i aria-hidden="true"></i>${count} <span>${labels[key]}</span></span>`).join('');
-      target.parentElement.setAttribute('aria-label', `${floorLabel(floor)}: ${Object.entries(counts).filter(([,count])=>count).map(([key,count])=>`${count} ${labels[key]}`).join(', ')}`);
+      const counts = availabilityCounts(list);
+      target.innerHTML = Object.entries(counts).filter(([,count])=>count).map(([key,count])=>`<span class="building-status-count status-${key}"><i aria-hidden="true"></i>${count} <span>${countedLabel(key,count)}</span></span>`).join('');
+      target.parentElement.setAttribute('aria-label', `${floorLabel(floor)}: ${Object.entries(counts).filter(([,count])=>count).map(([key,count])=>`${count} ${countedLabel(key,count)}`).join(', ')}`);
     });
   }
 
@@ -161,12 +175,6 @@
   function drawFloor() {
     const f = floorData();
     $('#map-floor-title').textContent = `${floorLabel(activeFloor)}`;
-    $('#map-floor-pdf').href = `plans/byty-20261124/podlazi-${activeFloor}.pdf`;
-    $('#map-floor-pdf').setAttribute('aria-label', `Půdorys podlaží: ${floorLabel(activeFloor)}`);
-    $('#map-floor-pdf').title = `Půdorys ${floorLabel(activeFloor)}`;
-    $('#map-floor-pdf').innerHTML = `Půdorys podlaží ${icon('arrow-up-right')}`;
-    const originalLink = $('#map-floor-original');
-    if (originalLink) { originalLink.href = `plans/floor-${activeFloor}.pdf`; originalLink.title = window.AlexandraFloorLabels.source(activeFloor); originalLink.setAttribute('aria-label', `Původní projektový výkres: ${window.AlexandraFloorLabels.source(activeFloor)}`); }
     const normalizedOutline = normalized(f,f.outline);
     $('#floor-canvas').innerHTML = `<title>Půdorys · ${floorLabel(activeFloor)} · výběr bytů</title><g class="floor-projection" style="transform:${floorTransform()}"><path class="floor-sheet" d="${path(normalizedOutline)}"/><image class="floor-linework" href="${esc(f.mapImage || f.image)}" width="1000" height="${f.height*1000/f.width}"/>${f.units.map(p => {
       const u=units.find(unit=>unit.id===p.id);
@@ -176,7 +184,6 @@
     fitFloorViewport();
     const compass = $('#map-floor-orientation');
     if (compass) compass.innerHTML=orientationHTML();
-    $('#map-floor-description').textContent = activeFloor === 1 ? 'Byt 51 · přízemí' : 'Vyberte byt přímo v půdorysu.';
     $('#map-floor-special').hidden = true;
     const picker = unitPicker;
     if (picker) picker.innerHTML = '<option value="">Vyberte byt</option>' + units.filter(u => u.floor === activeFloor).map(u => `<option value="${u.id}">Byt ${String(u.id).padStart(2,'0')} · ${esc(u.layout)} · ${area(u.area)}</option>`).join('');
@@ -208,8 +215,7 @@
       picker.value = selectedId === null ? '' : String(selectedId);
       picker.disabled = visible.length === 0;
     }
-    const counts={available:0,reserved:0,sold:0,unknown:0};
-    floorUnits.forEach(u=>counts[status(u).key]++);
+    const counts=availabilityCounts(floorUnits);
     Object.keys(counts).forEach(key=>$('#legend-'+key).textContent=String(counts[key]));
     updateBuildingSummary();
   }
@@ -263,7 +269,7 @@
     card.innerHTML = `<div class="unit-detail-back"><button type="button" class="pick-back" data-pick-back="2">${icon('arrow-left')}Zpět na výběr jednotky</button></div>
       <div class="unit-photos">${roomGallery(unit)}${plan}${galleryLink}</div>
       <div class="map-card-overview">
-        <div class="unit-summary"><div class="unit-sales-head"><div class="map-card-topline"><p class="eyebrow">Vybraný byt</p><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
+        <div class="unit-summary"><div class="unit-sales-head"><div class="map-card-topline"><button type="button" class="favorite-button${saved?' saved':''}" data-save="${unit.id}" aria-pressed="${saved}" aria-label="${saved?'Odebrat':'Uložit'} byt ${unit.id}">${icon(saved?'favorite-filled':'favorite')}</button></div>
         <div class="unit-sales-copy"><h3 id="picked-unit-title" tabindex="-1">Byt ${String(unit.id).padStart(2,'0')}</h3>${badge(unit)}
         <p class="map-unit-meta">${esc(unit.layout)} / ${esc(floorLabel(unit.floor))}${details.locationNote?' · '+esc(details.locationNote):''}</p>
         <p class="map-card-price">${price(unit.price)}</p>${Number.isFinite(unit.price) ? '<p class="map-price-note">Cena bez parkování</p>' : ''}</div>${window.AlexandraDetails.salesPortrait}</div>
@@ -439,9 +445,6 @@
       const direction = directionResponse.ok ? await directionResponse.json() : null;
       if (direction?.confirmed === true && Number.isFinite(direction.northDegrees) && direction.northDegrees >= 0 && direction.northDegrees < 360 && typeof direction.source === 'string' && direction.source.trim()) orientation = {confirmed:true,northDegrees:direction.northDegrees};
     } catch (_) { /* Pending orientation never blocks the apartment selection. */ }
-    if (!$('#map-floor-original')) {
-      const originalLink = document.createElement('a'); originalLink.id = 'map-floor-original'; originalLink.className = 'floor-source-original'; originalLink.target = '_blank'; originalLink.rel = 'noopener'; originalLink.innerHTML = `Původní projektový výkres ${icon('arrow-up-right')}`; $('#map-floor-pdf').insertAdjacentElement('afterend', originalLink);
-    }
     if (!$('#map-floor-orientation')) {
       const compass=document.createElement('div');compass.id='map-floor-orientation';
       $('#floor-canvas').insertAdjacentElement('beforebegin',compass);
@@ -449,7 +452,7 @@
     const picker = document.createElement('label');
     picker.className='map-unit-picker';
     picker.htmlFor='map-unit-select';
-    picker.innerHTML='Nebo vyberte byt ze seznamu<select id="map-unit-select" aria-describedby="map-floor-description"></select>';
+    picker.innerHTML='Nebo vyberte byt ze seznamu<select id="map-unit-select"></select>';
     $('#floor-canvas').insertAdjacentElement('afterend',picker);
     unitPicker=picker.querySelector('select');
     $('#map-status-live').setAttribute('aria-atomic','true');

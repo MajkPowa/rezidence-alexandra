@@ -6,6 +6,7 @@
   const widget = document.createElement('aside');
   widget.id = 'project-contact-widget';
   widget.className = 'project-contact-widget';
+  widget.inert = true;
   widget.setAttribute('aria-label', 'Dům realit — kontakt k Rezidenci Alexandra');
   widget.innerHTML = `<button type="button" class="project-contact-trigger viewing-cta" aria-haspopup="dialog" aria-controls="project-contact-dialog" aria-expanded="false">Domluvit prohlídku</button>`;
   const trigger = widget.querySelector('button');
@@ -19,6 +20,7 @@
   document.body.append(widget, dialog);
   document.body.classList.add('has-project-contact');
   let frame = 0;
+  let scrolling = 0;
   function externalBlock() {
     const hero = document.getElementById('residence-journey');
     if (hero && hero.getBoundingClientRect().bottom >= innerHeight - 100) return 'hero';
@@ -30,12 +32,8 @@
   }
   function coversControl() {
     if (!document.elementsFromPoint) return false;
-    const css = getComputedStyle(widget);
-    const width = Number.parseFloat(css.width), height = Number.parseFloat(css.height);
-    const right = Number.parseFloat(css.right), bottom = Number.parseFloat(css.bottom);
-    if (![width,height,right,bottom].every(Number.isFinite)) return false;
-    const left = document.documentElement.clientWidth - right - width;
-    const top = innerHeight - bottom - height;
+    const {left, top, width, height} = widget.getBoundingClientRect();
+    if (!width || !height) return false;
     for (const x of [left+2,left+width/2,left+width-2]) {
       for (const y of [top+2,top+height/2,top+height-2]) {
         for (const element of document.elementsFromPoint(x,y)) {
@@ -51,8 +49,8 @@
     frame = 0;
     const blocked = externalBlock();
     if (blocked && dialog.open) dialog.close();
-    const reason = blocked || (dialog.open ? 'contact-dialog' : coversControl() ? 'controls' : '');
-    if (widget.hidden !== Boolean(reason)) widget.hidden = Boolean(reason);
+    const reason = blocked || (dialog.open ? 'contact-dialog' : coversControl() ? 'controls' : scrolling && widget.inert ? 'scroll' : '');
+    if (widget.inert !== Boolean(reason)) widget.inert = Boolean(reason);
     if (widget.dataset.hiddenReason !== reason) widget.dataset.hiddenReason = reason;
     trigger.setAttribute('aria-expanded', String(dialog.open));
   }
@@ -70,7 +68,7 @@
   dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
   dialog.addEventListener('close', () => {
     sync();
-    if (!externalBlock() && !widget.hidden) trigger.focus({preventScroll:true});
+    if (!externalBlock() && !widget.inert) trigger.focus({preventScroll:true});
   });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
@@ -87,8 +85,15 @@
     if (event.shiftKey && (document.activeElement === first || !dialog.contains(document.activeElement))) { event.preventDefault(); last?.focus(); }
     else if (!event.shiftKey && (document.activeElement === last || !dialog.contains(document.activeElement))) { event.preventDefault(); first?.focus(); }
   }, true);
-  new MutationObserver(schedule).observe(document.body, {subtree:true,attributes:true,attributeFilter:['open','class','hidden','inert']});
-  window.addEventListener('scroll', schedule, {passive:true});
+  new MutationObserver(records => {
+    if (records.some(record => !widget.contains(record.target))) schedule();
+  }).observe(document.body, {subtree:true,attributes:true,attributeFilter:['open','class','hidden','inert']});
+  if (typeof ResizeObserver === 'function') new ResizeObserver(schedule).observe(widget);
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrolling);
+    scrolling = setTimeout(() => { scrolling = 0; schedule(); }, 160);
+    schedule();
+  }, {passive:true});
   window.addEventListener('resize', schedule);
   document.addEventListener('fullscreenchange', schedule);
   function applyDeveloperContact(value) {

@@ -34,11 +34,26 @@
     const details = get(unit);
     return `<div><dt>Balkon</dt><dd>${featureArea(details.balconyArea, 'balcony')}</dd></div><div><dt>Sklep</dt><dd>${featureArea(details.cellarArea, 'cellar')}</dd></div>`;
   }
+  const includedEquipment = [
+    'Vinylová podlaha v dubovém dekoru.',
+    'Bílé bezpečnostní vstupní dveře s černým kováním a kukátkem.',
+    'Bílé interiérové dveře se zárubněmi a černým kováním.',
+    'Sprchový kout nebo sprchová zástěna podle dispozice bytu, včetně sprchové baterie.',
+    'Umyvadlo s baterií a skříňkou, zrcadlová skříňka a otopný žebřík.',
+    'Závěsné WC se sedátkem s pomalým sklápěním. U dispozic se samostatnou toaletou také umývátko se skříňkou a zrcadlem.',
+    'Vypínače a zásuvky v matném provedení.',
+    'Stropní svítidla s možností volby odstínu světla.',
+    'Plastová okna s přípravou pro předokenní žaluzie.',
+    'Rozvody a přípojky pro instalaci kuchyňské linky.',
+    'Příprava pro připojení pračky a sušičky.'
+  ];
   function detailHTML(unit) {
-    const details = get(unit);
-    const bathroom = details.bathroom;
     const standardPdf = pdfPath(data.technicalCatalog?.url);
-    return `<section class="unit-included" aria-label="Vybavení bytu ${esc(unit.id)}">${details.locationNote ? `<p class="unit-location-note"><strong>${esc(details.locationNote)}</strong></p>` : ''}<h3>Co je v ceně tohoto bytu</h3><ul class="equipment-list">${(details.equipment || []).map(item=>`<li>${esc(item)}</li>`).join('')}</ul>${standardPdf ? `<a class="equipment-document-link" href="${esc(standardPdf)}" target="_blank" rel="noopener">Technické listy standardního vybavení (PDF)</a>` : ''}<section class="unit-bathroom" aria-label="Koupelna pro byt ${esc(unit.id)}"><h4>Vaše koupelna · ${esc(bathroom?.label || unit.layout)}</h4><p class="included-confirmation"><strong>Skříňky, umyvadla, zrcadla i sanita podle tohoto katalogu jsou součástí ceny bytu.</strong></p>${bathroom?.referenceType ? `<p>${esc(bathroom.referenceType)}</p>${productsHTML(bathroom)}` : ''}${bathroomLinkHTML(unit,{pdf:true})}</section><div class="excluded-box"><h4>Není součástí ceny bytu</h4><p>${esc(data.excluded.join(', '))}.</p></div></section>`;
+    return `<section id="unit-equipment" class="unit-included" aria-labelledby="unit-equipment-title">
+      <h3 id="unit-equipment-title" tabindex="-1">Vybavení v ceně bytu</h3>
+      <ul class="equipment-list">${includedEquipment.map(item => `<li>${esc(item)}</li>`).join('')}</ul>
+      <div class="unit-equipment-documents">${standardPdf ? `<a class="equipment-document-link" href="${esc(standardPdf)}" target="_blank" rel="noopener">Technické listy standardního vybavení (PDF)</a>` : ''}${bathroomLinkHTML(unit,{pdf:true})}</div>
+      <div class="excluded-box"><h4>Není součástí ceny bytu</h4><p>${esc(data.excluded.join(', '))}.</p></div></section>`;
   }
   window.AlexandraDetails = Object.freeze({ get, area, formatPrice, salesPortrait, callSales, featureArea, areasHTML, detailHTML, bathroomKey, bathroomTarget, bathroomLinkHTML, tourHref });
 

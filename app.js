@@ -64,7 +64,7 @@
   function captureFocus(element = document.activeElement) {
     const control = element?.closest?.('[data-save], [data-unit], [data-map-unit], button, a, input, select, textarea') || element;
     const scope = control?.closest?.('#map-unit-card, #unit-dialog, #compare-dialog, #unit-rows');
-    const attr = ['data-save', 'data-unit', 'data-map-unit'].find(name => control?.hasAttribute?.(name));
+    const attr = ['data-detail-section', 'data-save', 'data-unit', 'data-map-unit', 'data-detail-neighbor', 'data-furnished-unit'].find(name => control?.hasAttribute?.(name));
     return { element: control, id: control?.id, scopeId: scope?.id, attr, value: attr ? control.getAttribute(attr) : null };
   }
   function restoreFocus(token) {
@@ -72,7 +72,7 @@
     const activeDialog = $('dialog[open]');
     const scope = token.scopeId ? document.getElementById(token.scopeId) : document;
     let target = token.element?.isConnected ? token.element : token.id ? document.getElementById(token.id) : null;
-    if (!target && token.attr && /^\d+$/.test(token.value || '')) target = scope?.querySelector(`[${token.attr}="${token.value}"]`);
+    if (!target && token.attr && /^[\w-]+$/.test(token.value || '')) target = scope?.querySelector(`[${token.attr}="${token.value}"]`);
     if (!target && scope !== document) target = scope?.querySelector('[data-close], button, a, input, select');
     if (!target) target = $('#floor-filter');
     // Closing one dialog must never steal focus from another open dialog.
@@ -190,7 +190,15 @@
     if (!unitButton) return;
     if (unitButton.getAttribute('aria-controls') === 'unit-dialog') {
       const unit = findUnit(unitButton.dataset.unit);
-      if (unit) showUnitDialog(unit, captureFocus(unitButton));
+      if (unit) {
+        event.preventDefault();
+        showUnitDialog(unit, captureFocus(unitButton));
+        if (unitButton.dataset.detailSection === 'unit-equipment') {
+          const heading = $('#unit-equipment h3');
+          heading.focus({preventScroll:true});
+          heading.scrollIntoView({block:'start', behavior:'instant'});
+        }
+      }
       return;
     }
     openUnit(unitButton.dataset.unit);
@@ -219,6 +227,26 @@
     openDialog(dialog, returnFocus);
     dialog.scrollTop = 0;
   }
+  function chooseDetailNeighbor(id) {
+    const next = findUnit(id);
+    if (!next || next.floor !== currentUnit?.floor || next.id === currentUnit.id) return;
+    window.AlexandraPicker?.openUnit(next.id, {focus:false});
+  }
+  const unitDialog = $('#unit-dialog');
+  unitDialog.addEventListener('click', event => {
+    const choice = event.target.closest('[data-detail-neighbor]');
+    if (choice) chooseDetailNeighbor(choice.dataset.detailNeighbor);
+  });
+  unitDialog.addEventListener('keydown', event => {
+    const choice = event.target.closest('[data-detail-neighbor]');
+    if (choice && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      chooseDetailNeighbor(choice.dataset.detailNeighbor);
+    }
+  });
+  unitDialog.addEventListener('change', event => {
+    if (event.target.matches('[data-detail-floor-select]')) chooseDetailNeighbor(event.target.value);
+  });
   $$('[data-layout]').forEach(button => button.addEventListener('click', () => setFilters({ layout: button.dataset.layout, all: false })));
   [['floor-filter','floor'], ['area-filter','area'], ['status-filter','status'], ['sort-filter','sort']].forEach(([id,key]) => $(`#${id}`)?.addEventListener('change', event => setFilters({ [key]: event.target.value, all: false })));
   $('#favorites-only').addEventListener('change', event => setFilters({ favorites: event.target.checked, all: false }));
@@ -246,23 +274,39 @@
   document.addEventListener('alexandra:floor-selector-error', openPendingDetail);
   function renderUnitDetail(unit) {
     if (!unit) return;
-    const directPlan = !!unit.plan;
-    const tour = unit.id === 51 ? null : { '1+kk': { id: '1kk', source: '04' }, '2+kk': { id: '2kk', source: '02' }, '2,5+kk': { id: '3kk', source: '01' } }[unit.layout];
-
-    const planPath = directPlan ? unit.plan : `plans/floor-sheet-${unit.floor}-20261103.pdf`;
-    const previewPath = unit.planPreview || (directPlan ? `assets/plan-unit-${String(unit.id).padStart(2,'0')}.webp` : `assets/floors/floor-${unit.floor}.webp`);
-    const notice = directPlan ? 'Půdorys bytu.' : `Půdorys: ${window.AlexandraFloorLabels.source(unit.floor)}.`;
-    $('#unit-dialog-content').innerHTML = `<header class="unit-dialog-identity unit-sales-head"><div class="unit-sales-copy"><p class="eyebrow">REZIDENCE ALEXANDRA · BYDLENÍ</p><h2 id="unit-dialog-title">Byt ${String(unit.id).padStart(2,'0')}</h2><p class="unit-meta">${escape(unit.layout)} <span aria-hidden="true">/</span> ${floorLabel(unit.floor)}${unit.belowGroundLevel ? " · pod úrovní terénu" : ""}</p></div>${window.AlexandraDetails.salesPortrait}</header><div class="unit-dialog-grid"><div class="unit-overview">${window.AlexandraUnitLocation?.html(unit) || ''}<p class="unit-price">${money(unit.price)}</p><span class="unit-price-note">Orientační cena · bez parkování</span><div class="unit-actions"><div class="unit-contact-actions"><button class="button viewing-cta" id="inquire-unit" data-id="${unit.id}">Domluvit prohlídku ${icon('arrow-up-right')}</button>${window.AlexandraDetails.callSales}</div><button class="button" data-save="${unit.id}" aria-label="${saved.includes(unit.id) ? 'Odebrat' : 'Uložit'} byt ${unit.id}" aria-pressed="${saved.includes(unit.id)}">${icon(saved.includes(unit.id) ? 'favorite-filled' : 'favorite')} <span>${saved.includes(unit.id) ? 'Uloženo' : 'Uložit'}</span></button><a class="text-link" href="${planPath}" target="_blank" rel="noopener">Půdorys PDF ${icon('arrow-up-right')}</a>${!directPlan ? `<a class="text-link" href="plans/floor-${unit.floor}.pdf" target="_blank" rel="noopener" title="${escape(window.AlexandraFloorLabels.source(unit.floor))}">Původní projektový výkres ${icon('arrow-up-right')}</a>` : ''}${tour ? `<a class="text-link unit-tour-link" href="${window.AlexandraDetails?.tourHref?.(unit) || `tour.html?byt=${tour.id}&jednotka=${unit.id}&podlazi=${unit.floor}#walkthrough`}">Typová 360° prohlídka ${escape(unit.layout)} ${icon('arrow-up-right')}</a>` : ''}</div><div class="unit-purchase-links">${Number.isFinite(unit.price) ? `<a class="text-link" href="#hypoteka" data-mortgage-unit="${unit.id}">Spočítat hypotéku ${icon('arrow-up-right')}</a>` : ''}<a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${icon('arrow-up-right')}</a><a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${icon('arrow-up-right')}</a>${window.AlexandraDetails?.bathroomLinkHTML?.(unit) || ''}</div><dl class="unit-data"><div><dt><span class="icon-label">${icon('area', 'art')} <span>Celková plocha</span></span></dt><dd>${area(unit.area)}</dd></div><div><dt>Otápěná plocha dle ceníku</dt><dd>${area(unit.heatedArea)}</dd></div>${window.AlexandraDetails?.areasHTML(unit) || ''}<div><dt><span class="icon-label">${icon('parking-open', 'art')} <span>Parkování</span></span></dt><dd>Samostatně k dokoupení</dd></div><div><dt>Dostupnost</dt><dd>${statusBadge(unit)}</dd></div></dl></div><div class="unit-preview"><a class="unit-plan" href="${planPath}" target="_blank" rel="noopener" aria-label="Otevřít půdorys v PDF"><img src="${previewPath}" alt="${directPlan ? `Zdrojový půdorys bytu ${unit.id}` : `Zdrojový půdorys ${floorLabel(unit.floor)}`}" loading="lazy"><span class="plan-caption">${directPlan ? `Půdorys bytu ${String(unit.id).padStart(2,'0')}` : `Půdorys · ${floorLabel(unit.floor)}`} · otevřít PDF ${icon('arrow-up-right')}</span></a><p class="unit-notice">${notice}</p></div><div class="unit-detail-notes">${window.AlexandraDetails?.detailHTML(unit) || ''}</div></div>`;
+    const details = window.AlexandraDetails;
+    const plan = escape(unit.plan || `plans/byty-20261124/podlazi-${unit.floor}.pdf`);
+    const preview = escape(unit.planPreview || `assets/floors/floor-${unit.floor}.webp`);
     const furnished = window.AlexandraFurnishedPlans?.previewHTML(unit, 'detail');
-    if (furnished) {
-      $('.unit-plan', $('#unit-dialog-content')).outerHTML = furnished;
-      $('.unit-notice', $('#unit-dialog-content')).textContent = 'Přesné rozměry bytu jsou vyznačeny v projektovém půdorysu PDF.';
-    }
-    if (unit.interiorLayout) {
-      const photo = roomPhotos(unit.interiorLayout)[0];
-      if (photo) $('.unit-preview', $('#unit-dialog-content')).insertAdjacentHTML('afterbegin',
-        `<a class="detail-interior-link" href="interiors.html?typology=${encodeURIComponent(unit.interiorLayout)}#gallery"><img src="${escape(photo.src)}" width="${photo.width}" height="${photo.height}" loading="lazy" alt="${escape(photo.alt)}"><span>Vizualizace interiéru ${escape(unit.interiorLayout)} ${icon('arrow-up-right')}</span></a>`);
-    }
+    const originalPlan = `<a class="detail-original-plan" href="${plan}" target="_blank" rel="noopener" aria-label="Otevřít projektový půdorys bytu ${unit.id} v PDF"><img src="${preview}" alt="Projektový půdorys pro byt ${unit.id}"></a>`;
+    const tour = details.tourHref(unit);
+    const isSaved = saved.includes(unit.id);
+    const arrow = icon('arrow-up-right');
+    $('#unit-dialog-content').innerHTML = `<p class="eyebrow detail-kicker">REZIDENCE ALEXANDRA · BYDLENÍ</p>
+      <div class="detail-columns">
+        <div class="detail-intro">
+          <header class="detail-identity">
+            <div class="detail-heading"><h2 id="unit-dialog-title" tabindex="-1">Byt ${String(unit.id).padStart(2,'0')}</h2>
+              <p class="unit-meta">${escape(unit.layout)} / ${floorLabel(unit.floor)}${unit.belowGroundLevel ? ' · pod úrovní terénu' : ''}</p>
+              ${statusBadge(unit)}<p class="unit-price">${money(unit.price)}</p>${Number.isFinite(unit.price) ? '<p class="unit-price-note">Orientační cena · bez parkování</p>' : ''}
+            </div>${details.salesPortrait}
+          </header>
+          <div class="unit-contact-actions"><button type="button" class="button viewing-cta" id="inquire-unit" data-id="${unit.id}">Domluvit prohlídku ${arrow}</button>${details.callSales}</div>
+          <div class="detail-tools"><button type="button" class="button" data-save="${unit.id}" aria-label="${isSaved ? 'Odebrat' : 'Uložit'} byt ${unit.id}" aria-pressed="${isSaved}">${icon(isSaved ? 'favorite-filled' : 'favorite')} <span>${isSaved ? 'Uloženo' : 'Uložit'}</span></button>
+            <a class="text-link" href="${plan}" target="_blank" rel="noopener">Půdorys PDF ${arrow}</a></div>
+        </div>
+        <div class="detail-drawings">${furnished || originalPlan}${window.AlexandraUnitLocation?.floorHTML(unit) || ''}</div>
+        <div class="detail-terms">
+          <dl class="unit-data"><div><dt>Celková plocha</dt><dd>${area(unit.area)}</dd></div>
+            <div><dt>Otápěná plocha dle ceníku</dt><dd>${area(unit.heatedArea)}</dd></div>${details.areasHTML(unit)}
+            <div><dt>Parkování</dt><dd>Samostatně k dokoupení</dd></div></dl>
+          <div class="detail-shortcuts">
+            <a class="text-link" href="#hypoteka" data-mortgage-unit="${Number.isFinite(unit.price) ? unit.id : 'custom'}">Spočítat hypotéku ${arrow}</a>
+            <a class="text-link" href="#parkovani" data-section-link="parkovani" data-unit-id="${unit.id}">Parkování ${arrow}</a>
+            <a class="text-link" href="#vybaveni" data-section-link="vybaveni" data-unit-id="${unit.id}">Vybavení v ceně ${arrow}</a></div>
+          ${tour ? `<a class="unit-tour-link" href="${escape(tour)}">Typová 360° prohlídka ${escape(unit.layout)} ${arrow}</a>` : ''}
+        </div></div>
+      ${details.detailHTML(unit)}`;
     $('#inquire-unit').addEventListener('click', () => requestViewing(unit));
   }
   function requestViewing(unit) {
@@ -296,6 +340,13 @@
   }
   document.addEventListener('alexandra:picker-unit', event => {
     parkingUnit = findUnit(event.detail?.id) || null;
+    if (!unitDialog.open) return;
+    if (!parkingUnit) { unitDialog.close(); return; }
+    if (currentUnit?.id !== parkingUnit.id) {
+      const returnButton = $('#map-unit-card button[aria-controls="unit-dialog"]');
+      showUnitDialog(parkingUnit, captureFocus(returnButton));
+      $('#unit-dialog-title').focus({preventScroll:true});
+    }
   });
   const inquiryForm = $('#inquiry-form');
   inquiryForm.noValidate = true;

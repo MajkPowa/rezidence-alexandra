@@ -135,8 +135,9 @@
   document.addEventListener('click',event=>{
     const link=event.target.closest('[data-mortgage-unit]');
     if(!link)return;
-    const unit=validUnit(link.dataset.mortgageUnit);if(!unit)return;
-    choose(unit.id,true);
+    const id=link.dataset.mortgageUnit;
+    if(id!=='custom'&&!validUnit(id))return;
+    choose(id,true);
     announceResult();
     document.querySelectorAll('dialog[open]').forEach(d=>d.close());
   });

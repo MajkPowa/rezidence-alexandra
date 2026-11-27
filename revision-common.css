@@ -87,6 +87,8 @@ body.has-project-contact #residence-journey :is(.journey-credit,.journey-load-st
 body.has-project-contact #residence-journey .journey-bottom-right:has(.journey-load-status:not([hidden])) .journey-credit{display:none}
 }
 @media(prefers-reduced-motion:reduce){.project-contact-widget,.project-contact-dialog{transition:none!important}}
+/* Keep the footprint measurable while testing whether the contact would cover another control. */
+.project-contact-widget[inert]{visibility:hidden;pointer-events:none}
 @media print{.project-contact-widget,#project-contact-dialog{display:none!important}}
 /* Keep the compact header's menu visible; the persistent contact widget remains available. */
 @media(max-width:1100px){

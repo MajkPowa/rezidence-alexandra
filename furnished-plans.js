@@ -52,13 +52,17 @@
   function previewHTML(value, scope = 'map') {
     const unit = findUnit(value), variant = variantFor(unit);
     if (!variant) return '';
+    if (scope === 'detail') {
+      return `<button type="button" class="detail-isometry" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zvětšit izometrický půdorys bytu ${unit.id}">
+        <img src="${escape(variant.image)}" srcset="${escape(variant.thumbnail)} 640w, ${escape(variant.image)} 1200w" sizes="(max-width:760px) 90vw, 520px" width="${variant.width}" height="${variant.height}" alt="Izometrický půdorys bytu ${unit.id}" decoding="async">
+        <span class="furnished-preview-mark" aria-hidden="true">3D</span></button>`;
+    }
     if (scope === 'selection') {
       return `<button type="button" class="unit-plan-tile" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog">
         <img src="${escape(variant.thumbnail)}" width="${variant.width}" height="${variant.height}" alt="Izometrický půdorys bytu ${unit.id}" loading="lazy" decoding="async">
         <span><strong>Zařízený půdorys</strong><span>Byt ${unit.id} · ${escape(unit.layout)}</span><span class="plan-tile-action">Zobrazit ve 3D ${icon('arrow-up-right')}</span></span></button>`;
     }
-    const detail = scope === 'detail';
-    return `<button type="button" class="furnished-preview furnished-preview--${detail ? 'detail unit-plan' : 'map map-card-plan'}" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="${variant.width}" height="${variant.height}" alt="Izometrický půdorys bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Návrh zařízení bytu</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
+    return `<button type="button" class="furnished-preview furnished-preview--map map-card-plan" data-furnished-unit="${unit.id}" aria-haspopup="dialog" aria-controls="furnished-plan-dialog" aria-label="Zobrazit zařízený 3D půdorys bytu ${unit.id}"><span class="furnished-preview-media"><img src="${escape(variant.thumbnail)}" width="${variant.width}" height="${variant.height}" alt="Izometrický půdorys bytu ${unit.id}" loading="lazy" decoding="async"><span class="furnished-preview-mark" aria-hidden="true">3D</span></span><span class="furnished-preview-caption"><strong>Návrh zařízení bytu</strong><span>Prohlédnout návrh ${icon('arrow-up-right')}</span></span></button>`;
   }
 
   function watchImage(image, source = false) {

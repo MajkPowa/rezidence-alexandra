@@ -288,3 +288,93 @@ body.dr-brand :is(#map-unit-card,#unit-dialog) .unit-call .unit-call-number { fo
   .buyer-team-links a { min-height: 42px; }
 }
 @media (prefers-reduced-motion: reduce) { #residence-journey .journey-picture { transition: none; } }
+
+/* Selected apartment: gallery, contact and quick links. */
+#map-unit-card .unit-sales-head { grid-template-columns: minmax(0,1fr) minmax(68px,29%); grid-template-rows: auto 1fr; gap: 0 6px; }
+#map-unit-card .unit-sales-copy { grid-area: 1 / 1 / 3 / 2; }
+#map-unit-card .map-card-topline { grid-area: 1 / 2; }
+#map-unit-card .unit-sales-portrait { grid-area: 2 / 2; }
+#map-unit-card .map-card-actions { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+#map-unit-card .map-card-actions > .button { grid-column: 1 / -1; }
+#map-unit-card .unit-outline-link {
+  display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 46px; min-width: 0;
+  padding: 8px clamp(8px,2.4cqi,14px); border: 1px solid #a7a7a7; border-radius: 7px;
+  background: white; color: var(--dr-ink); font: 600 14px/1.35 var(--sans); text-align: left; text-decoration: none; cursor: pointer;
+}
+#map-unit-card .unit-outline-link:hover { border-color: var(--dr-red); color: var(--dr-red); }
+#map-unit-card .unit-outline-link svg, #map-unit-card .map-card-links svg, #unit-dialog .detail-shortcuts svg { width: 15px; height: 15px; flex: none; }
+#map-unit-card .map-card-links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 12px; margin: 12px 0 0; }
+#map-unit-card .map-card-links .text-link, #unit-dialog .detail-shortcuts .text-link {
+  display: flex; align-items: center; justify-content: space-between; min-width: 0; min-height: 44px;
+  gap: 6px; padding: 6px 0; margin: 0; font: 500 14px/1.4 var(--sans); white-space: normal;
+}
+
+/* The full detail brings the supplied drawings alongside the sales information. */
+#unit-dialog { width: min(1120px,calc(100% - 32px)); max-width: 1120px; max-height: 92dvh; padding: clamp(18px,3vw,38px); }
+#unit-dialog-content { clear: none; }
+#unit-dialog .detail-kicker { display: flex; align-items: center; min-height: 48px; margin: 0 58px 12px 0; }
+#unit-dialog .detail-columns { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); grid-template-areas: "drawings intro" "drawings terms" "drawings ."; grid-template-rows: auto auto 1fr; align-items: start; column-gap: clamp(20px,3vw,38px); }
+#unit-dialog :is(.detail-drawings,.detail-intro,.detail-terms,.detail-heading) { min-width: 0; }
+#unit-dialog .detail-intro { grid-area: intro; }
+#unit-dialog .detail-terms { grid-area: terms; }
+#unit-dialog .detail-drawings { grid-area: drawings; display: grid; gap: 18px; }
+#unit-dialog :is(.detail-isometry,.detail-original-plan) { position: relative; display: block; width: 100%; padding: 0; overflow: hidden; border: 1px solid var(--dr-line); border-radius: 9px; background: #f7f6f3; cursor: zoom-in; }
+#unit-dialog :is(.detail-isometry,.detail-original-plan) img { display: block; width: 100%; aspect-ratio: 1.1; height: auto; object-fit: contain; }
+#unit-dialog .detail-identity { display: grid; grid-template-columns: minmax(0,1fr) minmax(68px,30%); align-items: end; gap: 4px; background: white; }
+#unit-dialog .detail-identity .unit-sales-portrait { width: 100%; max-height: 180px; object-fit: contain; object-position: center bottom; }
+body.dr-brand #unit-dialog #unit-dialog-title { margin: 0 0 7px; font-size: clamp(38px,4.2vw,58px); line-height: 1.05; }
+#unit-dialog .detail-heading .unit-meta { margin: 0 0 6px; color: var(--dr-red); font: 500 clamp(16px,1.5vw,21px)/1.35 var(--sans); }
+#unit-dialog .detail-heading .status-badge { margin: 0; }
+#unit-dialog .detail-heading .unit-price { margin: 15px 0 3px; font: 650 clamp(20px,2.35vw,32px)/1.18 var(--sans); white-space: nowrap; letter-spacing: -.025em; }
+#unit-dialog .detail-heading .unit-price-note { margin: 0 0 10px; font: 400 12px/1.5 var(--sans); color: var(--dr-muted); }
+#unit-dialog .unit-contact-actions .button { width: 100%; justify-content: space-between; min-height: 48px; }
+#unit-dialog .detail-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0; }
+#unit-dialog .detail-tools .button { gap: 7px; min-height: 44px; padding: 9px 14px; }
+#unit-dialog .detail-tools .button > span { font: inherit; }
+#unit-dialog .unit-data { margin: 16px 0 4px; }
+#unit-dialog .unit-data > div { align-items: baseline; gap: 12px; padding: 12px 0; }
+#unit-dialog .unit-data dt, #unit-dialog .unit-data dd { line-height: 1.4; }
+#unit-dialog .unit-data dd { margin: 0; text-align: right; }
+#unit-dialog .detail-shortcuts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+#unit-dialog .unit-tour-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 8px 0 0; padding: 12px 14px; min-height: 46px; border: 1px solid var(--dr-line); border-radius: 7px; color: var(--dr-ink); background: var(--dr-wash); font: 550 14px/1.4 var(--sans); text-decoration: none; }
+#unit-dialog .unit-tour-link:hover { border-color: var(--dr-red); }
+#unit-dialog .detail-floor { margin: 0; padding: clamp(10px,1.4vw,16px); border: 1px solid var(--dr-line); border-radius: 9px; background: white; }
+#unit-dialog .detail-floor figcaption { display: flex; justify-content: space-between; align-items: start; gap: 8px; }
+#unit-dialog .detail-floor figcaption strong { font: 600 17px/1.4 var(--sans); }
+#unit-dialog .detail-floor figcaption strong span { display: block; font-size: 13px; color: var(--dr-muted); }
+#unit-dialog .detail-floor .floor-orientation { margin: 0; }
+#unit-dialog .detail-floor .floor-orientation svg { width: 54px; height: 54px; }
+#unit-dialog .detail-floor .floor-orientation span { position: absolute; clip-path: inset(50%); }
+.detail-floor-plan { display: block; width: 100%; height: auto; }
+.detail-floor-plan [data-detail-neighbor] { cursor: pointer; --bay: var(--color-status-unknown); }
+.detail-floor-plan [data-status="available"] { --bay: var(--color-status-available); }
+.detail-floor-plan [data-status="reserved"] { --bay: var(--color-status-reserved); }
+.detail-floor-plan [data-status="sold"] { --bay: var(--color-status-sold); }
+.detail-floor-shape { fill: var(--bay); fill-opacity: .18; stroke: var(--bay); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.detail-floor-tag { fill: var(--bay); stroke: white; stroke-width: 5; }
+.detail-floor-number { fill: white; font: 650 80px var(--sans); text-anchor: middle; dominant-baseline: central; }
+.detail-floor-plan [aria-pressed="true"] .detail-floor-shape, .detail-floor-plan [role="button"]:is(:hover,:focus-visible) .detail-floor-shape { stroke: var(--dr-ink); stroke-width: 2.5; fill-opacity: .35; }
+.detail-floor-plan [aria-pressed="true"] .detail-floor-tag { stroke: var(--dr-ink); stroke-width: 12; }
+.detail-floor-picker { display: grid; gap: 5px; font: 600 13px/1.4 var(--sans); margin-top: 8px; }
+.detail-floor-picker select { width: 100%; min-height: 44px; padding: 7px 10px; border: 1px solid #aaa; border-radius: 6px; color: var(--dr-ink); background: white; font: 500 14px/1.4 var(--sans); }
+.detail-floor-key { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; margin: 4px 0 0; }
+#unit-dialog .detail-floor-key .status-badge { margin: 0; font-size: 12px; }
+#unit-dialog .unit-included { margin: 24px 0 0; padding: 22px 0 0; }
+#unit-dialog .unit-included h3 { margin: 0 0 14px; font: 650 clamp(22px,2.6vw,32px)/1.2 var(--sans); }
+#unit-dialog .equipment-list { margin: 0; padding-left: 1.3em; columns: 2; column-gap: 36px; }
+#unit-dialog .equipment-list li { margin: 0 0 8px; padding-left: .1em; break-inside: avoid; line-height: 1.55; }
+#unit-dialog .equipment-list li::marker { color: var(--dr-red); }
+.unit-equipment-documents { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin: 18px 0; }
+#unit-dialog .unit-equipment-documents a { margin: 0; justify-content: center; }
+#unit-dialog .unit-equipment-documents svg { margin-left: 0; }
+#unit-dialog .excluded-box { margin: 8px 0 0; padding: 12px 16px; }
+@media (max-width:760px) {
+  #unit-dialog { width: calc(100% - 16px); max-height: 94dvh; padding: 18px 14px; }
+  #unit-dialog .detail-columns { grid-template-columns: minmax(0,1fr); grid-template-areas: "intro" "drawings" "terms"; grid-template-rows: auto; gap: 16px; }
+  #unit-dialog .detail-floor-number { font-size: 98px; }
+  #unit-dialog :is(.detail-tools,.unit-data) { margin-bottom: 0; }
+  #unit-dialog .detail-shortcuts { gap: 8px; }
+  #unit-dialog .detail-floor figcaption strong { font-size: 16px; }
+  #unit-dialog .equipment-list { columns: 1; }
+  .unit-equipment-documents { grid-template-columns: minmax(0,1fr); }
+}

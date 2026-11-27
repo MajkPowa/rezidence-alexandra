@@ -350,6 +350,13 @@
   });
   const inquiryForm = $('#inquiry-form');
   inquiryForm.noValidate = true;
+  const receiver = inquiryForm.dataset.inquiryEndpoint || '';
+  const submitInquiry = inquiryForm.querySelector('button[type="submit"]');
+  let pendingInquiry = false, deliveredInquiry = false, inquiryId = null, lastPacket = '';
+  if (receiver) {
+    submitInquiry.firstChild.textContent = 'Odeslat poptávku ';
+    inquiryForm.querySelector('.form-note').textContent = 'Vaši zprávu pošleme přímo prodejci projektu.';
+  }
   const formErrors = document.createElement('div');
   formErrors.className = 'form-errors'; formErrors.id = 'form-errors'; formErrors.hidden = true;
   formErrors.tabIndex = -1; formErrors.setAttribute('role', 'alert');
@@ -374,8 +381,9 @@
     if (field.hasAttribute('aria-invalid')) updateFieldError(field);
     if (fields.every(item => !fieldMessage(item))) formErrors.hidden = true;
   }));
-  inquiryForm.addEventListener('submit', event => {
+  inquiryForm.addEventListener('submit', async event => {
     event.preventDefault();
+    if (pendingInquiry) return;
     const errors = fields.map(field => ({field,message:updateFieldError(field)})).filter(item => item.message);
     if (errors.length) {
       formErrors.innerHTML = `<p>Ještě doplňte kontaktní údaje</p><ul>${errors.map(({field,message}) => `<li><a href="#${field.id}">${escape(message)}</a></li>`).join('')}</ul>`;
@@ -387,11 +395,43 @@
     const phone = $('#contact-phone').value.trim();
     const interest = $('#contact-interest').value;
     const message = $('#contact-message').value.trim();
+    if (receiver) {
+      const packet = {name,email,phone,interest,message};
+      const signature = JSON.stringify(packet);
+      if (signature !== lastPacket) { inquiryId = null; deliveredInquiry = false; }
+      if (deliveredInquiry) return;
+      lastPacket = signature;
+      inquiryId ||= crypto.randomUUID();
+      pendingInquiry = true; submitInquiry.disabled = true;
+      inquiryForm.setAttribute('aria-busy','true');
+      const feedback = $('#form-status');
+      feedback.textContent = 'Odesíláme vaši poptávku…';
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(),15000);
+      try {
+        const reply = await fetch(receiver,{method:'POST',mode:'cors',credentials:'omit',
+          referrerPolicy:'no-referrer',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({...packet,requestId:inquiryId}),signal:controller.signal});
+        const receipt = reply.ok ? await reply.json() : null;
+        if (receipt?.service !== 'rezidence-alexandra-inquiry' || receipt.status !== 'accepted' || receipt.requestId !== inquiryId) throw new Error('Unconfirmed submission');
+        deliveredInquiry = true;
+        feedback.textContent = 'Děkujeme, vaši poptávku jsme přijali. Pavel Dvořák se vám ozve.';
+        document.dispatchEvent(new Event('alexandra:inquiry-accepted'));
+      } catch {
+        feedback.textContent = 'Přijetí poptávky se nepodařilo potvrdit. Zkuste to znovu nebo zavolejte Pavlu Dvořákovi na 734 358 581.';
+      } finally {
+        clearTimeout(timeout);
+        pendingInquiry = false; submitInquiry.disabled = false;
+        inquiryForm.removeAttribute('aria-busy');
+      }
+      return;
+    }
     const body = `Dobrý den,\n\nmám zájem: ${interest}.\n\n${message}\n\nJméno: ${name}\nE-mail: ${email}${phone ? `\nTelefon: ${phone}` : ''}\n\nDěkuji za informace k Rezidenci Alexandra.`;
     const href = `mailto:dvorak@dumrealit.cz?subject=${encodeURIComponent(`Rezidence Alexandra — ${interest}`)}&body=${encodeURIComponent(body)}`;
     $('#form-status').replaceChildren(document.createTextNode('Zpráva je připravena. Pokud se e-mailový program neotevřel, '));
-    const link = document.createElement('a'); link.href = href; link.textContent = 'otevřete návrh zde'; link.style.textDecoration='underline'; $('#form-status').append(link,document.createTextNode('. Zpráva nebyla automaticky odeslána.'));
-    window.location.href = href;
+    const link = document.createElement('a'); link.href = href; link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'otevřete návrh zde'; link.style.textDecoration='underline'; $('#form-status').append(link,document.createTextNode('. Zpráva nebyla automaticky odeslána.'));
+    document.dispatchEvent(new Event('alexandra:email-prepared'));
+    link.click();
   });
 
   document.addEventListener('alexandra:inventory-change', () => {

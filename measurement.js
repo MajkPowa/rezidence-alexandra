@@ -83,6 +83,8 @@
   }
   gtag('consent','default',consentValues(denied));
   gtag('set','ads_data_redaction',true);
+  // Both Google loaders see these defaults before either can emit an automatic page view.
+  gtag('set',{send_page_view:false,page_location:cleanLocation,page_referrer:''});
   function loadChoice() {
     try {
       const saved = JSON.parse(localStorage.getItem(storeKey));

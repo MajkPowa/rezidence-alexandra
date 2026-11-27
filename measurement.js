@@ -71,6 +71,8 @@
     }
   }
   window.AlexandraMeasurement = Object.freeze({configure});
+  const tagSettings = document.currentScript?.dataset;
+  configure({ga4:tagSettings?.ga4, metaPixel:tagSettings?.metaPixel});
   function consentValues(value) {
     return {
       analytics_storage:value.analytics ? 'granted':'denied',

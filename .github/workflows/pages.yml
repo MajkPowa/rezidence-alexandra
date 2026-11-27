@@ -34,6 +34,12 @@ jobs:
             --exclude='assets/journey-sharp-20261026/' \
             --exclude='assets/journey-rooms-20261027/' \
             ./ "$RUNNER_TEMP/alexandra-pages/"
+      - name: Apply project measurement and inquiry settings
+        env:
+          GA4_MEASUREMENT_ID: ${{ vars.GA4_MEASUREMENT_ID }}
+          META_PIXEL_ID: ${{ vars.META_PIXEL_ID }}
+          FORPSI_INQUIRY_URL: ${{ vars.FORPSI_INQUIRY_URL }}
+        run: python3 .github/configure_site.py "$RUNNER_TEMP/alexandra-pages"
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static website

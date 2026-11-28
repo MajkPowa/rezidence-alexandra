@@ -9,10 +9,12 @@ from urllib.parse import urlsplit
 
 def configure(directory, settings):
     ga4 = settings.get("GA4_MEASUREMENT_ID", "").strip()
+    client_ga4 = settings.get("GA4_CLIENT_MEASUREMENT_ID", "").strip()
+    for name, stream in [("GA4_MEASUREMENT_ID", ga4), ("GA4_CLIENT_MEASUREMENT_ID", client_ga4)]:
+        if stream and not re.fullmatch(r"G-[A-Z0-9]{6,18}", stream):
+            raise ValueError(f"{name} must be a GA4 web stream ID (G-…).")
     pixel = settings.get("META_PIXEL_ID", "").strip()
     receiver = settings.get("FORPSI_INQUIRY_URL", "").strip()
-    if ga4 and not re.fullmatch(r"G-[A-Z0-9]{6,18}", ga4):
-        raise ValueError("GA4_MEASUREMENT_ID must be a GA4 web stream ID (G-…).")
     if pixel and not re.fullmatch(r"[1-9][0-9]{9,19}", pixel):
         raise ValueError("META_PIXEL_ID must be a numeric Meta Pixel ID.")
     if receiver:
@@ -26,10 +28,10 @@ def configure(directory, settings):
     for page in directory.glob("*.html"):
         original = page.read_text(encoding="utf-8")
         content = original
-        if (ga4 or pixel) and 'src="measurement.js' in content:
+        if (ga4 or client_ga4 or pixel) and 'src="measurement.js' in content:
             def update_tag(match):
                 tag = match.group()
-                for attr, value in [("data-ga4", ga4), ("data-meta-pixel", pixel)]:
+                for attr, value in [("data-ga4", ga4), ("data-client-ga4", client_ga4), ("data-meta-pixel", pixel)]:
                     if value:
                         tag, count = re.subn(fr'\b{attr}="[^"]*"', f'{attr}="{value}"', tag)
                         if count != 1:

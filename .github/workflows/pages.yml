@@ -37,6 +37,7 @@ jobs:
       - name: Apply project measurement and inquiry settings
         env:
           GA4_MEASUREMENT_ID: ${{ vars.GA4_MEASUREMENT_ID }}
+          GA4_CLIENT_MEASUREMENT_ID: ${{ vars.GA4_CLIENT_MEASUREMENT_ID }}
           META_PIXEL_ID: ${{ vars.META_PIXEL_ID }}
           FORPSI_INQUIRY_URL: ${{ vars.FORPSI_INQUIRY_URL }}
         run: python3 .github/configure_site.py "$RUNNER_TEMP/alexandra-pages"

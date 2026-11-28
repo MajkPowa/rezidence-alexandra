@@ -12,16 +12,60 @@
   const seen = {analytics:false,marketing:false};
   const layer = window.dataLayer = window.dataLayer || [];
   function gtag() { layer.push(arguments); }
-  const destinations = {ga4:null,metaPixel:null};
+  const destinations = {ga4:null,clientGa4:null,metaPixel:null};
   let googleStarted = false, metaStarted = false;
+  let clientFrame = null, clientTag = null;
+  const pendingClientEvents = [];
   const eventNames = {
     page_view:['page_view','PageView'], click:['content_click','ContentClick'], scroll_depth:['scroll_depth','ScrollDepth'],
     phone_click:['click_to_call','Contact'], email_draft:['email_draft_open','EmailDraftOpened'], generate_lead:['generate_lead','Lead']
   };
-  function loadScript(src) {
-    const script = document.createElement('script');
+  function loadScript(src, targetDocument = document) {
+    const script = targetDocument.createElement('script');
     script.async = true; script.referrerPolicy = 'origin'; script.src = src;
-    document.head.append(script);
+    targetDocument.head.append(script);
+  }
+  function startGoogleTag(id, tag, targetDocument) {
+    tag('js',new Date());
+    tag('config',id,{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false,
+      page_title:document.title,page_location:cleanLocation,page_referrer:''});
+    loadScript('https://www.googletagmanager.com/gtag/js?id='+id,targetDocument);
+  }
+  function sendClientEvent(name, params) {
+    if (clientTag) {
+      clientTag('event',name,params);
+      return;
+    }
+    pendingClientEvents.push([name,params]);
+    if (clientFrame) return;
+    // The client stream has enhanced measurement enabled. In this empty document its
+    // automatic listeners cannot turn apartment selection or form edits into events.
+    const frame = document.createElement('iframe');
+    clientFrame = frame;
+    frame.style.cssText = 'position:fixed;bottom:0;left:0;width:1px;height:1px;border:0;visibility:hidden;pointer-events:none';
+    frame.tabIndex = -1;
+    frame.setAttribute('aria-hidden','true');
+    frame.title = 'Analytika návštěvnosti';
+    frame.referrerPolicy = 'no-referrer';
+    frame.addEventListener('load',() => {
+      if (clientFrame !== frame || !choice?.analytics) return;
+      const doc = frame.contentDocument;
+      if (!doc?.documentElement?.hasAttribute('data-analytics-stream')) {
+        frame.remove();
+        clientFrame = null;
+        pendingClientEvents.length = 0;
+        return;
+      }
+      doc.title = document.title;
+      const queue = frame.contentWindow.dataLayer = [];
+      clientTag = function () { queue.push(arguments); };
+      setGoogleDefaults(clientTag);
+      clientTag('consent','update',consentValues({analytics:true,marketing:false}));
+      startGoogleTag(destinations.clientGa4,clientTag,doc);
+      for (const [eventName, eventParams] of pendingClientEvents.splice(0)) clientTag('event',eventName,eventParams);
+    },{once:true});
+    frame.src = 'analytics/stream.html';
+    document.body.append(frame);
   }
   function deliver(key, record) {
     const names = eventNames[record.event.slice(3)];
@@ -30,16 +74,18 @@
     for (const field of ['section_name','action_name','apartment_id','percent_scrolled']) {
       if (record[field] != null) params[field] = record[field];
     }
-    if (key === 'ga4') {
+    if (key !== 'metaPixel') {
       if (!choice?.analytics || !record.analytics_allowed) return;
+      const fields = {...params,send_to:destinations[key],page_location:cleanLocation,page_referrer:''};
+      if (key === 'clientGa4') {
+        sendClientEvent(names[0],fields);
+        return;
+      }
       if (!googleStarted) {
         googleStarted = true;
-        gtag('js',new Date());
-        gtag('config',destinations.ga4,{send_page_view:false,allow_google_signals:false,
-          allow_ad_personalization_signals:false,page_location:cleanLocation,page_referrer:''});
-        loadScript('https://www.googletagmanager.com/gtag/js?id='+destinations.ga4);
+        startGoogleTag(destinations.ga4,gtag,document);
       }
-      gtag('event',names[0],{...params,send_to:destinations.ga4,page_location:cleanLocation,page_referrer:''});
+      gtag('event',names[0],fields);
     } else {
       if (!choice?.marketing || !record.marketing_allowed) return;
       if (!metaStarted) {
@@ -58,12 +104,13 @@
       window.fbq(standard ? 'trackSingle' : 'trackSingleCustom',destinations.metaPixel,names[1],params);
     }
   }
-  // The GTM owner can supply the two public destination IDs in one initialization tag.
+  // Staged HTML or a GTM initialization tag can supply the GA4 streams and Meta Pixel.
   // A late-loading container replays only the events captured with the matching consent.
   function configure(ids = {}) {
-    for (const [key, valid] of [['ga4',/^G-[A-Z0-9]{6,18}$/],['metaPixel',/^[1-9]\d{9,19}$/]]) {
+    const gaId = /^G-[A-Z0-9]{6,18}$/;
+    for (const [key, valid] of [['ga4',gaId],['clientGa4',gaId],['metaPixel',/^[1-9]\d{9,19}$/]]) {
       const id = ids?.[key];
-      if (destinations[key] || typeof id !== 'string' || !valid.test(id)) continue;
+      if (destinations[key] || typeof id !== 'string' || !valid.test(id) || Object.values(destinations).includes(id)) continue;
       destinations[key] = id;
       for (const record of layer.slice()) {
         if (typeof record?.event === 'string' && record.event.startsWith('ra_')) deliver(key,record);
@@ -72,7 +119,7 @@
   }
   window.AlexandraMeasurement = Object.freeze({configure});
   const tagSettings = document.currentScript?.dataset;
-  configure({ga4:tagSettings?.ga4, metaPixel:tagSettings?.metaPixel});
+  configure({ga4:tagSettings?.ga4,clientGa4:tagSettings?.clientGa4,metaPixel:tagSettings?.metaPixel});
   function consentValues(value) {
     return {
       analytics_storage:value.analytics ? 'granted':'denied',
@@ -81,10 +128,12 @@
       ad_personalization:value.marketing ? 'granted':'denied'
     };
   }
-  gtag('consent','default',consentValues(denied));
-  gtag('set','ads_data_redaction',true);
-  // Both Google loaders see these defaults before either can emit an automatic page view.
-  gtag('set',{send_page_view:false,page_location:cleanLocation,page_referrer:''});
+  function setGoogleDefaults(tag) {
+    tag('consent','default',consentValues(denied));
+    tag('set','ads_data_redaction',true);
+    tag('set',{send_page_view:false,page_location:cleanLocation,page_referrer:''});
+  }
+  setGoogleDefaults(gtag);
   function loadChoice() {
     try {
       const saved = JSON.parse(localStorage.getItem(storeKey));
@@ -100,7 +149,7 @@
       action_name:null, section_name:null, apartment_id:null, percent_scrolled:null, ...values};
     // Send to already configured destinations before GTM processes the new event.
     // A configuration tag fired by this dataLayer.push will replay it exactly once.
-    deliver('ga4',record); deliver('metaPixel',record);
+    deliver('ga4',record); deliver('clientGa4',record); deliver('metaPixel',record);
     layer.push(record);
   }
   function start(value) {
@@ -161,6 +210,12 @@
     }
     const lostAnalytics = !!previous?.analytics && !updated.analytics;
     const lostMarketing = !!previous?.marketing && !updated.marketing;
+    if (lostAnalytics && clientFrame) {
+      clientFrame.remove();
+      clientFrame = null;
+      clientTag = null;
+      pendingClientEvents.length = 0;
+    }
     if (lostMarketing && metaStarted) window.fbq('consent','revoke');
     if (lostAnalytics || lostMarketing) clearOptionalCookies(lostAnalytics,lostMarketing);
     gtag('consent','update',consentValues(updated));
@@ -214,13 +269,13 @@
     publish('click',{...base,action_name:kind});
   },true);
   const levels = [25,50,75,90];
-  let lastPercent = 0, scrollFrame = 0, userScrolled = false;
+  function scrollPercent() {
+    const total = document.documentElement.scrollHeight - innerHeight;
+    return total > 0 ? window.scrollY / total * 100 : 0;
+  }
+  let lastPercent = scrollPercent(), scrollFrame = 0, userScrolled = false;
   function enableScroll() {
-    if (!choice || (!choice.analytics && !choice.marketing)) return;
-    if (!userScrolled) {
-      lastPercent = Math.max(lastPercent, window.scrollY / Math.max(1,document.documentElement.scrollHeight-innerHeight)*100);
-      userScrolled = true;
-    }
+    if (choice?.analytics || choice?.marketing) userScrolled = true;
   }
   window.addEventListener('wheel',enableScroll,{passive:true});
   window.addEventListener('touchmove',enableScroll,{passive:true});
@@ -229,12 +284,15 @@
   },{passive:true});
   document.addEventListener('keydown', e => { if (['PageDown','PageUp','ArrowDown','ArrowUp','Home','End',' '].includes(e.key)) enableScroll(); });
   window.addEventListener('scroll', () => {
-    if (!userScrolled || scrollFrame) return;
+    if (!userScrolled) {
+      // Keep the position before the first gesture, including jumps to an anchor.
+      lastPercent = scrollPercent();
+      return;
+    }
+    if (scrollFrame) return;
     scrollFrame = requestAnimationFrame(() => {
       scrollFrame = 0;
-      const total = document.documentElement.scrollHeight - innerHeight;
-      if (total <= 0) return;
-      const percent = window.scrollY / total * 100;
+      const percent = scrollPercent();
       for (const level of levels) if (lastPercent < level && percent >= level) publish('scroll_depth',{percent_scrolled:level});
       lastPercent = Math.max(lastPercent,percent);
     });
